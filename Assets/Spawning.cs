@@ -9,12 +9,14 @@ public class Spawning : MonoBehaviour
     public GameObject bomb;
     public Transform playerLocation;
 
-    private bool isCoroutineRunning = false;
+    BoxCollider location;
+
+    private bool isCoroutineRunning = false; 
 
     // Start is called before the first frame update
     void Start()
     {
-        
+
     }
 
     // Update is called once per frame
