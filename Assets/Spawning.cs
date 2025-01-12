@@ -33,10 +33,9 @@ public class Spawning : MonoBehaviour
     {
         isCoroutineRunning = true;
 
-        //Instantiate(bomb, playerLocation.position, transform.rotation);
-
-        Instantiate(bomb, new Vector3(Mathf.RoundToInt(playerLocation.position.x), 0.9160001f, 
-        Mathf.RoundToInt(playerLocation.position.z)), bomb.transform.rotation);
+        Instantiate(bomb, new Vector3(Mathf.RoundToInt(playerLocation.position.x), 
+            0.9160001f, 
+            Mathf.RoundToInt(playerLocation.position.z)), bomb.transform.rotation);
 
         yield return new WaitForSeconds(0.2f);
         isCoroutineRunning = false;
