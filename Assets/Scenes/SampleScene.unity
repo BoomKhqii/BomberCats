@@ -8118,7 +8118,7 @@ GameObject:
   - component: {fileID: 250667272}
   m_Layer: 0
   m_Name: Unbreakables
-  m_TagString: Untagged
+  m_TagString: Bedrock
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -18263,7 +18263,7 @@ GameObject:
   - component: {fileID: 557007102}
   m_Layer: 0
   m_Name: Boundaries
-  m_TagString: Untagged
+  m_TagString: Bedrock
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
