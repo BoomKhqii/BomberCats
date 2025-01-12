@@ -6,15 +6,13 @@ public class BombController : MonoBehaviour
 {
     public GameObject playerLocation;
     public int playerLocationX;
-    public int playerLocationZ; 
+    public int playerLocationZ;
+    float playerLocationY = 0.9160001f;
     public int range = 2;
-    public float speed = 0.2f;
 
     public MeshRenderer bomb;
-
-    public ParticleSystem explosion;
-
     public SphereCollider body;
+    public ParticleSystem explosion;
 
     void Start()
     {
@@ -22,38 +20,31 @@ public class BombController : MonoBehaviour
         body = GetComponent<SphereCollider>();
         playerLocation = GameObject.FindWithTag("Player");
         StartCoroutine(waiter());
-
     }
 
     IEnumerator waiter()
     {
         playerLocationX = Mathf.RoundToInt(playerLocation.gameObject.transform.position.x);
         playerLocationZ = Mathf.RoundToInt(playerLocation.gameObject.transform.position.z);
-
         yield return new WaitForSeconds(3f);
         yield return new WaitForSeconds(0.2f);
-        bomb.enabled = !enabled;
-        body.enabled = !enabled;
+        enableBombAndBody();
+        Explode(range, playerLocationX, playerLocationZ, playerLocationY);
 
-        //Instantiate(explosion, new Vector3(playerLocationX, 0.9160001f, playerLocationZ), Quaternion.identity);
+    }
+    void Explode(int range, int x, int z, float y)
+    {
         for (int i = 1; i <= range; i++)
         {
-            Instantiate(explosion, new Vector3(playerLocationX+i, 0.9160001f, playerLocationZ), Quaternion.identity);
-            Instantiate(explosion, new Vector3(playerLocationX-i, 0.9160001f, playerLocationZ), Quaternion.identity);
-            Instantiate(explosion, new Vector3(playerLocationX, 0.9160001f, playerLocationZ+i), Quaternion.identity);
-            Instantiate(explosion, new Vector3(playerLocationX, 0.9160001f, playerLocationZ-i), Quaternion.identity);
+            Instantiate(explosion, new Vector3(x + i, y, z), Quaternion.identity);
+            Instantiate(explosion, new Vector3(x - i, y, z), Quaternion.identity);
+            Instantiate(explosion, new Vector3(x, y, z + i), Quaternion.identity);
+            Instantiate(explosion, new Vector3(x, y, z - i), Quaternion.identity);
         }
-       
-        //Explode(range, speed, playerLocationX, playerLocationZ);
-
     }
-    /*
-    void Explode(int range, float speed, int x, int z)
+    void enableBombAndBody()
     {
-        for(int i = 0; i <= range; i++)
-        {
-            Instantiate(explosion, new Vector3(x++, 0.9160001f, z++), Quaternion.identity);
-        }
+        bomb.enabled = !enabled;
+        body.enabled = !enabled;
     }
-    */
 }
