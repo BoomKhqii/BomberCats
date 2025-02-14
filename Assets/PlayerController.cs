@@ -34,5 +34,11 @@ public class PlayerController : MonoBehaviour
             rb.velocity += transform.forward * Input.GetAxisRaw("Vertical") * playerSpeed;
             isMoving = true;
         }
+
+        if(!isDead)
+        {
+
+        }
+
     }
 }

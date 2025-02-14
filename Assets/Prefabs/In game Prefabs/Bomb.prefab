@@ -179,10 +179,12 @@ MonoBehaviour:
   playerLocationX: 0
   playerLocationZ: 0
   range: 3
-  speed: 0.2
   bomb: {fileID: 4167186925347011154}
-  explosion: {fileID: 7100603031460907972, guid: c3a7db598c79a954092be193a082e9c7, type: 3}
   body: {fileID: 2652659256035931600}
+  explosion: {fileID: 7100603031460907972, guid: c3a7db598c79a954092be193a082e9c7, type: 3}
+  unbreakable:
+    serializedVersion: 2
+    m_Bits: 8
 --- !u!82 &7104553565301185189
 AudioSource:
   m_ObjectHideFlags: 0
