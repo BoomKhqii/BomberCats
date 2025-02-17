@@ -14,7 +14,9 @@ public class BombController : MonoBehaviour
     public MeshRenderer bomb;
     public SphereCollider body;
     public ParticleSystem explosion;
+
     public LayerMask unbreakable;
+    public LayerMask fire;
 
     void Start()
     {
@@ -32,14 +34,24 @@ public class BombController : MonoBehaviour
         yield return new WaitForSeconds(0.2f);
         enableBombAndBody();
         Explode(range, playerLocationX, playerLocationZ, playerLocationY);
+        Destroy(gameObject);
+    }
 
+    private void Update()
+    {
+        if (Physics.CheckSphere(transform.position, 0.1f, fire))
+        {
+            enableBombAndBody();
+            Explode(range, playerLocationX, playerLocationZ, playerLocationY);
+            Destroy(gameObject);
+        }
     }
 
     void Explode(int range, int x, int z, float y)
     {
 
         bool[] explosionDirection = { true, true, true, true }; // N, S, W, E
-        Instantiate(explosion);
+        Instantiate(explosion, new Vector3(x,y,z), Quaternion.identity);
 
         for (int i = 1; i <= range; i++)
         {
@@ -59,29 +71,6 @@ public class BombController : MonoBehaviour
             if (explosionDirection[3] && !Physics.Raycast(transform.position, Vector3.right, 1f, unbreakable))
                 Instantiate(explosion, new Vector3(x + i, y, z), Quaternion.identity);
             else { explosionDirection[3] = false; }
-
-            /*
-            if(gameObject.tag != "Bedrock" && explosionN)
-                Instantiate(explosion, new Vector3(x, y, z+i), Quaternion.identity);
-            else
-                explosionN = false; 
-            
-            /*
-            if (gameObject.tag != "Bedrock" && explosionS)
-                Instantiate(explosion, new Vector3(x, y, z-i), Quaternion.identity);
-            else { explosionS = false; }
-            if (gameObject.tag != "Bedrock" && explosionW)
-                Instantiate(explosion, new Vector3(x-i, y, z), Quaternion.identity);
-            else { explosionW = false; }
-            if (gameObject.tag != "Bedrock" && explosionE)
-                Instantiate(explosion, new Vector3(x+i, y, z), Quaternion.identity);
-            else { explosionE = false; }
-            
-            Instantiate(explosion, new Vector3(x + i, y, z), Quaternion.identity);
-            Instantiate(explosion, new Vector3(x - i, y, z), Quaternion.identity);
-            Instantiate(explosion, new Vector3(x, y, z + i), Quaternion.identity);
-            Instantiate(explosion, new Vector3(x, y, z - i), Quaternion.identity);
-            */
         }
     }
 
