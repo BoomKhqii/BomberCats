@@ -52,25 +52,45 @@ public class BombController : MonoBehaviour
 
         bool[] explosionDirection = { true, true, true, true }; // N, S, W, E
         Instantiate(explosion, new Vector3(x,y,z), Quaternion.identity);
+        Vector3 explosionOrigin;
 
-        for (int i = 1; i <= range; i++)
+        for (int i = 0; i < range; i++)
         {
             // North
-            if (explosionDirection[0] && !Physics.Raycast(transform.position, Vector3.forward, 1f, unbreakable)) 
+            explosionOrigin = new Vector3(x,y,z+i);
+            if (explosionDirection[0])
+            {
                 Instantiate(explosion, new Vector3(x, y, z + i), Quaternion.identity);
-            else { explosionDirection[0] = false; }
+                if (Physics.Raycast(explosionOrigin, Vector3.forward, 1f, unbreakable))
+                    explosionDirection[0] = false;
+            }
+
             // South
-            if (explosionDirection[1] && !Physics.Raycast(transform.position, Vector3.back, 1f, unbreakable))
+            explosionOrigin = new Vector3(x, y, z-i);
+            if (explosionDirection[1])
+            {
                 Instantiate(explosion, new Vector3(x, y, z - i), Quaternion.identity);
-            else { explosionDirection[1] = false; }
+                if (Physics.Raycast(explosionOrigin, Vector3.back, 1f, unbreakable))
+                    explosionDirection[1] = false;
+            }
+
             // West
-            if (explosionDirection[2] && !Physics.Raycast(transform.position, Vector3.left, 1f, unbreakable))
+            explosionOrigin = new Vector3(x-i, y, z);
+            if (explosionDirection[2])
+            {
                 Instantiate(explosion, new Vector3(x - i, y, z), Quaternion.identity);
-            else { explosionDirection[2] = false; }
+                if (Physics.Raycast(explosionOrigin, Vector3.left, 1f, unbreakable))
+                    explosionDirection[2] = false;
+            }
+
             // East
-            if (explosionDirection[3] && !Physics.Raycast(transform.position, Vector3.right, 1f, unbreakable))
+            explosionOrigin = new Vector3(x+i, y, z);
+            if (explosionDirection[3])
+            {
                 Instantiate(explosion, new Vector3(x + i, y, z), Quaternion.identity);
-            else { explosionDirection[3] = false; }
+                if(Physics.Raycast(explosionOrigin, Vector3.right, 1f, unbreakable))
+                    explosionDirection[3] = false;
+            }
         }
     }
 
