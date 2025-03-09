@@ -28,25 +28,26 @@ public class BombController : MonoBehaviour
         StartCoroutine(waiter());
     }
 
+    void Update()
+    {
+        if (Physics.CheckSphere(transform.position, 0.1f, fire))
+        {
+            StopCoroutine(waiter());
+            //enableBombAndBody();
+            Explode(range, playerLocationX, playerLocationZ, playerLocationY);
+            Destroy(gameObject);
+        }
+    }
+
     IEnumerator waiter()
     {
         playerLocationX = Mathf.RoundToInt(playerLocation.gameObject.transform.position.x);
         playerLocationZ = Mathf.RoundToInt(playerLocation.gameObject.transform.position.z);
         yield return new WaitForSeconds(3f);
         yield return new WaitForSeconds(0.2f);
-        enableBombAndBody();
+        // enableBombAndBody();
         Explode(range, playerLocationX, playerLocationZ, playerLocationY);
         Destroy(gameObject);
-    }
-
-    private void Update()
-    {
-        if (Physics.CheckSphere(transform.position, 0.1f, fire))
-        {
-            enableBombAndBody();
-            Explode(range, playerLocationX, playerLocationZ, playerLocationY);
-            Destroy(gameObject);
-        }
     }
 
     void Explode(int range, int x, int z, float y)
@@ -94,36 +95,17 @@ public class BombController : MonoBehaviour
 
     bool raycastExplosion(Vector3 origin, Vector3 direction, int dirIndex)
     {
-        // bomb chain
-        // kill
-
         // Dynamic
         if (Physics.Raycast(origin, direction, 1f, unbreakable))
             return explosionDirection[dirIndex] = false;
 
         return explosionDirection[dirIndex];
-        /*
-        // North
-        if (Physics.Raycast(origin, Vector3.forward, 1f, unbreakable))
-            coordinate[0] = false;
-
-        // South
-        if (Physics.Raycast(origin, Vector3.back, 1f, unbreakable))
-            coordinate[1] = false;
-
-        // West
-        if (Physics.Raycast(origin, Vector3.left, 1f, unbreakable))
-            coordinate[2] = false;
-
-        // East
-        if (Physics.Raycast(origin, Vector3.right, 1f, unbreakable))
-            coordinate[3] = false;
-        */
     }
-
+    /*
     void enableBombAndBody()
     {
         bomb.enabled = !enabled;
         body.enabled = !enabled;
     }
+    */
 }

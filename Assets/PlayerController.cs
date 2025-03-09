@@ -9,6 +9,7 @@ public class PlayerController : MonoBehaviour
     public float stun = 1;
     public bool isDead = false;
     public bool isMoving = false;
+    public int range = 3;
 
     private Rigidbody rb;
 

@@ -9,13 +9,13 @@ public class Spawning : MonoBehaviour
     public GameObject bomb;
     public Transform playerLocation;
     BoxCollider location;
-    private bool isCoroutineRunning = false; 
-
+    private bool isCoroutineRunning = false;
+    public LayerMask playerOnBomb;
 
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetKey("q") && !isCoroutineRunning)
+        if (Input.GetKey("q") && !isCoroutineRunning && !Physics.CheckSphere(playerLocation.position, 0.6f, playerOnBomb))
         {
             StartCoroutine(waiter());
         }
