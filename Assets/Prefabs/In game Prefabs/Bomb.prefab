@@ -16,7 +16,7 @@ GameObject:
   - component: {fileID: 7104553565301185189}
   m_Layer: 8
   m_Name: Bomb
-  m_TagString: Untagged
+  m_TagString: bomb
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -120,9 +120,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 96fb6679075037e448875f8eefbffc2a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  playerLocation: {fileID: 4466744194402806859}
-  playerLocationX: 0
-  playerLocationZ: 0
+  bombLocation: {fileID: 7251795457746459196}
+  bombLocationX: 0
+  bombLocationZ: 0
   range: 3
   bomb: {fileID: 4167186925347011154}
   body: {fileID: 2652659256035931600}
@@ -135,8 +135,9 @@ MonoBehaviour:
     m_Bits: 64
   player:
     serializedVersion: 2
-    m_Bits: 0
+    m_Bits: 128
   explosionDirection: 01010101
+  playerCollider: {fileID: 4444451113901536329, guid: 92dbb4edf2a797a4e925c3943502bb1d, type: 3}
 --- !u!82 &7104553565301185189
 AudioSource:
   m_ObjectHideFlags: 0

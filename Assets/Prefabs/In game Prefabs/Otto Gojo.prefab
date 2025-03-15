@@ -80,6 +80,22 @@ MonoBehaviour:
         m_CallState: 2
     m_ActionId: e5790e91-3226-45b4-8208-fff6fd3bacbc
     m_ActionName: Player/Movement[/Keyboard/w,/Keyboard/s,/Keyboard/a,/Keyboard/d]
+  - m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 7853913356165864673}
+        m_TargetAssemblyTypeName: PlayerController, Assembly-CSharp
+        m_MethodName: SpawnBomb
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+    m_ActionId: 50b3ceb1-cdd8-4d27-b0bc-caa44342bd3d
+    m_ActionName: Player/Abilities[/Keyboard/q,/DualSenseGamepadHID/buttonEast]
   m_NeverAutoSwitchControlSchemes: 0
   m_DefaultControlScheme: 
   m_DefaultActionMap: Player
@@ -99,6 +115,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   playerSpeed: 4.5
   gravityValue: -9.81
+  bomb: {fileID: 4466744194402806859, guid: 032a325b7474f514f951df2e3cdcf88a, type: 3}
+  playerLocation: {fileID: 7045366835492055936}
+  playerOnBomb:
+    serializedVersion: 2
+    m_Bits: 256
 --- !u!114 &3868057894340787731
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -106,7 +127,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6292289971850779371}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 1cb2ae71417a28640852d669679f858a, type: 3}
   m_Name: 

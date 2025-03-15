@@ -5,10 +5,10 @@ using UnityEngine;
 
 public class BombController : MonoBehaviour
 {
-    public GameObject playerLocation;
-    public int playerLocationX;
-    public int playerLocationZ;
-    float playerLocationY = 0.9160001f;
+    public Transform bombLocation;
+    public int bombLocationX;
+    public int bombLocationZ;
+    float bombLocationY = 0.9160001f;
     public int range = 2;
 
     public MeshRenderer bomb;
@@ -20,38 +20,82 @@ public class BombController : MonoBehaviour
     public LayerMask player;
     public bool[] explosionDirection = { true, true, true, true }; // N, S, W, E
 
+    /*
+    // ghost
+    private bool inPlayer = true;
+    private Collider bombCollider;
+    public Collider playerCollider;
+    */
+
     void Start()
     {
+        // Ghost
+        //bombCollider = GetComponent<Collider>();
+        //playerCollider = GetComponent<Collider>();
+
         bomb = GetComponent<MeshRenderer>();
         body = GetComponent<SphereCollider>();
-        playerLocation = GameObject.FindWithTag("Player");
         StartCoroutine(waiter());
     }
+
+    /*
+    void bombGhost()
+    {
+        if (Physics.CheckSphere(transform.position, 0.5f, player))
+        {
+            inPlayer = false;
+        }
+    }
+    */
 
     void Update()
     {
         if (Physics.CheckSphere(transform.position, 0.1f, fire))
         {
             StopCoroutine(waiter());
-            //enableBombAndBody();
-            Explode(range, playerLocationX, playerLocationZ, playerLocationY);
+            Explode(range, bombLocationX, bombLocationZ, bombLocationY);
             Destroy(gameObject);
         }
+        
+        // Ghost
+        // Physics.IgnoreCollision(bombCollider, playerCollider, inPlayer);
     }
 
     IEnumerator waiter()
     {
-        playerLocationX = Mathf.RoundToInt(playerLocation.gameObject.transform.position.x);
-        playerLocationZ = Mathf.RoundToInt(playerLocation.gameObject.transform.position.z);
+        bombLocationX = Mathf.RoundToInt(bombLocation.position.x);
+        bombLocationZ = Mathf.RoundToInt(bombLocation.position.z);
         yield return new WaitForSeconds(3f);
         yield return new WaitForSeconds(0.2f);
-        // enableBombAndBody();
-        Explode(range, playerLocationX, playerLocationZ, playerLocationY);
+        Explode(range, bombLocationX, bombLocationZ, bombLocationY);
         Destroy(gameObject);
     }
 
     void Explode(int range, int x, int z, float y)
     {
+        Vector3[] directions = new Vector3[]
+        {
+            Vector3.forward,  // North
+            Vector3.back,     // South
+            Vector3.left,     // West
+            Vector3.right     // East
+        };
+
+        for (int i = 0; i < range; i++)
+        {
+            for (int j = 0; j < directions.Length; j++)
+            {
+                if (explosionDirection[j]) // Check if direction is active
+                {
+                    Vector3 offset = directions[j] * i;
+                    Vector3 explosionOrigin = new Vector3(x, y, z) + offset;
+
+                    Instantiate(explosion, explosionOrigin, Quaternion.identity);
+                    raycastExplosion(explosionOrigin, directions[j], j);
+                }
+            }
+        }
+        /*
         Vector3 explosionOrigin;
         Vector3[] directions = new Vector3[] { Vector3.forward, Vector3.back, Vector3.left, Vector3.right };
 
@@ -91,6 +135,7 @@ public class BombController : MonoBehaviour
             }
             
         }
+        */
     }
 
     bool raycastExplosion(Vector3 origin, Vector3 direction, int dirIndex)
@@ -101,11 +146,4 @@ public class BombController : MonoBehaviour
 
         return explosionDirection[dirIndex];
     }
-    /*
-    void enableBombAndBody()
-    {
-        bomb.enabled = !enabled;
-        body.enabled = !enabled;
-    }
-    */
 }

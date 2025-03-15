@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.InputSystem;
 using UnityEngine.UIElements;
 
 public class Spawning : MonoBehaviour
@@ -12,16 +13,23 @@ public class Spawning : MonoBehaviour
     private bool isCoroutineRunning = false;
     public LayerMask playerOnBomb;
 
+    public static Spawning Instance { get; private set; }
+
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetKey("q") && !isCoroutineRunning && !Physics.CheckSphere(playerLocation.position, 0.6f, playerOnBomb))
+        //SpawnBomb();
+    }
+    
+    public void onSpawnBomb()
+    {
+        if (!isCoroutineRunning && !Physics.CheckSphere(playerLocation.position, 0.6f, playerOnBomb))
         {
             StartCoroutine(waiter());
         }
     }
 
-    IEnumerator waiter()
+    public IEnumerator waiter()
     {
         isCoroutineRunning = true;
         Instantiate(bomb, new Vector3(Mathf.RoundToInt(playerLocation.position.x), 0.9160001f, Mathf.RoundToInt(playerLocation.position.z)), bomb.transform.rotation);

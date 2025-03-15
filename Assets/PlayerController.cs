@@ -1,26 +1,69 @@
+using System.Collections;
+using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.UIElements;
 
 [RequireComponent(typeof(CharacterController))]
 public class PlayerController : MonoBehaviour
 {
     private CharacterController controller;
     private Vector3 playerVelocity;
+    private Vector2 movementInput = Vector2.zero;
+
     [SerializeField]
     private float playerSpeed = 4.5f;
     [SerializeField]
     private float gravityValue = -9.81f;
 
-    private Vector2 movementInput = Vector2.zero;
+    public GameObject bomb;
+    public Transform playerLocation;
+    BoxCollider location;
+    private bool isCoroutineRunning = false;
+    public LayerMask playerOnBomb;
+
+    // Ghost
+    private bool inPlayer = true;
+    private Collider bombCollider;
+    public Collider playerCollider;
 
     private void Start()
     {
+        // Ghoost
+        bombCollider = GetComponent<Collider>();
+        playerCollider = GetComponent<Collider>();
+
         controller = gameObject.GetComponent<CharacterController>();
+    }
+
+    void ghostBomb()
+    {
+        // idfk anuymorte
     }
 
     public void OnMove(InputAction.CallbackContext context)
     {
        movementInput = context.ReadValue<Vector2>();
+    }
+
+    public void SpawnBomb()
+    {
+        if (!isCoroutineRunning && !Physics.CheckSphere(playerLocation.position, 0.6f, playerOnBomb))
+        {
+            StartCoroutine(waiter());
+        }
+    }
+
+    IEnumerator waiter()
+    {
+        isCoroutineRunning = true;
+        Instantiate(bomb, new Vector3(
+            Mathf.RoundToInt(playerLocation.position.x), 
+            0.9160001f, Mathf.RoundToInt(playerLocation.position.z)), 
+            bomb.transform.rotation);
+        yield return new WaitForSeconds(0.2f);
+        isCoroutineRunning = false;
     }
 
     void Update()
@@ -37,41 +80,4 @@ public class PlayerController : MonoBehaviour
         playerVelocity.y += gravityValue * Time.deltaTime;
         controller.Move(playerVelocity * Time.deltaTime);
     }
-    /*
-    public float initialSpeed = 1f;
-    private float playerSpeed = 0;
-    public float stun = 1;
-    public bool isDead = false;
-    public bool isMoving = false;
-    public int range = 3;
-    private Rigidbody rb;
-
-    void Start()
-    {
-        playerSpeed = initialSpeed;
-        rb = GetComponent<Rigidbody>();
-    }
-
-    void Update()
-    {
-        if (Input.GetAxisRaw("Horizontal") > 0.5f || Input.GetAxisRaw("Horizontal") < -0.5f)
-        {
-            rb.velocity += transform.right * Input.GetAxisRaw("Horizontal") * playerSpeed;
-            isMoving = true;
-        }
-        if (Input.GetAxisRaw("Vertical") > 0.5f || Input.GetAxisRaw("Vertical") < -0.5f)
-        {
-            rb.velocity += transform.forward * Input.GetAxisRaw("Vertical") * playerSpeed;
-            isMoving = true;
-        }
-
-        if(isDead)
-        {
-            //play animation
-            // wait
-            // death
-        }
-
-    }
-    */
 }
