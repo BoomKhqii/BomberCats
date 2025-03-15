@@ -8,6 +8,7 @@ TagManager:
   - Bomb_Explosion
   - Explosion
   - Bedrock
+  - bomb
   layers:
   - Default
   - TransparentFX
