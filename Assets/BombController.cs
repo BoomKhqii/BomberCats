@@ -20,33 +20,27 @@ public class BombController : MonoBehaviour
     public LayerMask player;
     public bool[] explosionDirection = { true, true, true, true }; // N, S, W, E
 
-    /*
+ 
     // ghost
-    private bool inPlayer = true;
-    private Collider bombCollider;
-    public Collider playerCollider;
-    */
+    private bool isPlayerInside = true;
+    private GameObject spawningPlayer;
+    private Collider blockCollider;
+
+    public void SetSpawningPlayer(GameObject player)
+    {
+        spawningPlayer = player;
+        Debug.Log("Spawning player set to: " + player.name);
+    }
 
     void Start()
     {
-        // Ghost
-        //bombCollider = GetComponent<Collider>();
-        //playerCollider = GetComponent<Collider>();
+        blockCollider = GetComponent<Collider>();
+        //blockCollider.isTrigger = true;
 
         bomb = GetComponent<MeshRenderer>();
         body = GetComponent<SphereCollider>();
         StartCoroutine(waiter());
     }
-
-    /*
-    void bombGhost()
-    {
-        if (Physics.CheckSphere(transform.position, 0.5f, player))
-        {
-            inPlayer = false;
-        }
-    }
-    */
 
     void Update()
     {
@@ -56,9 +50,18 @@ public class BombController : MonoBehaviour
             Explode(range, bombLocationX, bombLocationZ, bombLocationY);
             Destroy(gameObject);
         }
-        
-        // Ghost
-        // Physics.IgnoreCollision(bombCollider, playerCollider, inPlayer);
+    }
+
+    private void OnTriggerExit(Collider other)
+    {
+        //Debug.Log(other.gameObject + " and " + spawningPlayer);
+        if (other.gameObject != spawningPlayer && isPlayerInside)
+        {
+            isPlayerInside = false;
+            blockCollider.isTrigger = false;
+            Debug.Log("Player exited the bomb zone.");
+
+        }
     }
 
     IEnumerator waiter()

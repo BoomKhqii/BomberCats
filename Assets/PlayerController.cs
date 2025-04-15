@@ -22,24 +22,15 @@ public class PlayerController : MonoBehaviour
     BoxCollider location;
     private bool isCoroutineRunning = false;
     public LayerMask playerOnBomb;
+    private BombController bombController;
 
-    // Ghost
-    private bool inPlayer = true;
-    private Collider bombCollider;
-    public Collider playerCollider;
+    private bool isGrounded;
+
+
 
     private void Start()
     {
-        // Ghoost
-        bombCollider = GetComponent<Collider>();
-        playerCollider = GetComponent<Collider>();
-
         controller = gameObject.GetComponent<CharacterController>();
-    }
-
-    void ghostBomb()
-    {
-        // idfk anuymorte
     }
 
     public void OnMove(InputAction.CallbackContext context)
@@ -51,7 +42,7 @@ public class PlayerController : MonoBehaviour
     {
         if (!isCoroutineRunning && !Physics.CheckSphere(playerLocation.position, 0.6f, playerOnBomb))
         {
-            StartCoroutine(waiter());
+            StartCoroutine(waiter());        
         }
     }
 
@@ -62,13 +53,16 @@ public class PlayerController : MonoBehaviour
             Mathf.RoundToInt(playerLocation.position.x), 
             0.9160001f, Mathf.RoundToInt(playerLocation.position.z)), 
             bomb.transform.rotation);
+
+        BombController bombController = bomb.GetComponent<BombController>();
+        bombController.SetSpawningPlayer(this.gameObject);
+
         yield return new WaitForSeconds(0.2f);
         isCoroutineRunning = false;
     }
 
     void Update()
     {
-
         Vector3 move = new Vector3(movementInput.x, 0, movementInput.y);
         controller.Move(move * Time.deltaTime * playerSpeed);
 
