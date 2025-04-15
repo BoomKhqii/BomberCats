@@ -54,13 +54,10 @@ public class BombController : MonoBehaviour
 
     private void OnTriggerExit(Collider other)
     {
-        //Debug.Log(other.gameObject + " and " + spawningPlayer);
         if (other.gameObject != spawningPlayer && isPlayerInside)
         {
             isPlayerInside = false;
             blockCollider.isTrigger = false;
-            Debug.Log("Player exited the bomb zone.");
-
         }
     }
 

@@ -24,7 +24,12 @@ public class PlayerController : MonoBehaviour
     public LayerMask playerOnBomb;
     private BombController bombController;
 
-    private bool isGrounded;
+    private OttoGojoController characterController;
+    private int bombSkill = 0;
+    private int signatureSkill = 0;
+    private int heavySkill = 0;
+    private int ultimateSkill = 0;
+
 
 
 

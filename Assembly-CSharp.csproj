@@ -61,6 +61,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Assets\PlayerController.cs" />
+    <Compile Include="Assets\OttoGojoController.cs" />
     <Compile Include="Assets\FireController.cs" />
     <Compile Include="Assets\BombController.cs" />
     <Compile Include="Assets\Spawning.cs" />
