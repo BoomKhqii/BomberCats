@@ -6,10 +6,10 @@ using UnityEngine;
 public class BombController : MonoBehaviour
 {
     public Transform bombLocation;
-    public int bombLocationX;
-    public int bombLocationZ;
+    private int bombLocationX;
+    private int bombLocationZ;
     float bombLocationY = 0.9160001f;
-    public int range = 2;
+    public int range = 3;
 
     public MeshRenderer bomb;
     public SphereCollider body;
@@ -18,7 +18,7 @@ public class BombController : MonoBehaviour
     public LayerMask unbreakable;
     public LayerMask fire;
     public LayerMask player;
-    public bool[] explosionDirection = { true, true, true, true }; // N, S, W, E
+    private bool[] explosionDirection = { true, true, true, true }; // N, S, W, E
 
 
     // ghost
@@ -26,10 +26,9 @@ public class BombController : MonoBehaviour
     private GameObject spawningPlayer;
     private Collider blockCollider;
 
-    public void SetSpawningPlayer(GameObject player)
-    {
-        spawningPlayer = player;
-        Debug.Log("Spawning player set to: " + spawningPlayer);
+    public void SetSpawningPlayer(GameObject player) 
+    { 
+        spawningPlayer = player; // Debug.Log("Spawning player set to: " + spawningPlayer);
     }
 
     void Start()
@@ -54,13 +53,14 @@ public class BombController : MonoBehaviour
 
     private void OnTriggerExit(Collider other)
     {
-        Debug.Log("[EXIT] by: " + other.gameObject.name);
+        /*
+         * Debug.Log("[EXIT] by: " + other.gameObject.name);
         Debug.Log("Reference Equals: " + (other.gameObject == spawningPlayer));
-        Debug.Log(other.gameObject + " and " + spawningPlayer);
+        Debug.Log(other.gameObject + " and " + spawningPlayer);*/
 
         if (other.gameObject == spawningPlayer && isPlayerInside)
         {
-            Debug.Log("Solid");
+            //Debug.Log("Solid");
             isPlayerInside = false;
             blockCollider.isTrigger = false;
         }
@@ -75,7 +75,59 @@ public class BombController : MonoBehaviour
         Explode(range, bombLocationX, bombLocationZ, bombLocationY);
         Destroy(gameObject);
     }
+    
+    void Explode(int range, int x, int z, float y)
+    {
+        Vector3[] directions = new Vector3[]
+        {
+            Vector3.forward,  // North
+            Vector3.back,     // South
+            Vector3.left,     // West
+            Vector3.right     // East
+        };
 
+        for (int i = 0; i < range; i++)
+        {
+            for (int j = 0; j < directions.Length; j++)
+            {
+                if (explosionDirection[j]) // Check if direction is active
+                {
+                    Vector3 offset = directions[j] * i;
+                    Vector3 explosionOrigin = new Vector3(x, y, z) + offset;
+
+                    if (IsExplosionThere(explosionOrigin, new Vector3(0.5f, 0.5f, 0.5f), "Explosion") == false)
+                    {
+                        Instantiate(explosion, explosionOrigin, Quaternion.identity);
+                        //raycastExplosion(explosionOrigin, directions[j], j);
+                    }
+                    raycastExplosion(explosionOrigin, directions[j], j);
+                }
+            }
+        }
+    }
+
+    bool raycastExplosion(Vector3 origin, Vector3 direction, int dirIndex)
+    {
+        // Dynamic
+        if (Physics.Raycast(origin, direction, 1f, unbreakable))
+            return explosionDirection[dirIndex] = false;
+
+        return explosionDirection[dirIndex];
+    }
+
+    bool IsExplosionThere(Vector3 center, Vector3 halfExtents, string tag)
+    {
+        Collider[] hits = Physics.OverlapBox(center, halfExtents);
+        foreach (Collider col in hits)
+        {
+            if (col.CompareTag(tag))
+            {
+                return true;
+            }
+        }
+        return false;
+    }
+    /*
     void Explode(int range, int x, int z, float y)
     {
         Vector3[] directions = new Vector3[]
@@ -109,5 +161,5 @@ public class BombController : MonoBehaviour
             return explosionDirection[dirIndex] = false;
 
         return explosionDirection[dirIndex];
-    }
+    }*/
 }

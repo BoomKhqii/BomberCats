@@ -62,8 +62,7 @@ public class PlayerController : MonoBehaviour
             ),
             bomb.transform.rotation);
 
-        BombController bombController = bombInstance.GetComponent<BombController>();
-        Debug.Log("PlayerController: " + this.gameObject);
+        BombController bombController = bombInstance.GetComponent<BombController>(); // Debug.Log("PlayerController: " + this.gameObject);
         bombController.SetSpawningPlayer(this.gameObject);
 
         yield return new WaitForSeconds(0.2f);
