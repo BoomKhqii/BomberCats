@@ -30,12 +30,13 @@ public class PlayerController : MonoBehaviour
     private int heavySkill = 0;
     private int ultimateSkill = 0;
 
-
-
+    //public FireController fireController;
+    public bool isPlayerAlive = true;
 
     private void Start()
     {
         controller = gameObject.GetComponent<CharacterController>();
+        //fireController = gameObject.GetComponent<FireController>();
     }
 
     public void OnMove(InputAction.CallbackContext context)
@@ -97,5 +98,21 @@ public class PlayerController : MonoBehaviour
 
         playerVelocity.y += gravityValue * Time.deltaTime;
         controller.Move(playerVelocity * Time.deltaTime);
+    }
+
+    public bool PlayerStatusUpdate(bool playerStatus)
+    {
+        //Debug.Log("Initial Player Status: " +  playerStatus);
+
+        isPlayerAlive = playerStatus;
+       // Debug.Log(" After variable change Player Status: " + isPlayerAlive);
+        if (isPlayerAlive == false)
+        {
+            //Debug.Log("Post Player Status: " + isPlayerAlive);
+
+            Destroy(gameObject);
+            return false;
+        } else 
+            return true;
     }
 }

@@ -120,6 +120,7 @@ MonoBehaviour:
   playerOnBomb:
     serializedVersion: 2
     m_Bits: 256
+  isPlayerAlive: 1
 --- !u!114 &3868057894340787731
 MonoBehaviour:
   m_ObjectHideFlags: 0
