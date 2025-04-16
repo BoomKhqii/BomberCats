@@ -20,7 +20,7 @@ public class BombController : MonoBehaviour
     public LayerMask player;
     public bool[] explosionDirection = { true, true, true, true }; // N, S, W, E
 
- 
+
     // ghost
     private bool isPlayerInside = true;
     private GameObject spawningPlayer;
@@ -29,7 +29,7 @@ public class BombController : MonoBehaviour
     public void SetSpawningPlayer(GameObject player)
     {
         spawningPlayer = player;
-        Debug.Log("Spawning player set to: " + player.name);
+        Debug.Log("Spawning player set to: " + spawningPlayer);
     }
 
     void Start()
@@ -54,8 +54,13 @@ public class BombController : MonoBehaviour
 
     private void OnTriggerExit(Collider other)
     {
-        if (other.gameObject != spawningPlayer && isPlayerInside)
+        Debug.Log("[EXIT] by: " + other.gameObject.name);
+        Debug.Log("Reference Equals: " + (other.gameObject == spawningPlayer));
+        Debug.Log(other.gameObject + " and " + spawningPlayer);
+
+        if (other.gameObject == spawningPlayer && isPlayerInside)
         {
+            Debug.Log("Solid");
             isPlayerInside = false;
             blockCollider.isTrigger = false;
         }
@@ -95,47 +100,6 @@ public class BombController : MonoBehaviour
                 }
             }
         }
-        /*
-        Vector3 explosionOrigin;
-        Vector3[] directions = new Vector3[] { Vector3.forward, Vector3.back, Vector3.left, Vector3.right };
-
-        for (int i = 0; i < range; i++)
-        {
-
-            // North
-            explosionOrigin = new Vector3(x,y,z+i);
-            if (explosionDirection[0])
-            {
-                Instantiate(explosion, explosionOrigin, Quaternion.identity);
-                raycastExplosion(explosionOrigin, Vector3.forward, 0);
-            }
-
-            // South
-            explosionOrigin = new Vector3(x, y, z-i);
-            if (explosionDirection[1])
-            {
-                Instantiate(explosion, explosionOrigin, Quaternion.identity);
-                raycastExplosion(explosionOrigin, Vector3.back, 1);
-            }
-
-            // West
-            explosionOrigin = new Vector3(x-i, y, z);
-            if (explosionDirection[2])
-            {
-                Instantiate(explosion, explosionOrigin, Quaternion.identity);
-                raycastExplosion(explosionOrigin, Vector3.left, 2);
-            }
-
-            // East
-            explosionOrigin = new Vector3(x+i, y, z);
-            if (explosionDirection[3])
-            {
-                Instantiate(explosion, explosionOrigin, Quaternion.identity);
-                raycastExplosion(explosionOrigin, Vector3.right, 3);
-            }
-            
-        }
-        */
     }
 
     bool raycastExplosion(Vector3 origin, Vector3 direction, int dirIndex)

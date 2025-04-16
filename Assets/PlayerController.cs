@@ -50,7 +50,26 @@ public class PlayerController : MonoBehaviour
             StartCoroutine(waiter());        
         }
     }
+    IEnumerator waiter()
+    {
+        isCoroutineRunning = true;
 
+        GameObject bombInstance = Instantiate(bomb,
+            new Vector3(
+                Mathf.RoundToInt(playerLocation.position.x),
+                0.9160001f,
+                Mathf.RoundToInt(playerLocation.position.z)
+            ),
+            bomb.transform.rotation);
+
+        BombController bombController = bombInstance.GetComponent<BombController>();
+        Debug.Log("PlayerController: " + this.gameObject);
+        bombController.SetSpawningPlayer(this.gameObject);
+
+        yield return new WaitForSeconds(0.2f);
+        isCoroutineRunning = false;
+    }
+    /*
     IEnumerator waiter()
     {
         isCoroutineRunning = true;
@@ -60,12 +79,13 @@ public class PlayerController : MonoBehaviour
             bomb.transform.rotation);
 
         BombController bombController = bomb.GetComponent<BombController>();
+        Debug.Log("PlayerController: " + this.gameObject);
         bombController.SetSpawningPlayer(this.gameObject);
 
         yield return new WaitForSeconds(0.2f);
         isCoroutineRunning = false;
     }
-
+    */
     void Update()
     {
         Vector3 move = new Vector3(movementInput.x, 0, movementInput.y);
