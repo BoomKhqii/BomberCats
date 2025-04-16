@@ -11,7 +11,6 @@ GameObject:
   - component: {fileID: 7045366835492055936}
   - component: {fileID: 6296327816773793935}
   - component: {fileID: 7853913356165864673}
-  - component: {fileID: 3675573794243683774}
   - component: {fileID: 3868057894340787731}
   - component: {fileID: 2526730226526449175}
   - component: {fileID: 4531707575294860974}
@@ -19,7 +18,7 @@ GameObject:
   - component: {fileID: 2995811415428966894}
   - component: {fileID: 5561759386276307361}
   m_Layer: 7
-  m_Name: Otto Gojo
+  m_Name: Otto Gojo 1
   m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -121,20 +120,7 @@ MonoBehaviour:
   playerOnBomb:
     serializedVersion: 2
     m_Bits: 256
-  characterController: {fileID: 3675573794243683774}
   isPlayerAlive: 1
---- !u!114 &3675573794243683774
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6292289971850779371}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 1f5bc79628dd9444485d5b013118f218, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!114 &3868057894340787731
 MonoBehaviour:
   m_ObjectHideFlags: 0

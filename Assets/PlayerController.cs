@@ -24,17 +24,18 @@ public class PlayerController : MonoBehaviour
     public LayerMask playerOnBomb;
     private BombController bombController;
 
-    private OttoGojoController characterController;
+    public OttoGojoController characterController;
     private int bombSkill = 0;
     private int signatureSkill = 0;
     private int heavySkill = 0;
     private int ultimateSkill = 0;
 
     //public FireController fireController;
-    public bool isPlayerAlive = true;
+    //public bool isPlayerAlive = true;
 
     private void Start()
     {
+        characterController = GetComponent<OttoGojoController>();
         controller = gameObject.GetComponent<CharacterController>();
         //fireController = gameObject.GetComponent<FireController>();
     }
@@ -102,17 +103,51 @@ public class PlayerController : MonoBehaviour
 
     public bool PlayerStatusUpdate(bool playerStatus)
     {
-        //Debug.Log("Initial Player Status: " +  playerStatus);
 
-        isPlayerAlive = playerStatus;
-       // Debug.Log(" After variable change Player Status: " + isPlayerAlive);
-        if (isPlayerAlive == false)
+        Debug.Log("Explosion Experienced");
+
+        if (playerStatus == false)
         {
-            //Debug.Log("Post Player Status: " + isPlayerAlive);
-
-            Destroy(gameObject);
-            return false;
+            // exclusive for Gojo
+            if (characterController.InfinityProbabilityChance() == true)
+            {
+                Debug.Log("===LIVED===");
+                return true;
+            }
+            else
+            {
+                Debug.Log("DIED");
+                Destroy(gameObject);
+                return false;
+            }
         } else 
             return true;
+
+
     }
+    /*
+    public bool PlayerStatusUpdate(bool playerStatus)
+    {
+        Debug.Log("PlayerStatus said hi");
+
+        isPlayerAlive = playerStatus;
+        if (isPlayerAlive == false)
+        {
+            // exclusive for Gojo
+            if (characterController.InfinityProbabilityChance() == true)
+            {
+                Debug.Log("===LIVED===");
+                return true;
+            }
+            else
+            {
+                Debug.Log("DIED");
+                Destroy(gameObject);
+                return false;
+            }
+        } 
+        else 
+            return true;
+    }
+    */
 }

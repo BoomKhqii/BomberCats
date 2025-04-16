@@ -4,15 +4,19 @@ using UnityEngine;
 
 public class OttoGojoController : MonoBehaviour
 {
-    private float infinitySkill = 0.25f;    // Passive ability | Probability chance: 20% - 25%
+    //private bool infinitySkill = Random.value < 0.25f;  // Passive ability | Probability chance: 20% - 25%
     private int signatureSkill = 3;         // Blue
     private int heavySkill = 6;             // Red
     private int ultimateSkill = 12;         // Hollow purple
 
-    // Start is called before the first frame update
     void Start()
     {
         
+    }
+
+    public bool InfinityProbabilityChance()
+    {
+        return Random.value < 0.35f;
     }
 
     public void BlueSkill(int incrementSkill)
@@ -20,7 +24,6 @@ public class OttoGojoController : MonoBehaviour
 
     }
 
-    // Update is called once per frame
     void Update()
     {
         
