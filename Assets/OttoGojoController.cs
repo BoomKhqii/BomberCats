@@ -22,8 +22,8 @@ public class OttoGojoController : MonoBehaviour
     [SerializeField]
     private GameObject objectHollowPurple;
 
-    [SerializeField]
-    private PlayerController player;
+    //[SerializeField]
+    public PlayerController player;
 
     void Start()
     {
@@ -43,10 +43,16 @@ public class OttoGojoController : MonoBehaviour
         //  90  =   East
         if (context.performed)
         {
-            Instantiate(objectBlue,
-                new Vector3(player.transform.position.x,
+            GameObject blue = Instantiate(objectBlue,
+                new Vector3(Mathf.RoundToInt(player.transform.position.x),
                 1.32f,
-                player.transform.position.z + 1), Quaternion.identity);
+                Mathf.RoundToInt(player.transform.position.z + 1)), Quaternion.identity);
+
+            blue.GetComponent<BlueLogic>().ottoGojo = this.gameObject;
+            BlueLogic blueLogic = blue.GetComponent<BlueLogic>();
+            Debug.Log(player.signatureSkill);
+            blueLogic.SkillUpdate(player.signatureSkill);
+
         }
     }
 

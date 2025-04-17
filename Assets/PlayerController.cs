@@ -25,10 +25,10 @@ public class PlayerController : MonoBehaviour
     private BombController bombController;
 
     public OttoGojoController characterController;
-    private int bombSkill = 0;
-    private int signatureSkill = 0;
-    private int heavySkill = 0;
-    private int ultimateSkill = 0;
+    public int bombSkill = 0;
+    public float signatureSkill = 0;
+    public int heavySkill = 0;
+    public int ultimateSkill = 0;
 
     //public FireController fireController;
     //public bool isPlayerAlive = true;

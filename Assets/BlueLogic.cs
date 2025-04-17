@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class BlueLogic : MonoBehaviour
@@ -9,12 +10,45 @@ public class BlueLogic : MonoBehaviour
     public float pullRadius = 3f;
     public LayerMask affectedLayers;
 
+    public GameObject ottoGojo;
+
+    //public float skillIncrement = 0;
+
+    public Vector3 direction = Vector3.forward; // Direction to move in
+    private float speed = 2f;                    // Movement speed
+    private float moveDistance = 2;            // How far to move
+    private float duration = 2f;
+
+    private Vector3 startPosition;
+    private Vector3 targetPosition;
+    private bool isMoving = true;
+    
+    public void SkillUpdate(float increment) 
+    {
+        if (increment == 0)
+            return;
+
+        Debug.Log("Speed : " + speed);
+        speed = speed + increment;
+        Debug.Log("After : " + speed);
+
+        Debug.Log("Distance : " + moveDistance);
+        moveDistance = moveDistance + increment;
+        Debug.Log("After : " + moveDistance);
+
+        Debug.Log("Duration : " + duration);
+        duration = duration + increment;
+        Debug.Log("After : " + duration);
+    }
+    
     private void FixedUpdate()
     {
         Collider[] colliders = Physics.OverlapSphere(transform.position, pullRadius, affectedLayers);
 
         foreach (Collider col in colliders)
         {
+            if (col.gameObject == ottoGojo) continue; // Wont pull the caster
+
             // Pull Rigidbody objects using force
             Rigidbody rb = col.attachedRigidbody;
             if (rb != null && !rb.isKinematic)
@@ -35,7 +69,23 @@ public class BlueLogic : MonoBehaviour
 
     private void Start()
     {
-        //Destroy(gameObject, 3f); // optional: auto-destroy after 3 seconds
+        direction.Normalize(); // Always normalize to ensure consistent distance
+        startPosition = transform.position;
+        targetPosition = startPosition + direction * moveDistance;
+        Destroy(gameObject, duration); // optional: auto-destroy after 3 seconds
+    }
+
+    void Update()
+    {
+        if (isMoving)
+        {
+            transform.position = Vector3.MoveTowards(transform.position, targetPosition, speed * Time.deltaTime);
+
+            if (Vector3.Distance(transform.position, targetPosition) < 0.01f)
+            {
+                isMoving = false; // Stop moving once destination is reached
+            }
+        }
     }
 
     private void OnDrawGizmosSelected()
