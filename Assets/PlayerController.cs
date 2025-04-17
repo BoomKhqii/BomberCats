@@ -45,9 +45,9 @@ public class PlayerController : MonoBehaviour
        movementInput = context.ReadValue<Vector2>();
     }
 
-    public void SpawnBomb()
+    public void SpawnBomb(InputAction.CallbackContext context)
     {
-        if (!isCoroutineRunning && !Physics.CheckSphere(playerLocation.position, 0.6f, playerOnBomb))
+        if (!isCoroutineRunning && !Physics.CheckSphere(playerLocation.position, 0.6f, playerOnBomb) && context.performed)
         {
             StartCoroutine(waiter());        
         }
