@@ -9,6 +9,7 @@ TagManager:
   - Explosion
   - Bedrock
   - bomb
+  - Gojo
   layers:
   - Default
   - TransparentFX
