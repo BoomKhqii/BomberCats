@@ -9,14 +9,16 @@ using UnityEngine.UIElements;
 public class PlayerController : MonoBehaviour
 {
     private CharacterController controller;
+
+    // Player Movement
     private Vector3 playerVelocity;
     private Vector2 movementInput = Vector2.zero;
-
     [SerializeField]
     private float playerSpeed = 4.5f;
     [SerializeField]
     private float gravityValue = -9.81f;
 
+    // Bomb values
     public GameObject bomb;
     public Transform playerLocation;
     BoxCollider location;
@@ -24,20 +26,23 @@ public class PlayerController : MonoBehaviour
     public LayerMask playerOnBomb;
     private BombController bombController;
 
+    // Skill Increment Values
     public OttoGojoController characterController;
     public int bombSkill = 0;
     public float signatureSkill = 0;
     public int heavySkill = 0;
     public int ultimateSkill = 0;
 
-    //public FireController fireController;
-    //public bool isPlayerAlive = true;
+   public CurseEnergyLogic curseEnergy;
 
     private void Start()
     {
+        curseEnergy = GameObject.Find("CE Pool of Otto Gojo").GetComponent<CurseEnergyLogic>();
         characterController = GetComponent<OttoGojoController>();
         controller = gameObject.GetComponent<CharacterController>();
+
         //fireController = gameObject.GetComponent<FireController>();
+        //Instantiate(bomb, new Vector3(Mathf.RoundToInt(playerLocation.position.x), 0.9160001f, Mathf.RoundToInt(playerLocation.position.z)), bomb.transform.rotation);
     }
 
     public void OnMove(InputAction.CallbackContext context)
@@ -49,6 +54,7 @@ public class PlayerController : MonoBehaviour
     {
         if (!isCoroutineRunning && !Physics.CheckSphere(playerLocation.position, 0.6f, playerOnBomb) && context.performed)
         {
+            curseEnergy.CEReduction(100);
             StartCoroutine(waiter());        
         }
     }

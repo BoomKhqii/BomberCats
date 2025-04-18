@@ -8,7 +8,7 @@ public class OttoGojoController : MonoBehaviour
     //private bool infinitySkill = Random.value < 0.25f;  // Passive ability | Probability chance: 20% - 25%
 
     // Blue
-    private int signatureSkill = 3;         
+    //private int signatureSkill = 3;         
     [SerializeField]
     private GameObject objectBlue;
     
