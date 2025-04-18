@@ -53,14 +53,8 @@ public class BombController : MonoBehaviour
 
     private void OnTriggerExit(Collider other)
     {
-        /*
-         * Debug.Log("[EXIT] by: " + other.gameObject.name);
-        Debug.Log("Reference Equals: " + (other.gameObject == spawningPlayer));
-        Debug.Log(other.gameObject + " and " + spawningPlayer);*/
-
         if (other.gameObject == spawningPlayer && isPlayerInside)
         {
-            //Debug.Log("Solid");
             isPlayerInside = false;
             blockCollider.isTrigger = false;
         }
@@ -108,12 +102,54 @@ public class BombController : MonoBehaviour
 
     bool raycastExplosion(Vector3 origin, Vector3 direction, int dirIndex)
     {
+        RaycastHit hit;
+
+        if (Physics.Raycast(origin, direction, out hit, 1f))
+        {
+            GameObject hitObject = hit.collider.gameObject;
+
+            // Check for breakable crate
+            if (hitObject.CompareTag("Breakable"))
+            {
+                // Snap to grid if needed
+                Vector3 firePosition = new Vector3(
+                    Mathf.Round(hitObject.transform.position.x),
+                    origin.y,
+                    Mathf.Round(hitObject.transform.position.z)
+                );
+
+                // Spawn fire BEFORE destroying the crate
+                Instantiate(explosion, firePosition, Quaternion.identity);
+                Destroy(hitObject);
+
+                return explosionDirection[dirIndex] = false; // Stop fire after breaking
+            }
+
+            // If it's unbreakable, stop fire
+            if (((1 << hitObject.layer) & unbreakable) != 0)
+            {
+                return explosionDirection[dirIndex] = false;
+            }
+        }
+
+        return explosionDirection[dirIndex];
+    }
+
+    /*
+    bool raycastExplosion(Vector3 origin, Vector3 direction, int dirIndex)
+    {
         // Dynamic
         if (Physics.Raycast(origin, direction, 1f, unbreakable))
             return explosionDirection[dirIndex] = false;
 
         return explosionDirection[dirIndex];
     }
+    /*
+    bool isCrateThere(Vector3 origin, Vector3 direction, int dirIndex)
+    {
+
+    }
+    */
 
     bool IsExplosionThere(Vector3 center, Vector3 halfExtents, string tag)
     {

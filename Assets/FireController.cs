@@ -33,45 +33,7 @@ public class FireController : MonoBehaviour
                 Debug.LogWarning("No PlayerController found on: " + hit.name);
             }
         }
-        /*
-        foreach (Collider col in hits)
-        {
-            Debug.Log("lots of times");
-
-            if (col.CompareTag("Player"))
-            {
-                Debug.Log("Caught");
-
-                PlayerController playerController = col.GetComponent<PlayerController>();
-                if (playerController != null)
-                {
-                    playerController.PlayerStatusUpdate(false);
-                }
-                else
-                {
-                    Debug.LogWarning("No PlayerController found on: " + col.name);
-                }
-            }
-        }
-        */
     }
-
-    /*
-    public void Killed(bool willPlayerBeAlive)
-    {
-        Debug.Log("During Player Status: " + willPlayerBeAlive);
-
-        Collider[] hits = Physics.OverlapBox(fire.position, new Vector3(0.5f, 0.5f, 0.5f));
-        foreach (Collider col in hits)
-        {
-            if (col.CompareTag("Player"))
-            {
-                player.PlayerStatusUpdate(willPlayerBeAlive = false);
-            }
-        }
-        player.PlayerStatusUpdate(willPlayerBeAlive = true);
-    }
-    */
 
     IEnumerator waiter()
     {
