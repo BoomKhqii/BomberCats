@@ -188,7 +188,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   curseEnergy: {fileID: 0}
-  objectBlue: {fileID: 7453994153594891760, guid: 9b72d18004840004cb792b52eff73fed, type: 3}
+  objectBlue: {fileID: 77405813780867249, guid: a0ee7bc4223d8a84db17050b8e5d4e58, type: 3}
   objectRed: {fileID: 0}
   objectHollowPurple: {fileID: 0}
   player: {fileID: 7853913356165864673}

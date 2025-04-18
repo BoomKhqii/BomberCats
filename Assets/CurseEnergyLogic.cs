@@ -18,8 +18,7 @@ public class CurseEnergyLogic : MonoBehaviour
 
     void Start()
     {
-        Debug.Log(gameObject.name); currentPool = maxPool;
-        //currentPool -= 2000;
+        currentPool = maxPool;
         UpdateCE();
     }
 
@@ -52,7 +51,6 @@ public class CurseEnergyLogic : MonoBehaviour
     public void UpdateCE()
     {
         ceTextStatus.text = "Curse Energy: " + Mathf.RoundToInt(currentPool).ToString();
-        //ceBarStatus.fillAmount = currentPool / maxPool;
     }
 
 }

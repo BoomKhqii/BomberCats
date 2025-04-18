@@ -45,9 +45,6 @@ public class BlueLogic : MonoBehaviour
 
         foreach (Collider col in colliders)
         {
-            Debug.Log("Hit object tag: " + col.gameObject.tag);
-            Debug.Log("Hit object tag: " + col.gameObject.name);
-
             if (col.gameObject == ottoGojo) continue; // Wont pull the caster
 
             // Pull Rigidbody objects using force

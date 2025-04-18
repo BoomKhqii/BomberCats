@@ -143,9 +143,7 @@ public class BombController : MonoBehaviour
         foreach (Collider col in hits)
         {
             if (col.CompareTag(tag))
-            {
                 return true;
-            }
         }
         return false;
     }

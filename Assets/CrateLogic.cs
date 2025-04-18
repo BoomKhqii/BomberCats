@@ -6,16 +6,36 @@ public class CrateLogic : MonoBehaviour
 {
     public LayerMask destroy;
 
+    //private float willDrop = 0.5f;
+    private float chanceBomb = 0.35f;
+    private float chanceSignature = 0.3f;
+    private float chanceHeavy = 0.2f;
+    private float chanceUltimate = 0.15f;
+
     public void CrateDrop()
     {
-        /* 
-            Potential Upgrades
-                Bomb
-                Signature
-                Heavy
-                Ultimate
-        */
-        // Instantiate();
+        if (Random.value < 0.6f)
+        {
+            float randomValue = Random.Range(0f, 1f);
+            if (randomValue < chanceBomb)
+            {
+                Debug.Log("B (Common) is shown!");
+            }
+            else if (randomValue < chanceBomb + chanceSignature)
+            {
+                Debug.Log("S (Uncommon) is shown!");
+            }
+            else if (randomValue < chanceSignature + chanceSignature + chanceHeavy)
+            {
+                Debug.Log("H (Rare) is shown!");
+            }
+            else
+            {
+                Debug.Log("U (Ultra Rare) is shown!");
+            }
+        }
+        else
+            Debug.Log("NONE");
 
         Destroy(this.gameObject);
     }
