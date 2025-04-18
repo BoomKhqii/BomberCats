@@ -5,7 +5,7 @@ using UnityEngine.InputSystem;
 
 public class OttoGojoController : MonoBehaviour
 {
-    //private bool infinitySkill = Random.value < 0.25f;  // Passive ability | Probability chance: 20% - 25%
+    public CurseEnergyLogic curseEnergy;
 
     // Blue
     //private int signatureSkill = 3;         
@@ -27,6 +27,7 @@ public class OttoGojoController : MonoBehaviour
 
     void Start()
     {
+        curseEnergy = GameObject.Find("CE Pool of Otto Gojo").GetComponent<CurseEnergyLogic>();
         player = GetComponent<PlayerController>();
     }
 
@@ -43,6 +44,7 @@ public class OttoGojoController : MonoBehaviour
         //  90  =   East
         if (context.performed)
         {
+            curseEnergy.CEReduction(250);
             GameObject blue = Instantiate(objectBlue,
                 new Vector3(Mathf.RoundToInt(player.transform.position.x),
                 1.32f,
@@ -56,8 +58,17 @@ public class OttoGojoController : MonoBehaviour
         }
     }
 
-    void Update()
+    public void RedSkill(InputAction.CallbackContext context)
     {
-        
+        curseEnergy.CEReduction(500);
+    }
+    public void HollowPurpleSkill(InputAction.CallbackContext context)
+    {
+        curseEnergy.CEReduction(1000);
+    }
+
+    private void Update()
+    {
+        // Cooldown shit
     }
 }

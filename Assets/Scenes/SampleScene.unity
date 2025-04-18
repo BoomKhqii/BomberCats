@@ -26843,6 +26843,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Otto Gojo
       objectReference: {fileID: 0}
+    - target: {fileID: 6292289971850779371, guid: 92dbb4edf2a797a4e925c3943502bb1d, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 6296327816773793935, guid: 92dbb4edf2a797a4e925c3943502bb1d, type: 3}
       propertyPath: m_Enabled
       value: 0

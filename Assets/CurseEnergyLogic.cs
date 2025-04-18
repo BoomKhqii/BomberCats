@@ -32,6 +32,8 @@ public class CurseEnergyLogic : MonoBehaviour
         {
             currentPool += regenRate * Time.deltaTime;
         }
+        if (currentPool < 0)
+            currentPool = 0;
     }
 
     public float CEReduction(float reduction)

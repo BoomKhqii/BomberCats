@@ -114,11 +114,35 @@ MonoBehaviour:
     m_ActionId: ec5e4a2c-f2d3-452e-9f02-7288002e39c9
     m_ActionName: Player/New action
   - m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 3675573794243683774}
+        m_TargetAssemblyTypeName: OttoGojoController, Assembly-CSharp
+        m_MethodName: RedSkill
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
     m_ActionId: 4307bff3-dd7a-433d-b2a0-9782d304c577
     m_ActionName: Player/New action
   - m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 3675573794243683774}
+        m_TargetAssemblyTypeName: OttoGojoController, Assembly-CSharp
+        m_MethodName: HollowPurpleSkill
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
     m_ActionId: bdd47efa-7d6f-4353-a546-6e45fccb07c2
     m_ActionName: Player/New action
   m_NeverAutoSwitchControlSchemes: 0
@@ -150,7 +174,7 @@ MonoBehaviour:
   signatureSkill: 0
   heavySkill: 0
   ultimateSkill: 0
-  poolCurseEnergy: 4000
+  curseEnergy: {fileID: 0}
 --- !u!114 &3675573794243683774
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -163,6 +187,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1f5bc79628dd9444485d5b013118f218, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  curseEnergy: {fileID: 0}
   objectBlue: {fileID: 7453994153594891760, guid: 9b72d18004840004cb792b52eff73fed, type: 3}
   objectRed: {fileID: 0}
   objectHollowPurple: {fileID: 0}
