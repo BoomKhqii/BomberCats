@@ -65,6 +65,7 @@
     <Compile Include="Assets\OttoGojoController.cs" />
     <Compile Include="Assets\FireController.cs" />
     <Compile Include="Assets\BombController.cs" />
+    <Compile Include="Assets\CurseEnergyLogic.cs" />
     <Compile Include="Assets\Spawning.cs" />
   </ItemGroup>
   <ItemGroup>
