@@ -6,18 +6,6 @@ public class CrateLogic : MonoBehaviour
 {
     public LayerMask destroy;
 
-    public void CrateMechanic()
-    {
-
-    }
-    void OnTriggerEnter(Collider other)
-    {
-        if (((1 << other.gameObject.layer) & destroy) != 0)
-        {
-            Destroy(gameObject);
-        }
-    }
-
     public void CrateDrop()
     {
         /* 
@@ -27,5 +15,8 @@ public class CrateLogic : MonoBehaviour
                 Heavy
                 Ultimate
         */
+        // Instantiate();
+
+        Destroy(this.gameObject);
     }
 }

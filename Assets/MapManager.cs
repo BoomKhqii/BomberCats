@@ -21,7 +21,7 @@ public class MapManager : MonoBehaviour
                 if (x == gridMin || x == gridMax || z == gridMin || z == gridMax || (x % 1 == 0 && z % 1 == 0))
                 {
                     Vector3 position = new Vector3(x, 0.9f, z); // Adjust Y if needed
-                    Instantiate(cratePrefab, position, Quaternion.identity, transform);
+                    Instantiate(cratePrefab, position, Quaternion.identity);
                 }
             }
         }
