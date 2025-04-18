@@ -6,8 +6,8 @@ using UnityEngine;
 public class BlueLogic : MonoBehaviour
 {
     [Header("Pull Settings")]
-    public float pullStrength = 1f;
-    public float pullRadius = 3f;
+    public float pullStrength = 3f;
+    public float pullRadius = 1f;
     public LayerMask affectedLayers;
 
     public GameObject ottoGojo;
@@ -66,10 +66,10 @@ public class BlueLogic : MonoBehaviour
                 cc.Move(direction * pullStrength * Time.fixedDeltaTime);
             }
 
-            //Debug.Log(col.gameObject.tag);
-            if (col.transform.root.CompareTag("Breakable"))
+            CrateLogic crate = col.gameObject.GetComponent<CrateLogic>();
+            if (col.gameObject.CompareTag("Breakable"))
             {
-                Destroy(col.transform.root.gameObject);
+                crate.CrateDrop();
             }
 
         }

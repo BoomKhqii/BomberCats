@@ -111,6 +111,8 @@ public class BombController : MonoBehaviour
             // Check for breakable crate
             if (hitObject.CompareTag("Breakable"))
             {
+                CrateLogic crate = hitObject.gameObject.GetComponent<CrateLogic>();
+
                 // Snap to grid if needed
                 Vector3 firePosition = new Vector3(
                     Mathf.Round(hitObject.transform.position.x),
@@ -120,7 +122,7 @@ public class BombController : MonoBehaviour
 
                 // Spawn fire BEFORE destroying the crate
                 Instantiate(explosion, firePosition, Quaternion.identity);
-                Destroy(hitObject);
+                crate.CrateDrop();
 
                 return explosionDirection[dirIndex] = false; // Stop fire after breaking
             }
@@ -135,22 +137,6 @@ public class BombController : MonoBehaviour
         return explosionDirection[dirIndex];
     }
 
-    /*
-    bool raycastExplosion(Vector3 origin, Vector3 direction, int dirIndex)
-    {
-        // Dynamic
-        if (Physics.Raycast(origin, direction, 1f, unbreakable))
-            return explosionDirection[dirIndex] = false;
-
-        return explosionDirection[dirIndex];
-    }
-    /*
-    bool isCrateThere(Vector3 origin, Vector3 direction, int dirIndex)
-    {
-
-    }
-    */
-
     bool IsExplosionThere(Vector3 center, Vector3 halfExtents, string tag)
     {
         Collider[] hits = Physics.OverlapBox(center, halfExtents);
@@ -163,39 +149,4 @@ public class BombController : MonoBehaviour
         }
         return false;
     }
-    /*
-    void Explode(int range, int x, int z, float y)
-    {
-        Vector3[] directions = new Vector3[]
-        {
-            Vector3.forward,  // North
-            Vector3.back,     // South
-            Vector3.left,     // West
-            Vector3.right     // East
-        };
-
-        for (int i = 0; i < range; i++)
-        {
-            for (int j = 0; j < directions.Length; j++)
-            {
-                if (explosionDirection[j]) // Check if direction is active
-                {
-                    Vector3 offset = directions[j] * i;
-                    Vector3 explosionOrigin = new Vector3(x, y, z) + offset;
-
-                    Instantiate(explosion, explosionOrigin, Quaternion.identity);
-                    raycastExplosion(explosionOrigin, directions[j], j);
-                }
-            }
-        }
-    }
-
-    bool raycastExplosion(Vector3 origin, Vector3 direction, int dirIndex)
-    {
-        // Dynamic
-        if (Physics.Raycast(origin, direction, 1f, unbreakable))
-            return explosionDirection[dirIndex] = false;
-
-        return explosionDirection[dirIndex];
-    }*/
 }
