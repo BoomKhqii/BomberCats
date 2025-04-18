@@ -14,7 +14,8 @@ public class BlueLogic : MonoBehaviour
 
     //public float skillIncrement = 0;
 
-    public Vector3 direction = Vector3.forward; // Direction to move in
+    public Vector3 direction; // Direction to move in
+    //public Vector3 direction = Vector3.forward;
     private float speed = 2f;                    // Movement speed
     private float moveDistance = 2;            // How far to move
     private float duration = 2f;
@@ -22,23 +23,20 @@ public class BlueLogic : MonoBehaviour
     private Vector3 startPosition;
     private Vector3 targetPosition;
     private bool isMoving = true;
-    
+
+    public void SetDirection(Vector3 dir)
+    {
+        direction = dir.normalized;
+    }
+
     public void SkillUpdate(float increment) 
     {
         if (increment == 0)
             return;
 
-        Debug.Log("Speed : " + speed);
         speed = speed + increment;
-        Debug.Log("After : " + speed);
-
-        Debug.Log("Distance : " + moveDistance);
         moveDistance = moveDistance + increment;
-        Debug.Log("After : " + moveDistance);
-
-        Debug.Log("Duration : " + duration);
         duration = duration + increment;
-        Debug.Log("After : " + duration);
     }
     
     private void FixedUpdate()
@@ -80,7 +78,6 @@ public class BlueLogic : MonoBehaviour
         if (isMoving)
         {
             transform.position = Vector3.MoveTowards(transform.position, targetPosition, speed * Time.deltaTime);
-
             if (Vector3.Distance(transform.position, targetPosition) < 0.01f)
             {
                 isMoving = false; // Stop moving once destination is reached

@@ -46,7 +46,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3866088798519211583, guid: c71baaa1ecdde8440817442aac86ab4f, type: 3}
       propertyPath: affectedLayers.m_Bits
-      value: 128
+      value: 384
       objectReference: {fileID: 0}
     - target: {fileID: 6468522207566923579, guid: c71baaa1ecdde8440817442aac86ab4f, type: 3}
       propertyPath: m_LocalPosition.x

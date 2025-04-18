@@ -46,12 +46,19 @@ public class OttoGojoController : MonoBehaviour
         //  90  =   East
         if (!context.performed || !isBlueActive || !curseEnergy.CEReduction(250)) return;
 
-        Vector3 spawnPos = new Vector3(Mathf.RoundToInt(player.transform.position.x), 1.32f, Mathf.RoundToInt(player.transform.position.z + 1));
+        //Vector3 spawnPos = new Vector3(Mathf.RoundToInt(player.transform.position.x), 1.32f, Mathf.RoundToInt(player.transform.position.z));
+        Vector3 spawnOffset = player.transform.forward.normalized;
+        Vector3 spawnPos = new Vector3(
+            Mathf.RoundToInt(player.transform.position.x + spawnOffset.x),
+            1.32f,
+            Mathf.RoundToInt(player.transform.position.z + spawnOffset.z)
+        );
         GameObject blue = Instantiate(objectBlue, spawnPos, Quaternion.identity);
 
         blue.GetComponent<BlueLogic>().ottoGojo = this.gameObject;
         BlueLogic blueLogic = blue.GetComponent<BlueLogic>();
         blueLogic.SkillUpdate(player.signatureSkill);
+        blueLogic.SetDirection(player.transform.forward);
 
         isBlueActive = false;
     }

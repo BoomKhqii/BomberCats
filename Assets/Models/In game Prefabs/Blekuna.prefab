@@ -22,7 +22,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &5021903359870963074
 Transform:
   m_ObjectHideFlags: 0
@@ -32,7 +32,7 @@ Transform:
   m_GameObject: {fileID: 290829835178697385}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 1, y: 1.3, z: 5.97}
+  m_LocalPosition: {x: 7, y: 1.3, z: 7}
   m_LocalScale: {x: 0.8, y: 0.8, z: 0.8}
   m_ConstrainProportionsScale: 1
   m_Children: []
@@ -157,6 +157,12 @@ MonoBehaviour:
   playerOnBomb:
     serializedVersion: 2
     m_Bits: 0
+  characterController: {fileID: 0}
+  bombSkill: 0
+  signatureSkill: 0
+  heavySkill: 0
+  ultimateSkill: 0
+  curseEnergy: {fileID: 0}
 --- !u!114 &8256451762765749975
 MonoBehaviour:
   m_ObjectHideFlags: 0
