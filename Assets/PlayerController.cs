@@ -52,9 +52,8 @@ public class PlayerController : MonoBehaviour
 
     public void SpawnBomb(InputAction.CallbackContext context)
     {
-        if (!isCoroutineRunning && !Physics.CheckSphere(playerLocation.position, 0.6f, playerOnBomb) && context.performed)
+        if (!isCoroutineRunning && !Physics.CheckSphere(playerLocation.position, 0.6f, playerOnBomb) && context.performed && curseEnergy.CEReduction(100))
         {
-            curseEnergy.CEReduction(100);
             StartCoroutine(waiter());        
         }
     }

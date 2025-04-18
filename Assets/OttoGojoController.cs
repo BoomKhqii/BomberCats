@@ -11,6 +11,8 @@ public class OttoGojoController : MonoBehaviour
     //private int signatureSkill = 3;         
     [SerializeField]
     private GameObject objectBlue;
+    private float cooldownBlue = 5;
+    private bool isBlueActive = true;
     
     // Red
     private int heavySkill = 6;
@@ -42,33 +44,48 @@ public class OttoGojoController : MonoBehaviour
         //  180 =   South
         //  -90 =   West
         //  90  =   East
-        if (context.performed)
-        {
-            curseEnergy.CEReduction(250);
-            GameObject blue = Instantiate(objectBlue,
-                new Vector3(Mathf.RoundToInt(player.transform.position.x),
-                1.32f,
-                Mathf.RoundToInt(player.transform.position.z + 1)), Quaternion.identity);
+        if (!context.performed || !isBlueActive || !curseEnergy.CEReduction(250)) return;
 
-            blue.GetComponent<BlueLogic>().ottoGojo = this.gameObject;
-            BlueLogic blueLogic = blue.GetComponent<BlueLogic>();
-            Debug.Log(player.signatureSkill);
-            blueLogic.SkillUpdate(player.signatureSkill);
+        Vector3 spawnPos = new Vector3(Mathf.RoundToInt(player.transform.position.x), 1.32f, Mathf.RoundToInt(player.transform.position.z + 1));
+        GameObject blue = Instantiate(objectBlue, spawnPos, Quaternion.identity);
 
-        }
+        blue.GetComponent<BlueLogic>().ottoGojo = this.gameObject;
+        BlueLogic blueLogic = blue.GetComponent<BlueLogic>();
+        blueLogic.SkillUpdate(player.signatureSkill);
+
+        isBlueActive = false;
     }
 
     public void RedSkill(InputAction.CallbackContext context)
     {
-        curseEnergy.CEReduction(500);
+        if (context.performed && curseEnergy.CEReduction(500))
+        {
+
+        }
     }
     public void HollowPurpleSkill(InputAction.CallbackContext context)
     {
-        curseEnergy.CEReduction(1000);
+        if (context.performed && curseEnergy.CEReduction(1000))
+        {
+
+        }
     }
 
     private void Update()
     {
-        // Cooldown shit
+        UpdateBlueCooldown();
+    }
+
+    void UpdateBlueCooldown()
+    {
+        if (isBlueActive == false)
+        {
+            cooldownBlue -= Time.deltaTime;
+            if (cooldownBlue <= 0)
+            {
+                cooldownBlue = 5;
+                isBlueActive = true;
+            }
+        }
     }
 }

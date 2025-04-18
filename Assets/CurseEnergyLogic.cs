@@ -36,10 +36,17 @@ public class CurseEnergyLogic : MonoBehaviour
             currentPool = 0;
     }
 
-    public float CEReduction(float reduction)
+    public bool CEReduction(float reduction)
     {
-        currentPool -= reduction;
-        return currentPool;
+        if (currentPool-reduction < 0)
+        {
+            return false;
+        }
+        else
+        {
+            currentPool -= reduction;
+            return true;
+        }
     }
 
     public void UpdateCE()
