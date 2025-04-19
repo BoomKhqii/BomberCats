@@ -9,7 +9,7 @@ public class BombController : MonoBehaviour
     private int bombLocationX;
     private int bombLocationZ;
     float bombLocationY = 0.9160001f;
-    public int range = 3;
+    public float range = 3;
 
     public MeshRenderer bomb;
     public SphereCollider body;
@@ -26,9 +26,12 @@ public class BombController : MonoBehaviour
     private GameObject spawningPlayer;
     private Collider blockCollider;
 
-    public void SetSpawningPlayer(GameObject player) 
+    //public float skill = 0;
+
+    public void SetSpawningPlayer(GameObject player, float upgrade) 
     { 
         spawningPlayer = player; // Debug.Log("Spawning player set to: " + spawningPlayer);
+        range += upgrade;
     }
 
     void Start()
@@ -70,7 +73,7 @@ public class BombController : MonoBehaviour
         Destroy(gameObject);
     }
     
-    void Explode(int range, int x, int z, float y)
+    void Explode(float range, int x, int z, float y)
     {
         Vector3[] directions = new Vector3[]
         {

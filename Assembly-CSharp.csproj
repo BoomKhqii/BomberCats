@@ -66,6 +66,7 @@
     <Compile Include="Assets\CrateLogic.cs" />
     <Compile Include="Assets\OttoGojoController.cs" />
     <Compile Include="Assets\FireController.cs" />
+    <Compile Include="Assets\SkillUpgradeBomb.cs" />
     <Compile Include="Assets\BombController.cs" />
     <Compile Include="Assets\CurseEnergyLogic.cs" />
     <Compile Include="Assets\Spawning.cs" />

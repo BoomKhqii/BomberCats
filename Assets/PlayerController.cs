@@ -59,6 +59,8 @@ public class PlayerController : MonoBehaviour
     }
     IEnumerator waiter()
     {
+        Debug.Log(bombSkill);
+
         isCoroutineRunning = true;
 
         GameObject bombInstance = Instantiate(bomb,
@@ -70,7 +72,7 @@ public class PlayerController : MonoBehaviour
             bomb.transform.rotation);
 
         BombController bombController = bombInstance.GetComponent<BombController>(); // Debug.Log("PlayerController: " + this.gameObject);
-        bombController.SetSpawningPlayer(this.gameObject);
+        bombController.SetSpawningPlayer(this.gameObject, bombSkill);
 
         yield return new WaitForSeconds(0.2f);
         isCoroutineRunning = false;

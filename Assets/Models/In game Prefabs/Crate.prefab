@@ -10,7 +10,6 @@ GameObject:
   m_Component:
   - component: {fileID: 8963365673014290912}
   - component: {fileID: 2328402991350310373}
-  - component: {fileID: 6723926531446332038}
   - component: {fileID: 1208695197858849524}
   - component: {fileID: 8607185560469964749}
   - component: {fileID: 3922417888827157036}
@@ -52,27 +51,11 @@ MonoBehaviour:
   destroy:
     serializedVersion: 2
     m_Bits: 0
---- !u!65 &6723926531446332038
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 9094360364550236858}
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_IsTrigger: 1
-  m_ProvidesContacts: 0
-  m_Enabled: 0
-  serializedVersion: 3
-  m_Size: {x: 1.2, y: 1, z: 1.2}
-  m_Center: {x: 0, y: 0, z: 0}
+  crate: {fileID: 8963365673014290912}
+  upgradeBomb: {fileID: 1735739996844215622, guid: c4aee1f52f96cd449b63317132ff4832, type: 3}
+  upgradeSignature: {fileID: 0}
+  upgradeHeavy: {fileID: 0}
+  upgradeUltimate: {fileID: 0}
 --- !u!65 &1208695197858849524
 BoxCollider:
   m_ObjectHideFlags: 0
