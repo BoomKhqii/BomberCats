@@ -364,6 +364,7 @@
 "Assets/OttoGojoController.cs"
 "Assets/PlayerController.cs"
 "Assets/SkillUpgradeBomb.cs"
+"Assets/SkillUpgradeSignature.cs"
 "Assets/Spawning.cs"
 -langversion:9.0
 /deterministic
