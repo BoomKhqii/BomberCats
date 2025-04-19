@@ -40,10 +40,6 @@ public class OttoGojoController : MonoBehaviour
 
     public void BlueSkill(InputAction.CallbackContext context)
     {
-        //  0   =   North
-        //  180 =   South
-        //  -90 =   West
-        //  90  =   East
         if (!context.performed || !isBlueActive || !curseEnergy.CEReduction(250)) return;
 
         //Vector3 spawnPos = new Vector3(Mathf.RoundToInt(player.transform.position.x), 1.32f, Mathf.RoundToInt(player.transform.position.z));

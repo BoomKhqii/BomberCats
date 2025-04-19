@@ -64,6 +64,7 @@
     <Compile Include="Assets\MapManager.cs" />
     <Compile Include="Assets\BlueLogic.cs" />
     <Compile Include="Assets\CrateLogic.cs" />
+    <Compile Include="Assets\SkillUpgradeSignature.cs" />
     <Compile Include="Assets\OttoGojoController.cs" />
     <Compile Include="Assets\FireController.cs" />
     <Compile Include="Assets\SkillUpgradeBomb.cs" />

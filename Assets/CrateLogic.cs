@@ -30,6 +30,7 @@ public class CrateLogic : MonoBehaviour
             }
             else if (randomValue < chanceBomb + chanceSignature)
             {
+                Instantiate(upgradeSignature, new Vector3(crate.position.x, 1f, crate.position.z), Quaternion.identity);
                 Debug.Log("S (Uncommon) is shown!");
             }
             else if (randomValue < chanceSignature + chanceSignature + chanceHeavy)

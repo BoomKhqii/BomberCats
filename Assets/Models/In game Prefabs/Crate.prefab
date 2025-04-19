@@ -53,7 +53,7 @@ MonoBehaviour:
     m_Bits: 0
   crate: {fileID: 8963365673014290912}
   upgradeBomb: {fileID: 1735739996844215622, guid: c4aee1f52f96cd449b63317132ff4832, type: 3}
-  upgradeSignature: {fileID: 0}
+  upgradeSignature: {fileID: 6638725139401580806, guid: a7c64ca760c9246458ed379052930696, type: 3}
   upgradeHeavy: {fileID: 0}
   upgradeUltimate: {fileID: 0}
 --- !u!65 &1208695197858849524

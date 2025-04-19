@@ -40,9 +40,6 @@ public class PlayerController : MonoBehaviour
         curseEnergy = GameObject.Find("CE Pool of Otto Gojo").GetComponent<CurseEnergyLogic>();
         characterController = GetComponent<OttoGojoController>();
         controller = gameObject.GetComponent<CharacterController>();
-
-        //fireController = gameObject.GetComponent<FireController>();
-        //Instantiate(bomb, new Vector3(Mathf.RoundToInt(playerLocation.position.x), 0.9160001f, Mathf.RoundToInt(playerLocation.position.z)), bomb.transform.rotation);
     }
 
     public void OnMove(InputAction.CallbackContext context)
@@ -59,8 +56,6 @@ public class PlayerController : MonoBehaviour
     }
     IEnumerator waiter()
     {
-        Debug.Log(bombSkill);
-
         isCoroutineRunning = true;
 
         GameObject bombInstance = Instantiate(bomb,
@@ -71,29 +66,12 @@ public class PlayerController : MonoBehaviour
             ),
             bomb.transform.rotation);
 
-        BombController bombController = bombInstance.GetComponent<BombController>(); // Debug.Log("PlayerController: " + this.gameObject);
+        BombController bombController = bombInstance.GetComponent<BombController>();
         bombController.SetSpawningPlayer(this.gameObject, bombSkill);
 
         yield return new WaitForSeconds(0.2f);
         isCoroutineRunning = false;
     }
-    /*
-    IEnumerator waiter()
-    {
-        isCoroutineRunning = true;
-        Instantiate(bomb, new Vector3(
-            Mathf.RoundToInt(playerLocation.position.x), 
-            0.9160001f, Mathf.RoundToInt(playerLocation.position.z)), 
-            bomb.transform.rotation);
-
-        BombController bombController = bomb.GetComponent<BombController>();
-        Debug.Log("PlayerController: " + this.gameObject);
-        bombController.SetSpawningPlayer(this.gameObject);
-
-        yield return new WaitForSeconds(0.2f);
-        isCoroutineRunning = false;
-    }
-    */
     void Update()
     {
         Vector3 move = new Vector3(movementInput.x, 0, movementInput.y);
@@ -132,29 +110,4 @@ public class PlayerController : MonoBehaviour
 
 
     }
-    /*
-    public bool PlayerStatusUpdate(bool playerStatus)
-    {
-        Debug.Log("PlayerStatus said hi");
-
-        isPlayerAlive = playerStatus;
-        if (isPlayerAlive == false)
-        {
-            // exclusive for Gojo
-            if (characterController.InfinityProbabilityChance() == true)
-            {
-                Debug.Log("===LIVED===");
-                return true;
-            }
-            else
-            {
-                Debug.Log("DIED");
-                Destroy(gameObject);
-                return false;
-            }
-        } 
-        else 
-            return true;
-    }
-    */
 }

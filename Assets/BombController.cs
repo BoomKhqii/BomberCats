@@ -95,7 +95,6 @@ public class BombController : MonoBehaviour
                     if (IsExplosionThere(explosionOrigin, new Vector3(0.5f, 0.5f, 0.5f), "Explosion") == false)
                     {
                         Instantiate(explosion, explosionOrigin, Quaternion.identity);
-                        //raycastExplosion(explosionOrigin, directions[j], j);
                     }
                     raycastExplosion(explosionOrigin, directions[j], j);
                 }
