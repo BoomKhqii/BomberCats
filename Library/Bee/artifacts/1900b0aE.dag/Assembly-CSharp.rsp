@@ -363,8 +363,11 @@
 "Assets/MapManager.cs"
 "Assets/OttoGojoController.cs"
 "Assets/PlayerController.cs"
+"Assets/RedLogic.cs"
 "Assets/SkillUpgradeBomb.cs"
+"Assets/SkillUpgradeHeavy.cs"
 "Assets/SkillUpgradeSignature.cs"
+"Assets/SkillUpgradeUltimate.cs"
 "Assets/Spawning.cs"
 -langversion:9.0
 /deterministic
