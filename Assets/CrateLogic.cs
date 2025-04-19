@@ -35,10 +35,12 @@ public class CrateLogic : MonoBehaviour
             }
             else if (randomValue < chanceSignature + chanceSignature + chanceHeavy)
             {
+                Instantiate(upgradeHeavy, new Vector3(crate.position.x, 1f, crate.position.z), Quaternion.identity);
                 Debug.Log("H (Rare) is shown!");
             }
             else
             {
+                Instantiate(upgradeUltimate, new Vector3(crate.position.x, 1f, crate.position.z), Quaternion.identity);
                 Debug.Log("U (Ultra Rare) is shown!");
             }
         }

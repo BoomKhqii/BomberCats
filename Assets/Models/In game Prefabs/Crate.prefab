@@ -54,8 +54,8 @@ MonoBehaviour:
   crate: {fileID: 8963365673014290912}
   upgradeBomb: {fileID: 1735739996844215622, guid: c4aee1f52f96cd449b63317132ff4832, type: 3}
   upgradeSignature: {fileID: 6638725139401580806, guid: a7c64ca760c9246458ed379052930696, type: 3}
-  upgradeHeavy: {fileID: 0}
-  upgradeUltimate: {fileID: 0}
+  upgradeHeavy: {fileID: 4834755368219223046, guid: 8c3296058da054b40984c602cbfbc0e4, type: 3}
+  upgradeUltimate: {fileID: 5478232620624842528, guid: 01b09ced8c8496d4e855b525ffaf4ca6, type: 3}
 --- !u!65 &1208695197858849524
 BoxCollider:
   m_ObjectHideFlags: 0

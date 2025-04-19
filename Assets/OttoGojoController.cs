@@ -15,9 +15,10 @@ public class OttoGojoController : MonoBehaviour
     private bool isBlueActive = true;
     
     // Red
-    private int heavySkill = 6;
     [SerializeField]
     private GameObject objectRed;
+    private float cooldownRed = 0;
+    private bool isRedActive = true;
 
     // Hollow purple
     private int ultimateSkill = 12;
@@ -61,10 +62,22 @@ public class OttoGojoController : MonoBehaviour
 
     public void RedSkill(InputAction.CallbackContext context)
     {
-        if (context.performed && curseEnergy.CEReduction(500))
-        {
+        if (!context.performed || !isRedActive || !curseEnergy.CEReduction(500)) return;
 
-        }
+        Vector3 spawnOffset = player.transform.forward.normalized;
+        Vector3 spawnPos = new Vector3(
+            Mathf.RoundToInt(player.transform.position.x + spawnOffset.x),
+            1.32f,
+            Mathf.RoundToInt(player.transform.position.z + spawnOffset.z)
+        );
+        GameObject red = Instantiate(objectRed, spawnPos, Quaternion.identity);
+
+        red.GetComponent<RedLogic>().ottoGojo = this.gameObject;
+        RedLogic redLogic = red.GetComponent<RedLogic>();
+        redLogic.SkillUpdate(player.signatureSkill);
+        redLogic.SetDirection(player.transform.forward);
+
+        isRedActive = false;
     }
     public void HollowPurpleSkill(InputAction.CallbackContext context)
     {
@@ -77,6 +90,7 @@ public class OttoGojoController : MonoBehaviour
     private void Update()
     {
         UpdateBlueCooldown();
+        UpdateRedCooldown();
     }
 
     void UpdateBlueCooldown()
@@ -88,6 +102,19 @@ public class OttoGojoController : MonoBehaviour
             {
                 cooldownBlue = 5;
                 isBlueActive = true;
+            }
+        }
+    }
+
+    void UpdateRedCooldown()
+    {
+        if (isRedActive == false)
+        {
+            cooldownRed -= Time.deltaTime;
+            if (cooldownRed <= 0)
+            {
+                cooldownRed = 5;
+                isRedActive = true;
             }
         }
     }
