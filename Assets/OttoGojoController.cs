@@ -112,7 +112,6 @@ public class OttoGojoController : MonoBehaviour
             heldDuration = Time.time - holdStartTime;
             Debug.Log($"Released Hollow Purple after {heldDuration:F2} seconds.");
             IsHeldUpdate(context);
-
             isPurpleActive = false;
         }
         /*
@@ -133,7 +132,7 @@ public class OttoGojoController : MonoBehaviour
 
         isPurpleActive = false;
         */
-    }
+}
 
     public void IsHeldUpdate(InputAction.CallbackContext context)
     {

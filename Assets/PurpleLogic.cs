@@ -8,15 +8,17 @@ public class PurpleLogic : MonoBehaviour
     public float purpleRadius = 0.4f;
     public LayerMask affectedLayers;
 
+    public Transform objectPurple;
     public GameObject ottoGojo;
-    //public OttoGojoController buttonOutput;
+    private OttoGojoController buttonOutput;
 
     //public float skillIncrement = 0;
 
     public Vector3 direction; // Direction to move in
     private float speed = 30f;                  // Movement speed
     private float moveDistance = 20;            // How far to move
-    private float duration = 20f;
+    private float duration = 5f;
+    private float levelPurple = 0;
 
     private Vector3 startPosition;
     private Vector3 targetPosition;
@@ -27,14 +29,13 @@ public class PurpleLogic : MonoBehaviour
 
     private void Start()
     {
-        OttoGojoController buttonOutput = ottoGojo.GetComponent<OttoGojoController>();
+        buttonOutput = ottoGojo.GetComponent<OttoGojoController>();
+
         PlayerController skill = ottoGojo.GetComponent<PlayerController>(); // Accessing the skill upgrade
 
         HeldUpdate(buttonOutput.isHoldingHollowPurple);
 
-        speed += skill.ultimateSkill;
-        duration += skill.ultimateSkill;
-        moveDistance += skill.ultimateSkill;
+        levelPurple += skill.ultimateSkill;
 
         direction.Normalize(); // Always normalize to ensure consistent distance
         startPosition = transform.position;
@@ -82,6 +83,31 @@ public class PurpleLogic : MonoBehaviour
 
     void Update()
     {
+        if(levelPurple <= 0 && buttonOutput.HowLongHeld() < 1.5f)
+        {
+            objectPurple.localScale = new Vector3(1.2f, 1.2f, 1.2f);
+            speed = 30f;                  // Movement speed
+            moveDistance = 20;            // How far to move
+            duration = 20f;
+            purpleRadius = 0.4f;
+        } 
+        else if (levelPurple <= 1 && buttonOutput.HowLongHeld() >= 1.5f)
+        {
+            objectPurple.localScale = new Vector3(3f, 3f, 3f);
+            speed = 30f;                  // Movement speed
+            moveDistance = 20;            // How far to move
+            duration = 20f;
+            purpleRadius = 1.2f;
+        }
+        else if (levelPurple <= 2 && buttonOutput.HowLongHeld() >= 3f)
+        {
+            objectPurple.localScale = new Vector3(5f, 5f, 5f);
+            speed = 30f;                  // Movement speed
+            moveDistance = 20;            // How far to move
+            duration = 20f;
+            purpleRadius = 2f;
+        }
+
         if (isMoving && !held)
         {
             transform.position = Vector3.MoveTowards(transform.position, targetPosition, speed * Time.deltaTime);
