@@ -5,18 +5,18 @@ using UnityEngine;
 
 public class PurpleLogic : MonoBehaviour
 {
-    public float purpleRadius = 0.5f;
+    public float purpleRadius = 0.4f;
     public LayerMask affectedLayers;
 
     public GameObject ottoGojo;
-    public OttoGojoController buttonOutput;
+    //public OttoGojoController buttonOutput;
 
     //public float skillIncrement = 0;
 
     public Vector3 direction; // Direction to move in
     private float speed = 30f;                  // Movement speed
     private float moveDistance = 20;            // How far to move
-    private float duration = 2f;
+    private float duration = 20f;
 
     private Vector3 startPosition;
     private Vector3 targetPosition;
@@ -30,6 +30,8 @@ public class PurpleLogic : MonoBehaviour
         OttoGojoController buttonOutput = ottoGojo.GetComponent<OttoGojoController>();
         PlayerController skill = ottoGojo.GetComponent<PlayerController>(); // Accessing the skill upgrade
 
+        HeldUpdate(buttonOutput.isHoldingHollowPurple);
+
         speed += skill.ultimateSkill;
         duration += skill.ultimateSkill;
         moveDistance += skill.ultimateSkill;
@@ -38,8 +40,6 @@ public class PurpleLogic : MonoBehaviour
         startPosition = transform.position;
         targetPosition = startPosition + direction * moveDistance;
         Destroy(gameObject, duration); // optional: auto-destroy after 3 seconds
-
-        held = buttonOutput.isHoldingHollowPurple;
     }
 
     public void SkillUpdate(float increment)
@@ -82,8 +82,6 @@ public class PurpleLogic : MonoBehaviour
 
     void Update()
     {
-
-        Debug.Log("Logic Script: " + held);
         if (isMoving && !held)
         {
             transform.position = Vector3.MoveTowards(transform.position, targetPosition, speed * Time.deltaTime);
@@ -92,6 +90,11 @@ public class PurpleLogic : MonoBehaviour
                 isMoving = false; // Stop moving once destination is reached
             }
         }
+    }
+
+    public bool HeldUpdate(bool update)
+    {
+        return held = update;
     }
 
     public void SetDirection(Vector3 dir)
@@ -103,10 +106,5 @@ public class PurpleLogic : MonoBehaviour
     {
         Gizmos.color = Color.blue;
         Gizmos.DrawWireSphere(transform.position, purpleRadius);
-    }
-
-    public bool HeldUpdate(bool update)
-    {
-        return held = update;
     }
 }

@@ -23,22 +23,20 @@ public class OttoGojoController : MonoBehaviour
     // Hollow purple
     [SerializeField]
     private GameObject objectHollowPurple;
-    public PurpleLogic purple;
-    private float cooldownPurple = 0;
+    private PurpleLogic purpleOut;
+    private float cooldownPurple = 60;
     private bool isPurpleActive = true;
 
-    public bool isHoldingHollowPurple = true;
+    public bool isHoldingHollowPurple = false;
     private float holdStartTime = 0f;
     private float heldDuration = 0f;
 
-    //[SerializeField]
     public PlayerController player;
 
     void Start()
     {
         curseEnergy = GameObject.Find("CE Pool of Otto Gojo").GetComponent<CurseEnergyLogic>();
         player = GetComponent<PlayerController>();
-        purple = GetComponent<PurpleLogic>();
     }
 
     public bool InfinityProbabilityChance()
@@ -88,13 +86,10 @@ public class OttoGojoController : MonoBehaviour
     }
     public void HollowPurpleSkill(InputAction.CallbackContext context)
     {
-        Debug.Log("Controller: " + isHoldingHollowPurple);
-        //IsHeldUpdate(context); // call this immediately to update hold state
-
         if (context.started && isPurpleActive && curseEnergy.CEReduction(1000))
         {
             holdStartTime = Time.time;
-            Debug.Log("Started holding Hollow Purple.");
+            IsHeldUpdate(context);
 
             Vector3 spawnOffset = player.transform.forward.normalized;
             Vector3 spawnPos = new Vector3(
@@ -102,20 +97,22 @@ public class OttoGojoController : MonoBehaviour
                 1.32f,
                 Mathf.RoundToInt(player.transform.position.z + spawnOffset.z)
             );
+            GameObject purpleIn = Instantiate(objectHollowPurple, spawnPos, Quaternion.identity);
 
-            GameObject purple = Instantiate(objectHollowPurple, spawnPos, Quaternion.identity);
-
-            purple.GetComponent<PurpleLogic>().ottoGojo = this.gameObject;
-
-            PurpleLogic purpleLogic = purple.GetComponent<PurpleLogic>();
+            purpleIn.GetComponent<PurpleLogic>().ottoGojo = this.gameObject;
+            PurpleLogic purpleLogic = purpleIn.GetComponent<PurpleLogic>();
             purpleLogic.SkillUpdate(player.signatureSkill);
             purpleLogic.SetDirection(player.transform.forward);
+
+            purpleOut = purpleLogic;
         }
 
         if (context.canceled)
         {
             heldDuration = Time.time - holdStartTime;
             Debug.Log($"Released Hollow Purple after {heldDuration:F2} seconds.");
+            IsHeldUpdate(context);
+
             isPurpleActive = false;
         }
         /*
@@ -143,14 +140,16 @@ public class OttoGojoController : MonoBehaviour
         if (context.started)
         {
             isHoldingHollowPurple = true;
-            Debug.Log("Hollow Purple button held.");
         }
         else if (context.canceled)
         {
-            purple.HeldUpdate(false);
-            Debug.Log("Hollow Purple button released.");
+            isHoldingHollowPurple = false;
+            purpleOut.HeldUpdate(isHoldingHollowPurple);
         }
     }
+
+    public float HowLongHeld()
+    { return heldDuration; }
 
     private void Update()
     {
