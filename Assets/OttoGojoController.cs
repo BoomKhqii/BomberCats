@@ -77,7 +77,7 @@ public class OttoGojoController : MonoBehaviour
         redLogic.SkillUpdate(player.signatureSkill);
         redLogic.SetDirection(player.transform.forward);
 
-        isRedActive = false;
+        isRedActive = true;
     }
     public void HollowPurpleSkill(InputAction.CallbackContext context)
     {
