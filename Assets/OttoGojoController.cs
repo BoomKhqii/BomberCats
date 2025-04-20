@@ -17,13 +17,14 @@ public class OttoGojoController : MonoBehaviour
     // Red
     [SerializeField]
     private GameObject objectRed;
-    private float cooldownRed = 0;
+    private float cooldownRed = 15;
     private bool isRedActive = true;
 
     // Hollow purple
-    private int ultimateSkill = 12;
     [SerializeField]
     private GameObject objectHollowPurple;
+    private float cooldownPurple = 60;
+    private bool isPurpleActive = true;
 
     //[SerializeField]
     public PlayerController player;
@@ -95,11 +96,23 @@ public class OttoGojoController : MonoBehaviour
         {
             Debug.Log("Button released.");
         }
-        /*
-        if (context.performed && curseEnergy.CEReduction(0))
-        {
-            Debug.Log("being held");
-        }*/
+
+        if (!context.performed || !isPurpleActive || !curseEnergy.CEReduction(1000)) return;
+
+        Vector3 spawnOffset = player.transform.forward.normalized;
+        Vector3 spawnPos = new Vector3(
+            Mathf.RoundToInt(player.transform.position.x + spawnOffset.x),
+            1.32f,
+            Mathf.RoundToInt(player.transform.position.z + spawnOffset.z)
+        );
+        GameObject purple = Instantiate(objectHollowPurple, spawnPos, Quaternion.identity);
+
+        purple.GetComponent<PurpleLogic>().ottoGojo = this.gameObject;
+        PurpleLogic purpleLogic = purple.GetComponent<PurpleLogic>();
+        purpleLogic.SkillUpdate(player.signatureSkill);
+        purpleLogic.SetDirection(player.transform.forward);
+
+        isPurpleActive = false;
     }
 
     private void Update()
@@ -130,6 +143,19 @@ public class OttoGojoController : MonoBehaviour
             {
                 cooldownRed = 5;
                 isRedActive = true;
+            }
+        }
+    }
+
+    void UpdatePurpleCooldown()
+    {
+        if (isPurpleActive == false)
+        {
+            cooldownPurple -= Time.deltaTime;
+            if (cooldownPurple <= 0)
+            {
+                cooldownPurple = 5;
+                isPurpleActive = true;
             }
         }
     }

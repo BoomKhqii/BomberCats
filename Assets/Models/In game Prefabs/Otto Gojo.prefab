@@ -190,7 +190,7 @@ MonoBehaviour:
   curseEnergy: {fileID: 0}
   objectBlue: {fileID: 77405813780867249, guid: a0ee7bc4223d8a84db17050b8e5d4e58, type: 3}
   objectRed: {fileID: 7434269727049699186, guid: 4107b54564e8e38429afcefa2bbd2dae, type: 3}
-  objectHollowPurple: {fileID: 0}
+  objectHollowPurple: {fileID: 9034953911681390408, guid: 320d5e53ea0cc0d459b766d775c90f1c, type: 3}
   player: {fileID: 7853913356165864673}
 --- !u!114 &3868057894340787731
 MonoBehaviour:

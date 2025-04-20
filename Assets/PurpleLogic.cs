@@ -12,8 +12,8 @@ public class PurpleLogic : MonoBehaviour
     //public float skillIncrement = 0;
 
     public Vector3 direction; // Direction to move in
-    private float speed = 2f;                  // Movement speed
-    private float moveDistance = 2;            // How far to move
+    private float speed = 30f;                  // Movement speed
+    private float moveDistance = 20;            // How far to move
     private float duration = 2f;
 
     private Vector3 startPosition;
@@ -56,6 +56,18 @@ public class PurpleLogic : MonoBehaviour
             if (col.gameObject.CompareTag("Breakable"))
             {
                 crate.CrateDrop();
+            }
+
+            CharacterController cc = col.GetComponent<CharacterController>();
+            if (cc != null)
+            {
+                Destroy(cc.gameObject);
+            }
+
+            BombController bb = col.GetComponent<BombController>();
+            if (bb != null)
+            {
+                Destroy(bb.gameObject);
             }
 
         }
