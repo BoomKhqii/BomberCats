@@ -77,14 +77,29 @@ public class OttoGojoController : MonoBehaviour
         redLogic.SkillUpdate(player.signatureSkill);
         redLogic.SetDirection(player.transform.forward);
 
-        isRedActive = true;
+        isRedActive = false;
     }
     public void HollowPurpleSkill(InputAction.CallbackContext context)
     {
-        if (context.performed && curseEnergy.CEReduction(1000))
+        if (context.started)
         {
-
+            Debug.Log("Button just started being pressed.");
         }
+
+        if (context.performed)
+        {
+            Debug.Log("Button press performed.");
+        }
+
+        if (context.canceled)
+        {
+            Debug.Log("Button released.");
+        }
+        /*
+        if (context.performed && curseEnergy.CEReduction(0))
+        {
+            Debug.Log("being held");
+        }*/
     }
 
     private void Update()

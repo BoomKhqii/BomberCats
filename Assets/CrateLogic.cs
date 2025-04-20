@@ -26,26 +26,20 @@ public class CrateLogic : MonoBehaviour
             if (randomValue < chanceBomb)
             {
                 Instantiate(upgradeBomb, new Vector3(crate.position.x, 1f, crate.position.z),Quaternion.identity);
-                Debug.Log("B (Common) is shown!");
             }
             else if (randomValue < chanceBomb + chanceSignature)
             {
                 Instantiate(upgradeSignature, new Vector3(crate.position.x, 1f, crate.position.z), Quaternion.identity);
-                Debug.Log("S (Uncommon) is shown!");
             }
             else if (randomValue < chanceSignature + chanceSignature + chanceHeavy)
             {
                 Instantiate(upgradeHeavy, new Vector3(crate.position.x, 1f, crate.position.z), Quaternion.identity);
-                Debug.Log("H (Rare) is shown!");
             }
             else
             {
                 Instantiate(upgradeUltimate, new Vector3(crate.position.x, 1f, crate.position.z), Quaternion.identity);
-                Debug.Log("U (Ultra Rare) is shown!");
             }
         }
-        else
-            Debug.Log("NONE");
 
         Destroy(this.gameObject);
     }

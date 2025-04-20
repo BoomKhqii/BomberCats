@@ -9,8 +9,6 @@ public class CurseEnergyLogic : MonoBehaviour
     private float maxPool = 4000;
     [SerializeField]
     private float currentPool;
-    private float ceReduction = 0;
-
     private float regenRate = 50;
 
     //public Image ceBarStatus;

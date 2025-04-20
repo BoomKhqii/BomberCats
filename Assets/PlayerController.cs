@@ -72,6 +72,7 @@ public class PlayerController : MonoBehaviour
         yield return new WaitForSeconds(0.2f);
         isCoroutineRunning = false;
     }
+    
     void Update()
     {
         Vector3 move = new Vector3(movementInput.x, 0, movementInput.y);

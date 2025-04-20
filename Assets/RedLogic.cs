@@ -27,9 +27,6 @@ public class RedLogic : MonoBehaviour
     private Vector3 targetPosition;
     private bool isMoving = true;
 
-    private bool didContact = false;
-
-
     private void Start()
     {
         PlayerController skill = ottoGojo.GetComponent<PlayerController>();
