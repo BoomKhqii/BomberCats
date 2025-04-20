@@ -52,6 +52,7 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 896
   ottoGojo: {fileID: 6292289971850779371, guid: 92dbb4edf2a797a4e925c3943502bb1d, type: 3}
+  buttonOutput: {fileID: 3675573794243683774, guid: 92dbb4edf2a797a4e925c3943502bb1d, type: 3}
   direction: {x: 0, y: 0, z: 0}
 --- !u!33 &339302226522713117
 MeshFilter:

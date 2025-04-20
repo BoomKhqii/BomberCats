@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using UnityEditor.Experimental.GraphView;
 using UnityEngine;
 
 public class PurpleLogic : MonoBehaviour
@@ -8,6 +9,7 @@ public class PurpleLogic : MonoBehaviour
     public LayerMask affectedLayers;
 
     public GameObject ottoGojo;
+    public OttoGojoController buttonOutput;
 
     //public float skillIncrement = 0;
 
@@ -20,10 +22,14 @@ public class PurpleLogic : MonoBehaviour
     private Vector3 targetPosition;
     private bool isMoving = true;
 
+    public bool held;
+
 
     private void Start()
     {
+        OttoGojoController buttonOutput = ottoGojo.GetComponent<OttoGojoController>();
         PlayerController skill = ottoGojo.GetComponent<PlayerController>(); // Accessing the skill upgrade
+
         speed += skill.ultimateSkill;
         duration += skill.ultimateSkill;
         moveDistance += skill.ultimateSkill;
@@ -32,6 +38,8 @@ public class PurpleLogic : MonoBehaviour
         startPosition = transform.position;
         targetPosition = startPosition + direction * moveDistance;
         Destroy(gameObject, duration); // optional: auto-destroy after 3 seconds
+
+        held = buttonOutput.isHoldingHollowPurple;
     }
 
     public void SkillUpdate(float increment)
@@ -69,13 +77,14 @@ public class PurpleLogic : MonoBehaviour
             {
                 Destroy(bb.gameObject);
             }
-
         }
     }
 
     void Update()
     {
-        if (isMoving)
+
+        Debug.Log("Logic Script: " + held);
+        if (isMoving && !held)
         {
             transform.position = Vector3.MoveTowards(transform.position, targetPosition, speed * Time.deltaTime);
             if (Vector3.Distance(transform.position, targetPosition) < 0.01f)
@@ -94,5 +103,10 @@ public class PurpleLogic : MonoBehaviour
     {
         Gizmos.color = Color.blue;
         Gizmos.DrawWireSphere(transform.position, purpleRadius);
+    }
+
+    public bool HeldUpdate(bool update)
+    {
+        return held = update;
     }
 }

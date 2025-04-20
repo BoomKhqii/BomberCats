@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -7,8 +8,7 @@ public class OttoGojoController : MonoBehaviour
 {
     public CurseEnergyLogic curseEnergy;
 
-    // Blue
-    //private int signatureSkill = 3;         
+    // Blue      
     [SerializeField]
     private GameObject objectBlue;
     private float cooldownBlue = 5;
@@ -23,8 +23,13 @@ public class OttoGojoController : MonoBehaviour
     // Hollow purple
     [SerializeField]
     private GameObject objectHollowPurple;
-    private float cooldownPurple = 60;
+    public PurpleLogic purple;
+    private float cooldownPurple = 0;
     private bool isPurpleActive = true;
+
+    public bool isHoldingHollowPurple = true;
+    private float holdStartTime = 0f;
+    private float heldDuration = 0f;
 
     //[SerializeField]
     public PlayerController player;
@@ -33,11 +38,12 @@ public class OttoGojoController : MonoBehaviour
     {
         curseEnergy = GameObject.Find("CE Pool of Otto Gojo").GetComponent<CurseEnergyLogic>();
         player = GetComponent<PlayerController>();
+        purple = GetComponent<PurpleLogic>();
     }
 
     public bool InfinityProbabilityChance()
     {
-        return Random.value < 0.35f;
+        return UnityEngine.Random.value < 0.35f;
     }
 
     public void BlueSkill(InputAction.CallbackContext context)
@@ -82,21 +88,37 @@ public class OttoGojoController : MonoBehaviour
     }
     public void HollowPurpleSkill(InputAction.CallbackContext context)
     {
-        if (context.started)
-        {
-            Debug.Log("Button just started being pressed.");
-        }
+        Debug.Log("Controller: " + isHoldingHollowPurple);
+        //IsHeldUpdate(context); // call this immediately to update hold state
 
-        if (context.performed)
+        if (context.started && isPurpleActive && curseEnergy.CEReduction(1000))
         {
-            Debug.Log("Button press performed.");
+            holdStartTime = Time.time;
+            Debug.Log("Started holding Hollow Purple.");
+
+            Vector3 spawnOffset = player.transform.forward.normalized;
+            Vector3 spawnPos = new Vector3(
+                Mathf.RoundToInt(player.transform.position.x + spawnOffset.x),
+                1.32f,
+                Mathf.RoundToInt(player.transform.position.z + spawnOffset.z)
+            );
+
+            GameObject purple = Instantiate(objectHollowPurple, spawnPos, Quaternion.identity);
+
+            purple.GetComponent<PurpleLogic>().ottoGojo = this.gameObject;
+
+            PurpleLogic purpleLogic = purple.GetComponent<PurpleLogic>();
+            purpleLogic.SkillUpdate(player.signatureSkill);
+            purpleLogic.SetDirection(player.transform.forward);
         }
 
         if (context.canceled)
         {
-            Debug.Log("Button released.");
+            heldDuration = Time.time - holdStartTime;
+            Debug.Log($"Released Hollow Purple after {heldDuration:F2} seconds.");
+            isPurpleActive = false;
         }
-
+        /*
         if (!context.performed || !isPurpleActive || !curseEnergy.CEReduction(1000)) return;
 
         Vector3 spawnOffset = player.transform.forward.normalized;
@@ -113,12 +135,28 @@ public class OttoGojoController : MonoBehaviour
         purpleLogic.SetDirection(player.transform.forward);
 
         isPurpleActive = false;
+        */
+    }
+
+    public void IsHeldUpdate(InputAction.CallbackContext context)
+    {
+        if (context.started)
+        {
+            isHoldingHollowPurple = true;
+            Debug.Log("Hollow Purple button held.");
+        }
+        else if (context.canceled)
+        {
+            purple.HeldUpdate(false);
+            Debug.Log("Hollow Purple button released.");
+        }
     }
 
     private void Update()
     {
         UpdateBlueCooldown();
         UpdateRedCooldown();
+        UpdatePurpleCooldown();
     }
 
     void UpdateBlueCooldown()
