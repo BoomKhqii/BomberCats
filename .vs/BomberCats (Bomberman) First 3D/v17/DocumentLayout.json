@@ -3,20 +3,20 @@
   "WorkspaceRootPath": "C:\\Users\\boomr\\BomberCats (Bomberman) First 3D\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{26A3633B-AA68-9998-7386-AAE7D21286B4}|Assembly-CSharp.csproj|c:\\users\\boomr\\bombercats (bomberman) first 3d\\assets\\redlogic.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{26A3633B-AA68-9998-7386-AAE7D21286B4}|Assembly-CSharp.csproj|solutionrelative:assets\\redlogic.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{26A3633B-AA68-9998-7386-AAE7D21286B4}|Assembly-CSharp.csproj|c:\\users\\boomr\\bombercats (bomberman) first 3d\\assets\\purplelogic.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{26A3633B-AA68-9998-7386-AAE7D21286B4}|Assembly-CSharp.csproj|solutionrelative:assets\\purplelogic.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{26A3633B-AA68-9998-7386-AAE7D21286B4}|Assembly-CSharp.csproj|C:\\Users\\boomr\\BomberCats (Bomberman) First 3D\\assets\\ottogojocontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "AbsoluteMoniker": "D:0:0:{26A3633B-AA68-9998-7386-AAE7D21286B4}|Assembly-CSharp.csproj|c:\\users\\boomr\\bombercats (bomberman) first 3d\\assets\\ottogojocontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{26A3633B-AA68-9998-7386-AAE7D21286B4}|Assembly-CSharp.csproj|solutionrelative:assets\\ottogojocontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{26A3633B-AA68-9998-7386-AAE7D21286B4}|Assembly-CSharp.csproj|C:\\Users\\boomr\\BomberCats (Bomberman) First 3D\\assets\\bluelogic.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{26A3633B-AA68-9998-7386-AAE7D21286B4}|Assembly-CSharp.csproj|solutionrelative:assets\\bluelogic.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{26A3633B-AA68-9998-7386-AAE7D21286B4}|Assembly-CSharp.csproj|C:\\Users\\boomr\\BomberCats (Bomberman) First 3D\\assets\\playercontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{26A3633B-AA68-9998-7386-AAE7D21286B4}|Assembly-CSharp.csproj|solutionrelative:assets\\playercontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{26A3633B-AA68-9998-7386-AAE7D21286B4}|Assembly-CSharp.csproj|C:\\Users\\boomr\\BomberCats (Bomberman) First 3D\\assets\\bluelogic.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{26A3633B-AA68-9998-7386-AAE7D21286B4}|Assembly-CSharp.csproj|solutionrelative:assets\\bluelogic.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     }
   ],
   "DocumentGroupContainers": [
@@ -43,14 +43,14 @@
             {
               "$type": "Document",
               "DocumentIndex": 0,
-              "Title": "RedLogic.cs",
-              "DocumentMoniker": "C:\\Users\\boomr\\BomberCats (Bomberman) First 3D\\Assets\\RedLogic.cs",
-              "RelativeDocumentMoniker": "Assets\\RedLogic.cs",
-              "ToolTip": "C:\\Users\\boomr\\BomberCats (Bomberman) First 3D\\Assets\\RedLogic.cs",
-              "RelativeToolTip": "Assets\\RedLogic.cs",
-              "ViewState": "AQIAAC0AAAAAAAAAAAAcwD4AAAAPAAAA",
+              "Title": "PurpleLogic.cs",
+              "DocumentMoniker": "C:\\Users\\boomr\\BomberCats (Bomberman) First 3D\\Assets\\PurpleLogic.cs",
+              "RelativeDocumentMoniker": "Assets\\PurpleLogic.cs",
+              "ToolTip": "C:\\Users\\boomr\\BomberCats (Bomberman) First 3D\\Assets\\PurpleLogic.cs",
+              "RelativeToolTip": "Assets\\PurpleLogic.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-04-19T01:36:57.579Z",
+              "WhenOpened": "2025-04-20T12:01:56.899Z",
               "EditorCaption": ""
             },
             {
@@ -61,25 +61,26 @@
               "RelativeDocumentMoniker": "Assets\\OttoGojoController.cs",
               "ToolTip": "C:\\Users\\boomr\\BomberCats (Bomberman) First 3D\\Assets\\OttoGojoController.cs",
               "RelativeToolTip": "Assets\\OttoGojoController.cs",
-              "ViewState": "AQIAADUAAAAAAAAAAAAQwBMAAAAhAAAA",
+              "ViewState": "AQIAAD4AAAAAAAAAAAA4wGAAAAAJAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-04-15T12:13:12.737Z"
+              "WhenOpened": "2025-04-15T12:13:12.737Z",
+              "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 3,
+              "DocumentIndex": 2,
               "Title": "PlayerController.cs",
               "DocumentMoniker": "C:\\Users\\boomr\\BomberCats (Bomberman) First 3D\\Assets\\PlayerController.cs",
               "RelativeDocumentMoniker": "Assets\\PlayerController.cs",
               "ToolTip": "C:\\Users\\boomr\\BomberCats (Bomberman) First 3D\\Assets\\PlayerController.cs",
               "RelativeToolTip": "Assets\\PlayerController.cs",
-              "ViewState": "AQIAAB0AAAAAAAAAAAAwwDgAAAAYAAAA",
+              "ViewState": "AQIAABcAAAAAAAAAAAAmwCsAAAAAAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2024-10-28T03:21:48.93Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 2,
+              "DocumentIndex": 3,
               "Title": "BlueLogic.cs",
               "DocumentMoniker": "C:\\Users\\boomr\\BomberCats (Bomberman) First 3D\\Assets\\BlueLogic.cs",
               "RelativeDocumentMoniker": "Assets\\BlueLogic.cs",

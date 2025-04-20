@@ -66,6 +66,7 @@
     <Compile Include="Assets\BlueLogic.cs" />
     <Compile Include="Assets\CrateLogic.cs" />
     <Compile Include="Assets\SkillUpgradeSignature.cs" />
+    <Compile Include="Assets\PurpleLogic.cs" />
     <Compile Include="Assets\OttoGojoController.cs" />
     <Compile Include="Assets\SkillUpgradeUltimate.cs" />
     <Compile Include="Assets\FireController.cs" />
