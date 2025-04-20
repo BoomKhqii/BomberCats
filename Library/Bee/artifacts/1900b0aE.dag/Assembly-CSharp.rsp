@@ -363,6 +363,7 @@
 "Assets/MapManager.cs"
 "Assets/OttoGojoController.cs"
 "Assets/PlayerController.cs"
+"Assets/PurpleLogic.cs"
 "Assets/RedLogic.cs"
 "Assets/SkillUpgradeBomb.cs"
 "Assets/SkillUpgradeHeavy.cs"
