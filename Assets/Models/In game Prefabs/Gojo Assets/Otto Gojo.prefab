@@ -10,6 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 7045366835492055936}
   - component: {fileID: 7853913356165864673}
+  - component: {fileID: 4337300148893819856}
   - component: {fileID: 3675573794243683774}
   - component: {fileID: 6296327816773793935}
   - component: {fileID: 2526730226526449175}
@@ -17,7 +18,6 @@ GameObject:
   - component: {fileID: 4444451113901536329}
   - component: {fileID: 2995811415428966894}
   - component: {fileID: 5561759386276307361}
-  - component: {fileID: 3868057894340787731}
   m_Layer: 7
   m_Name: Otto Gojo
   m_TagString: Player
@@ -47,7 +47,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6292289971850779371}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: b45111c384bafb44693d26c554ea1dc8, type: 3}
   m_Name: 
@@ -65,6 +65,30 @@ MonoBehaviour:
   heavySkill: 0
   ultimateSkill: 0
   curseEnergy: {fileID: 0}
+--- !u!114 &4337300148893819856
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6292289971850779371}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 19fffb9aa0ef1804d8dcc01a8f6c6cbb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  playerSpeed: 4.5
+  gravityValue: -9.81
+  bomb: {fileID: 4466744194402806859, guid: 032a325b7474f514f951df2e3cdcf88a, type: 3}
+  playerLocation: {fileID: 7045366835492055936}
+  playerOnBomb:
+    serializedVersion: 2
+    m_Bits: 256
+  bombSkill: 0
+  signatureSkill: 0
+  heavySkill: 0
+  ultimateSkill: 0
+  cePoolName: CE Pool of Otto Gojo
 --- !u!114 &3675573794243683774
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -110,8 +134,8 @@ MonoBehaviour:
   m_ActionEvents:
   - m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 7853913356165864673}
-        m_TargetAssemblyTypeName: PlayerController, Assembly-CSharp
+      - m_Target: {fileID: 4337300148893819856}
+        m_TargetAssemblyTypeName: GeneralPlayerController, Assembly-CSharp
         m_MethodName: OnMove
         m_Mode: 0
         m_Arguments:
@@ -126,8 +150,8 @@ MonoBehaviour:
     m_ActionName: Player/Movement[/Keyboard/w,/Keyboard/s,/Keyboard/a,/Keyboard/d]
   - m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 7853913356165864673}
-        m_TargetAssemblyTypeName: PlayerController, Assembly-CSharp
+      - m_Target: {fileID: 4337300148893819856}
+        m_TargetAssemblyTypeName: GeneralPlayerController, Assembly-CSharp
         m_MethodName: SpawnBomb
         m_Mode: 0
         m_Arguments:
@@ -319,20 +343,3 @@ CharacterController:
   m_SkinWidth: 0.08
   m_MinMoveDistance: 0
   m_Center: {x: 0, y: 0, z: 0}
---- !u!114 &3868057894340787731
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6292289971850779371}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 1cb2ae71417a28640852d669679f858a, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  bomb: {fileID: 4466744194402806859, guid: 032a325b7474f514f951df2e3cdcf88a, type: 3}
-  playerLocation: {fileID: 7045366835492055936}
-  playerOnBomb:
-    serializedVersion: 2
-    m_Bits: 256
