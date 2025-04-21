@@ -63,15 +63,15 @@
     <Compile Include="Assets\Scripts\Bomb\Spawning.cs" />
     <Compile Include="Assets\Scripts\Bomb\BombController.cs" />
     <Compile Include="Assets\Scripts\Gojo\RedLogic.cs" />
+    <Compile Include="Assets\Scripts\GeneralPlayerController.cs" />
     <Compile Include="Assets\Scripts\Bomb\FireController.cs" />
     <Compile Include="Assets\Scripts\Crates\SkillUpgradeHeavy.cs" />
     <Compile Include="Assets\Scripts\Crates\SkillUpgradeBomb.cs" />
-    <Compile Include="Assets\GeneralPlayerController.cs" />
     <Compile Include="Assets\Scripts\Gojo\CurseEnergyLogic.cs" />
     <Compile Include="Assets\Scripts\Gojo\OttoGojoController.cs" />
     <Compile Include="Assets\Scripts\Crates\SkillUpgradeUltimate.cs" />
     <Compile Include="Assets\Scripts\MapManager.cs" />
-    <Compile Include="Assets\JunokerController.cs" />
+    <Compile Include="Assets\Scripts\Junoker\JunokerController.cs" />
     <Compile Include="Assets\Scripts\Gojo\PurpleLogic.cs" />
     <Compile Include="Assets\Scripts\Crates\SkillUpgradeSignature.cs" />
     <Compile Include="Assets\Scripts\Gojo\PlayerController.cs" />
