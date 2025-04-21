@@ -9,15 +9,15 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 7045366835492055936}
-  - component: {fileID: 6296327816773793935}
   - component: {fileID: 7853913356165864673}
   - component: {fileID: 3675573794243683774}
-  - component: {fileID: 3868057894340787731}
+  - component: {fileID: 6296327816773793935}
   - component: {fileID: 2526730226526449175}
   - component: {fileID: 4531707575294860974}
   - component: {fileID: 4444451113901536329}
   - component: {fileID: 2995811415428966894}
   - component: {fileID: 5561759386276307361}
+  - component: {fileID: 3868057894340787731}
   m_Layer: 7
   m_Name: Otto Gojo
   m_TagString: Player
@@ -40,6 +40,49 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &7853913356165864673
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6292289971850779371}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b45111c384bafb44693d26c554ea1dc8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  playerSpeed: 4.5
+  gravityValue: -9.81
+  bomb: {fileID: 4466744194402806859, guid: 032a325b7474f514f951df2e3cdcf88a, type: 3}
+  playerLocation: {fileID: 7045366835492055936}
+  playerOnBomb:
+    serializedVersion: 2
+    m_Bits: 256
+  characterController: {fileID: 3675573794243683774}
+  bombSkill: 0
+  signatureSkill: 0
+  heavySkill: 0
+  ultimateSkill: 0
+  curseEnergy: {fileID: 0}
+--- !u!114 &3675573794243683774
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6292289971850779371}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1f5bc79628dd9444485d5b013118f218, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  curseEnergy: {fileID: 0}
+  objectBlue: {fileID: 77405813780867249, guid: a0ee7bc4223d8a84db17050b8e5d4e58, type: 3}
+  objectRed: {fileID: 7434269727049699186, guid: 4107b54564e8e38429afcefa2bbd2dae, type: 3}
+  objectHollowPurple: {fileID: 9034953911681390408, guid: 320d5e53ea0cc0d459b766d775c90f1c, type: 3}
+  isHoldingHollowPurple: 0
+  player: {fileID: 7853913356165864673}
 --- !u!114 &6296327816773793935
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -150,66 +193,6 @@ MonoBehaviour:
   m_DefaultActionMap: Player
   m_SplitScreenIndex: -1
   m_Camera: {fileID: 0}
---- !u!114 &7853913356165864673
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6292289971850779371}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b45111c384bafb44693d26c554ea1dc8, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  playerSpeed: 4.5
-  gravityValue: -9.81
-  bomb: {fileID: 4466744194402806859, guid: 032a325b7474f514f951df2e3cdcf88a, type: 3}
-  playerLocation: {fileID: 7045366835492055936}
-  playerOnBomb:
-    serializedVersion: 2
-    m_Bits: 256
-  characterController: {fileID: 3675573794243683774}
-  bombSkill: 0
-  signatureSkill: 0
-  heavySkill: 0
-  ultimateSkill: 0
-  curseEnergy: {fileID: 0}
---- !u!114 &3675573794243683774
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6292289971850779371}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 1f5bc79628dd9444485d5b013118f218, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  curseEnergy: {fileID: 0}
-  objectBlue: {fileID: 77405813780867249, guid: a0ee7bc4223d8a84db17050b8e5d4e58, type: 3}
-  objectRed: {fileID: 7434269727049699186, guid: 4107b54564e8e38429afcefa2bbd2dae, type: 3}
-  objectHollowPurple: {fileID: 9034953911681390408, guid: 320d5e53ea0cc0d459b766d775c90f1c, type: 3}
-  isHoldingHollowPurple: 0
-  player: {fileID: 7853913356165864673}
---- !u!114 &3868057894340787731
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6292289971850779371}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 1cb2ae71417a28640852d669679f858a, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  bomb: {fileID: 4466744194402806859, guid: 032a325b7474f514f951df2e3cdcf88a, type: 3}
-  playerLocation: {fileID: 7045366835492055936}
-  playerOnBomb:
-    serializedVersion: 2
-    m_Bits: 256
 --- !u!33 &2526730226526449175
 MeshFilter:
   m_ObjectHideFlags: 0
@@ -336,3 +319,20 @@ CharacterController:
   m_SkinWidth: 0.08
   m_MinMoveDistance: 0
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &3868057894340787731
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6292289971850779371}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1cb2ae71417a28640852d669679f858a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  bomb: {fileID: 4466744194402806859, guid: 032a325b7474f514f951df2e3cdcf88a, type: 3}
+  playerLocation: {fileID: 7045366835492055936}
+  playerOnBomb:
+    serializedVersion: 2
+    m_Bits: 256

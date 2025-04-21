@@ -53,6 +53,49 @@ public class PurpleLogic : MonoBehaviour
         duration = duration + increment;
     }
 
+    void Update()
+    {
+        //Debug.Log(buttonOutput.HowLongHeld());
+        Debug.Log(levelPurple);
+
+        if (levelPurple >= 0 && buttonOutput.HowLongHeld() < 1.5f)
+        {
+            //Debug.Log("Level 1");
+            objectPurple.localScale = new Vector3(1.2f, 1.2f, 1.2f);
+            speed = 30f;                  // Movement speed
+            moveDistance = 20;            // How far to move
+            duration = 20f;
+            purpleRadius = 0.4f;
+        }
+        else if (levelPurple >= 1 && buttonOutput.HowLongHeld() <= 1.5f)
+        {
+            //Debug.Log("Level 2");
+            objectPurple.localScale = new Vector3(3f, 3f, 3f);
+            speed = 10f;                  // Movement speed
+            moveDistance = 20;            // How far to move
+            duration = 20f;
+            purpleRadius = 1.2f;
+        }
+        else if (levelPurple >= 2 && buttonOutput.HowLongHeld() >= 3f)
+        {
+            //Debug.Log("Level 3");
+            objectPurple.localScale = new Vector3(5f, 5f, 5f);
+            speed = 5f;                  // Movement speed
+            moveDistance = 20;            // How far to move
+            duration = 20f;
+            purpleRadius = 2f;
+        }
+
+        if (isMoving && !held)
+        {
+            transform.position = Vector3.MoveTowards(transform.position, targetPosition, speed * Time.deltaTime);
+            if (Vector3.Distance(transform.position, targetPosition) < 0.01f)
+            {
+                isMoving = false; // Stop moving once destination is reached
+            }
+        }
+    }
+
     private void FixedUpdate()
     {
         Collider[] colliders = Physics.OverlapSphere(transform.position, purpleRadius, affectedLayers);
@@ -77,43 +120,6 @@ public class PurpleLogic : MonoBehaviour
             if (bb != null)
             {
                 Destroy(bb.gameObject);
-            }
-        }
-    }
-
-    void Update()
-    {
-        if(levelPurple <= 0 && buttonOutput.HowLongHeld() < 1.5f)
-        {
-            objectPurple.localScale = new Vector3(1.2f, 1.2f, 1.2f);
-            speed = 30f;                  // Movement speed
-            moveDistance = 20;            // How far to move
-            duration = 20f;
-            purpleRadius = 0.4f;
-        } 
-        else if (levelPurple <= 1 && buttonOutput.HowLongHeld() >= 1.5f)
-        {
-            objectPurple.localScale = new Vector3(3f, 3f, 3f);
-            speed = 30f;                  // Movement speed
-            moveDistance = 20;            // How far to move
-            duration = 20f;
-            purpleRadius = 1.2f;
-        }
-        else if (levelPurple <= 2 && buttonOutput.HowLongHeld() >= 3f)
-        {
-            objectPurple.localScale = new Vector3(5f, 5f, 5f);
-            speed = 30f;                  // Movement speed
-            moveDistance = 20;            // How far to move
-            duration = 20f;
-            purpleRadius = 2f;
-        }
-
-        if (isMoving && !held)
-        {
-            transform.position = Vector3.MoveTowards(transform.position, targetPosition, speed * Time.deltaTime);
-            if (Vector3.Distance(transform.position, targetPosition) < 0.01f)
-            {
-                isMoving = false; // Stop moving once destination is reached
             }
         }
     }
