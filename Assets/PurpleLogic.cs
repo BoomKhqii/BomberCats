@@ -36,6 +36,7 @@ public class PurpleLogic : MonoBehaviour
         HeldUpdate(buttonOutput.isHoldingHollowPurple);
 
         levelPurple += skill.ultimateSkill;
+        Debug.Log(levelPurple);
 
         direction.Normalize(); // Always normalize to ensure consistent distance
         startPosition = transform.position;
@@ -56,20 +57,20 @@ public class PurpleLogic : MonoBehaviour
     void Update()
     {
         //Debug.Log(buttonOutput.HowLongHeld());
-        Debug.Log(levelPurple);
+        //Debug.Log(levelPurple);
 
         if (levelPurple >= 0 && buttonOutput.HowLongHeld() < 1.5f)
         {
-            //Debug.Log("Level 1");
+            Debug.Log("Level 1");
             objectPurple.localScale = new Vector3(1.2f, 1.2f, 1.2f);
             speed = 30f;                  // Movement speed
             moveDistance = 20;            // How far to move
             duration = 20f;
             purpleRadius = 0.4f;
         }
-        else if (levelPurple >= 1 && buttonOutput.HowLongHeld() <= 1.5f)
+        else if (levelPurple >= 1 && buttonOutput.HowLongHeld() < 3f)
         {
-            //Debug.Log("Level 2");
+            Debug.Log("Level 2");
             objectPurple.localScale = new Vector3(3f, 3f, 3f);
             speed = 10f;                  // Movement speed
             moveDistance = 20;            // How far to move
@@ -78,7 +79,7 @@ public class PurpleLogic : MonoBehaviour
         }
         else if (levelPurple >= 2 && buttonOutput.HowLongHeld() >= 3f)
         {
-            //Debug.Log("Level 3");
+            Debug.Log("Level 3");
             objectPurple.localScale = new Vector3(5f, 5f, 5f);
             speed = 5f;                  // Movement speed
             moveDistance = 20;            // How far to move
