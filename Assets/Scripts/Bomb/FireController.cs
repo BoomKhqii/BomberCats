@@ -23,10 +23,15 @@ public class FireController : MonoBehaviour
         if (hit != null && hit.CompareTag("Player"))
         {
 
+            GeneralPlayerController playerControllerGeneral = hit.GetComponent<GeneralPlayerController>();
             PlayerController playerController = hit.GetComponent<PlayerController>();
             if (playerController != null)
             {
                 playerController.PlayerStatusUpdate(false); // Call to update player status to false (dead)
+            }
+            else if (playerControllerGeneral != null)
+            {
+                playerControllerGeneral.PlayerStatusUpdate(false); // Call to update player status to false (dead)
             }
             else
             {

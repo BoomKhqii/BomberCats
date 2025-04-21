@@ -11,7 +11,7 @@ public class CrateLogic : MonoBehaviour
     private float chanceBomb = 0.35f;
     private float chanceSignature = 0.3f;
     private float chanceHeavy = 0.2f;
-    private float chanceUltimate = 0.15f;
+    //private float chanceUltimate = 0.15f;
 
     public GameObject upgradeBomb;
     public GameObject upgradeSignature;

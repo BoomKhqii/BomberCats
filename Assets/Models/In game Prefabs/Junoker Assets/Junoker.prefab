@@ -1,6 +1,6 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!1 &6292289971850779371
+--- !u!1 &6593356670125899504
 GameObject:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -8,30 +8,29 @@ GameObject:
   m_PrefabAsset: {fileID: 0}
   serializedVersion: 6
   m_Component:
-  - component: {fileID: 7045366835492055936}
-  - component: {fileID: 7853913356165864673}
-  - component: {fileID: 3675573794243683774}
-  - component: {fileID: 6296327816773793935}
-  - component: {fileID: 2526730226526449175}
-  - component: {fileID: 4531707575294860974}
-  - component: {fileID: 4444451113901536329}
-  - component: {fileID: 2995811415428966894}
-  - component: {fileID: 5561759386276307361}
-  - component: {fileID: 3868057894340787731}
+  - component: {fileID: 5862562193905666967}
+  - component: {fileID: 5246650308643100351}
+  - component: {fileID: 5961294334033170735}
+  - component: {fileID: 8909275290841350921}
+  - component: {fileID: 8093318348915984612}
+  - component: {fileID: 2514077436733343877}
+  - component: {fileID: 3677487720599449588}
+  - component: {fileID: 4039579873140251417}
+  - component: {fileID: 1105976537315092125}
   m_Layer: 7
-  m_Name: Otto Gojo
+  m_Name: Junoker
   m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!4 &7045366835492055936
+--- !u!4 &5862562193905666967
 Transform:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6292289971850779371}
+  m_GameObject: {fileID: 6593356670125899504}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: -7, y: 1.3, z: -7}
@@ -40,56 +39,49 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &7853913356165864673
+--- !u!114 &5246650308643100351
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6292289971850779371}
+  m_GameObject: {fileID: 6593356670125899504}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b45111c384bafb44693d26c554ea1dc8, type: 3}
+  m_Script: {fileID: 11500000, guid: 19fffb9aa0ef1804d8dcc01a8f6c6cbb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   playerSpeed: 4.5
   gravityValue: -9.81
   bomb: {fileID: 4466744194402806859, guid: 032a325b7474f514f951df2e3cdcf88a, type: 3}
-  playerLocation: {fileID: 7045366835492055936}
+  playerLocation: {fileID: 5862562193905666967}
   playerOnBomb:
     serializedVersion: 2
     m_Bits: 256
-  characterController: {fileID: 3675573794243683774}
   bombSkill: 0
   signatureSkill: 0
   heavySkill: 0
   ultimateSkill: 0
-  curseEnergy: {fileID: 0}
---- !u!114 &3675573794243683774
+  cePoolName: CE Pool of Junoker
+--- !u!114 &5961294334033170735
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6292289971850779371}
+  m_GameObject: {fileID: 6593356670125899504}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 1f5bc79628dd9444485d5b013118f218, type: 3}
+  m_Script: {fileID: 11500000, guid: a7d49049659bf9348b4a3fdc3d8ba4b6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  curseEnergy: {fileID: 0}
-  objectBlue: {fileID: 77405813780867249, guid: a0ee7bc4223d8a84db17050b8e5d4e58, type: 3}
-  objectRed: {fileID: 7434269727049699186, guid: 4107b54564e8e38429afcefa2bbd2dae, type: 3}
-  objectHollowPurple: {fileID: 9034953911681390408, guid: 320d5e53ea0cc0d459b766d775c90f1c, type: 3}
-  isHoldingHollowPurple: 0
-  player: {fileID: 7853913356165864673}
---- !u!114 &6296327816773793935
+--- !u!114 &8909275290841350921
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6292289971850779371}
+  m_GameObject: {fileID: 6593356670125899504}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 62899f850307741f2a39c98a8b639597, type: 3}
@@ -110,8 +102,8 @@ MonoBehaviour:
   m_ActionEvents:
   - m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 7853913356165864673}
-        m_TargetAssemblyTypeName: PlayerController, Assembly-CSharp
+      - m_Target: {fileID: 5246650308643100351}
+        m_TargetAssemblyTypeName: GeneralPlayerController, Assembly-CSharp
         m_MethodName: OnMove
         m_Mode: 0
         m_Arguments:
@@ -126,8 +118,8 @@ MonoBehaviour:
     m_ActionName: Player/Movement[/Keyboard/w,/Keyboard/s,/Keyboard/a,/Keyboard/d]
   - m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 7853913356165864673}
-        m_TargetAssemblyTypeName: PlayerController, Assembly-CSharp
+      - m_Target: {fileID: 5246650308643100351}
+        m_TargetAssemblyTypeName: GeneralPlayerController, Assembly-CSharp
         m_MethodName: SpawnBomb
         m_Mode: 0
         m_Arguments:
@@ -139,75 +131,62 @@ MonoBehaviour:
           m_BoolArgument: 0
         m_CallState: 2
     m_ActionId: 50b3ceb1-cdd8-4d27-b0bc-caa44342bd3d
-    m_ActionName: Player/Abilities[/Keyboard/q,/DualSenseGamepadHID/buttonEast]
+    m_ActionName: Player/Abilities[/Keyboard/q]
   - m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 3675573794243683774}
-        m_TargetAssemblyTypeName: OttoGojoController, Assembly-CSharp
-        m_MethodName: BlueSkill
-        m_Mode: 0
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
+      m_Calls: []
     m_ActionId: ec5e4a2c-f2d3-452e-9f02-7288002e39c9
-    m_ActionName: Player/New action
+    m_ActionName: Player/Signature[/Keyboard/e]
   - m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 3675573794243683774}
-        m_TargetAssemblyTypeName: OttoGojoController, Assembly-CSharp
-        m_MethodName: RedSkill
-        m_Mode: 0
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
+      m_Calls: []
     m_ActionId: 4307bff3-dd7a-433d-b2a0-9782d304c577
-    m_ActionName: Player/New action
+    m_ActionName: Player/Heavy[/Keyboard/c]
   - m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 3675573794243683774}
-        m_TargetAssemblyTypeName: OttoGojoController, Assembly-CSharp
-        m_MethodName: HollowPurpleSkill
-        m_Mode: 0
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
+      m_Calls: []
     m_ActionId: bdd47efa-7d6f-4353-a546-6e45fccb07c2
-    m_ActionName: Player/New action
+    m_ActionName: Player/Ultimate[/Keyboard/x]
   m_NeverAutoSwitchControlSchemes: 0
   m_DefaultControlScheme: 
   m_DefaultActionMap: Player
   m_SplitScreenIndex: -1
   m_Camera: {fileID: 0}
---- !u!33 &2526730226526449175
+--- !u!136 &8093318348915984612
+CapsuleCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6593356670125899504}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Radius: 0.5
+  m_Height: 1
+  m_Direction: 1
+  m_Center: {x: 0, y: 0, z: 0}
+--- !u!33 &2514077436733343877
 MeshFilter:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6292289971850779371}
+  m_GameObject: {fileID: 6593356670125899504}
   m_Mesh: {fileID: 10208, guid: 0000000000000000e000000000000000, type: 0}
---- !u!23 &4531707575294860974
+--- !u!23 &3677487720599449588
 MeshRenderer:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6292289971850779371}
+  m_GameObject: {fileID: 6593356670125899504}
   m_Enabled: 1
   m_CastShadows: 1
   m_ReceiveShadows: 1
@@ -221,7 +200,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 282d39c94d3390244b84b5a2e62665f7, type: 2}
+  - {fileID: 2100000, guid: 6a42ff60774ffa241bdcc138383c0fdc, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -243,36 +222,13 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!136 &4444451113901536329
-CapsuleCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6292289971850779371}
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_IsTrigger: 0
-  m_ProvidesContacts: 0
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Radius: 0.5
-  m_Height: 2
-  m_Direction: 1
-  m_Center: {x: 0, y: 0, z: 0}
---- !u!54 &2995811415428966894
+--- !u!54 &4039579873140251417
 Rigidbody:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6292289971850779371}
+  m_GameObject: {fileID: 6593356670125899504}
   serializedVersion: 4
   m_Mass: 20
   m_Drag: 20
@@ -288,18 +244,18 @@ Rigidbody:
     m_Bits: 0
   m_ImplicitCom: 1
   m_ImplicitTensor: 1
-  m_UseGravity: 0
-  m_IsKinematic: 1
+  m_UseGravity: 1
+  m_IsKinematic: 0
   m_Interpolate: 0
   m_Constraints: 116
   m_CollisionDetection: 0
---- !u!143 &5561759386276307361
+--- !u!143 &1105976537315092125
 CharacterController:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6292289971850779371}
+  m_GameObject: {fileID: 6593356670125899504}
   m_Material: {fileID: 0}
   m_IncludeLayers:
     serializedVersion: 2
@@ -317,22 +273,5 @@ CharacterController:
   m_SlopeLimit: 45
   m_StepOffset: 0
   m_SkinWidth: 0.08
-  m_MinMoveDistance: 0
+  m_MinMoveDistance: 0.001
   m_Center: {x: 0, y: 0, z: 0}
---- !u!114 &3868057894340787731
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6292289971850779371}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 1cb2ae71417a28640852d669679f858a, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  bomb: {fileID: 4466744194402806859, guid: 032a325b7474f514f951df2e3cdcf88a, type: 3}
-  playerLocation: {fileID: 7045366835492055936}
-  playerOnBomb:
-    serializedVersion: 2
-    m_Bits: 256

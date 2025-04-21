@@ -1,12 +1,9 @@
 using System.Collections;
 using System.Collections.Generic;
-using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.InputSystem;
-using UnityEngine.UIElements;
 
-[RequireComponent(typeof(CharacterController))]
-public class PlayerController : MonoBehaviour
+public class GeneralPlayerController : MonoBehaviour
 {
     private CharacterController controller;
 
@@ -27,31 +24,30 @@ public class PlayerController : MonoBehaviour
     private BombController bombController;
 
     // Skill Increment Values
-    public OttoGojoController characterController;
     public int bombSkill = 0;
     public float signatureSkill = 0;
     public int heavySkill = 0;
     public int ultimateSkill = 0;
 
-   public CurseEnergyLogic curseEnergy;
+    private CurseEnergyLogic curseEnergy;
+    public string cePoolName;
 
     private void Start()
     {
-        curseEnergy = GameObject.Find("CE Pool of Otto Gojo").GetComponent<CurseEnergyLogic>();
-        characterController = GetComponent<OttoGojoController>();
+        curseEnergy = GameObject.Find(cePoolName).GetComponent<CurseEnergyLogic>();
         controller = gameObject.GetComponent<CharacterController>();
     }
 
     public void OnMove(InputAction.CallbackContext context)
     {
-       movementInput = context.ReadValue<Vector2>();
+        movementInput = context.ReadValue<Vector2>();
     }
 
     public void SpawnBomb(InputAction.CallbackContext context)
     {
         if (!isCoroutineRunning && !Physics.CheckSphere(playerLocation.position, 0.6f, playerOnBomb) && context.performed && curseEnergy.CEReduction(100))
         {
-            StartCoroutine(waiter());        
+            StartCoroutine(waiter());
         }
     }
     IEnumerator waiter()
@@ -72,7 +68,7 @@ public class PlayerController : MonoBehaviour
         yield return new WaitForSeconds(0.2f);
         isCoroutineRunning = false;
     }
-    
+
     void Update()
     {
         Vector3 move = new Vector3(movementInput.x, 0, movementInput.y);
@@ -91,17 +87,10 @@ public class PlayerController : MonoBehaviour
     {
         if (playerStatus == false)
         {
-            // exclusive for Gojo
-            if (characterController.InfinityProbabilityChance() == true)
-            {
-                return true;
-            }
-            else
-            {
-                Destroy(gameObject);
-                return false;
-            }
-        } else 
+            Destroy(gameObject);
+            return false;
+        }
+        else
             return true;
 
 
