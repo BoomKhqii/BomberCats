@@ -31,7 +31,7 @@ public class PlayerController : MonoBehaviour
     public int bombSkill = 0;
     public float signatureSkill = 0;
     public int heavySkill = 0;
-    public int ultimateSkill = 2;
+    public int ultimateSkill = 0;
 
    public CurseEnergyLogic curseEnergy;
 

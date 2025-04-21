@@ -24,7 +24,7 @@ public class OttoGojoController : MonoBehaviour
     [SerializeField]
     private GameObject objectHollowPurple;
     private PurpleLogic purpleOut;
-    private float cooldownPurple = 60;
+    private float cooldownPurple = 60f;
     private bool isPurpleActive = true;
 
     public bool isHoldingHollowPurple = false;
@@ -86,6 +86,7 @@ public class OttoGojoController : MonoBehaviour
     }
     public void HollowPurpleSkill(InputAction.CallbackContext context)
     {
+        //&& isPurpleActive && curseEnergy.CEReduction(1000)
         if (context.started && isPurpleActive && curseEnergy.CEReduction(1000))
         {
             holdStartTime = Time.time;

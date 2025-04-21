@@ -17,7 +17,7 @@ public class PurpleLogic : MonoBehaviour
     public Vector3 direction; // Direction to move in
     private float speed = 30f;                  // Movement speed
     private float moveDistance = 20;            // How far to move
-    private float duration = 5f;
+    private float duration = 20f;
     private float levelPurple = 0;
 
     private Vector3 startPosition;
