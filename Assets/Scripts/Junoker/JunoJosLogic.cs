@@ -5,6 +5,7 @@ using UnityEngine;
 public class JunoJosLogic : MonoBehaviour
 {
     private CharacterController controller;
+    private CloneBasicAbility basicAbility;
 
     private float speed = 4.5f;
     private float changeDirectionTime = 2f;
@@ -21,6 +22,7 @@ public class JunoJosLogic : MonoBehaviour
         controller = GetComponent<CharacterController>();
         ChooseStraightDirection();
         timer = changeDirectionTime;
+        basicAbility = gameObject.GetComponent<CloneBasicAbility>();
 
         Destroy(gameObject, duration);
     }
@@ -32,6 +34,7 @@ public class JunoJosLogic : MonoBehaviour
         {
             ChooseStraightDirection();
             timer = changeDirectionTime;
+            basicAbility.SpawnBomb();
             return; // skip moving this frame to avoid wall sticking
         }
 
@@ -44,6 +47,7 @@ public class JunoJosLogic : MonoBehaviour
         {
             ChooseStraightDirection();
             timer = changeDirectionTime;
+            basicAbility.SpawnBomb();
         }
     }
 

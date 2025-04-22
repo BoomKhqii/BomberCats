@@ -10,6 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 5862562193905666967}
   - component: {fileID: 6129570248206574677}
+  - component: {fileID: 896729591401562217}
   - component: {fileID: 4627348489268822586}
   - component: {fileID: 8093318348915984612}
   - component: {fileID: 2514077436733343877}
@@ -54,6 +55,25 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 776
   wallCheckDistance: 0.6
+--- !u!114 &896729591401562217
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6593356670125899504}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2c1156c62edbfc34b87a5e95f2916a87, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  bomb: {fileID: 4466744194402806859, guid: 7f00fdf92972d45408b606dd95200e89, type: 3}
+  playerLocation: {fileID: 5862562193905666967}
+  playerOnBomb:
+    serializedVersion: 2
+    m_Bits: 256
+  curseEnergy: {fileID: 0}
+  ceName: CE Pool of Junoker
 --- !u!114 &4627348489268822586
 MonoBehaviour:
   m_ObjectHideFlags: 0
