@@ -357,6 +357,7 @@
 -analyzer:"C:/Program Files/Unity/Hub/Editor/2022.3.27f1/Editor/Data/Tools/Unity.SourceGenerators/Unity.SourceGenerators.dll"
 "Assets/BasicAbility.cs"
 "Assets/JunoJosLogic.cs"
+"Assets/JunoWhereIGoLogic.cs"
 "Assets/ObjectStatus.cs"
 "Assets/Scripts/Bomb/BombController.cs"
 "Assets/Scripts/Bomb/FireController.cs"
