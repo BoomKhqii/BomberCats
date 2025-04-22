@@ -21,8 +21,6 @@ public class GeneralPlayerController : MonoBehaviour
     public int heavySkill = 0;
     public int ultimateSkill = 0;
 
-    public string cePoolName;
-
     private void Start()
     {
         controller = gameObject.GetComponent<CharacterController>();

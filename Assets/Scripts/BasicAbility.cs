@@ -12,12 +12,13 @@ public class BasicAbility : MonoBehaviour
     public LayerMask playerOnBomb;
     private BombController bombController;
 
-    public CurseEnergyLogic curseEnergy;
     public GeneralPlayerController skill;
+    public CurseEnergyLogic curseEnergy;
+    public string ceName;
 
     private void Start()
     {
-        curseEnergy = GameObject.Find("CE Pool of Junoker").GetComponent<CurseEnergyLogic>();
+        curseEnergy = GameObject.Find(ceName).GetComponent<CurseEnergyLogic>();
         skill = GetComponent<GeneralPlayerController>();
     }
 

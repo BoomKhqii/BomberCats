@@ -9,10 +9,11 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 7045366835492055936}
-  - component: {fileID: 7853913356165864673}
   - component: {fileID: 4337300148893819856}
   - component: {fileID: 3675573794243683774}
+  - component: {fileID: 914469196923672627}
   - component: {fileID: 6296327816773793935}
+  - component: {fileID: 4508661847497419009}
   - component: {fileID: 2526730226526449175}
   - component: {fileID: 4531707575294860974}
   - component: {fileID: 4444451113901536329}
@@ -40,31 +41,6 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &7853913356165864673
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6292289971850779371}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b45111c384bafb44693d26c554ea1dc8, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  playerSpeed: 4.5
-  gravityValue: -9.81
-  bomb: {fileID: 4466744194402806859, guid: 032a325b7474f514f951df2e3cdcf88a, type: 3}
-  playerLocation: {fileID: 7045366835492055936}
-  playerOnBomb:
-    serializedVersion: 2
-    m_Bits: 256
-  characterController: {fileID: 3675573794243683774}
-  bombSkill: 0
-  signatureSkill: 0
-  heavySkill: 0
-  ultimateSkill: 0
-  curseEnergy: {fileID: 0}
 --- !u!114 &4337300148893819856
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -79,11 +55,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   playerSpeed: 4.5
   gravityValue: -9.81
-  bomb: {fileID: 4466744194402806859, guid: 032a325b7474f514f951df2e3cdcf88a, type: 3}
-  playerLocation: {fileID: 7045366835492055936}
-  playerOnBomb:
-    serializedVersion: 2
-    m_Bits: 256
   bombSkill: 0
   signatureSkill: 0
   heavySkill: 0
@@ -107,6 +78,26 @@ MonoBehaviour:
   objectHollowPurple: {fileID: 9034953911681390408, guid: 320d5e53ea0cc0d459b766d775c90f1c, type: 3}
   isHoldingHollowPurple: 0
   player: {fileID: 4337300148893819856}
+--- !u!114 &914469196923672627
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6292289971850779371}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d9185db7022a740498a483f71a9264bb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  bomb: {fileID: 4466744194402806859, guid: 032a325b7474f514f951df2e3cdcf88a, type: 3}
+  playerLocation: {fileID: 7045366835492055936}
+  playerOnBomb:
+    serializedVersion: 2
+    m_Bits: 256
+  skill: {fileID: 4337300148893819856}
+  curseEnergy: {fileID: 0}
+  ceName: CE Pool of Otto Gojo
 --- !u!114 &6296327816773793935
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -150,8 +141,8 @@ MonoBehaviour:
     m_ActionName: Player/Movement[/Keyboard/w,/Keyboard/s,/Keyboard/a,/Keyboard/d]
   - m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 4337300148893819856}
-        m_TargetAssemblyTypeName: GeneralPlayerController, Assembly-CSharp
+      - m_Target: {fileID: 914469196923672627}
+        m_TargetAssemblyTypeName: BasicAbility, Assembly-CSharp
         m_MethodName: SpawnBomb
         m_Mode: 0
         m_Arguments:
@@ -217,6 +208,18 @@ MonoBehaviour:
   m_DefaultActionMap: Player
   m_SplitScreenIndex: -1
   m_Camera: {fileID: 0}
+--- !u!114 &4508661847497419009
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6292289971850779371}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e70f82a74e8825f4facaee6770cfde55, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!33 &2526730226526449175
 MeshFilter:
   m_ObjectHideFlags: 0

@@ -61,26 +61,26 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Assets\Scripts\Bomb\Spawning.cs" />
-    <Compile Include="Assets\JunoWhereIGoLogic.cs" />
+    <Compile Include="Assets\Scripts\Junoker\JunoJosLogic.cs" />
     <Compile Include="Assets\Scripts\Bomb\BombController.cs" />
     <Compile Include="Assets\Scripts\Gojo\RedLogic.cs" />
     <Compile Include="Assets\Scripts\GeneralPlayerController.cs" />
+    <Compile Include="Assets\Scripts\Junoker\JunoWhereIGoLogic.cs" />
     <Compile Include="Assets\Scripts\Bomb\FireController.cs" />
     <Compile Include="Assets\Scripts\Crates\SkillUpgradeHeavy.cs" />
-    <Compile Include="Assets\ObjectStatus.cs" />
-    <Compile Include="Assets\JunoJosLogic.cs" />
     <Compile Include="Assets\Scripts\Crates\SkillUpgradeBomb.cs" />
-    <Compile Include="Assets\Scripts\Gojo\CurseEnergyLogic.cs" />
+    <Compile Include="Assets\Scripts\ObjectStatus.cs" />
     <Compile Include="Assets\Scripts\Gojo\OttoGojoController.cs" />
     <Compile Include="Assets\Scripts\Crates\SkillUpgradeUltimate.cs" />
     <Compile Include="Assets\Scripts\MapManager.cs" />
     <Compile Include="Assets\Scripts\Junoker\JunokerController.cs" />
     <Compile Include="Assets\Scripts\Gojo\PurpleLogic.cs" />
     <Compile Include="Assets\Scripts\Crates\SkillUpgradeSignature.cs" />
-    <Compile Include="Assets\BasicAbility.cs" />
     <Compile Include="Assets\Scripts\Gojo\PlayerController.cs" />
     <Compile Include="Assets\Scripts\Gojo\BlueLogic.cs" />
     <Compile Include="Assets\Scripts\Crates\CrateLogic.cs" />
+    <Compile Include="Assets\Scripts\CurseEnergyLogic.cs" />
+    <Compile Include="Assets\Scripts\BasicAbility.cs" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="UnityEngine">
