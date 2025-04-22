@@ -8,8 +8,7 @@ public class SlowController : MonoBehaviour
     private Transform slow;
     public LayerMask playerLayer;
 
-    private float slowEffect = 3f;
-    private bool didSlow = false;
+    private float slowEffect = 3.5f;
 
     void Start()
     {
@@ -26,8 +25,6 @@ public class SlowController : MonoBehaviour
             if (movement != null)
             {
                 movement.playerSpeed -= slowEffect;
-                didSlow = true;
-                UpdateSlowEffect(movement, movement.playerSpeed);
             }
             else
             {
@@ -36,19 +33,21 @@ public class SlowController : MonoBehaviour
         }
     }
 
-    void UpdateSlowEffect(GeneralPlayerController component, float speed)
+    void UpdateSlowEffect()
     {
-        /*
-        if (didSlow == true)
+        Collider hit = Physics.OverlapBox(slow.position, new Vector3(0.5f, 0.5f, 0.5f), Quaternion.identity, playerLayer).FirstOrDefault();
+        if (hit != null && hit.CompareTag("Player"))
         {
-            speed += .5f * Time.deltaTime;
-            if (speed == 4.5f)
+            GeneralPlayerController movement = hit.GetComponent<GeneralPlayerController>();
+            if (movement != null)
             {
-                component.
-                didSlow = false;
+                movement.playerSpeed = 4.5f;
+            }
+            else
+            {
+                Debug.LogWarning("Slow | No PlayerController found on: " + hit.name);
             }
         }
-        */
     }
 
     private void Update()
@@ -61,6 +60,7 @@ public class SlowController : MonoBehaviour
         //Debug.Log(player.isPlayerAlive);
         DidKill();
         yield return new WaitForSeconds(1);
+        UpdateSlowEffect();
         Destroy(gameObject);
     }
 }
