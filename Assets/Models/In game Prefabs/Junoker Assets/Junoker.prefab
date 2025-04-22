@@ -9,9 +9,10 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 5862562193905666967}
+  - component: {fileID: 4729163773453965948}
   - component: {fileID: 5246650308643100351}
-  - component: {fileID: 5961294334033170735}
   - component: {fileID: 1910442044445032403}
+  - component: {fileID: 5961294334033170735}
   - component: {fileID: 8909275290841350921}
   - component: {fileID: 8093318348915984612}
   - component: {fileID: 2514077436733343877}
@@ -40,6 +41,18 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &4729163773453965948
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6593356670125899504}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e70f82a74e8825f4facaee6770cfde55, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!114 &5246650308643100351
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -59,22 +72,6 @@ MonoBehaviour:
   heavySkill: 0
   ultimateSkill: 0
   cePoolName: CE Pool of Junoker
---- !u!114 &5961294334033170735
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6593356670125899504}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a7d49049659bf9348b4a3fdc3d8ba4b6, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  curseEnergy: {fileID: 0}
-  player: {fileID: 5246650308643100351}
-  cloneLocation: {fileID: 5862562193905666967}
-  junosJoCloneObject: {fileID: 6593356670125899504, guid: ce37109b6a67a5042b97def6b58063e6, type: 3}
 --- !u!114 &1910442044445032403
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -94,6 +91,27 @@ MonoBehaviour:
     m_Bits: 256
   curseEnergy: {fileID: 0}
   skill: {fileID: 5246650308643100351}
+--- !u!114 &5961294334033170735
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6593356670125899504}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a7d49049659bf9348b4a3fdc3d8ba4b6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  curseEnergy: {fileID: 0}
+  player: {fileID: 5246650308643100351}
+  cloneLocation: {fileID: 5862562193905666967}
+  junosJoCloneObject: {fileID: 6593356670125899504, guid: ce37109b6a67a5042b97def6b58063e6, type: 3}
+  blocked:
+    serializedVersion: 2
+    m_Bits: 776
+  junoWhereIGoCloneObject: {fileID: 6593356670125899504, guid: 83e38564a5b096a47a74367c48b2d685, type: 3}
+  invis: {fileID: 3677487720599449588}
 --- !u!114 &8909275290841350921
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -168,7 +186,19 @@ MonoBehaviour:
     m_ActionId: ec5e4a2c-f2d3-452e-9f02-7288002e39c9
     m_ActionName: Player/Signature[/Keyboard/e]
   - m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 5961294334033170735}
+        m_TargetAssemblyTypeName: JunokerController, Assembly-CSharp
+        m_MethodName: JunoWhereIGo
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
     m_ActionId: 4307bff3-dd7a-433d-b2a0-9782d304c577
     m_ActionName: Player/Heavy[/Keyboard/c]
   - m_PersistentCalls:

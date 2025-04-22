@@ -61,6 +61,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Assets\Scripts\Bomb\Spawning.cs" />
+    <Compile Include="Assets\JunoWhereIGoLogic.cs" />
     <Compile Include="Assets\Scripts\Bomb\BombController.cs" />
     <Compile Include="Assets\Scripts\Gojo\RedLogic.cs" />
     <Compile Include="Assets\Scripts\GeneralPlayerController.cs" />
