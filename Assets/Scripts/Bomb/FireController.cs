@@ -17,21 +17,13 @@ public class FireController : MonoBehaviour
 
     void DidKill()
     {
-        
-        //Collider[] hits = Physics.OverlapBox(fire.position, new Vector3(0.5f, 0.5f, 0.5f), Quaternion.identity, playerLayer);
         Collider hit = Physics.OverlapBox(fire.position, new Vector3(0.5f, 0.5f, 0.5f), Quaternion.identity, playerLayer).FirstOrDefault();
         if (hit != null && hit.CompareTag("Player"))
         {
-
-            GeneralPlayerController playerControllerGeneral = hit.GetComponent<GeneralPlayerController>();
-            PlayerController playerController = hit.GetComponent<PlayerController>();
-            if (playerController != null)
+            ObjectStatus objectStatus = hit.GetComponent<ObjectStatus>();
+            if (objectStatus != null)
             {
-                playerController.PlayerStatusUpdate(false); // Call to update player status to false (dead)
-            }
-            else if (playerControllerGeneral != null)
-            {
-                playerControllerGeneral.PlayerStatusUpdate(false); // Call to update player status to false (dead)
+                objectStatus.StatusUpdate(false); // Call to update player status to false (dead)
             }
             else
             {

@@ -26,7 +26,7 @@ public class BlueLogic : MonoBehaviour
 
     private void Start()
     {
-        PlayerController skill = ottoGojo.GetComponent<PlayerController>(); // Accessing the skill upgrade
+        GeneralPlayerController skill = ottoGojo.GetComponent<GeneralPlayerController>(); // Accessing the skill upgrade
         speed += skill.signatureSkill;
         duration += skill.signatureSkill;
         moveDistance += skill.signatureSkill;

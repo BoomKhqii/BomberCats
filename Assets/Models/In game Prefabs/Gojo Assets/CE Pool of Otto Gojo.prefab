@@ -1,6 +1,6 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!1 &6292289971850779371
+--- !u!1 &1439828989437962986
 GameObject:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -8,45 +8,45 @@ GameObject:
   m_PrefabAsset: {fileID: 0}
   serializedVersion: 6
   m_Component:
-  - component: {fileID: 7045366835492055936}
-  - component: {fileID: 7853913356165864673}
-  - component: {fileID: 4337300148893819856}
-  - component: {fileID: 3675573794243683774}
-  - component: {fileID: 6296327816773793935}
-  - component: {fileID: 2526730226526449175}
-  - component: {fileID: 4531707575294860974}
-  - component: {fileID: 4444451113901536329}
-  - component: {fileID: 2995811415428966894}
-  - component: {fileID: 5561759386276307361}
+  - component: {fileID: 7528689241424016486}
+  - component: {fileID: 4230651504889754534}
+  - component: {fileID: 5121207936520155900}
+  - component: {fileID: 3302917750346049006}
+  - component: {fileID: 7605124752805887348}
+  - component: {fileID: 6656013415864106143}
+  - component: {fileID: 8593086488233474275}
+  - component: {fileID: 3202043355216233697}
+  - component: {fileID: 1591155468902994742}
+  - component: {fileID: 3014492840299843539}
   m_Layer: 7
   m_Name: Otto Gojo
   m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &7045366835492055936
+  m_IsActive: 0
+--- !u!4 &7528689241424016486
 Transform:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6292289971850779371}
+  m_GameObject: {fileID: 1439828989437962986}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -7, y: 1.3, z: -7}
-  m_LocalScale: {x: 0.8, y: 0.8, z: 0.8}
+  m_LocalPosition: {x: -70, y: 40, z: 0}
+  m_LocalScale: {x: 50.33, y: 50.33, z: 50.33}
   m_ConstrainProportionsScale: 1
   m_Children: []
-  m_Father: {fileID: 0}
+  m_Father: {fileID: 2162256656417440223}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &7853913356165864673
+--- !u!114 &4230651504889754534
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6292289971850779371}
+  m_GameObject: {fileID: 1439828989437962986}
   m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: b45111c384bafb44693d26c554ea1dc8, type: 3}
@@ -55,23 +55,23 @@ MonoBehaviour:
   playerSpeed: 4.5
   gravityValue: -9.81
   bomb: {fileID: 4466744194402806859, guid: 032a325b7474f514f951df2e3cdcf88a, type: 3}
-  playerLocation: {fileID: 7045366835492055936}
+  playerLocation: {fileID: 7528689241424016486}
   playerOnBomb:
     serializedVersion: 2
     m_Bits: 256
-  characterController: {fileID: 3675573794243683774}
+  characterController: {fileID: 3302917750346049006}
   bombSkill: 0
   signatureSkill: 0
   heavySkill: 0
   ultimateSkill: 0
   curseEnergy: {fileID: 0}
---- !u!114 &4337300148893819856
+--- !u!114 &5121207936520155900
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6292289971850779371}
+  m_GameObject: {fileID: 1439828989437962986}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 19fffb9aa0ef1804d8dcc01a8f6c6cbb, type: 3}
@@ -79,24 +79,19 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   playerSpeed: 4.5
   gravityValue: -9.81
-  bomb: {fileID: 4466744194402806859, guid: 032a325b7474f514f951df2e3cdcf88a, type: 3}
-  playerLocation: {fileID: 7045366835492055936}
-  playerOnBomb:
-    serializedVersion: 2
-    m_Bits: 256
   bombSkill: 0
   signatureSkill: 0
   heavySkill: 0
   ultimateSkill: 0
   cePoolName: CE Pool of Otto Gojo
---- !u!114 &3675573794243683774
+--- !u!114 &3302917750346049006
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6292289971850779371}
-  m_Enabled: 1
+  m_GameObject: {fileID: 1439828989437962986}
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 1f5bc79628dd9444485d5b013118f218, type: 3}
   m_Name: 
@@ -106,15 +101,15 @@ MonoBehaviour:
   objectRed: {fileID: 7434269727049699186, guid: 4107b54564e8e38429afcefa2bbd2dae, type: 3}
   objectHollowPurple: {fileID: 9034953911681390408, guid: 320d5e53ea0cc0d459b766d775c90f1c, type: 3}
   isHoldingHollowPurple: 0
-  player: {fileID: 4337300148893819856}
---- !u!114 &6296327816773793935
+  player: {fileID: 5121207936520155900}
+--- !u!114 &7605124752805887348
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6292289971850779371}
-  m_Enabled: 1
+  m_GameObject: {fileID: 1439828989437962986}
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 62899f850307741f2a39c98a8b639597, type: 3}
   m_Name: 
@@ -134,7 +129,7 @@ MonoBehaviour:
   m_ActionEvents:
   - m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 4337300148893819856}
+      - m_Target: {fileID: 5121207936520155900}
         m_TargetAssemblyTypeName: GeneralPlayerController, Assembly-CSharp
         m_MethodName: OnMove
         m_Mode: 0
@@ -150,7 +145,7 @@ MonoBehaviour:
     m_ActionName: Player/Movement[/Keyboard/w,/Keyboard/s,/Keyboard/a,/Keyboard/d]
   - m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 4337300148893819856}
+      - m_Target: {fileID: 5121207936520155900}
         m_TargetAssemblyTypeName: GeneralPlayerController, Assembly-CSharp
         m_MethodName: SpawnBomb
         m_Mode: 0
@@ -166,7 +161,7 @@ MonoBehaviour:
     m_ActionName: Player/Abilities[/Keyboard/q,/DualSenseGamepadHID/buttonEast]
   - m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 3675573794243683774}
+      - m_Target: {fileID: 3302917750346049006}
         m_TargetAssemblyTypeName: OttoGojoController, Assembly-CSharp
         m_MethodName: BlueSkill
         m_Mode: 0
@@ -182,7 +177,7 @@ MonoBehaviour:
     m_ActionName: Player/New action
   - m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 3675573794243683774}
+      - m_Target: {fileID: 3302917750346049006}
         m_TargetAssemblyTypeName: OttoGojoController, Assembly-CSharp
         m_MethodName: RedSkill
         m_Mode: 0
@@ -198,7 +193,7 @@ MonoBehaviour:
     m_ActionName: Player/New action
   - m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 3675573794243683774}
+      - m_Target: {fileID: 3302917750346049006}
         m_TargetAssemblyTypeName: OttoGojoController, Assembly-CSharp
         m_MethodName: HollowPurpleSkill
         m_Mode: 0
@@ -217,21 +212,21 @@ MonoBehaviour:
   m_DefaultActionMap: Player
   m_SplitScreenIndex: -1
   m_Camera: {fileID: 0}
---- !u!33 &2526730226526449175
+--- !u!33 &6656013415864106143
 MeshFilter:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6292289971850779371}
+  m_GameObject: {fileID: 1439828989437962986}
   m_Mesh: {fileID: 10208, guid: 0000000000000000e000000000000000, type: 0}
---- !u!23 &4531707575294860974
+--- !u!23 &8593086488233474275
 MeshRenderer:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6292289971850779371}
+  m_GameObject: {fileID: 1439828989437962986}
   m_Enabled: 1
   m_CastShadows: 1
   m_ReceiveShadows: 1
@@ -267,13 +262,13 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!136 &4444451113901536329
+--- !u!136 &3202043355216233697
 CapsuleCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6292289971850779371}
+  m_GameObject: {fileID: 1439828989437962986}
   m_Material: {fileID: 0}
   m_IncludeLayers:
     serializedVersion: 2
@@ -290,13 +285,13 @@ CapsuleCollider:
   m_Height: 2
   m_Direction: 1
   m_Center: {x: 0, y: 0, z: 0}
---- !u!54 &2995811415428966894
+--- !u!54 &1591155468902994742
 Rigidbody:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6292289971850779371}
+  m_GameObject: {fileID: 1439828989437962986}
   serializedVersion: 4
   m_Mass: 20
   m_Drag: 20
@@ -315,15 +310,15 @@ Rigidbody:
   m_UseGravity: 0
   m_IsKinematic: 1
   m_Interpolate: 0
-  m_Constraints: 116
+  m_Constraints: 126
   m_CollisionDetection: 0
---- !u!143 &5561759386276307361
+--- !u!143 &3014492840299843539
 CharacterController:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6292289971850779371}
+  m_GameObject: {fileID: 1439828989437962986}
   m_Material: {fileID: 0}
   m_IncludeLayers:
     serializedVersion: 2
@@ -334,7 +329,7 @@ CharacterController:
   m_LayerOverridePriority: 0
   m_IsTrigger: 0
   m_ProvidesContacts: 0
-  m_Enabled: 1
+  m_Enabled: 0
   serializedVersion: 3
   m_Height: 2
   m_Radius: 0.5
@@ -343,3 +338,168 @@ CharacterController:
   m_SkinWidth: 0.08
   m_MinMoveDistance: 0
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!1 &4925798835767385580
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 7456111540589336161}
+  - component: {fileID: 4421177194271918721}
+  - component: {fileID: 8437531978763175421}
+  m_Layer: 0
+  m_Name: Current pool Text
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &7456111540589336161
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4925798835767385580}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: -10}
+  m_LocalScale: {x: 1.46, y: 1.46, z: 1.46}
+  m_ConstrainProportionsScale: 1
+  m_Children: []
+  m_Father: {fileID: 2162256656417440223}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchoredPosition: {x: -63, y: -57}
+  m_SizeDelta: {x: 253.37, y: 30}
+  m_Pivot: {x: 0.5, y: 0.5}
+--- !u!222 &4421177194271918721
+CanvasRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4925798835767385580}
+  m_CullTransparentMesh: 1
+--- !u!114 &8437531978763175421
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4925798835767385580}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5f7201a12d95ffc409449d95f23cf332, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Material: {fileID: 0}
+  m_Color: {r: 0.19607843, g: 0.19607843, b: 0.19607843, a: 1}
+  m_RaycastTarget: 1
+  m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
+  m_Maskable: 1
+  m_OnCullStateChanged:
+    m_PersistentCalls:
+      m_Calls: []
+  m_FontData:
+    m_Font: {fileID: 10102, guid: 0000000000000000e000000000000000, type: 0}
+    m_FontSize: 20
+    m_FontStyle: 1
+    m_BestFit: 0
+    m_MinSize: 0
+    m_MaxSize: 135
+    m_Alignment: 0
+    m_AlignByGeometry: 0
+    m_RichText: 1
+    m_HorizontalOverflow: 0
+    m_VerticalOverflow: 0
+    m_LineSpacing: 1
+  m_Text: Curse Energy
+--- !u!1 &5454931275579108376
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 2162256656417440223}
+  - component: {fileID: 6621131892996170856}
+  - component: {fileID: 5484470757738316797}
+  - component: {fileID: 7840602442980256564}
+  m_Layer: 0
+  m_Name: CE Pool of Otto Gojo
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 0
+--- !u!224 &2162256656417440223
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5454931275579108376}
+  m_LocalRotation: {x: 0.6427876, y: 0, z: 0, w: 0.7660445}
+  m_LocalPosition: {x: 0, y: 0, z: 0.16}
+  m_LocalScale: {x: 0.010905505, y: 0.010905505, z: 0.010905505}
+  m_ConstrainProportionsScale: 0
+  m_Children:
+  - {fileID: 7456111540589336161}
+  - {fileID: 7528689241424016486}
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 0, y: 0}
+  m_AnchoredPosition: {x: -6.37, y: 8.2}
+  m_SizeDelta: {x: 250, y: 45}
+  m_Pivot: {x: 0.5, y: 0.5}
+--- !u!223 &6621131892996170856
+Canvas:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5454931275579108376}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_RenderMode: 2
+  m_Camera: {fileID: 0}
+  m_PlaneDistance: 10.2
+  m_PixelPerfect: 0
+  m_ReceivesEvents: 1
+  m_OverrideSorting: 0
+  m_OverridePixelPerfect: 0
+  m_SortingBucketNormalizedSize: 0
+  m_VertexColorAlwaysGammaSpace: 0
+  m_AdditionalShaderChannelsFlag: 0
+  m_UpdateRectTransformForStandalone: 0
+  m_SortingLayerID: 0
+  m_SortingOrder: 0
+  m_TargetDisplay: 0
+--- !u!222 &5484470757738316797
+CanvasRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5454931275579108376}
+  m_CullTransparentMesh: 1
+--- !u!114 &7840602442980256564
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5454931275579108376}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5298f2ad0b2ebe84a8ebf7b5888b8920, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  maxPool: 4000
+  currentPool: 0
+  ceTextStatus: {fileID: 8437531978763175421}

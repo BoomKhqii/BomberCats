@@ -29,7 +29,7 @@ public class RedLogic : MonoBehaviour
 
     private void Start()
     {
-        PlayerController skill = ottoGojo.GetComponent<PlayerController>();
+        GeneralPlayerController skill = ottoGojo.GetComponent<GeneralPlayerController>();
         speed += skill.heavySkill;
         duration += skill.heavySkill;
         moveDistance += skill.heavySkill;

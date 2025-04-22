@@ -9,17 +9,15 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 5862562193905666967}
-  - component: {fileID: 5246650308643100351}
-  - component: {fileID: 5961294334033170735}
-  - component: {fileID: 1910442044445032403}
-  - component: {fileID: 8909275290841350921}
+  - component: {fileID: 6129570248206574677}
+  - component: {fileID: 4627348489268822586}
   - component: {fileID: 8093318348915984612}
   - component: {fileID: 2514077436733343877}
   - component: {fileID: 3677487720599449588}
   - component: {fileID: 4039579873140251417}
   - component: {fileID: 1105976537315092125}
   m_Layer: 7
-  m_Name: Junoker
+  m_Name: JunoJos
   m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -40,7 +38,7 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &5246650308643100351
+--- !u!114 &6129570248206574677
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -49,52 +47,14 @@ MonoBehaviour:
   m_GameObject: {fileID: 6593356670125899504}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 19fffb9aa0ef1804d8dcc01a8f6c6cbb, type: 3}
+  m_Script: {fileID: 11500000, guid: a03a7ee90d512b3409b65ec9037aa39b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  playerSpeed: 4.5
-  gravityValue: -9.81
-  bombSkill: 0
-  signatureSkill: 0
-  heavySkill: 0
-  ultimateSkill: 0
-  cePoolName: CE Pool of Junoker
---- !u!114 &5961294334033170735
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6593356670125899504}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a7d49049659bf9348b4a3fdc3d8ba4b6, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  curseEnergy: {fileID: 0}
-  player: {fileID: 5246650308643100351}
-  cloneLocation: {fileID: 5862562193905666967}
-  junosJoCloneObject: {fileID: 6593356670125899504, guid: ce37109b6a67a5042b97def6b58063e6, type: 3}
---- !u!114 &1910442044445032403
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6593356670125899504}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d9185db7022a740498a483f71a9264bb, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  bomb: {fileID: 4466744194402806859, guid: 032a325b7474f514f951df2e3cdcf88a, type: 3}
-  playerLocation: {fileID: 5862562193905666967}
-  playerOnBomb:
+  bedrockLayer:
     serializedVersion: 2
-    m_Bits: 256
-  curseEnergy: {fileID: 0}
-  skill: {fileID: 5246650308643100351}
---- !u!114 &8909275290841350921
+    m_Bits: 776
+  wallCheckDistance: 0.6
+--- !u!114 &4627348489268822586
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -103,83 +63,9 @@ MonoBehaviour:
   m_GameObject: {fileID: 6593356670125899504}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 62899f850307741f2a39c98a8b639597, type: 3}
+  m_Script: {fileID: 11500000, guid: e70f82a74e8825f4facaee6770cfde55, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_Actions: {fileID: -944628639613478452, guid: ca802d3c38ed7264084fce0c7e7419bd, type: 3}
-  m_NotificationBehavior: 2
-  m_UIInputModule: {fileID: 0}
-  m_DeviceLostEvent:
-    m_PersistentCalls:
-      m_Calls: []
-  m_DeviceRegainedEvent:
-    m_PersistentCalls:
-      m_Calls: []
-  m_ControlsChangedEvent:
-    m_PersistentCalls:
-      m_Calls: []
-  m_ActionEvents:
-  - m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 5246650308643100351}
-        m_TargetAssemblyTypeName: GeneralPlayerController, Assembly-CSharp
-        m_MethodName: OnMove
-        m_Mode: 0
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-    m_ActionId: e5790e91-3226-45b4-8208-fff6fd3bacbc
-    m_ActionName: Player/Movement[/Keyboard/w,/Keyboard/s,/Keyboard/a,/Keyboard/d]
-  - m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 1910442044445032403}
-        m_TargetAssemblyTypeName: BasicAbility, Assembly-CSharp
-        m_MethodName: SpawnBomb
-        m_Mode: 0
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-    m_ActionId: 50b3ceb1-cdd8-4d27-b0bc-caa44342bd3d
-    m_ActionName: Player/Abilities[/Keyboard/q]
-  - m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 5961294334033170735}
-        m_TargetAssemblyTypeName: JunokerController, Assembly-CSharp
-        m_MethodName: JunoJos
-        m_Mode: 0
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-    m_ActionId: ec5e4a2c-f2d3-452e-9f02-7288002e39c9
-    m_ActionName: Player/Signature[/Keyboard/e]
-  - m_PersistentCalls:
-      m_Calls: []
-    m_ActionId: 4307bff3-dd7a-433d-b2a0-9782d304c577
-    m_ActionName: Player/Heavy[/Keyboard/c]
-  - m_PersistentCalls:
-      m_Calls: []
-    m_ActionId: bdd47efa-7d6f-4353-a546-6e45fccb07c2
-    m_ActionName: Player/Ultimate[/Keyboard/x]
-  m_NeverAutoSwitchControlSchemes: 0
-  m_DefaultControlScheme: 
-  m_DefaultActionMap: Player
-  m_SplitScreenIndex: -1
-  m_Camera: {fileID: 0}
 --- !u!136 &8093318348915984612
 CapsuleCollider:
   m_ObjectHideFlags: 0

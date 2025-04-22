@@ -13,7 +13,7 @@ public class SkillUpgradeHeavy : MonoBehaviour
     {
         if (other.gameObject.CompareTag("Player"))
         {
-            PlayerController player = other.GetComponent<PlayerController>();
+            GeneralPlayerController player = other.GetComponent<GeneralPlayerController>();
             player.heavySkill += 1;
             Destroy(this.gameObject);
         }

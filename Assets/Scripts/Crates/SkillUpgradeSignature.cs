@@ -13,7 +13,7 @@ public class SkillUpgradeSignature : MonoBehaviour
     {
         if (other.gameObject.CompareTag("Player"))
         {
-            PlayerController player = other.GetComponent<PlayerController>();
+            GeneralPlayerController player = other.GetComponent<GeneralPlayerController>();
             player.signatureSkill += 1;
             Destroy(this.gameObject);
         }

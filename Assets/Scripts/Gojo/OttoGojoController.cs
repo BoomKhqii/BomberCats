@@ -31,12 +31,12 @@ public class OttoGojoController : MonoBehaviour
     private float holdStartTime = 0f;
     private float heldDuration = 0f;
 
-    public PlayerController player;
+    public GeneralPlayerController player;
 
     void Start()
     {
         curseEnergy = GameObject.Find("CE Pool of Otto Gojo").GetComponent<CurseEnergyLogic>();
-        player = GetComponent<PlayerController>();
+        player = GetComponent<GeneralPlayerController>();
     }
 
     public bool InfinityProbabilityChance()
@@ -115,24 +115,6 @@ public class OttoGojoController : MonoBehaviour
             IsHeldUpdate(context);
             isPurpleActive = false;
         }
-        /*
-        if (!context.performed || !isPurpleActive || !curseEnergy.CEReduction(1000)) return;
-
-        Vector3 spawnOffset = player.transform.forward.normalized;
-        Vector3 spawnPos = new Vector3(
-            Mathf.RoundToInt(player.transform.position.x + spawnOffset.x),
-            1.32f,
-            Mathf.RoundToInt(player.transform.position.z + spawnOffset.z)
-        );
-        GameObject purple = Instantiate(objectHollowPurple, spawnPos, Quaternion.identity);
-
-        purple.GetComponent<PurpleLogic>().ottoGojo = this.gameObject;
-        PurpleLogic purpleLogic = purple.GetComponent<PurpleLogic>();
-        purpleLogic.SkillUpdate(player.signatureSkill);
-        purpleLogic.SetDirection(player.transform.forward);
-
-        isPurpleActive = false;
-        */
 }
 
     public void IsHeldUpdate(InputAction.CallbackContext context)
@@ -178,7 +160,7 @@ public class OttoGojoController : MonoBehaviour
             cooldownRed -= Time.deltaTime;
             if (cooldownRed <= 0)
             {
-                cooldownRed = 5;
+                cooldownRed = 15;
                 isRedActive = true;
             }
         }
@@ -191,7 +173,7 @@ public class OttoGojoController : MonoBehaviour
             cooldownPurple -= Time.deltaTime;
             if (cooldownPurple <= 0)
             {
-                cooldownPurple = 5;
+                cooldownPurple = 60;
                 isPurpleActive = true;
             }
         }

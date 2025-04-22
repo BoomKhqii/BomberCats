@@ -31,7 +31,7 @@ public class PurpleLogic : MonoBehaviour
     {
         buttonOutput = ottoGojo.GetComponent<OttoGojoController>();
 
-        PlayerController skill = ottoGojo.GetComponent<PlayerController>(); // Accessing the skill upgrade
+        GeneralPlayerController skill = ottoGojo.GetComponent<GeneralPlayerController>(); // Accessing the skill upgrade
 
         HeldUpdate(buttonOutput.isHoldingHollowPurple);
 

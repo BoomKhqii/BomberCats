@@ -13,7 +13,7 @@ public class SkillUpgradeBomb : MonoBehaviour
     {
         if (other.gameObject.CompareTag("Player"))
         {
-            PlayerController player = other.GetComponent<PlayerController>();
+            GeneralPlayerController player = other.GetComponent<GeneralPlayerController>();
             player.bombSkill += 1;
             Destroy(this.gameObject);
         }
