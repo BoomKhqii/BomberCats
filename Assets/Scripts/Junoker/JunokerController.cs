@@ -4,6 +4,7 @@ using UnityEngine.InputSystem;
 using UnityEngine;
 using UnityEditor.Experimental.GraphView;
 using UnityEngine.InputSystem.XR;
+using static UnityEditor.PlayerSettings;
 
 public class JunokerController : MonoBehaviour
 {
@@ -13,6 +14,7 @@ public class JunokerController : MonoBehaviour
     private GeneralPlayerController player;
     [SerializeField]
     private Transform cloneLocation;
+    public MeshRenderer invis;
 
     // Juno Jo's
     private float cooldownJunoJos = 3;
@@ -27,10 +29,12 @@ public class JunokerController : MonoBehaviour
     private CharacterController controller;
     [SerializeField]
     private GameObject junoWhereIGoCloneObject;
-    public MeshRenderer invis;
     private float durationInvis = 1f; //1, 2, 3 
     private bool heavyOn = false;
 
+    // Juno Jos Jes Juatro
+    private float cooldownJunoJosJesJuatro = 30;
+    private bool isJunoJosJesJuatroActive = true;
 
     void Start()
     {
@@ -96,11 +100,23 @@ public class JunokerController : MonoBehaviour
         }
     }
 
+    public void JunoJosJesJuatro(InputAction.CallbackContext context)
+    {
+        if (!context.performed || !isJunoWhereIGoActive || !curseEnergy.CEReduction(600)) return;
+        // Radius from when button pressed
+        // invis for duration
+            // spawn three clones + player
+
+        isJunoJosJesJuatroActive = false;
+    }
+
     void Update()
     {
         IsJunoInvis(heavyOn);
+
         UpdateJunoJosCooldown();
         UpdateJunoWhereIGoCooldown();
+        UpdateJunoJosJesJuatroCooldown();
     }
     void UpdateJunoJosCooldown()
     {
@@ -124,6 +140,19 @@ public class JunokerController : MonoBehaviour
             {
                 cooldownJunoWhereIGo = 5;
                 isJunoWhereIGoActive = true;
+            }
+        }
+    }
+
+    void UpdateJunoJosJesJuatroCooldown()
+    {
+        if (isJunoJosJesJuatroActive == false)
+        {
+            cooldownJunoJosJesJuatro -= Time.deltaTime;
+            if (cooldownJunoJosJesJuatro <= 0)
+            {
+                cooldownJunoJosJesJuatro = 30;
+                isJunoJosJesJuatroActive = true;
             }
         }
     }
