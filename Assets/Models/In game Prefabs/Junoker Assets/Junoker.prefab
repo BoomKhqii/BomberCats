@@ -71,7 +71,6 @@ MonoBehaviour:
   signatureSkill: 0
   heavySkill: 0
   ultimateSkill: 0
-  cePoolName: CE Pool of Junoker
 --- !u!114 &1910442044445032403
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -84,13 +83,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d9185db7022a740498a483f71a9264bb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  bomb: {fileID: 4466744194402806859, guid: 032a325b7474f514f951df2e3cdcf88a, type: 3}
+  bomb: {fileID: 4466744194402806859, guid: 7f00fdf92972d45408b606dd95200e89, type: 3}
   playerLocation: {fileID: 5862562193905666967}
   playerOnBomb:
     serializedVersion: 2
     m_Bits: 256
-  curseEnergy: {fileID: 0}
   skill: {fileID: 5246650308643100351}
+  curseEnergy: {fileID: 0}
+  ceName: CE Pool of Junoker
 --- !u!114 &5961294334033170735
 MonoBehaviour:
   m_ObjectHideFlags: 0

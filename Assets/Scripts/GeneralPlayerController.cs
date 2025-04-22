@@ -10,8 +10,8 @@ public class GeneralPlayerController : MonoBehaviour
     // Player Movement
     private Vector3 playerVelocity;
     private Vector2 movementInput = Vector2.zero;
-    [SerializeField]
-    private float playerSpeed = 4.5f;
+    //[SerializeField]
+    public float playerSpeed = 4.5f;
     [SerializeField]
     private float gravityValue = -9.81f;
 
