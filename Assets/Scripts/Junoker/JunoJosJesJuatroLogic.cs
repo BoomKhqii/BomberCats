@@ -17,22 +17,12 @@ public class JunoJosJesJuatroLogic : MonoBehaviour
     // upgradable
     private float duration = 10f;
 
-    // Clone spawns Clone
-    public GameObject junosJoCloneObject;
-    public Transform cloneLocation;
-    private CurseEnergyLogic curseEnergy;
-    //public string ceName;
-    public bool isPlayerSignatureActive = false;
-    private float playerSignatureCooldown = 3f;
-
     void Start()
     {
         controller = GetComponent<CharacterController>();
         ChooseStraightDirection();
         timer = changeDirectionTime;
         basicAbility = gameObject.GetComponent<CloneBasicAbility>();
-
-        curseEnergy = GameObject.Find("CE Pool of Junoker").GetComponent<CurseEnergyLogic>();
 
         Destroy(gameObject, duration);
     }
@@ -57,17 +47,6 @@ public class JunoJosJesJuatroLogic : MonoBehaviour
             ChooseStraightDirection();
             timer = changeDirectionTime;
             basicAbility.SpawnBomb(0);
-        }
-
-        // Cooldown
-        if (!isPlayerSignatureActive)
-        {
-            playerSignatureCooldown -= Time.deltaTime;
-            if (playerSignatureCooldown <= 0f)
-            {
-                isPlayerSignatureActive = true;
-                playerSignatureCooldown = 3f;
-            }
         }
     }
 

@@ -5,7 +5,6 @@ using UnityEngine.InputSystem;
 
 public class JunoJosLogic : MonoBehaviour
 {
-    private CharacterController controller;
     private CloneBasicAbility basicAbility;
 
     private float speed = 4.5f;
@@ -18,22 +17,11 @@ public class JunoJosLogic : MonoBehaviour
     // upgradable
     private float duration = 5f;
 
-    // Clone spawns Clone
-    public GameObject junosJoCloneObject;
-    public Transform cloneLocation;
-    private CurseEnergyLogic curseEnergy;
-    //public string ceName;
-    public bool isPlayerSignatureActive = false;
-    private float playerSignatureCooldown = 3f;
-
     void Start()
     {
-        controller = GetComponent<CharacterController>();
         ChooseStraightDirection();
         timer = changeDirectionTime;
         basicAbility = gameObject.GetComponent<CloneBasicAbility>();
-
-        curseEnergy = GameObject.Find("CE Pool of Junoker").GetComponent<CurseEnergyLogic>();
 
         Destroy(gameObject, duration);
     }
@@ -58,17 +46,6 @@ public class JunoJosLogic : MonoBehaviour
             ChooseStraightDirection();
             timer = changeDirectionTime;
             basicAbility.SpawnBomb(50);
-        }
-
-        // Cooldown
-        if (!isPlayerSignatureActive)
-        {
-            playerSignatureCooldown -= Time.deltaTime;
-            if (playerSignatureCooldown <= 0f)
-            {
-                isPlayerSignatureActive = true;
-                playerSignatureCooldown = 3f;
-            }
         }
     }
 

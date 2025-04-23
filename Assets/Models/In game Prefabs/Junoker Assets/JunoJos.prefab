@@ -9,9 +9,9 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 5862562193905666967}
-  - component: {fileID: 6129570248206574677}
-  - component: {fileID: 896729591401562217}
   - component: {fileID: 4627348489268822586}
+  - component: {fileID: 896729591401562217}
+  - component: {fileID: 6129570248206574677}
   - component: {fileID: 8093318348915984612}
   - component: {fileID: 2514077436733343877}
   - component: {fileID: 3677487720599449588}
@@ -39,7 +39,7 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &6129570248206574677
+--- !u!114 &4627348489268822586
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -48,17 +48,9 @@ MonoBehaviour:
   m_GameObject: {fileID: 6593356670125899504}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a03a7ee90d512b3409b65ec9037aa39b, type: 3}
+  m_Script: {fileID: 11500000, guid: e70f82a74e8825f4facaee6770cfde55, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  bedrockLayer:
-    serializedVersion: 2
-    m_Bits: 840
-  wallCheckDistance: 0.6
-  duration: 5
-  junosJoCloneObject: {fileID: 6593356670125899504}
-  cloneLocation: {fileID: 5862562193905666967}
-  isPlayerSignatureActive: 0
 --- !u!114 &896729591401562217
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -78,7 +70,7 @@ MonoBehaviour:
     m_Bits: 256
   curseEnergy: {fileID: 0}
   ceName: CE Pool of Junoker
---- !u!114 &4627348489268822586
+--- !u!114 &6129570248206574677
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -87,9 +79,13 @@ MonoBehaviour:
   m_GameObject: {fileID: 6593356670125899504}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e70f82a74e8825f4facaee6770cfde55, type: 3}
+  m_Script: {fileID: 11500000, guid: a03a7ee90d512b3409b65ec9037aa39b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  bedrockLayer:
+    serializedVersion: 2
+    m_Bits: 840
+  wallCheckDistance: 0.6
 --- !u!136 &8093318348915984612
 CapsuleCollider:
   m_ObjectHideFlags: 0
