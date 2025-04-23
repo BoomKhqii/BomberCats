@@ -15,7 +15,7 @@ public class JunoJosLogic : MonoBehaviour
     public float wallCheckDistance = 0.6f; // how far ahead to check for walls
 
     // upgradable
-    private float duration = 5;
+    private float duration = 30;
 
     void Start()
     {
@@ -33,8 +33,7 @@ public class JunoJosLogic : MonoBehaviour
         if (Physics.Raycast(transform.position, moveDirection, wallCheckDistance, bedrockLayer))
         {
             ChooseStraightDirection();
-            timer = changeDirectionTime;
-            basicAbility.SpawnBomb();
+            //timer = changeDirectionTime; // clone will spawn more bombs often
             return; // skip moving this frame to avoid wall sticking
         }
 
