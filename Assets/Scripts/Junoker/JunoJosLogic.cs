@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.InputSystem;
 
 public class JunoJosLogic : MonoBehaviour
 {
@@ -15,7 +16,15 @@ public class JunoJosLogic : MonoBehaviour
     public float wallCheckDistance = 0.6f; // how far ahead to check for walls
 
     // upgradable
-    private float duration = 30;
+    private float duration = 40;
+
+    // Clone spawns Clone
+    public GameObject junosJoCloneObject;
+    public Transform cloneLocation;
+    private CurseEnergyLogic curseEnergy;
+    //public string ceName;
+    public bool isPlayerSignatureActive = false;
+    private float playerSignatureCooldown = 3f;
 
     void Start()
     {
@@ -24,29 +33,43 @@ public class JunoJosLogic : MonoBehaviour
         timer = changeDirectionTime;
         basicAbility = gameObject.GetComponent<CloneBasicAbility>();
 
+        curseEnergy = GameObject.Find("CE Pool of Junoker").GetComponent<CurseEnergyLogic>();
+
         Destroy(gameObject, duration);
     }
 
     void Update()
     {
-        // Check if a wall is ahead
+        // Check if a breakable,unbreakble, bomb is ahead
         if (Physics.Raycast(transform.position, moveDirection, wallCheckDistance, bedrockLayer))
         {
             ChooseStraightDirection();
-            //timer = changeDirectionTime; // clone will spawn more bombs often
-            return; // skip moving this frame to avoid wall sticking
+            //timer = changeDirectionTime; // comment so clone will spawn more bombs often
+            return;
         }
 
-        // Move clone
+        // Movement shi
         transform.Translate(moveDirection * Time.deltaTime * speed);
 
-        // Timer-based direction change
+        // timer x < 0 : change direction
         timer -= Time.deltaTime;
         if (timer <= 0f)
         {
             ChooseStraightDirection();
             timer = changeDirectionTime;
             basicAbility.SpawnBomb();
+        }
+
+        // Cooldown
+        if (!isPlayerSignatureActive)
+        {
+            playerSignatureCooldown -= Time.deltaTime;
+            if (playerSignatureCooldown <= 0f)
+            {
+                isPlayerSignatureActive = true;
+                playerSignatureCooldown = 3f;
+                Debug.Log("Cooldown reset: " + isPlayerSignatureActive);
+            }
         }
     }
 
@@ -70,4 +93,40 @@ public class JunoJosLogic : MonoBehaviour
                 break;
         }
     }
+    /*
+    public void CloneJunoJos(InputAction.CallbackContext context)
+    {
+        if (!context.performed || !isPlayerSignatureActive || !curseEnergy.CEReduction(150)) return;
+        Debug.Log("called 2");
+
+        //Vector3 forwardOffset = transform.forward * 1.5f;
+        Vector3 spawnPosition = transform.position;
+        Instantiate(junosJoCloneObject, spawnPosition, transform.rotation);
+
+        isPlayerSignatureActive = false;
+        /*
+        Debug.Log("called 2");
+        Instantiate(junosJoCloneObject, new Vector3(
+            Mathf.RoundToInt(this.transform.position.x),
+            1.38f,
+            Mathf.RoundToInt(this.transform.position.z)), Quaternion.identity);
+
+        isPlayerSignatureActive = false;
+        
+    }
+    /*
+    void UpdateJunoJosCooldown()
+    {
+        if (isPlayerSignatureActive == false)
+        {
+            playerSignatureCooldown -= Time.deltaTime;
+            if (playerSignatureCooldown <= 0)
+            {
+                playerSignatureCooldown = 3f;
+                isPlayerSignatureActive = true;
+                Debug.Log("Update cooldown: " + isPlayerSignatureActive);
+            }
+        }
+    }
+    */
 }

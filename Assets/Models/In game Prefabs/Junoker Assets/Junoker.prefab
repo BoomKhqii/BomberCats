@@ -106,12 +106,12 @@ MonoBehaviour:
   curseEnergy: {fileID: 0}
   player: {fileID: 5246650308643100351}
   cloneLocation: {fileID: 5862562193905666967}
+  invis: {fileID: 3677487720599449588}
   junosJoCloneObject: {fileID: 6593356670125899504, guid: ce37109b6a67a5042b97def6b58063e6, type: 3}
   blocked:
     serializedVersion: 2
     m_Bits: 776
   junoWhereIGoCloneObject: {fileID: 6593356670125899504, guid: 83e38564a5b096a47a74367c48b2d685, type: 3}
-  invis: {fileID: 3677487720599449588}
 --- !u!114 &8909275290841350921
 MonoBehaviour:
   m_ObjectHideFlags: 0

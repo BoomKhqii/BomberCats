@@ -37,10 +37,12 @@ public class CurseEnergyLogic : MonoBehaviour
     {
         if (currentPool-reduction < 0)
         {
+            //Debug.Log("cdred passed false");
             return false;
         }
         else
         {
+            //Debug.Log("cdred passed true");
             currentPool -= reduction;
             return true;
         }

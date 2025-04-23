@@ -51,7 +51,7 @@ public class JunokerController : MonoBehaviour
         Instantiate(junosJoCloneObject, new Vector3(
             Mathf.RoundToInt(cloneLocation.position.x),
             1.38f,
-            Mathf.RoundToInt(cloneLocation.position.z)), Quaternion.identity);
+            Mathf.RoundToInt(cloneLocation.position.z)), Quaternion.identity); 
 
         isJunoJosActive = false;
     }
