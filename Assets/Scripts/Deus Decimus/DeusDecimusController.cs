@@ -1,16 +1,22 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.InputSystem.XR;
 
 public class DeusDecimusController : MonoBehaviour
 {
-    // Start is called before the first frame update
+
+    [SerializeField]
+    private CurseEnergyLogic curseEnergy;
+    [SerializeField]
+    private GeneralPlayerController player;
+
     void Start()
     {
-        
+        player = GetComponent<GeneralPlayerController>();
+        curseEnergy = GameObject.Find("CE Pool of Deus Decimus").GetComponent<CurseEnergyLogic>();
     }
 
-    // Update is called once per frame
     void Update()
     {
         
