@@ -68,7 +68,6 @@ public class JunoJosLogic : MonoBehaviour
             {
                 isPlayerSignatureActive = true;
                 playerSignatureCooldown = 3f;
-                Debug.Log("Cooldown reset: " + isPlayerSignatureActive);
             }
         }
     }

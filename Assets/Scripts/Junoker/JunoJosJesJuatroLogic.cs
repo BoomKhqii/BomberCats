@@ -67,7 +67,6 @@ public class JunoJosJesJuatroLogic : MonoBehaviour
             {
                 isPlayerSignatureActive = true;
                 playerSignatureCooldown = 3f;
-                Debug.Log("Cooldown reset: " + isPlayerSignatureActive);
             }
         }
     }

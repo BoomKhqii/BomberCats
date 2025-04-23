@@ -26,7 +26,8 @@ public class CloneBasicAbility : MonoBehaviour
         {
             StartCoroutine(waiter());
         }
-        else { Debug.Log("Clone didn't use basic ability");  return; }
+        else { return; }
+        //Debug.Log("Clone didn't use basic ability");  
     }
     IEnumerator waiter()
     {
