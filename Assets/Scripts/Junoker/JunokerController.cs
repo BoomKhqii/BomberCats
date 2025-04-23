@@ -35,6 +35,7 @@ public class JunokerController : MonoBehaviour
     // Juno Jos Jes Juatro
     private float cooldownJunoJosJesJuatro = 30;
     private bool isJunoJosJesJuatroActive = true;
+    private float spawnRadius = 5f;
 
     void Start()
     {
@@ -108,6 +109,11 @@ public class JunokerController : MonoBehaviour
             // spawn three clones + player
 
         isJunoJosJesJuatroActive = false;
+    }
+    private void OnDrawGizmosSelected()
+    {
+        Gizmos.color = Color.red;
+        Gizmos.DrawWireSphere(transform.position, spawnRadius);
     }
 
     void Update()
