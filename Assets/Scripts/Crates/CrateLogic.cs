@@ -7,11 +7,10 @@ public class CrateLogic : MonoBehaviour
     public LayerMask destroy;
     public Transform crate;
 
-    //private float willDrop = 0.5f;
-    private float chanceBomb = 0.35f;
-    private float chanceSignature = 0.3f;
-    private float chanceHeavy = 0.2f;
-    //private float chanceUltimate = 0.15f;
+    private float chanceBomb = 0.40f;       // Bomb    35% -> 40%
+    private float chanceSignature = 0.35f;   // Sig     30% -> 35%
+    private float chanceHeavy = 0.2f;       // Heavy   20% -> 20%
+    //                                         Ult     15% -> 05%
 
     public GameObject upgradeBomb;
     public GameObject upgradeSignature;
@@ -20,23 +19,27 @@ public class CrateLogic : MonoBehaviour
 
     public void CrateDrop()
     {
-        if (Random.value < 0.6f)
+        if (Random.value < 0.3f)
         {
             float randomValue = Random.Range(0f, 1f);
             if (randomValue < chanceBomb)
             {
+                Debug.Log("Bomb");
                 Instantiate(upgradeBomb, new Vector3(crate.position.x, 1f, crate.position.z),Quaternion.identity);
             }
             else if (randomValue < chanceBomb + chanceSignature)
             {
+                Debug.Log("sig");
                 Instantiate(upgradeSignature, new Vector3(crate.position.x, 1f, crate.position.z), Quaternion.identity);
             }
             else if (randomValue < chanceSignature + chanceSignature + chanceHeavy)
             {
+                Debug.Log("heavy");
                 Instantiate(upgradeHeavy, new Vector3(crate.position.x, 1f, crate.position.z), Quaternion.identity);
             }
             else
             {
+                Debug.Log("ult");
                 Instantiate(upgradeUltimate, new Vector3(crate.position.x, 1f, crate.position.z), Quaternion.identity);
             }
         }
