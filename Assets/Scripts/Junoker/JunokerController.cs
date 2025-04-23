@@ -105,7 +105,7 @@ public class JunokerController : MonoBehaviour
 
     public void JunoJosJesJuatro(InputAction.CallbackContext context)
     {
-        if (!context.performed || !isJunoWhereIGoActive || !curseEnergy.CEReduction(600)) return;
+        if (!context.performed || !isJunoWhereIGoActive || !curseEnergy.CEReduction(800)) return;
 
         StartCoroutine(UltimateAction());
         /*
