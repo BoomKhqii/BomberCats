@@ -30,12 +30,14 @@ public class JunokerController : MonoBehaviour
     [SerializeField]
     private GameObject junoWhereIGoCloneObject;
     private float durationInvis = 1f; //1, 2, 3 
-    private bool heavyOn = false;
+    private bool isinvisOn = false;
 
     // Juno Jos Jes Juatro
     private float cooldownJunoJosJesJuatro = 30;
     private bool isJunoJosJesJuatroActive = true;
     private float spawnRadius = 5f;
+    [SerializeField]
+    private GameObject JunoJosJesJuatroClonesObject;
 
     void Start()
     {
@@ -75,8 +77,8 @@ public class JunokerController : MonoBehaviour
             Mathf.RoundToInt(cloneLocation.position.x),
             1.38f,
             Mathf.RoundToInt(cloneLocation.position.z)), Quaternion.identity);
-            heavyOn = true;
-            IsJunoInvis(heavyOn);
+            isinvisOn = true;
+            IsJunoInvis(isinvisOn);
 
             controller.enabled = false;
             transform.position = dashTarget;
@@ -96,7 +98,7 @@ public class JunokerController : MonoBehaviour
             {
                 durationInvis = 1; // with skill increment
                 invis.enabled = true;
-                heavyOn = false;
+                isinvisOn = false;
             }
         }
     }
@@ -104,12 +106,68 @@ public class JunokerController : MonoBehaviour
     public void JunoJosJesJuatro(InputAction.CallbackContext context)
     {
         if (!context.performed || !isJunoWhereIGoActive || !curseEnergy.CEReduction(600)) return;
-        // Radius from when button pressed
-        // invis for duration
-            // spawn three clones + player
 
+        StartCoroutine(UltimateAction());
+        /*
+        Vector3 center = transform.position;
+
+        for (int i = 0; i < 3; i++)
+        {
+            bool hasUltCloneSpawn = false;
+            while (!hasUltCloneSpawn)
+            {
+                // Step 1: random point in circle
+                Vector2 random2D = Random.insideUnitCircle * spawnRadius;
+                Vector3 randomPosition = center + new Vector3(random2D.x, 0, random2D.y);
+
+                // Step 2: adjust for height, or use terrain height here
+                randomPosition.y = 1.38f;
+
+                // Step 3: check if space is not blocked
+                if (!Physics.CheckSphere(randomPosition, 0.4f, blocked))
+                {
+                    // Step 4: instantiate and break out of loop
+                    Instantiate(junosJoCloneObject, randomPosition, Quaternion.identity);
+                    hasUltCloneSpawn = true;
+                    break;
+                }
+            }
+        }
+        */
         isJunoJosJesJuatroActive = false;
     }
+
+    IEnumerator UltimateAction()
+    {
+        Vector3 center = transform.position;
+        invis.enabled = false;
+        yield return new WaitForSeconds(1.5f);
+        invis.enabled = true;
+
+        for (int i = 0; i < 3; i++)
+        {
+            bool hasUltCloneSpawn = false;
+            while (!hasUltCloneSpawn)
+            {
+                // Step 1: random point in circle
+                Vector2 random2D = Random.insideUnitCircle * spawnRadius;
+                Vector3 randomPosition = center + new Vector3(random2D.x, 0, random2D.y);
+
+                // Step 2: adjust for height, or use terrain height here
+                randomPosition.y = 1.38f;
+
+                // Step 3: check if space is not blocked
+                if (!Physics.CheckSphere(randomPosition, 0.4f, blocked))
+                {
+                    // Step 4: instantiate and break out of loop
+                    Instantiate(JunoJosJesJuatroClonesObject, randomPosition, Quaternion.identity);
+                    hasUltCloneSpawn = true;
+                    break;
+                }
+            }
+        }
+    }
+
     private void OnDrawGizmosSelected()
     {
         Gizmos.color = Color.red;
@@ -118,7 +176,7 @@ public class JunokerController : MonoBehaviour
 
     void Update()
     {
-        IsJunoInvis(heavyOn);
+        IsJunoInvis(isinvisOn);
 
         UpdateJunoJosCooldown();
         UpdateJunoWhereIGoCooldown();

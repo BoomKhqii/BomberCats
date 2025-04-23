@@ -55,6 +55,7 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 840
   wallCheckDistance: 0.6
+  duration: 5
   junosJoCloneObject: {fileID: 6593356670125899504}
   cloneLocation: {fileID: 5862562193905666967}
   isPlayerSignatureActive: 0

@@ -20,9 +20,9 @@ public class CloneBasicAbility : MonoBehaviour
         curseEnergy = GameObject.Find(ceName).GetComponent<CurseEnergyLogic>();
     }
 
-    public void SpawnBomb()
+    public void SpawnBomb(float ceCost)
     {
-        if (!isCoroutineRunning && !Physics.CheckSphere(playerLocation.position, 0.6f, playerOnBomb) && curseEnergy.CEReduction(100))
+        if (!isCoroutineRunning && !Physics.CheckSphere(playerLocation.position, 0.6f, playerOnBomb) && curseEnergy.CEReduction(ceCost))
         {
             StartCoroutine(waiter());
         }

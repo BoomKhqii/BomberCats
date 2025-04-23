@@ -1,9 +1,8 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.InputSystem;
 
-public class JunoJosLogic : MonoBehaviour
+public class JunoJosJesJuatroLogic : MonoBehaviour
 {
     private CharacterController controller;
     private CloneBasicAbility basicAbility;
@@ -16,7 +15,7 @@ public class JunoJosLogic : MonoBehaviour
     public float wallCheckDistance = 0.6f; // how far ahead to check for walls
 
     // upgradable
-    private float duration = 5f;
+    private float duration = 10f;
 
     // Clone spawns Clone
     public GameObject junosJoCloneObject;
@@ -57,7 +56,7 @@ public class JunoJosLogic : MonoBehaviour
         {
             ChooseStraightDirection();
             timer = changeDirectionTime;
-            basicAbility.SpawnBomb(50);
+            basicAbility.SpawnBomb(0);
         }
 
         // Cooldown
