@@ -33,7 +33,7 @@ public class DeusDecimusController : MonoBehaviour
         origin = transform.position;
         StartCoroutine(DeusAlmightyAction());
 
-        //isDeusAlmightyActive = false;
+        isDeusAlmightyActive = false;
     }
     IEnumerator DeusAlmightyAction()
     {
@@ -51,7 +51,7 @@ public class DeusDecimusController : MonoBehaviour
 
     }
 
-    public void EndsOftheUniverse(InputAction.CallbackContext context)
+    public void EndsOfTheUniverse(InputAction.CallbackContext context)
     {
 
     }
