@@ -8,7 +8,7 @@ public class RedLogic : MonoBehaviour
 
     [Header("Push Settings")]
     [SerializeField]
-    private float pushStrength = -100f;
+    private float pushStrength = 100f;
     [SerializeField]
     private float pushRadius = 2f;
     [SerializeField]
@@ -17,8 +17,7 @@ public class RedLogic : MonoBehaviour
     public GameObject ottoGojo;
 
     public Vector3 direction;
-    [SerializeField]
-    private float speed = 40f;
+    private float speed = 5f; // 40f
     [SerializeField]
     private float moveDistance = 5;
     private float duration = 1f;
@@ -37,7 +36,6 @@ public class RedLogic : MonoBehaviour
         direction.Normalize();
         startPosition = transform.position;
         targetPosition = startPosition + direction * moveDistance;
-        //Destroy(gameObject, duration);
     }
 
     public void SkillUpdate(float increment)
@@ -63,8 +61,6 @@ public class RedLogic : MonoBehaviour
 
     void Explode()
     {
-        Debug.Log("called 2");
-
         Collider[] colliders = Physics.OverlapSphere(transform.position, pushRadius, affectedLayers);
 
         foreach (Collider col in colliders)
@@ -81,10 +77,12 @@ public class RedLogic : MonoBehaviour
 
             // Move character controllers
             CharacterController cc = col.GetComponent<CharacterController>();
+            GeneralPlayerController enemy = cc.gameObject.GetComponent<GeneralPlayerController>();
             if (cc != null)
             {
                 Vector3 direction = (col.transform.position - transform.position).normalized;
                 cc.Move(direction * pushStrength * Time.fixedDeltaTime);
+                enemy.PlayerStun(1.5f);
             }
 
             // Break breakables
@@ -105,6 +103,11 @@ public class RedLogic : MonoBehaviour
             {
                 isMoving = false;
             }
+        }
+        else 
+        {
+            Explode();
+            Destroy(gameObject);
         }
     }
 
