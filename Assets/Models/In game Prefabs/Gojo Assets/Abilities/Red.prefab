@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 8817010662169648186}
   - component: {fileID: 3080811815215903600}
   - component: {fileID: 8143204923570667117}
-  - component: {fileID: 3275507621242422301}
+  - component: {fileID: -2658077848728657023}
   - component: {fileID: -4899666212780546680}
   - component: {fileID: -5975127559245753033}
   m_Layer: 0
@@ -86,7 +86,7 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7434269727049699186}
   m_Mesh: {fileID: 10207, guid: 0000000000000000e000000000000000, type: 0}
---- !u!114 &3275507621242422301
+--- !u!114 &-2658077848728657023
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -98,14 +98,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9699cf5a9b577884db8a53cc45ad3314, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  pushStrength: -100
-  pushRadius: 2
+  pushStrength: 150
+  pushRadius: 4.5
   affectedLayers:
     serializedVersion: 2
     m_Bits: 896
   ottoGojo: {fileID: 6292289971850779371, guid: 92dbb4edf2a797a4e925c3943502bb1d, type: 3}
   direction: {x: 0, y: 0, z: 0}
-  speed: 40
   moveDistance: 5
 --- !u!135 &-4899666212780546680
 SphereCollider:

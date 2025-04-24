@@ -8,9 +8,9 @@ public class RedLogic : MonoBehaviour
 
     [Header("Push Settings")]
     [SerializeField]
-    private float pushStrength = 100f;
+    private float pushStrength = 150;
     [SerializeField]
-    private float pushRadius = 2f;
+    private float pushRadius = 4.5f;
     [SerializeField]
     private LayerMask affectedLayers;
 
@@ -71,6 +71,8 @@ public class RedLogic : MonoBehaviour
         {
             GameObject obj = col.gameObject;
 
+            if (col.gameObject == ottoGojo) continue;
+
             // Move character controllers
             if (!stunnedObjects.Contains(obj))
             {
@@ -100,8 +102,6 @@ public class RedLogic : MonoBehaviour
                 cc.Move(direction * pushStrength * Time.fixedDeltaTime);
             }
             */
-
-            if (col.gameObject == ottoGojo) continue;
 
             // Push rigidbodies
             Rigidbody rb = col.attachedRigidbody;
