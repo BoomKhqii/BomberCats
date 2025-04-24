@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Reflection;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.InputSystem.XR;
@@ -21,6 +22,7 @@ public class DeusDecimusController : MonoBehaviour
     // Heavy - Punish
     private float cooldownEndsOfTheUniverse = 120f;
     private bool isEndsOfTheUniverseActive = true;
+    public GameObject punishObject;
 
     // Ultimate - End's of the Universe
     private float cooldownPunish = 15f;
@@ -59,7 +61,16 @@ public class DeusDecimusController : MonoBehaviour
     {
         if (!context.performed || !isPunishActive || !curseEnergy.CEReduction(500)) return;
 
-        // code
+        Vector3 spawnOffset = player.transform.forward.normalized;
+        Vector3 spawnPos = new Vector3(
+            Mathf.RoundToInt(player.transform.position.x + spawnOffset.x),
+            1.32f,
+            Mathf.RoundToInt(player.transform.position.z + spawnOffset.z)
+        );
+
+        GameObject punish = Instantiate(punishObject, spawnPos, Quaternion.identity);
+        punish.GetComponent<PunishLogic>().player = this.gameObject;
+
         isPunishActive = false;
     }
 

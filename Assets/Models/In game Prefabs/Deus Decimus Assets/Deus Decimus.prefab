@@ -105,6 +105,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   curseEnergy: {fileID: 0}
   player: {fileID: 4054955255700427828}
+  punishObject: {fileID: 9165346943456416584, guid: 7cdeace8230a0654fbb67746cabc4403, type: 3}
   blackHole: {fileID: 466116933658575796, guid: 9ff5b6b6f46f7f847908bae9610fa00f, type: 3}
 --- !u!114 &1728759792657530400
 MonoBehaviour:
@@ -182,12 +183,12 @@ MonoBehaviour:
   - m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 4477628201177302763}
-        m_TargetAssemblyTypeName: 
-        m_MethodName: 
-        m_Mode: 1
+        m_TargetAssemblyTypeName: DeusDecimusController, Assembly-CSharp
+        m_MethodName: Punish
+        m_Mode: 0
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: 
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
           m_IntArgument: 0
           m_FloatArgument: 0
           m_StringArgument: 

@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 6007699559090437817}
   - component: {fileID: 3676863828750068176}
   - component: {fileID: 4369578266720071555}
+  - component: {fileID: 4477875390979180099}
   m_Layer: 0
   m_Name: Punish
   m_TagString: Untagged
@@ -49,7 +50,7 @@ MonoBehaviour:
   player: {fileID: 7960962020047947728, guid: 8ba10e065c876f44885d60aacc778d05, type: 3}
   playerLayer:
     serializedVersion: 2
-    m_Bits: 128
+    m_Bits: 384
   obstacleLayer:
     serializedVersion: 2
     m_Bits: 520
@@ -103,3 +104,24 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!135 &4477875390979180099
+SphereCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9165346943456416584}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 1
+  m_ProvidesContacts: 0
+  m_Enabled: 0
+  serializedVersion: 3
+  m_Radius: 0.5
+  m_Center: {x: 0, y: 0, z: 0}

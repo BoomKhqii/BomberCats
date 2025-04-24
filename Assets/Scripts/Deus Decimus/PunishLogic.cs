@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -5,6 +6,8 @@ using UnityEngine;
 public class PunishLogic : MonoBehaviour
 {
     private float playerTargetRadius = 15f;
+    private float pullRadius = 4.5f;
+    private float killRadius = 0.1f;
     private float speed = 5f;
 
     public GameObject player;
@@ -15,6 +18,11 @@ public class PunishLogic : MonoBehaviour
     private Vector3 currentDirection;
     private Vector3 moveTarget;
     private bool isMoving = false;
+
+    private void Start()
+    {
+        Destroy(gameObject, 5);
+    }
 
     void Update()
     {
@@ -66,6 +74,30 @@ public class PunishLogic : MonoBehaviour
         }
     }
 
+    private void FixedUpdate()
+    {
+        Collider[] colliders = Physics.OverlapSphere(transform.position, killRadius, playerLayer);
+
+        foreach (Collider col in colliders)
+        {
+            if (col.gameObject == player) continue; // Wont pull the caster
+
+            CharacterController cc = col.GetComponent<CharacterController>();
+            if (cc != null)
+            {
+                Destroy(cc.gameObject);
+                Destroy(gameObject);
+            }
+
+            BombController bb = col.GetComponent<BombController>();
+            if (bb != null)
+            {
+                Destroy(bb.gameObject);
+                Destroy(gameObject);
+            }
+        }
+    }
+
     void SearchForTarget()
     {
         Collider[] hits = Physics.OverlapSphere(transform.position, playerTargetRadius, playerLayer);
@@ -73,26 +105,12 @@ public class PunishLogic : MonoBehaviour
         foreach (Collider hit in hits)
         {
             // Skip the spawner player
-            //Debug.Log(hit.gameObject + " & " + player);
             if (hit.gameObject == player) continue;
 
             target = hit.transform;
             ChooseInitialDirection();
             break;
         }
-        /*
-        Collider[] hits = Physics.OverlapSphere(transform.position, playerTargetRadius, playerLayer);
-
-        if (hits.Length > 0)
-        {
-            //Debug.Log(hits[0].gameObject.name);
-            //GameObject cc = hits[0].gameObject;
-            //if(hits[0].gameObject == player) { return; }
-
-            target = hits[0].transform;
-            ChooseInitialDirection();
-        }
-        */
     }
 
     void ChooseInitialDirection()
@@ -130,6 +148,6 @@ public class PunishLogic : MonoBehaviour
     private void OnDrawGizmosSelected()
     {
         Gizmos.color = Color.blue;
-        Gizmos.DrawWireSphere(transform.position, playerTargetRadius);
+        Gizmos.DrawWireSphere(transform.position, pullRadius);
     }
 }
