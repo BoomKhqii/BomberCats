@@ -105,7 +105,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   curseEnergy: {fileID: 0}
   player: {fileID: 4054955255700427828}
-  blackHole: {fileID: 2598190912841565125, guid: d9e2e08684f9dc84b97f796087082332, type: 3}
+  blackHole: {fileID: 466116933658575796, guid: 9ff5b6b6f46f7f847908bae9610fa00f, type: 3}
 --- !u!114 &1728759792657530400
 MonoBehaviour:
   m_ObjectHideFlags: 0
