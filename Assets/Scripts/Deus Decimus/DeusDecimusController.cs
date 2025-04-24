@@ -20,7 +20,7 @@ public class DeusDecimusController : MonoBehaviour
     private CharacterController controller;
 
     // Heavy - Punish
-    private float cooldownEndsOfTheUniverse = 120f;
+    private float cooldownEndsOfTheUniverse = 15f;
     private bool isEndsOfTheUniverseActive = true;
     public GameObject punishObject;
 
@@ -95,7 +95,7 @@ public class DeusDecimusController : MonoBehaviour
             cooldownDeusAlmight -= Time.deltaTime;
             if (cooldownDeusAlmight <= 0)
             {
-                cooldownDeusAlmight = 120f;
+                cooldownDeusAlmight = 5f;
                 isDeusAlmightyActive = true;
             }
         }
@@ -108,7 +108,7 @@ public class DeusDecimusController : MonoBehaviour
             cooldownPunish -= Time.deltaTime;
             if (cooldownPunish <= 0)
             {
-                cooldownPunish = 120f;
+                cooldownPunish = 15f;
                 isPunishActive = true;
             }
         }
