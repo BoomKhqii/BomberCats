@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Net.NetworkInformation;
 using UnityEngine;
 
 public class PunishLogic : MonoBehaviour
@@ -9,6 +10,7 @@ public class PunishLogic : MonoBehaviour
     private float pullRadius = 4.5f;
     private float killRadius = 0.1f;
     private float speed = 5f;
+    private float originSpeed;
 
     public GameObject player;
     public LayerMask playerLayer;
@@ -82,10 +84,10 @@ public class PunishLogic : MonoBehaviour
         {
             if (col.gameObject == player) continue; // Wont pull the caster
 
-            CharacterController cc = col.GetComponent<CharacterController>();
-            if (cc != null)
+            GeneralPlayerController enemy = col.gameObject.GetComponent<GeneralPlayerController>();
+            if (enemy != null)
             {
-                Destroy(cc.gameObject);
+                enemy.PlayerStun(2f);
                 Destroy(gameObject);
             }
 
