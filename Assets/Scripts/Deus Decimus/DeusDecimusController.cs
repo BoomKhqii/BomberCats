@@ -18,6 +18,13 @@ public class DeusDecimusController : MonoBehaviour
     private Vector3 origin;
     private CharacterController controller;
 
+    // Heavy
+
+    // Ultimate - End's of the Universe
+    private float cooldownEndsOfTheUniverse = 120f;
+    private bool isEndsOfTheUniverseActive = true;
+    public GameObject blackHole;
+
     void Start()
     {
         player = GetComponent<GeneralPlayerController>();
@@ -53,12 +60,16 @@ public class DeusDecimusController : MonoBehaviour
 
     public void EndsOfTheUniverse(InputAction.CallbackContext context)
     {
+        if (!context.performed || !isEndsOfTheUniverseActive || !curseEnergy.CEReduction(2000)) return;
 
+        Instantiate(blackHole);
     }
 
     void Update()
     {
         UpdateDeusAlmightyCooldown();
+        // Heavy
+        UpdateEndsOfTheUniverseCooldown();
     }
 
     void UpdateDeusAlmightyCooldown()
@@ -68,8 +79,21 @@ public class DeusDecimusController : MonoBehaviour
             cooldownDeusAlmight -= Time.deltaTime;
             if (cooldownDeusAlmight <= 0)
             {
-                cooldownDeusAlmight = 5f;
+                cooldownDeusAlmight = 120f;
                 isDeusAlmightyActive = true;
+            }
+        }
+    }
+
+    void UpdateEndsOfTheUniverseCooldown()
+    {
+        if (isEndsOfTheUniverseActive == false)
+        {
+            cooldownEndsOfTheUniverse -= Time.deltaTime;
+            if (cooldownEndsOfTheUniverse <= 0)
+            {
+                cooldownEndsOfTheUniverse = 120f;
+                isEndsOfTheUniverseActive = true;
             }
         }
     }

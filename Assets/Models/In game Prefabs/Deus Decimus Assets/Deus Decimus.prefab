@@ -105,6 +105,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   curseEnergy: {fileID: 0}
   player: {fileID: 4054955255700427828}
+  blackHole: {fileID: 2598190912841565125, guid: d9e2e08684f9dc84b97f796087082332, type: 3}
 --- !u!114 &1728759792657530400
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -197,12 +198,12 @@ MonoBehaviour:
   - m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 4477628201177302763}
-        m_TargetAssemblyTypeName: 
-        m_MethodName: 
-        m_Mode: 1
+        m_TargetAssemblyTypeName: DeusDecimusController, Assembly-CSharp
+        m_MethodName: EndsOfTheUniverse
+        m_Mode: 0
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: 
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
           m_IntArgument: 0
           m_FloatArgument: 0
           m_StringArgument: 
