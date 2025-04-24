@@ -35,9 +35,11 @@ public class GeneralPlayerController : MonoBehaviour
     IEnumerator StunAction(float stun)
     {
         originSpeed = playerSpeed;
+        Debug.Log(originSpeed);
         playerSpeed = 0;
         yield return new WaitForSeconds(stun);
         playerSpeed = originSpeed;
+        Debug.Log(playerSpeed);
     }
 
     public void OnMove(InputAction.CallbackContext context)

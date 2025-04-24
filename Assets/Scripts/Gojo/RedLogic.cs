@@ -25,6 +25,7 @@ public class RedLogic : MonoBehaviour
     private Vector3 startPosition;
     private Vector3 targetPosition;
     private bool isMoving = true;
+    private bool didExplode = false; // this is not the issue
 
     private void Start()
     {
@@ -50,21 +51,56 @@ public class RedLogic : MonoBehaviour
 
     private void OnCollisionEnter(Collision collision)
     {
-        Debug.Log("Collision detected with " + collision.gameObject.name);
+        if (!didExplode) // this is not the issue
+        {
+            // Optional: ignore specific objects like the player
+            if (collision.gameObject == ottoGojo) return;
 
-        // Optional: ignore specific objects like the player
-        if (collision.gameObject == ottoGojo) return;
-        
-        Explode();
-        Destroy(this.gameObject); // Boom, self-destruct
+            didExplode = true;
+            Explode();
+            Destroy(gameObject); // Boom, self-destruct
+        }
     }
 
     void Explode()
     {
         Collider[] colliders = Physics.OverlapSphere(transform.position, pushRadius, affectedLayers);
+        HashSet<GameObject> stunnedObjects = new HashSet<GameObject>(); // uses hash to avoid double calling
 
         foreach (Collider col in colliders)
         {
+            GameObject obj = col.gameObject;
+
+            // Move character controllers
+            if (!stunnedObjects.Contains(obj))
+            {
+                stunnedObjects.Add(obj);
+
+                CharacterController cc = obj.GetComponent<CharacterController>();
+                GeneralPlayerController enemy = obj.GetComponent<GeneralPlayerController>();
+
+                if (cc != null && enemy != null)
+                {
+                    Debug.Log(cc.gameObject.name);
+                    enemy.PlayerStun(1.5f);
+                    Vector3 direction = (obj.transform.position - transform.position).normalized;
+                    cc.Move(direction * pushStrength * Time.fixedDeltaTime);
+                }
+            }
+
+            /*
+            // Move character controllers
+            CharacterController cc = col.GetComponent<CharacterController>();
+            GeneralPlayerController enemy = cc.gameObject.GetComponent<GeneralPlayerController>();
+            if (cc != null && enemy != null)
+            {
+                Debug.Log(cc.gameObject.name);
+                enemy.PlayerStun(1.5f);
+                Vector3 direction = (col.transform.position - transform.position).normalized;
+                cc.Move(direction * pushStrength * Time.fixedDeltaTime);
+            }
+            */
+
             if (col.gameObject == ottoGojo) continue;
 
             // Push rigidbodies
@@ -73,16 +109,6 @@ public class RedLogic : MonoBehaviour
             {
                 Vector3 direction = (col.transform.position - transform.position).normalized;
                 rb.AddForce(direction * pushStrength, ForceMode.Impulse); // Impulse for explosion burst
-            }
-
-            // Move character controllers
-            CharacterController cc = col.GetComponent<CharacterController>();
-            GeneralPlayerController enemy = cc.gameObject.GetComponent<GeneralPlayerController>();
-            if (cc != null)
-            {
-                Vector3 direction = (col.transform.position - transform.position).normalized;
-                cc.Move(direction * pushStrength * Time.fixedDeltaTime);
-                enemy.PlayerStun(1.5f);
             }
 
             // Break breakables
