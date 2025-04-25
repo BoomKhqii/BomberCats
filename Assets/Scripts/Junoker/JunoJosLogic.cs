@@ -17,13 +17,39 @@ public class JunoJosLogic : MonoBehaviour
     // upgradable
     private float duration = 5f;
 
+    // Level for signature
+    public float levelJunoJos = 0;
+    public GameObject junoker;
+
     void Start()
     {
         ChooseStraightDirection();
         timer = changeDirectionTime;
         basicAbility = gameObject.GetComponent<CloneBasicAbility>();
 
+        // level
+        GeneralPlayerController skill = junoker.GetComponent<GeneralPlayerController>(); // Accessing the skill upgrade
+        levelJunoJos += skill.signatureSkill;
+        Upgrade(levelJunoJos);
+
         Destroy(gameObject, duration);
+    }
+
+    public void Upgrade(float level)
+    {
+        Debug.Log(level);
+        if (level < 1)           // 0
+            return;
+        else if (level < 2)     // 1
+        {
+            Debug.Log("7");
+            duration = 7f;
+        }
+        else                    // 4 +
+        {
+            Debug.Log("10");
+            duration = 10f;
+        }
     }
 
     void Update()
