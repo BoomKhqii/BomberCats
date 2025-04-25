@@ -2,11 +2,13 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEditor.Experimental.GraphView;
 using UnityEngine;
+using static UnityEditor.PlayerSettings;
 
 public class PurpleLogic : MonoBehaviour
 {
     public float purpleRadius = 0.4f;
     public LayerMask affectedLayers;
+    public LayerMask obstacleLayer;
 
     public Transform objectPurple;
     public GameObject ottoGojo;
@@ -16,8 +18,8 @@ public class PurpleLogic : MonoBehaviour
 
     public Vector3 direction; // Direction to move in
     private float speed = 30f;                  // Movement speed
-    private float moveDistance = 20;            // How far to move
-    private float duration = 20f;
+    //private float moveDistance = 20;            // How far to move
+    //private float duration = 20f;
     private float levelPurple = 0;
 
     private Vector3 startPosition;
@@ -40,8 +42,8 @@ public class PurpleLogic : MonoBehaviour
 
         direction.Normalize(); // Always normalize to ensure consistent distance
         startPosition = transform.position;
-        targetPosition = startPosition + direction * moveDistance;
-        Destroy(gameObject, duration); // optional: auto-destroy after 3 seconds
+        targetPosition = startPosition + direction * 16;
+        //Destroy(gameObject, duration); // optional: auto-destroy after 3 seconds
     }
 
     public void SkillUpdate(float increment)
@@ -50,8 +52,8 @@ public class PurpleLogic : MonoBehaviour
             return;
 
         speed = speed + increment;
-        moveDistance = moveDistance + increment;
-        duration = duration + increment;
+        //moveDistance = moveDistance + increment;
+        //duration = duration + increment;
     }
 
     void Update()
@@ -64,8 +66,6 @@ public class PurpleLogic : MonoBehaviour
             Debug.Log("Level 1");
             objectPurple.localScale = new Vector3(1.2f, 1.2f, 1.2f);
             speed = 30f;                  // Movement speed
-            moveDistance = 20;            // How far to move
-            duration = 20f;
             purpleRadius = 0.4f;
         }
         else if (levelPurple >= 1 && buttonOutput.HowLongHeld() < 3f)
@@ -73,8 +73,6 @@ public class PurpleLogic : MonoBehaviour
             Debug.Log("Level 2");
             objectPurple.localScale = new Vector3(3f, 3f, 3f);
             speed = 10f;                  // Movement speed
-            moveDistance = 20;            // How far to move
-            duration = 20f;
             purpleRadius = 1.2f;
         }
         else if (levelPurple >= 2 && buttonOutput.HowLongHeld() >= 3f)
@@ -82,18 +80,18 @@ public class PurpleLogic : MonoBehaviour
             Debug.Log("Level 3");
             objectPurple.localScale = new Vector3(5f, 5f, 5f);
             speed = 5f;                  // Movement speed
-            moveDistance = 20;            // How far to move
-            duration = 20f;
             purpleRadius = 2f;
         }
 
         if (isMoving && !held)
         {
             transform.position = Vector3.MoveTowards(transform.position, targetPosition, speed * Time.deltaTime);
-            if (Vector3.Distance(transform.position, targetPosition) < 0.01f)
+            if (Physics.Raycast(transform.position, direction, out RaycastHit hit, purpleRadius, obstacleLayer))
             {
-                isMoving = false; // Stop moving once destination is reached
+                Debug.Log("Hit obstacle: " + hit.collider.name);
+                Destroy(gameObject);
             }
+            //Destroy(gameObject);
         }
     }
 

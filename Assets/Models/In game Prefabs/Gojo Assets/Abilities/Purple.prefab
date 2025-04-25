@@ -51,6 +51,9 @@ MonoBehaviour:
   affectedLayers:
     serializedVersion: 2
     m_Bits: 896
+  obstacleLayer:
+    serializedVersion: 2
+    m_Bits: 8
   objectPurple: {fileID: 2854570551533518157}
   ottoGojo: {fileID: 6292289971850779371, guid: 92dbb4edf2a797a4e925c3943502bb1d, type: 3}
   direction: {x: 0, y: 0, z: 0}
