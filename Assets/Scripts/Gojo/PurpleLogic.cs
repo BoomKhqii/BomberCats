@@ -38,7 +38,6 @@ public class PurpleLogic : MonoBehaviour
         HeldUpdate(buttonOutput.isHoldingHollowPurple);
 
         levelPurple += skill.ultimateSkill;
-        Debug.Log(levelPurple);
 
         direction.Normalize(); // Always normalize to ensure consistent distance
         startPosition = transform.position;
