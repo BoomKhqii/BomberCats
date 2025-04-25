@@ -54,6 +54,7 @@ MonoBehaviour:
   obstacleLayer:
     serializedVersion: 2
     m_Bits: 520
+  deusDecimus: {fileID: 7960962020047947728, guid: 8ba10e065c876f44885d60aacc778d05, type: 3}
 --- !u!33 &3676863828750068176
 MeshFilter:
   m_ObjectHideFlags: 0
