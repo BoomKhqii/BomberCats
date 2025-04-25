@@ -38,6 +38,7 @@ public class JunokerController : MonoBehaviour
     private float spawnRadius = 5f;
     [SerializeField]
     private GameObject JunoJosJesJuatroClonesObject;
+    float minXZ = -7f, maxXZ = 7f;
 
     void Start()
     {
@@ -71,7 +72,9 @@ public class JunokerController : MonoBehaviour
         // Check only the target position for bedrock
         bool isBlocked = Physics.CheckSphere(dashTarget, 0.3f, blocked);
 
-        if (!isBlocked)
+        if (!isBlocked &&
+            dashTarget.x >= minXZ && dashTarget.x <= maxXZ &&
+            dashTarget.z >= minXZ && dashTarget.z <= maxXZ)
         {
             Instantiate(junoWhereIGoCloneObject, new Vector3(
             Mathf.RoundToInt(cloneLocation.position.x),
@@ -157,7 +160,9 @@ public class JunokerController : MonoBehaviour
                 randomPosition.y = 1.38f;
 
                 // Step 3: check if space is not blocked
-                if (!Physics.CheckSphere(randomPosition, 0.4f, blocked))
+                if (!Physics.CheckSphere(randomPosition, 0.4f, blocked) && 
+                    randomPosition.x >= minXZ && randomPosition.x <= maxXZ && 
+                    randomPosition.z >= minXZ && randomPosition.z <= maxXZ)
                 {
                     // Step 4: instantiate and break out of loop
                     Instantiate(JunoJosJesJuatroClonesObject, randomPosition, Quaternion.identity);

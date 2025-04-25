@@ -49,7 +49,7 @@ public class BlueLogic : MonoBehaviour
     
     private void FixedUpdate()
     {
-        Collider[] colliders = Physics.OverlapSphere(transform.position, 10f, affectedLayers);
+        Collider[] colliders = Physics.OverlapSphere(transform.position, pullRadius, affectedLayers);
 
         foreach (Collider col in colliders)
         {
