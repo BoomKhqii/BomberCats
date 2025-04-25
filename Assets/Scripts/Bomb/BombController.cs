@@ -65,10 +65,10 @@ public class BombController : MonoBehaviour
 
     IEnumerator waiter()
     {
-        bombLocationX = Mathf.RoundToInt(bombLocation.position.x);
-        bombLocationZ = Mathf.RoundToInt(bombLocation.position.z);
         yield return new WaitForSeconds(3f);
         yield return new WaitForSeconds(0.2f);
+        bombLocationX = Mathf.RoundToInt(bombLocation.position.x);
+        bombLocationZ = Mathf.RoundToInt(bombLocation.position.z);
         Explode(range, bombLocationX, bombLocationZ, bombLocationY);
         Destroy(gameObject);
     }

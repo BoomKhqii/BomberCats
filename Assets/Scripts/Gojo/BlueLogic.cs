@@ -6,8 +6,8 @@ using UnityEngine;
 public class BlueLogic : MonoBehaviour
 {
     [Header("Pull Settings")]
-    public float pullStrength = 3f;
-    public float pullRadius = 1f;
+    public float pullStrength = 3.5f;
+    public float pullRadius = 3.5f;
     public LayerMask affectedLayers;
 
     public GameObject ottoGojo;
@@ -16,7 +16,7 @@ public class BlueLogic : MonoBehaviour
 
     public Vector3 direction; // Direction to move in
     private float speed = 2f;                  // Movement speed
-    private float moveDistance = 2;            // How far to move
+    private float moveDistance = 6;            // How far to move
     private float duration = 2f;
 
     private Vector3 startPosition;
@@ -49,18 +49,26 @@ public class BlueLogic : MonoBehaviour
     
     private void FixedUpdate()
     {
-        Collider[] colliders = Physics.OverlapSphere(transform.position, pullRadius, affectedLayers);
+        Collider[] colliders = Physics.OverlapSphere(transform.position, 10f, affectedLayers);
 
         foreach (Collider col in colliders)
         {
             if (col.gameObject == ottoGojo) continue; // Wont pull the caster
 
-            // Pull Rigidbody objects using force
+            // Pull bomb
+            /*
+            BombController bb = col.GetComponent<BombController>();
+            if (bb != null)
+            {
+                Destroy(bb.gameObject);
+                Destroy(gameObject);
+            }
+            */
             Rigidbody rb = col.attachedRigidbody;
             if (rb != null && !rb.isKinematic)
             {
                 Vector3 direction = (transform.position - rb.position).normalized;
-                rb.AddForce(direction * pullStrength, ForceMode.Acceleration);
+                rb.AddForce(direction * pullStrength, ForceMode.VelocityChange);
             }
 
             // Pull CharacterController objects manually
