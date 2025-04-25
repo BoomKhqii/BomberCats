@@ -41,7 +41,7 @@ public class OttoGojoController : MonoBehaviour
 
     public bool InfinityProbabilityChance()
     {
-        return UnityEngine.Random.value < 0.35f;
+        return UnityEngine.Random.value < 0.45f;
     }
 
     public void BlueSkill(InputAction.CallbackContext context)
