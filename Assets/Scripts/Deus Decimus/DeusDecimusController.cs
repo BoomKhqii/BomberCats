@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using System.Reflection;
+using UnityEditor.Experimental.GraphView;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.InputSystem.XR;
@@ -18,6 +19,9 @@ public class DeusDecimusController : MonoBehaviour
     private bool isDeusAlmightyActive = true;
     private Vector3 origin;
     private CharacterController controller;
+    // skill
+    private float levelDeusAlmighty = 0;
+    private float durationTime = 2f;
 
     // Heavy - Punish
     private float cooldownEndsOfTheUniverse = 15f;
@@ -38,6 +42,29 @@ public class DeusDecimusController : MonoBehaviour
         controller = GetComponent<CharacterController>();
     }
 
+    public void Upgrade(float level)
+    {
+        if (level < 1)           // 0
+            return;
+        else if (level < 2)     // 1
+        {
+            durationTime = 2.5f;
+        }
+        else if (level < 3)     // 2
+        {
+            durationTime = 3f;
+        }
+        else if (level < 4)     // 3
+        {
+            durationTime = 3.5f;
+        }
+        else                    // 4 +
+        {
+            durationTime = 4f;
+        }
+    }
+
+
     public void DeusAlmighty(InputAction.CallbackContext context)
     {
         if (!context.performed || !isDeusAlmightyActive || !curseEnergy.CEReduction(200)) return;
@@ -48,7 +75,7 @@ public class DeusDecimusController : MonoBehaviour
     }
     IEnumerator DeusAlmightyAction()
     {
-        yield return new WaitForSeconds(2f);
+        yield return new WaitForSeconds(durationTime);
         controller.enabled = false;     // disables the character controller
         transform.position = origin;    // tp
         controller.enabled = true;      // enable
@@ -69,7 +96,7 @@ public class DeusDecimusController : MonoBehaviour
         );
 
         GameObject punish = Instantiate(punishObject, spawnPos, Quaternion.identity);
-        punish.GetComponent<PunishLogic>().player = this.gameObject;
+        punish.GetComponent<PunishLogic>().deusDecimus = this.gameObject;
 
         isPunishActive = false;
     }
@@ -86,6 +113,11 @@ public class DeusDecimusController : MonoBehaviour
         UpdateDeusAlmightyCooldown();
         UpdatePunishCooldown();
         UpdateEndsOfTheUniverseCooldown();
+
+        // Signature skill
+        GeneralPlayerController skill = gameObject.GetComponent<GeneralPlayerController>(); // Accessing the skill upgrade
+        levelDeusAlmighty += skill.signatureSkill;
+        Upgrade(levelDeusAlmighty);
     }
 
     void UpdateDeusAlmightyCooldown()

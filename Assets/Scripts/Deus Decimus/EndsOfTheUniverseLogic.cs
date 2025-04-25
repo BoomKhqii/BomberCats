@@ -10,7 +10,8 @@ public class EndsOfTheUniverseLogic : MonoBehaviour
     private float killRadius = 4f;
     public LayerMask affectedLayers;
 
-    public GameObject DeusDecimus;
+    public GameObject deusDecimus;
+    public float levelEndsOfTheUniverse = 0;
 
     // Start is called before the first frame update
     void Start()
@@ -25,7 +26,7 @@ public class EndsOfTheUniverseLogic : MonoBehaviour
 
         foreach (Collider col in colliders)
         {
-            if (col.gameObject == DeusDecimus) continue; // Wont pull the caster
+            if (col.gameObject == deusDecimus) continue; // Wont pull the caster
 
             // Kills players inside
             ObjectStatus objectStatus = col.GetComponent<ObjectStatus>();
@@ -57,7 +58,7 @@ public class EndsOfTheUniverseLogic : MonoBehaviour
 
         foreach (Collider col in colliders)
         {
-            if (col.gameObject == DeusDecimus) continue; // Wont pull the caster
+            if (col.gameObject == deusDecimus) continue; // Wont pull the caster
 
             // Pull Rigidbody objects using force
             Rigidbody rb = col.attachedRigidbody;

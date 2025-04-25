@@ -6,13 +6,14 @@ using UnityEngine;
 
 public class PunishLogic : MonoBehaviour
 {
-    private float playerTargetRadius = 15f;
-    private float pullRadius = 4.5f;
+    private float playerTargetRadius = 20f;
+    private float pullRadius = 4.5f; // not used
     private float killRadius = 0.1f;
-    private float speed = 5f;
+    private float speed = 4.5f;
+    private float duration = 3f;
     private float originSpeed;
 
-    public GameObject player;
+    public GameObject deusDecimus;
     public LayerMask playerLayer;
     public LayerMask obstacleLayer;
 
@@ -21,9 +22,43 @@ public class PunishLogic : MonoBehaviour
     private Vector3 moveTarget;
     private bool isMoving = false;
 
+    private float levelPunish = 0;
+    //public GameObject deusDecimus;
+
     private void Start()
     {
-        Destroy(gameObject, 5);
+        GeneralPlayerController skill = deusDecimus.GetComponent<GeneralPlayerController>(); // Accessing the skill upgrade
+        levelPunish += skill.signatureSkill;
+
+        Upgrade(levelPunish);
+
+        Destroy(gameObject, duration);
+    }
+
+    public void Upgrade(float level)
+    {
+        if(level < 1)           // 0
+            return;
+        else if (level < 2)     // 1
+        {
+            speed = 5f;
+            duration = 5f;
+        }
+        else if (level < 3)     // 2
+        {
+            speed = 5.5f;
+            duration = 7f;
+        }
+        else if (level < 4)     // 3
+        {
+            speed = 6f;
+            duration = 10f;
+        }
+        else                    // 4 +
+        {
+            speed = 10f;
+            duration = 15f;
+        }
     }
 
     void Update()
@@ -82,7 +117,7 @@ public class PunishLogic : MonoBehaviour
 
         foreach (Collider col in colliders)
         {
-            if (col.gameObject == player) continue; // Wont pull the caster
+            if (col.gameObject == deusDecimus) continue; // Wont pull the caster
 
             GeneralPlayerController enemy = col.gameObject.GetComponent<GeneralPlayerController>();
             if (enemy != null)
@@ -107,7 +142,7 @@ public class PunishLogic : MonoBehaviour
         foreach (Collider hit in hits)
         {
             // Skip the spawner player
-            if (hit.gameObject == player) continue;
+            if (hit.gameObject == deusDecimus) continue;
 
             target = hit.transform;
             ChooseInitialDirection();
