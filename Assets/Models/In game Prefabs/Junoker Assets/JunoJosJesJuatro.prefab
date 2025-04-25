@@ -51,6 +51,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e70f82a74e8825f4facaee6770cfde55, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  isOtto: 0
 --- !u!114 &896729591401562217
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -67,7 +68,7 @@ MonoBehaviour:
   playerLocation: {fileID: 5862562193905666967}
   playerOnBomb:
     serializedVersion: 2
-    m_Bits: 256
+    m_Bits: 320
   curseEnergy: {fileID: 0}
   ceName: CE Pool of Junoker
 --- !u!114 &-2381743164988798188

@@ -53,6 +53,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e70f82a74e8825f4facaee6770cfde55, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  isOtto: 0
 --- !u!114 &6163425865368545686
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -69,7 +70,7 @@ MonoBehaviour:
   playerLocation: {fileID: 6493411146629470822}
   playerOnBomb:
     serializedVersion: 2
-    m_Bits: 256
+    m_Bits: 320
   skill: {fileID: 4054955255700427828}
   curseEnergy: {fileID: 0}
   ceName: CE Pool of Deus Decimus

@@ -93,7 +93,7 @@ MonoBehaviour:
   playerLocation: {fileID: 7045366835492055936}
   playerOnBomb:
     serializedVersion: 2
-    m_Bits: 256
+    m_Bits: 320
   skill: {fileID: 4337300148893819856}
   curseEnergy: {fileID: 0}
   ceName: CE Pool of Otto Gojo
