@@ -51,10 +51,12 @@ public class JunokerController : MonoBehaviour
     {
         if (!context.performed || !isJunoJosActive || !curseEnergy.CEReduction(150)) return;
 
-        Instantiate(junosJoCloneObject, new Vector3(
+        GameObject junojos = Instantiate(junosJoCloneObject, new Vector3(
             Mathf.RoundToInt(cloneLocation.position.x),
             1.38f,
             Mathf.RoundToInt(cloneLocation.position.z)), Quaternion.identity);
+
+        junojos.GetComponent<JunoJosLogic>().junoker = gameObject;
 
         isJunoJosActive = false;
     }
