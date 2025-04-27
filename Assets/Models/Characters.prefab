@@ -66,6 +66,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 594e5a5faef359c40bbd215137a0ad71, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  spawnPoints:
+  - {fileID: 7856785088734814627, guid: e7325cc874d375e419613a5c81d6b1a3, type: 3}
+  - {fileID: 8352984094236539532, guid: 19a210a17e90c554aa926bea19493afe, type: 3}
+  - {fileID: 6123924371948741117, guid: dc9dbbb22902a8c45b9db5a314295386, type: 3}
+  - {fileID: 4153958649889403936, guid: 4cd600192974ee445a1c3dbd70f66ef4, type: 3}
 --- !u!114 &7439300905074627654
 MonoBehaviour:
   m_ObjectHideFlags: 0
