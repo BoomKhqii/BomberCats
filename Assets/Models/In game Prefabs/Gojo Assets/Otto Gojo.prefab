@@ -202,6 +202,18 @@ MonoBehaviour:
         m_CallState: 2
     m_ActionId: bdd47efa-7d6f-4353-a546-6e45fccb07c2
     m_ActionName: Player/New action
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 2f9bb477-b6a3-44fc-a8fd-7aa96505dabb
+    m_ActionName: Character Selection/Next[/Keyboard/d,/DualSenseGamepadHID/dpad/right]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: e64057ad-a9e6-44ea-ae11-00d9ca09106a
+    m_ActionName: Character Selection/Previous[/DualSenseGamepadHID/dpad/left,/Keyboard/a]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 10a6d7a5-6d2c-4eff-b700-b3489fb00896
+    m_ActionName: Character Selection/Ready[/DualSenseGamepadHID/buttonEast,/Keyboard/space]
   m_NeverAutoSwitchControlSchemes: 0
   m_DefaultControlScheme: 
   m_DefaultActionMap: Player
