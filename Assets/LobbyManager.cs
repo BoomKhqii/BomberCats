@@ -53,6 +53,6 @@ public class LobbyManager : MonoBehaviour
     private void StartGame()
     {
         Debug.Log("All players ready. Starting game...");
-        // SceneManager.LoadScene("YourGameSceneName");
+        SceneManager.LoadScene("SampleScene");
     }
 }
