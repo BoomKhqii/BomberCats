@@ -8,6 +8,8 @@ public class SelectionManager : MonoBehaviour
     public GameObject[] characters;
     public int selectedCharacter = 0;
 
+
+
     public void Next(InputAction.CallbackContext context)
     {
         if(!context.performed) return;
@@ -28,6 +30,11 @@ public class SelectionManager : MonoBehaviour
             selectedCharacter += characters.Length;
         }
         characters[selectedCharacter].SetActive(true);
+
+    }
+
+    public void Ready(InputAction.CallbackContext context)
+    {
 
     }
 }
