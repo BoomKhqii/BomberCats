@@ -7,9 +7,12 @@ using UnityEngine.SceneManagement;
 public class LobbyManager : MonoBehaviour
 {
     public GameObject[] spawnPoints;
+    public GameObject[] inGameSpawnPoints;
     public GameObject[] characterPrefabs; // Reference to the character prefabs to spawn after scene load
     public static LobbyManager instance;
     private List<PlayerJoinLobby> players = new List<PlayerJoinLobby>();
+
+    private PlayerData[] playerData;
 
     private void Awake()
     {
@@ -54,27 +57,68 @@ public class LobbyManager : MonoBehaviour
         Debug.Log("All players ready. Starting game...");
 
         // Store player selections and spawn points
-        PlayerData[] playerData = new PlayerData[players.Count];
+        playerData = new PlayerData[players.Count];
         for (int i = 0; i < players.Count; i++)
         {
             playerData[i] = new PlayerData(players[i].playerIndex, players[i].GetSelectedCharacter());
         }
 
-        // Load the game scene
+        // Load the game scene and wait for it to load completely
+        SceneManager.sceneLoaded += OnSceneLoaded;  // Subscribe to the sceneLoaded event
         SceneManager.LoadScene("SampleScene");
 
+        // Store the player data so it can be used after the scene is loaded
+        //this.playerData = playerData; // Assuming you store this as a class-level variable
+
+        // Load the game scene
+        //SceneManager.LoadScene("SampleScene");
+
         // After loading the scene, spawn characters
-        SpawnCharacters(playerData);
+        //SpawnCharacters(playerData);
+    }
+
+    // This method will be called when the scene is finished loading
+    private void OnSceneLoaded(Scene scene, LoadSceneMode mode)
+    {
+        // Only perform the character spawning if the correct scene has been loaded
+        if (scene.name == "SampleScene")
+        {
+            SpawnCharacters(playerData);  // Spawn the characters
+            SceneManager.sceneLoaded -= OnSceneLoaded;  // Unsubscribe from the event to avoid multiple calls
+        }
     }
 
     private void SpawnCharacters(PlayerData[] playerData)
     {
+        Debug.Log("Spawning " + playerData.Length + " players.");
+
+        for (int i = 0; i < playerData.Length; i++)
+        {
+            // Ensure we're not trying to spawn more than available players
+            if (i < inGameSpawnPoints.Length)
+            {
+                PlayerData data = playerData[i];
+                Debug.Log("Spawning player " + i + ": Character ID = " + data.characterID + " at spawn point " + i);
+
+                // Spawn character at the correct spawn point
+                GameObject character = Instantiate(characterPrefabs[data.characterID],
+                    inGameSpawnPoints[data.playerIndex].transform.position, Quaternion.identity);
+
+                // Additional properties can be set for each character here
+            }
+            else
+            {
+                Debug.LogWarning("Player index " + i + " is out of bounds of spawn points!");
+            }
+        }
+        /*
+        Debug.Log(playerData.Length);
         for (int i = 0; i < playerData.Length; i++)
         {
             PlayerData data = playerData[i];
-            GameObject character = Instantiate(characterPrefabs[data.characterID], spawnPoints[data.playerIndex].transform.position, Quaternion.identity);
+            GameObject character = Instantiate(characterPrefabs[data.characterID], inGameSpawnPoints[data.playerIndex].transform.position, Quaternion.identity);
             // You can also set additional properties for each character here
-        }
+        }*/
     }
 }
 
