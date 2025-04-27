@@ -5,6 +5,8 @@ using UnityEngine.InputSystem;
 
 public class PlayerJoinLobby : MonoBehaviour
 {
+    public GameObject[] spawnPoints;
+
     private bool isReady = false;
     private int playerIndex;
 
@@ -27,5 +29,16 @@ public class PlayerJoinLobby : MonoBehaviour
     public bool IsReady()
     {
         return isReady;
+    }
+
+    //Spawn point
+    public void OnPlayerJoined(PlayerInput playerInput)
+    {
+        int index = playerInput.playerIndex;
+        Debug.Log(index);
+        if (index < spawnPoints.Length)
+        {
+            playerInput.transform.position = spawnPoints[index].transform.position;
+        }
     }
 }

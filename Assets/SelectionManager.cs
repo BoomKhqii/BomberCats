@@ -8,8 +8,7 @@ public class SelectionManager : MonoBehaviour
     public GameObject[] characters;
     public int selectedCharacter = 0;
 
-
-
+    // NExt and previous
     public void Next(InputAction.CallbackContext context)
     {
         if(!context.performed) return;
