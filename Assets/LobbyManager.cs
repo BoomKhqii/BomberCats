@@ -80,6 +80,7 @@ public class LobbyManager : MonoBehaviour
     // This method will be called when the scene is finished loading
     private void OnSceneLoaded(Scene scene, LoadSceneMode mode)
     {
+        Debug.Log("called");
         // Only perform the character spawning if the correct scene has been loaded
         if (scene.name == "SampleScene")
         {
