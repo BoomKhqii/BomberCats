@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.SceneManagement;
@@ -91,12 +92,12 @@ public class LobbyManager : MonoBehaviour
 
     private void SpawnCharacters(PlayerData[] playerData)
     {
-        Debug.Log("Spawning " + playerData.Length + " players.");
+        Debug.Log("Spawning " + players.Count + " players.");
 
-        for (int i = 0; i < playerData.Length; i++)
+        for (int i = 0; i < players.Count; i++)
         {
             // Ensure we're not trying to spawn more than available players
-            if (i < inGameSpawnPoints.Length)
+            if (i < players.Count)
             {
                 PlayerData data = playerData[i];
                 Debug.Log("Spawning player " + i + ": Character ID = " + data.characterID + " at spawn point " + i);
