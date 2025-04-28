@@ -594,10 +594,16 @@ MonoBehaviour:
   - {fileID: 8352984094236539532, guid: 19a210a17e90c554aa926bea19493afe, type: 3}
   - {fileID: 6123924371948741117, guid: dc9dbbb22902a8c45b9db5a314295386, type: 3}
   - {fileID: 4153958649889403936, guid: 4cd600192974ee445a1c3dbd70f66ef4, type: 3}
+  inGameSpawnPoints:
+  - {fileID: 8900012274066154029, guid: 77c37459fbb2b3a459167664220b75cd, type: 3}
+  - {fileID: 2716899988604707195, guid: 401bda70b73000e4bbd8cb1008fac633, type: 3}
+  - {fileID: 1590108722681938508, guid: d0c9cf3a47221a347a82f18d8454ede1, type: 3}
+  - {fileID: 2128172241963571849, guid: 84ba9f8e234e4c74da2e58ed51863050, type: 3}
   characterPrefabs:
   - {fileID: 6292289971850779371, guid: 92dbb4edf2a797a4e925c3943502bb1d, type: 3}
   - {fileID: 6593356670125899504, guid: daeca847cf9069b45868d862b1f4a7ef, type: 3}
   - {fileID: 7960962020047947728, guid: 8ba10e065c876f44885d60aacc778d05, type: 3}
+  - {fileID: 290829835178697385, guid: 7d207cb0ec71662439a1325efd1afb6e, type: 3}
 --- !u!114 &1080204860
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -610,9 +616,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5afd86049f930ff4d8194e68e2281d99, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  spawnPoints: []
-  characterPrefabs: []
-  playerCharacterSelections: 
 --- !u!1 &1204163278
 GameObject:
   m_ObjectHideFlags: 0
