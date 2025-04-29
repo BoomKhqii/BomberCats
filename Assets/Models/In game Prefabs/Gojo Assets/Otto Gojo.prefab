@@ -50,7 +50,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 6292289971850779371}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 19fffb9aa0ef1804d8dcc01a8f6c6cbb, type: 3}
+  m_Script: {fileID: 11500000, guid: 1dc9ff37936f4684b9e7c51f90124ff9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   playerSpeed: 4.5
@@ -86,14 +86,14 @@ MonoBehaviour:
   m_GameObject: {fileID: 6292289971850779371}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d9185db7022a740498a483f71a9264bb, type: 3}
+  m_Script: {fileID: 11500000, guid: 0df9ade1b679f8c4393da1b1b61c5c60, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   bomb: {fileID: 4466744194402806859, guid: 032a325b7474f514f951df2e3cdcf88a, type: 3}
   playerLocation: {fileID: 7045366835492055936}
   playerOnBomb:
     serializedVersion: 2
-    m_Bits: 320
+    m_Bits: 256
   skill: {fileID: 4337300148893819856}
   curseEnergy: {fileID: 0}
   ceName: CE Pool of Otto Gojo
