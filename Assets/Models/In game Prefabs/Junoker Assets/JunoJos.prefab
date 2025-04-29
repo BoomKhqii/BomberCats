@@ -87,8 +87,7 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 840
   wallCheckDistance: 0.6
-  levelJunoJos: 0
-  junoker: {fileID: 5961294334033170735, guid: daeca847cf9069b45868d862b1f4a7ef, type: 3}
+  junoker: {fileID: 6593356670125899504, guid: daeca847cf9069b45868d862b1f4a7ef, type: 3}
 --- !u!136 &8093318348915984612
 CapsuleCollider:
   m_ObjectHideFlags: 0

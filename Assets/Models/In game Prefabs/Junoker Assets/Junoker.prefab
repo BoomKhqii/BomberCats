@@ -63,7 +63,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 6593356670125899504}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 19fffb9aa0ef1804d8dcc01a8f6c6cbb, type: 3}
+  m_Script: {fileID: 11500000, guid: 1dc9ff37936f4684b9e7c51f90124ff9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   playerSpeed: 4.5
@@ -81,14 +81,14 @@ MonoBehaviour:
   m_GameObject: {fileID: 6593356670125899504}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d9185db7022a740498a483f71a9264bb, type: 3}
+  m_Script: {fileID: 11500000, guid: 0df9ade1b679f8c4393da1b1b61c5c60, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   bomb: {fileID: 4466744194402806859, guid: 032a325b7474f514f951df2e3cdcf88a, type: 3}
   playerLocation: {fileID: 5862562193905666967}
   playerOnBomb:
     serializedVersion: 2
-    m_Bits: 320
+    m_Bits: 256
   skill: {fileID: 5246650308643100351}
   curseEnergy: {fileID: 0}
   ceName: CE Pool of Junoker
@@ -219,6 +219,18 @@ MonoBehaviour:
         m_CallState: 2
     m_ActionId: bdd47efa-7d6f-4353-a546-6e45fccb07c2
     m_ActionName: Player/Ultimate[/Keyboard/x]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 2f9bb477-b6a3-44fc-a8fd-7aa96505dabb
+    m_ActionName: Character Selection/Next[/Keyboard/d]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: e64057ad-a9e6-44ea-ae11-00d9ca09106a
+    m_ActionName: Character Selection/Previous[/Keyboard/a]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 10a6d7a5-6d2c-4eff-b700-b3489fb00896
+    m_ActionName: Character Selection/Ready[/Keyboard/space]
   m_NeverAutoSwitchControlSchemes: 0
   m_DefaultControlScheme: 
   m_DefaultActionMap: Player
