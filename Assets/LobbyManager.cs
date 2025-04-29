@@ -81,12 +81,12 @@ public class LobbyManager : MonoBehaviour
 
             // Find all surviving players
             PlayerJoinLobby[] savedPlayers = FindObjectsOfType<PlayerJoinLobby>();
-            Debug.Log("Players found after scene load: " + savedPlayers.Length);
+            Debug.Log("Players found after scene load: " + playerData.Length);
 
-            for (int i = 0; i < savedPlayers.Length; i++)
+            for (int i = 0; i < players.Count; i+=1)
             {
-                var joinLobby = savedPlayers[i];
-                var input = joinLobby.GetComponent<PlayerInput>();
+                //var joinLobby = savedPlayers[i];
+                var input = players[i].GetComponent<PlayerInput>();
 
                 int chosenCharacter = playerData[i].characterID;
                 var controller = input.GetComponent<PlayerController>();
