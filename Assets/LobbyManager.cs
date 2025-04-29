@@ -7,84 +7,99 @@ using UnityEngine.SceneManagement;
 
 public class LobbyManager : MonoBehaviour
 {
-    public GameObject[] spawnPoints;
-    public GameObject[] inGameSpawnPoints;
-    public GameObject[] characterPrefabs; // Reference to the character prefabs to spawn after scene load
-    public static LobbyManager instance;
-    private List<PlayerJoinLobby> players = new List<PlayerJoinLobby>();
+    public GameObject[] spawnPoints;       // for lobby spawn positions
+    public GameObject[] inGameSpawnPoints;  // for in-game spawn positions
+    public GameObject[] characterPrefabs;   // reference to character prefabs
 
+    public static LobbyManager instance;
+
+    private List<PlayerJoinLobby> players = new List<PlayerJoinLobby>();
     private PlayerData[] playerData;
 
     private void Awake()
     {
         if (instance == null)
-            instance = this; // Singleton setup to ensure only one instance exists
+        {
+            instance = this;
+            DontDestroyOnLoad(gameObject); // important: lobby manager survives scene change
+        }
         else
+        {
             Destroy(gameObject);
+        }
     }
 
-    // Called when a player joins the lobby
     public void OnPlayerJoined(PlayerInput playerInput)
     {
         if (playerInput.playerIndex < spawnPoints.Length)
         {
-            // Assign spawn point for each player
             playerInput.transform.position = spawnPoints[playerInput.playerIndex].transform.position;
         }
 
-        // Register player (create new PlayerJoinLobby object)
         PlayerJoinLobby newPlayer = playerInput.GetComponent<PlayerJoinLobby>();
         players.Add(newPlayer);
+        DontDestroyOnLoad(playerInput.gameObject); // <--- very important! survive scene change
+        Debug.Log("Players in lobby: " + players.Count);
     }
 
-    // Called when a player presses the ready button
     public void UpdateReadyState()
     {
         foreach (var player in players)
         {
             if (!player.IsReady())
-                return;
+                return; // if anyone is not ready, do nothing
         }
         StartGame();
     }
 
-    // When all players are ready, start the game and load the next scene
     private void StartGame()
     {
-        Debug.Log("All players ready. Starting game...");
-
-        // Store player selections and spawn points
+        // Save the selections
         playerData = new PlayerData[players.Count];
         for (int i = 0; i < players.Count; i++)
         {
             playerData[i] = new PlayerData(players[i].playerIndex, players[i].GetSelectedCharacter());
         }
-        SceneManager.sceneLoaded += OnSceneLoaded;  // Subscribe to the sceneLoaded event
+
+        // VERY IMPORTANT: prevent new players from joining
+        var inputManager = FindObjectOfType<PlayerInputManager>();
+        if (inputManager != null)
+        {
+            inputManager.enabled = false;
+        }
+
+        // Subscribe to when the scene finishes loading
+        SceneManager.sceneLoaded += OnSceneLoaded;
         SceneManager.LoadScene("SampleScene");
     }
 
-    // This method will be called when the scene is finished loading
     private void OnSceneLoaded(Scene scene, LoadSceneMode mode)
     {
         if (scene.name == "SampleScene")
         {
             SceneManager.sceneLoaded -= OnSceneLoaded;
 
-            var playerInputs = FindObjectsOfType<PlayerInput>();
-            for (int i = 0; i < playerInputs.Length; i++)
-            {
-                var input = playerInputs[i];
-                var joinLobby = input.GetComponent<PlayerJoinLobby>();
+            // Find all surviving players
+            PlayerJoinLobby[] savedPlayers = FindObjectsOfType<PlayerJoinLobby>();
+            Debug.Log("Players found after scene load: " + savedPlayers.Length);
 
-                if (joinLobby != null)
+            for (int i = 0; i < savedPlayers.Length; i++)
+            {
+                var joinLobby = savedPlayers[i];
+                var input = joinLobby.GetComponent<PlayerInput>();
+
+                int chosenCharacter = playerData[i].characterID;
+                var controller = input.GetComponent<PlayerController>();
+                if (controller != null)
                 {
-                    int chosenCharacter = playerData[i].characterID;
-                    var controller = input.GetComponent<PlayerController>();
-                    if (controller != null)
-                    {
-                        controller.SetCharacter(LobbyManager.instance.GetCharacterPrefab(chosenCharacter));
-                        Debug.Log($"Spawning player {i}: char id {chosenCharacter} at spawn point {i}");
-                    }
+                    Debug.Log("Assigning character to player " + i);
+                    controller.SetCharacter(LobbyManager.instance.GetCharacterPrefab(chosenCharacter));
+                }
+
+                // OPTIONAL: move players to in-game spawn points
+                if (i < inGameSpawnPoints.Length)
+                {
+                    input.transform.position = inGameSpawnPoints[i].transform.position;
                 }
             }
         }

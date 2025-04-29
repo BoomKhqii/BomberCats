@@ -15,12 +15,21 @@ public class PlayerController : MonoBehaviour
     {
         if (currentVisual != null)
         {
-            Destroy(currentVisual);
+            foreach (Transform child in visualHolder)
+            {
+                Destroy(child.gameObject);
+            }
+            PlayerInput player = gameObject.GetComponent<PlayerInput>();
+            player.enabled = false;
         }
 
         currentVisual = Instantiate(characterPrefab, visualHolder != null ? visualHolder.position : transform.position, Quaternion.identity);
         currentVisual.transform.SetParent(visualHolder != null ? visualHolder : transform);
 
         Debug.Log("Character instantiated: " + characterPrefab.name);
+    }
+    void Awake()
+    {
+        DontDestroyOnLoad(gameObject);
     }
 }
