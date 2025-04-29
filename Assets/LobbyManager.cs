@@ -26,8 +26,6 @@ public class LobbyManager : MonoBehaviour
     // Called when a player joins the lobby
     public void OnPlayerJoined(PlayerInput playerInput)
     {
-        Debug.Log("Player joined: " + playerInput.playerIndex);
-
         if (playerInput.playerIndex < spawnPoints.Length)
         {
             // Assign spawn point for each player
@@ -68,48 +66,35 @@ public class LobbyManager : MonoBehaviour
     // This method will be called when the scene is finished loading
     private void OnSceneLoaded(Scene scene, LoadSceneMode mode)
     {
-        /*
         if (scene.name == "SampleScene")
         {
             SceneManager.sceneLoaded -= OnSceneLoaded;
 
-            // Get the players that you already tracked
-            for (int i = 0; i < players.Count; i++)
+            var playerInputs = FindObjectsOfType<PlayerInput>();
+            for (int i = 0; i < playerInputs.Length; i++)
             {
-                var playerLobby = players[i];
-                var playerInput = playerLobby.GetComponent<PlayerInput>();
+                var input = playerInputs[i];
+                var joinLobby = input.GetComponent<PlayerJoinLobby>();
 
-                // Move player to correct spawn
-                playerInput.transform.position = inGameSpawnPoints[i].transform.position;
-
-                // Change player character appearance
-                var PlayerJoinLobby = playerInput.GetComponent<PlayerJoinLobby>();
-                if (PlayerJoinLobby != null)
+                if (joinLobby != null)
                 {
-                    PlayerJoinLobby.SetCharacter(characterPrefabs[playerLobby.GetSelectedCharacter()]);
+                    int chosenCharacter = playerData[i].characterID;
+                    var controller = input.GetComponent<PlayerController>();
+                    if (controller != null)
+                    {
+                        controller.SetCharacter(LobbyManager.instance.GetCharacterPrefab(chosenCharacter));
+                        Debug.Log($"Spawning player {i}: char id {chosenCharacter} at spawn point {i}");
+                    }
                 }
             }
         }
-        */
     }
 
-    private void SpawnCharacters(PlayerData[] playerData)
+    public GameObject GetCharacterPrefab(int id)
     {
-        /*
-        Debug.Log(playerData.Length);
-        for (int i = 0; i < playerData.Length; i++)
-        {
-            PlayerData data = playerData[i];
-            GameObject character = Instantiate(
-                characterPrefabs[data.characterID],
-                inGameSpawnPoints[i].transform.position, // notice we use i, not playerIndex
-                Quaternion.identity
-            );
-            Debug.Log($"Spawning player {i}: char id {data.characterID}");
-        }
-         */
-
+        return characterPrefabs[id];
     }
+
 }
 
 [System.Serializable]

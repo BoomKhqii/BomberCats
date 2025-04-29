@@ -12,6 +12,8 @@ GameObject:
   - component: {fileID: 6258898234548222601}
   - component: {fileID: 1385660440083788850}
   - component: {fileID: 7439300905074627654}
+  - component: {fileID: 4495796393099590841}
+  - component: {fileID: -4013673135514056998}
   m_Layer: 0
   m_Name: Characters
   m_TagString: Untagged
@@ -68,6 +70,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   playerIndex: 0
+  selectedCharacter: 0
 --- !u!114 &7439300905074627654
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -166,6 +169,46 @@ MonoBehaviour:
   m_DefaultActionMap: Character Selection
   m_SplitScreenIndex: -1
   m_Camera: {fileID: 0}
+--- !u!143 &4495796393099590841
+CharacterController:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8979037012011414497}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Height: 2
+  m_Radius: 0.5
+  m_SlopeLimit: 45
+  m_StepOffset: 0.3
+  m_SkinWidth: 0.08
+  m_MinMoveDistance: 0.001
+  m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &-4013673135514056998
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8979037012011414497}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b45111c384bafb44693d26c554ea1dc8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  currentVisual: {fileID: 0}
+  visualHolder: {fileID: 0}
 --- !u!1001 &1450427034031335383
 PrefabInstance:
   m_ObjectHideFlags: 0

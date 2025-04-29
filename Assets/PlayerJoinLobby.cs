@@ -7,7 +7,7 @@ public class PlayerJoinLobby : MonoBehaviour
 {
     public int playerIndex;
     private bool isReady = false;
-    private int selectedCharacter;
+    public int selectedCharacter;
 
     // This method runs when the player joins the lobby
     private void Start()
@@ -23,7 +23,6 @@ public class PlayerJoinLobby : MonoBehaviour
         {
             isReady = !isReady; // Toggle the readiness state
             LobbyManager.instance.UpdateReadyState(); // Notify the lobby manager to check readiness
-            Debug.Log("Player " + playerIndex + (isReady ? " is Ready" : " is Not Ready"));
         }
     }
 
