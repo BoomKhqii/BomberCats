@@ -100,4 +100,5 @@ MonoBehaviour:
   affectedLayers:
     serializedVersion: 2
     m_Bits: 896
-  DeusDecimus: {fileID: 7960962020047947728, guid: 8ba10e065c876f44885d60aacc778d05, type: 3}
+  deusDecimus: {fileID: 7960962020047947728, guid: 8ba10e065c876f44885d60aacc778d05, type: 3}
+  levelEndsOfTheUniverse: 0
