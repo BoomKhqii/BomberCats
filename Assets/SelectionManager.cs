@@ -10,12 +10,6 @@ public class SelectionManager : MonoBehaviour
 
     public PlayerJoinLobby lobby;
 
-    private void Start()
-    {
-        // Initialize the lobby reference
-        //lobby = gameObject.GetComponent<PlayerJoinLobby>(); // Get the PlayerJoinLobby component attached to the same GameObject
-    }
-
     // NExt and previous
     public void Next(InputAction.CallbackContext context)
     {

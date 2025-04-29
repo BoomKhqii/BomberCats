@@ -41,49 +41,4 @@ public class PlayerJoinLobby : MonoBehaviour
     {
         return selectedCharacter;
     }
-
-    /*
-    public GameObject[] spawnPoints;
-
-    private bool isReady = false;
-    private int playerIndex;
-    private int selectedCharacter;
-
-    private void Start()
-    {
-        playerIndex = GetComponent<PlayerInput>().playerIndex;
-        LobbyManager.instance.RegisterPlayer(this);
-    }
-
-    public void OnReadyButton(InputAction.CallbackContext context)
-    {
-        if (context.performed)
-        {
-            isReady = !isReady;
-            LobbyManager.instance.UpdateReadyState();
-            Debug.Log("Player " + playerIndex + (isReady ? " is Ready" : " is Not Ready"));
-        }
-    }
-
-    public bool IsReady()
-    {
-        return isReady;
-    }
-
-    public void SetSelectedCharacter(int characterID)
-    {
-        selectedCharacter = characterID;
-    }
-
-    //Spawn point
-    public void OnPlayerJoined(PlayerInput playerInput)
-    {
-        int index = playerInput.playerIndex;
-        Debug.Log(index);
-        if (index < spawnPoints.Length)
-        {
-            playerInput.transform.position = spawnPoints[index].transform.position;
-        }
-    }
-    */
 }
