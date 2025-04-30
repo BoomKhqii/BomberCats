@@ -166,6 +166,7 @@ MonoBehaviour:
   skill: {fileID: 9215971583486235875}
   curseEnergy: {fileID: 0}
   ceName: CE Pool of Levi
+  bombCost: 100
 --- !u!114 &21223312642145242
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -300,3 +301,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 15ca21e2d10a6064da90720b3e1eb001, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  twoEffect: 0
+  blocked:
+    serializedVersion: 2
+    m_Bits: 904

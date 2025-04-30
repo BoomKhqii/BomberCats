@@ -20,8 +20,11 @@ public class LeviController : MonoBehaviour
     private float cooldownLeviscaped = 15;
     private bool isLeviscapedActive = true;
     private int leviscapedAmountCasted = 0;
-    private bool isLeviscapedIntervalActive = false;
     private bool tpCoroutine = false;
+    private float tpRadius = 20f;
+    float minXZ = -7f, maxXZ = 7f;
+    public LayerMask blocked;
+    private CharacterController tp;
 
     // Ultimate - Levi change it up!
     private float cooldownLeviChangeItUp = 60;
@@ -82,31 +85,65 @@ public class LeviController : MonoBehaviour
     {
         if (!context.performed || !isLeviscapedActive) return;
 
-        if (curseEnergy.CEReduction(250) && !isLeviscapedIntervalActive)
+        if (!tpCoroutine && curseEnergy.CEReduction(250))
         {
-            isLeviscapedIntervalActive = true;
-            tpCoroutine = true;
             StartCoroutine(LeviscapedActions());
-
             return; // click twice
         }
-        else if (!curseEnergy.CEReduction(250) && !isLeviscapedIntervalActive) return;
 
-        if(tpCoroutine)
+        if (tpCoroutine)
         {
-            tpAction();
+            if(leviscapedAmountCasted < 2)
+                tpAction();
         }
     }
 
     IEnumerator LeviscapedActions()
     {
-        yield return new WaitForSeconds(15f);
-        tpCoroutine = false;
+        tpCoroutine = true;
+
+        yield return new WaitForSeconds(5f);
+
+        tpCoroutine = false;;
+        isLeviscapedActive = false;
     }
 
     public void tpAction()
     {
+        Debug.Log("tp'd actions");
 
+        // used Junoker ultimate code
+        bool untilTp = false;
+        while (!untilTp)
+        {
+            Vector3 center = transform.position;
+            // Step 1: random point in circle
+            Vector2 random2D = Random.insideUnitCircle * tpRadius;
+            Vector3 randomPosition = center + new Vector3(random2D.x, 0, random2D.y);
+
+            // Step 2: adjust for height, or use terrain height here
+            randomPosition.y = 1.38f;
+
+            // Step 3: check if space is not blocked
+            if (!Physics.CheckSphere(randomPosition, 0.4f, blocked) &&
+                randomPosition.x >= minXZ && randomPosition.x <= maxXZ &&
+                randomPosition.z >= minXZ && randomPosition.z <= maxXZ)
+            {
+                // Step 4: instantiate and break out of loop
+                tp = GetComponent<CharacterController>();
+                tp.enabled = false;
+                gameObject.transform.position = randomPosition;
+                tp.enabled = true;
+                untilTp = true;
+                leviscapedAmountCasted++;
+            }
+        }
+        if(leviscapedAmountCasted == 2)
+        {
+            StopCoroutine(LeviscapedActions());
+            tpCoroutine = false; ;
+            isLeviscapedActive = false;
+        }
     }
 
     public void LeviChangeItUp(InputAction.CallbackContext context)
