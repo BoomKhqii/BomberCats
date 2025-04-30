@@ -324,11 +324,13 @@ public class LeviController : MonoBehaviour
         if (ProbabilityChance() < 0.10f)
         {
             isAwakened = true;
-        }
+            Debug.Log("awaken");
+        } else Debug.Log("failed");
     }
 
     IEnumerator PassiveCountDown()
     {
+        Debug.Log("Countdown");
         isPassiveCountDown = true;
         yield return new WaitForSeconds(10f);
         Unlevictable();
