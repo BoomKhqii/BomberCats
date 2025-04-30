@@ -16,6 +16,7 @@ GameObject:
   - component: {fileID: -2409929765409534219}
   - component: {fileID: 682079550429806375}
   - component: {fileID: 21223312642145242}
+  - component: {fileID: 2094569873924968973}
   m_Layer: 0
   m_Name: Levi
   m_TagString: Untagged
@@ -223,15 +224,51 @@ MonoBehaviour:
     m_ActionId: 50b3ceb1-cdd8-4d27-b0bc-caa44342bd3d
     m_ActionName: Player/Abilities[/Keyboard/q,/DualSenseGamepadHID/buttonEast]
   - m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 2094569873924968973}
+        m_TargetAssemblyTypeName: LeviController, Assembly-CSharp
+        m_MethodName: EffectsEffects
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
     m_ActionId: ec5e4a2c-f2d3-452e-9f02-7288002e39c9
     m_ActionName: Player/Signature[/Keyboard/e,/DualSenseGamepadHID/buttonWest]
   - m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 2094569873924968973}
+        m_TargetAssemblyTypeName: LeviController, Assembly-CSharp
+        m_MethodName: Leviscaped
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
     m_ActionId: 4307bff3-dd7a-433d-b2a0-9782d304c577
     m_ActionName: Player/Heavy[/Keyboard/c,/DualSenseGamepadHID/buttonSouth]
   - m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 2094569873924968973}
+        m_TargetAssemblyTypeName: LeviController, Assembly-CSharp
+        m_MethodName: Leviscaped
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
     m_ActionId: bdd47efa-7d6f-4353-a546-6e45fccb07c2
     m_ActionName: Player/Ultimate[/Keyboard/x,/DualSenseGamepadHID/buttonNorth]
   - m_PersistentCalls:
@@ -251,3 +288,15 @@ MonoBehaviour:
   m_DefaultActionMap: Player
   m_SplitScreenIndex: -1
   m_Camera: {fileID: 0}
+--- !u!114 &2094569873924968973
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4469120137158393124}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 15ca21e2d10a6064da90720b3e1eb001, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
