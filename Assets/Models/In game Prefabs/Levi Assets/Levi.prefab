@@ -19,7 +19,7 @@ GameObject:
   - component: {fileID: 2094569873924968973}
   m_Layer: 7
   m_Name: Levi
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -146,6 +146,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   isOtto: 0
+  isInvulnerable: 0
 --- !u!114 &682079550429806375
 MonoBehaviour:
   m_ObjectHideFlags: 0

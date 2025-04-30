@@ -11,7 +11,8 @@ public class LeviController : MonoBehaviour
 
     //passive
     private bool isPassiveCountDown = false;
-    private bool isAwakened = false;
+    private bool isAwakened = true;
+    private ObjectStatus leviscaped2;
 
     // Singature - Effects! Effects!
     private float cooldownEffectsEffects = 15;
@@ -56,7 +57,8 @@ public class LeviController : MonoBehaviour
 
         if(isAwakened)
         {
-            NOMORECHANCE();
+            StartCoroutine(NOMORECHANCE());
+            return;
         }
 
         float effectsEffectsValue = ProbabilityChance();
@@ -84,6 +86,7 @@ public class LeviController : MonoBehaviour
 
     IEnumerator NOMORECHANCE()
     {
+        Debug.Log("nomorechacnes");
         // effect 3
         bombAbility = gameObject.GetComponent<BasicAbility>();
         bombAbility.bombCost = 0;
@@ -174,6 +177,9 @@ public class LeviController : MonoBehaviour
                 tp.enabled = true;
                 untilTp = true;
                 leviscapedAmountCasted++;
+
+                if (isAwakened)
+                    StartCoroutine(Leviscaped2Invulnerability());
             }
         }
         if (leviscapedAmountCasted == 2)
@@ -182,6 +188,15 @@ public class LeviController : MonoBehaviour
             tpCoroutine = false;
             isLeviscapedActive = false;
         }
+    }
+
+    IEnumerator Leviscaped2Invulnerability()
+    {
+        Debug.Log("Leviscaped2Invulnerability");
+        leviscaped2 = GetComponent<ObjectStatus>();
+        leviscaped2.isInvulnerable = true;
+        yield return new WaitForSeconds(3f);
+        leviscaped2.isInvulnerable = false;
     }
 
     public void LeviChangeItUp(InputAction.CallbackContext context)

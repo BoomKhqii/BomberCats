@@ -7,10 +7,11 @@ public class ObjectStatus : MonoBehaviour
     private bool currentStatus;
     private OttoGojoController player;
     public bool isOtto;
+    public bool isInvulnerable = false;
 
     public void StatusUpdate(bool currentStatus)
     {
-        if (currentStatus == false)
+        if (currentStatus == false && !isInvulnerable)
         {
             // exclusive for Gojo
             if (isOtto)
