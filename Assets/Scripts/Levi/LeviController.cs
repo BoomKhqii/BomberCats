@@ -9,6 +9,10 @@ public class LeviController : MonoBehaviour
     private CurseEnergyLogic curseEnergy;
     private GeneralPlayerController player;
 
+    //passive
+    private bool isPassiveCountDown = false;
+    private bool isAwakened = false;
+
     // Singature - Effects! Effects!
     private float cooldownEffectsEffects = 15;
     private bool isEffectsEffectsActive = true;
@@ -51,17 +55,17 @@ public class LeviController : MonoBehaviour
         if (!context.performed || !isEffectsEffectsActive || !curseEnergy.CEReduction(150)) return;
 
         float effectsEffectsValue = ProbabilityChance();
-        if(effectsEffectsValue < 0.3333f)
+        if (effectsEffectsValue < 0.3333f)
         {
             Debug.Log("1");
-            if(curseEnergy.CEReduction(150))
-                oneEffect = true; 
+            if (curseEnergy.CEReduction(150))
+                oneEffect = true;
             else
             {
                 curseEnergy.currentPool = 0;
             }
         }
-        else if(effectsEffectsValue < 0.6666f)
+        else if (effectsEffectsValue < 0.6666f)
         {
             Debug.Log("2");
             StartCoroutine(twoEffectsTimer());
@@ -107,7 +111,7 @@ public class LeviController : MonoBehaviour
 
         if (tpCoroutine)
         {
-            if(leviscapedAmountCasted < 2)
+            if (leviscapedAmountCasted < 2)
                 tpAction();
         }
     }
@@ -150,7 +154,7 @@ public class LeviController : MonoBehaviour
                 leviscapedAmountCasted++;
             }
         }
-        if(leviscapedAmountCasted == 2)
+        if (leviscapedAmountCasted == 2)
         {
             StopCoroutine(LeviscapedActions());
             tpCoroutine = false;
@@ -188,9 +192,28 @@ public class LeviController : MonoBehaviour
 
     void Update()
     {
+        if(!isPassiveCountDown)
+            StartCoroutine(PassiveCountDown());
+
         UpdateEffectsEffectsCooldown();
         UpdateLeviscapedCooldown();
         UpdateLeviChangeItUpCooldown();
+    }
+
+    private void Unlevictable()
+    {
+        if (ProbabilityChance() < 0.10f)
+        {
+            isAwakened = true;
+        }
+    }
+
+    IEnumerator PassiveCountDown()
+    {
+        isPassiveCountDown = true;
+        yield return new WaitForSeconds(10f);
+        Unlevictable();
+        isPassiveCountDown = false;
     }
 
     // Cooldown - Signature
