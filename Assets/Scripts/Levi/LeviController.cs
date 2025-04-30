@@ -11,7 +11,7 @@ public class LeviController : MonoBehaviour
 
     //passive
     private bool isPassiveCountDown = false;
-    private bool isAwakened = true;
+    private bool isAwakened = false;
     private ObjectStatus leviscaped2;
 
     // Singature - Effects! Effects!
@@ -38,6 +38,7 @@ public class LeviController : MonoBehaviour
     private int leviChangeItUpAmountCasted = 0;
     private bool[] corner = { false, false, false, false };
     public GameObject bigBomb;
+    private int? initialCorner = null;
 
     void Start()
     {
@@ -199,9 +200,90 @@ public class LeviController : MonoBehaviour
         leviscaped2.isInvulnerable = false;
     }
 
+    private readonly Dictionary<int, int> diagonalPairs = new Dictionary<int, int>
+    {
+        { 0, 3 }, { 3, 0 },
+        { 1, 2 }, { 2, 1 }
+    };
+
+    private readonly Vector3[] cornerPositions = new Vector3[]
+    {
+        new Vector3(-3.5f, 20, 3.5f),   // 0: top right
+        new Vector3(-3.5f, 20, -3.5f),  // 1: bottom right
+        new Vector3(3.5f, 20, 3.5f),    // 2: top left
+        new Vector3(3.5f, 20, -3.5f)    // 3: bottom left
+    };
+
     public void LeviChangeItUp(InputAction.CallbackContext context)
     {
         if (!context.performed || !isLeviChangeItUpActive || !curseEnergy.CEReduction(2500)) return;
+
+        int destroyedCount = 0;
+        for (int i = 0; i < corner.Length; i++)
+            if (corner[i]) destroyedCount++;
+
+        // Collect valid corners
+        List<int> availableCorners = new List<int>();
+        for (int i = 0; i < 4; i++)
+        {
+            if (corner[i]) continue; // already destroyed
+            if (initialCorner.HasValue && i == diagonalPairs[initialCorner.Value]) continue; // prevent diagonal
+            availableCorners.Add(i);
+        }
+
+        if (availableCorners.Count == 0)
+        {
+            Debug.Log("No valid corners left.");
+            return;
+        }
+
+        // Awakened Mode: Destroy 2 corners if possible
+        if (isAwakened && destroyedCount <= 1 && availableCorners.Count >= 2)
+        {
+            int first = availableCorners[Random.Range(0, availableCorners.Count)];
+            availableCorners.Remove(first);
+
+            // Filter second options: not diagonally opposite to the first
+            availableCorners.Remove(diagonalPairs[first]);
+            if (availableCorners.Count == 0)
+            {
+                Debug.Log("No second valid corner after diagonal filter.");
+                return;
+            }
+
+            int second = availableCorners[Random.Range(0, availableCorners.Count)];
+
+            // Destroy both
+            corner[first] = true;
+            corner[second] = true;
+            Instantiate(bigBomb, cornerPositions[first], Quaternion.identity);
+            Instantiate(bigBomb, cornerPositions[second], Quaternion.identity);
+
+            initialCorner = first;
+            leviChangeItUpAmountCasted++;
+            return;
+        }
+
+        // Normal behavior: destroy 1 corner
+        int chosenIndex = availableCorners[Random.Range(0, availableCorners.Count)];
+        corner[chosenIndex] = true;
+        Instantiate(bigBomb, cornerPositions[chosenIndex], Quaternion.identity);
+
+        if (!initialCorner.HasValue)
+            initialCorner = chosenIndex;
+
+        leviChangeItUpAmountCasted++;
+    }
+
+    /*
+    public void LeviChangeItUp(InputAction.CallbackContext context)
+    {
+        if (!context.performed || !isLeviChangeItUpActive || !curseEnergy.CEReduction(2500)) return;
+
+        /*
+         *      3 & 2 = 1 - 3 = 1 & 4
+         *      1 & 4 = 2 - 4 = 2 & 3
+         *
 
         float rand = ProbabilityChance();
         if (rand < 0.25f && !corner[0])           // 1: top right
@@ -226,7 +308,7 @@ public class LeviController : MonoBehaviour
         }
         leviChangeItUpAmountCasted++;
     }
-
+    */
     void Update()
     {
         if(!isPassiveCountDown && !isAwakened)

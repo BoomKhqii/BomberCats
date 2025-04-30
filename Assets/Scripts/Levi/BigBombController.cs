@@ -5,7 +5,6 @@ using UnityEngine;
 public class BigBombController : MonoBehaviour
 {
     public Transform bombLocation;
-    float bombLocationY = 20;
 
     public ParticleSystem explosion;
 
