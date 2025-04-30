@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using UnityEditor.Experimental.GraphView;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -12,6 +13,8 @@ public class LeviController : MonoBehaviour
     private float cooldownEffectsEffects = 15;
     private bool isEffectsEffectsActive = true;
     private bool oneEffect = false;
+    public bool twoEffect = false;
+    private BasicAbility bombAbility; // three effect
 
     // Heavy - Leviscaped
     private float cooldownLeviscaped = 15;
@@ -30,6 +33,41 @@ public class LeviController : MonoBehaviour
     public void EffectsEffects(InputAction.CallbackContext context)
     {
         if (!context.performed || !isEffectsEffectsActive || !curseEnergy.CEReduction(150)) return;
+
+        float effectsEffectsValue = ProbabilityChanceEffectsEffects();
+        if(effectsEffectsValue < 0.3333f)
+        {
+            // -100
+            oneEffect = true; 
+        }
+        else if(effectsEffectsValue < 0.6666f)
+        {
+            StartCoroutine(twoEffectsTimer());
+        }
+        else
+        {
+            StartCoroutine(threeEffectsTimer());
+        }
+    }
+
+    IEnumerator twoEffectsTimer()
+    {
+        twoEffect = true;
+        yield return new WaitForSeconds(5f);
+        twoEffect = false;
+    }
+
+    IEnumerator threeEffectsTimer()
+    {
+        bombAbility = gameObject.GetComponent<BasicAbility>();
+        bombAbility.bombCost = 0;
+        yield return new WaitForSeconds(15f);
+        bombAbility.bombCost = 100;
+    }
+
+    public float ProbabilityChanceEffectsEffects()
+    {
+        return UnityEngine.Random.value;
     }
 
     public void Leviscaped(InputAction.CallbackContext context)
@@ -64,6 +102,7 @@ public class LeviController : MonoBehaviour
             {
                 cooldownEffectsEffects = 3;
                 isEffectsEffectsActive = true;
+                oneEffect = false;
             }
         }
     }

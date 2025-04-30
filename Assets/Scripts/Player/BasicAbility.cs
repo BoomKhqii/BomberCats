@@ -16,6 +16,8 @@ public class BasicAbility : MonoBehaviour
     public CurseEnergyLogic curseEnergy;
     public string ceName;
 
+    public float bombCost = 100;
+
     private void Start()
     {
         curseEnergy = GameObject.Find(ceName).GetComponent<CurseEnergyLogic>();
@@ -24,7 +26,7 @@ public class BasicAbility : MonoBehaviour
 
     public void SpawnBomb(InputAction.CallbackContext context)
     {
-        if (!isCoroutineRunning && !Physics.CheckSphere(playerLocation.position, 0.6f, playerOnBomb) && context.performed && curseEnergy.CEReduction(100))
+        if (!isCoroutineRunning && !Physics.CheckSphere(playerLocation.position, 0.6f, playerOnBomb) && context.performed && curseEnergy.CEReduction(bombCost))
         {
             StartCoroutine(waiter());
         }
