@@ -13,8 +13,9 @@ public class LeviController : MonoBehaviour
     private float cooldownEffectsEffects = 15;
     private bool isEffectsEffectsActive = true;
     private bool oneEffect = false;
-    public bool twoEffect = false;
-    private BasicAbility bombAbility; // three effect
+    private BasicAbility bombAbility; // two & three effect
+    public GameObject effect2Bomb;
+    private GameObject bomb;
 
     // Heavy - Leviscaped
     private float cooldownLeviscaped = 15;
@@ -30,11 +31,12 @@ public class LeviController : MonoBehaviour
     private float cooldownLeviChangeItUp = 60;
     private bool isLeviChangeItUpActive = true;
     private int leviChangeItUpAmountCasted = 0;
-    private bool corner1, corner2, corner3, corner4 = false;
+    private bool[] corner = { false, false, false, false };
     public GameObject bigBomb;
 
     void Start()
     {
+        bombAbility = GetComponent<BasicAbility>();
         player = GetComponent<GeneralPlayerController>();
         curseEnergy = GameObject.Find("CE Pool of Levi").GetComponent<CurseEnergyLogic>();
     }
@@ -51,24 +53,32 @@ public class LeviController : MonoBehaviour
         float effectsEffectsValue = ProbabilityChance();
         if(effectsEffectsValue < 0.3333f)
         {
-            // -100
-            oneEffect = true; 
+            Debug.Log("1");
+            if(curseEnergy.CEReduction(150))
+                oneEffect = true; 
+            else
+            {
+                curseEnergy.currentPool = 0;
+            }
         }
         else if(effectsEffectsValue < 0.6666f)
         {
+            Debug.Log("2");
             StartCoroutine(twoEffectsTimer());
         }
         else
         {
+            Debug.Log("3");
             StartCoroutine(threeEffectsTimer());
         }
     }
 
     IEnumerator twoEffectsTimer()
     {
-        twoEffect = true;
-        yield return new WaitForSeconds(5f);
-        twoEffect = false;
+        this.bomb = bombAbility.bomb;
+        bombAbility.bomb = effect2Bomb;
+        yield return new WaitForSeconds(10f);
+        bombAbility.bomb = this.bomb;
     }
 
     IEnumerator threeEffectsTimer()
@@ -153,26 +163,27 @@ public class LeviController : MonoBehaviour
         if (!context.performed || !isLeviChangeItUpActive || !curseEnergy.CEReduction(2500)) return;
 
         float rand = ProbabilityChance();
-        if (rand < 0.25f)           // 1: top right
+        if (rand < 0.25f && !corner[0])           // 1: top right
         {
-            corner1 = true;             // -3.5     3.5
+            corner[0] = true;             // -3.5     3.5
             Instantiate(bigBomb, new Vector3(-3.5f, 20, 3.5f), bigBomb.transform.rotation);
         }
-        else if (rand < 0.50f)      // 2: bottom right
+        else if (rand < 0.50f && !corner[1])      // 2: bottom right
         {
-            corner2 = true;             // -3.5     -3.5
+            corner[1] = true;             // -3.5     -3.5
             Instantiate(bigBomb, new Vector3(-3.5f, 20, -3.5f), Quaternion.identity);
         }
-        else if (rand < 0.65f)      // 3: top left
+        else if (rand < 0.65f && !corner[2])      // 3: top left
         {
-            corner3 = true;             // 3.5     3.5
+            corner[2] = true;             // 3.5     3.5
             Instantiate(bigBomb, new Vector3(3.5f, 20, 3.5f), Quaternion.identity);
         }
-        else                        // 4: bottom left
+        else if (!corner[3])                      // 4: bottom left
         {
-            corner4 = true;             // 3.5     -3.5
+            corner[3] = true;             // 3.5     -3.5
             Instantiate(bigBomb, new Vector3(3.5f, 20, -3.5f), Quaternion.identity);
         }
+        leviChangeItUpAmountCasted++;
     }
 
     void Update()
