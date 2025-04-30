@@ -54,6 +54,11 @@ public class LeviController : MonoBehaviour
     {
         if (!context.performed || !isEffectsEffectsActive || !curseEnergy.CEReduction(150)) return;
 
+        if(isAwakened)
+        {
+            NOMORECHANCE();
+        }
+
         float effectsEffectsValue = ProbabilityChance();
         if (effectsEffectsValue < 0.3333f)
         {
@@ -75,6 +80,23 @@ public class LeviController : MonoBehaviour
             Debug.Log("3");
             StartCoroutine(threeEffectsTimer());
         }
+    }
+
+    IEnumerator NOMORECHANCE()
+    {
+        // effect 3
+        bombAbility = gameObject.GetComponent<BasicAbility>();
+        bombAbility.bombCost = 0;
+        // effect 2
+        this.bomb = bombAbility.bomb;
+        bombAbility.bomb = effect2Bomb;
+
+        yield return new WaitForSeconds(5f);
+
+        //effect 3
+        bombAbility.bombCost = 100;
+        //effect 2
+        bombAbility.bomb = this.bomb;
     }
 
     IEnumerator twoEffectsTimer()
@@ -192,7 +214,7 @@ public class LeviController : MonoBehaviour
 
     void Update()
     {
-        if(!isPassiveCountDown)
+        if(!isPassiveCountDown && !isAwakened)
             StartCoroutine(PassiveCountDown());
 
         UpdateEffectsEffectsCooldown();
