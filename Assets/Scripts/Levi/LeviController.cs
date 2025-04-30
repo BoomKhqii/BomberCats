@@ -31,6 +31,7 @@ public class LeviController : MonoBehaviour
     private bool isLeviChangeItUpActive = true;
     private int leviChangeItUpAmountCasted = 0;
     private bool corner1, corner2, corner3, corner4 = false;
+    public GameObject bigBomb;
 
     void Start()
     {
@@ -154,19 +155,23 @@ public class LeviController : MonoBehaviour
         float rand = ProbabilityChance();
         if (rand < 0.25f)           // 1: top right
         {
-            // 
+            corner1 = true;             // -3.5     3.5
+            Instantiate(bigBomb, new Vector3(-3.5f, 20, 3.5f), bigBomb.transform.rotation);
         }
         else if (rand < 0.50f)      // 2: bottom right
         {
-            //
+            corner2 = true;             // -3.5     -3.5
+            Instantiate(bigBomb, new Vector3(-3.5f, 20, -3.5f), Quaternion.identity);
         }
         else if (rand < 0.65f)      // 3: top left
         {
-            //
+            corner3 = true;             // 3.5     3.5
+            Instantiate(bigBomb, new Vector3(3.5f, 20, 3.5f), Quaternion.identity);
         }
         else                        // 4: bottom left
         {
-            //
+            corner4 = true;             // 3.5     -3.5
+            Instantiate(bigBomb, new Vector3(3.5f, 20, -3.5f), Quaternion.identity);
         }
     }
 

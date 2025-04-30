@@ -17,7 +17,7 @@ GameObject:
   - component: {fileID: 682079550429806375}
   - component: {fileID: 21223312642145242}
   - component: {fileID: 2094569873924968973}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Levi
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -260,7 +260,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 2094569873924968973}
         m_TargetAssemblyTypeName: LeviController, Assembly-CSharp
-        m_MethodName: Leviscaped
+        m_MethodName: LeviChangeItUp
         m_Mode: 0
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -304,4 +304,5 @@ MonoBehaviour:
   twoEffect: 0
   blocked:
     serializedVersion: 2
-    m_Bits: 776
+    m_Bits: 904
+  bigBomb: {fileID: 4466744194402806859, guid: b4d060cf81f207740bed1410e4973736, type: 3}
