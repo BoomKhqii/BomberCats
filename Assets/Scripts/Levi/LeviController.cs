@@ -30,6 +30,7 @@ public class LeviController : MonoBehaviour
     private float cooldownLeviChangeItUp = 60;
     private bool isLeviChangeItUpActive = true;
     private int leviChangeItUpAmountCasted = 0;
+    private bool corner1, corner2, corner3, corner4 = false;
 
     void Start()
     {
@@ -37,11 +38,16 @@ public class LeviController : MonoBehaviour
         curseEnergy = GameObject.Find("CE Pool of Levi").GetComponent<CurseEnergyLogic>();
     }
 
+    public float ProbabilityChance()
+    {
+        return UnityEngine.Random.value;
+    }
+
     public void EffectsEffects(InputAction.CallbackContext context)
     {
         if (!context.performed || !isEffectsEffectsActive || !curseEnergy.CEReduction(150)) return;
 
-        float effectsEffectsValue = ProbabilityChanceEffectsEffects();
+        float effectsEffectsValue = ProbabilityChance();
         if(effectsEffectsValue < 0.3333f)
         {
             // -100
@@ -72,15 +78,12 @@ public class LeviController : MonoBehaviour
         bombAbility.bombCost = 100;
     }
 
-    public float ProbabilityChanceEffectsEffects()
-    {
-        return UnityEngine.Random.value;
-    }
-
+    /*
     // click once for activation
     // click again for random tp
     // click again for ANOTHER random tp, however for the second second click the timer will automatically end
     // timer ends after 5 seconds
+    */
     public void Leviscaped(InputAction.CallbackContext context)
     {
         if (!context.performed || !isLeviscapedActive) return;
@@ -102,7 +105,7 @@ public class LeviController : MonoBehaviour
     {
         tpCoroutine = true;
 
-        yield return new WaitForSeconds(5f);
+        yield return new WaitForSeconds(10f);
 
         tpCoroutine = false;
         isLeviscapedActive = false;
@@ -110,8 +113,6 @@ public class LeviController : MonoBehaviour
 
     public void tpAction()
     {
-        Debug.Log("tp'd actions");
-
         // used Junoker ultimate code
         bool untilTp = false;
         while (!untilTp)
@@ -149,6 +150,24 @@ public class LeviController : MonoBehaviour
     public void LeviChangeItUp(InputAction.CallbackContext context)
     {
         if (!context.performed || !isLeviChangeItUpActive || !curseEnergy.CEReduction(2500)) return;
+
+        float rand = ProbabilityChance();
+        if (rand < 0.25f)           // 1: top right
+        {
+            // 
+        }
+        else if (rand < 0.50f)      // 2: bottom right
+        {
+            //
+        }
+        else if (rand < 0.65f)      // 3: top left
+        {
+            //
+        }
+        else                        // 4: bottom left
+        {
+            //
+        }
     }
 
     void Update()
