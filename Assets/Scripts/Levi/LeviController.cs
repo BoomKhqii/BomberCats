@@ -79,8 +79,8 @@ public class LeviController : MonoBehaviour
 
     // click once for activation
     // click again for random tp
-    // click again for ANOTHER random tp
-    // timer ends after 15 seconds
+    // click again for ANOTHER random tp, however for the second second click the timer will automatically end
+    // timer ends after 5 seconds
     public void Leviscaped(InputAction.CallbackContext context)
     {
         if (!context.performed || !isLeviscapedActive) return;
@@ -104,7 +104,7 @@ public class LeviController : MonoBehaviour
 
         yield return new WaitForSeconds(5f);
 
-        tpCoroutine = false;;
+        tpCoroutine = false;
         isLeviscapedActive = false;
     }
 
@@ -141,7 +141,7 @@ public class LeviController : MonoBehaviour
         if(leviscapedAmountCasted == 2)
         {
             StopCoroutine(LeviscapedActions());
-            tpCoroutine = false; ;
+            tpCoroutine = false;
             isLeviscapedActive = false;
         }
     }
