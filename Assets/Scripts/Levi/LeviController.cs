@@ -19,10 +19,14 @@ public class LeviController : MonoBehaviour
     // Heavy - Leviscaped
     private float cooldownLeviscaped = 15;
     private bool isLeviscapedActive = true;
+    private int leviscapedAmountCasted = 0;
+    private bool isLeviscapedIntervalActive = false;
+    private bool tpCoroutine = false;
 
     // Ultimate - Levi change it up!
     private float cooldownLeviChangeItUp = 60;
     private bool isLeviChangeItUpActive = true;
+    private int leviChangeItUpAmountCasted = 0;
 
     void Start()
     {
@@ -70,9 +74,39 @@ public class LeviController : MonoBehaviour
         return UnityEngine.Random.value;
     }
 
+    // click once for activation
+    // click again for random tp
+    // click again for ANOTHER random tp
+    // timer ends after 15 seconds
     public void Leviscaped(InputAction.CallbackContext context)
     {
-        if (!context.performed || !isLeviscapedActive || !curseEnergy.CEReduction(250)) return;
+        if (!context.performed || !isLeviscapedActive) return;
+
+        if (curseEnergy.CEReduction(250) && !isLeviscapedIntervalActive)
+        {
+            isLeviscapedIntervalActive = true;
+            tpCoroutine = true;
+            StartCoroutine(LeviscapedActions());
+
+            return; // click twice
+        }
+        else if (!curseEnergy.CEReduction(250) && !isLeviscapedIntervalActive) return;
+
+        if(tpCoroutine)
+        {
+            tpAction();
+        }
+    }
+
+    IEnumerator LeviscapedActions()
+    {
+        yield return new WaitForSeconds(15f);
+        tpCoroutine = false;
+    }
+
+    public void tpAction()
+    {
+
     }
 
     public void LeviChangeItUp(InputAction.CallbackContext context)
