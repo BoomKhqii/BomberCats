@@ -208,10 +208,10 @@ public class LeviController : MonoBehaviour
 
     private readonly Vector3[] cornerPositions = new Vector3[]
     {
-        new Vector3(-3.5f, 20, 3.5f),   // 0: top right
-        new Vector3(-3.5f, 20, -3.5f),  // 1: bottom right
-        new Vector3(3.5f, 20, 3.5f),    // 2: top left
-        new Vector3(3.5f, 20, -3.5f)    // 3: bottom left
+        new Vector3(-4f, 20, 4f),   // 0: top right
+        new Vector3(-4f, 20, -4f),  // 1: bottom right
+        new Vector3(4f, 20, 4f),    // 2: top left
+        new Vector3(4f, 20, -4f)    // 3: bottom left
     };
 
     public void LeviChangeItUp(InputAction.CallbackContext context)

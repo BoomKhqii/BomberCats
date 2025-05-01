@@ -16,7 +16,7 @@ public class BigExplosionController : MonoBehaviour
 
     void DidKill()
     {
-        Collider[] hit = Physics.OverlapBox(fire.position, new Vector3(3.5f, 5f, 3.5f), Quaternion.identity, everything);
+        Collider[] hit = Physics.OverlapBox(fire.position, new Vector3(4f, 4f, 4f), Quaternion.identity, everything);
         Debug.Log(hit.Length);
         foreach (Collider col in hit)
         {
