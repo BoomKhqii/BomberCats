@@ -63,7 +63,7 @@ public class DeusDecimusController : MonoBehaviour
 
     public void DeusAlmighty(InputAction.CallbackContext context)
     {
-        if (!context.performed || !isDeusAlmightyActive || !curseEnergy.CEReduction(200)) return;
+        if (!context.performed || player.signatureSkill == 0 || !isDeusAlmightyActive || !curseEnergy.CEReduction(200)) return;
         origin = transform.position;
         StartCoroutine(DeusAlmightyAction());
 
@@ -82,7 +82,7 @@ public class DeusDecimusController : MonoBehaviour
 
     public void Punish(InputAction.CallbackContext context)
     {
-        if (!context.performed || !isPunishActive || !curseEnergy.CEReduction(500)) return;
+        if (!context.performed || player.heavySkill == 0 || !isPunishActive || !curseEnergy.CEReduction(500)) return;
 
         Vector3 spawnOffset = player.transform.forward.normalized;
         Vector3 spawnPos = new Vector3(
@@ -99,7 +99,7 @@ public class DeusDecimusController : MonoBehaviour
 
     public void EndsOfTheUniverse(InputAction.CallbackContext context)
     {
-        if (!context.performed || !isEndsOfTheUniverseActive || !curseEnergy.CEReduction(2000)) return;
+        if (!context.performed || player.ultimateSkill == 0 || !isEndsOfTheUniverseActive || !curseEnergy.CEReduction(2000)) return;
         Instantiate(blackHole);
         isEndsOfTheUniverseActive = false;
     }
