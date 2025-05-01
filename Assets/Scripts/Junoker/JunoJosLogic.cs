@@ -37,10 +37,9 @@ public class JunoJosLogic : MonoBehaviour
 
     public void Upgrade(float level)
     {
-        Debug.Log(level);
-        if (level < 1)           // 0
+        if (level < 2)     // 1
             return;
-        else if (level < 2)     // 1
+        else if (level < 3)     // 1
             duration = 7f;
         else                    // 2 +
             duration = 10f;

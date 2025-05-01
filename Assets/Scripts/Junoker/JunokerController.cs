@@ -29,8 +29,11 @@ public class JunokerController : MonoBehaviour
     private CharacterController controller;
     [SerializeField]
     private GameObject junoWhereIGoCloneObject;
-    private float durationInvis = 1f; //1, 2, 3 
+    private float origDurationInvis = 1f;
+    private float durationInvis; //1, 2, 3 
     private bool isinvisOn = false;
+
+    private float levelJunoWhereIGo = 0;
 
     // Juno Jos Jes Juatro
     private float cooldownJunoJosJesJuatro = 30;
@@ -43,13 +46,14 @@ public class JunokerController : MonoBehaviour
     void Start()
     {
         player = GetComponent<GeneralPlayerController>();
+
         curseEnergy = GameObject.Find("CE Pool of Junoker").GetComponent<CurseEnergyLogic>();
         controller = GetComponent<CharacterController>();
     }
 
     public void JunoJos(InputAction.CallbackContext context)
     {
-        if (!context.performed || !isJunoJosActive || !curseEnergy.CEReduction(150)) return;
+        if (!context.performed || player.signatureSkill == 0 || !isJunoJosActive || !curseEnergy.CEReduction(150)) return;
 
         GameObject junojos = Instantiate(junosJoCloneObject, new Vector3(
             Mathf.RoundToInt(cloneLocation.position.x),
@@ -63,7 +67,10 @@ public class JunokerController : MonoBehaviour
 
     public void JunoWhereIGo(InputAction.CallbackContext context)
     {
-        if (!context.performed || !isJunoWhereIGoActive || !curseEnergy.CEReduction(200)) return;
+        levelJunoWhereIGo = player.heavySkill;
+        Upgrade(levelJunoWhereIGo);
+
+        if (!context.performed || player.heavySkill == 0 || !isJunoWhereIGoActive || !curseEnergy.CEReduction(200)) return;
 
         Vector3 dashTarget = new Vector3(
             Mathf.RoundToInt(cloneLocation.position.x),
@@ -82,8 +89,8 @@ public class JunokerController : MonoBehaviour
             Mathf.RoundToInt(cloneLocation.position.x),
             1.38f,
             Mathf.RoundToInt(cloneLocation.position.z)), Quaternion.identity);
+            durationInvis = origDurationInvis;
             isinvisOn = true;
-            IsJunoInvis(isinvisOn);
 
             controller.enabled = false;
             transform.position = dashTarget;
@@ -99,18 +106,28 @@ public class JunokerController : MonoBehaviour
         {
             invis.enabled = false;
             durationInvis -= Time.deltaTime;
-            if(durationInvis <= 0)
+            if (durationInvis <= 0)
             {
-                durationInvis = 1; // with skill increment
+                durationInvis = origDurationInvis; // with skill increment
                 invis.enabled = true;
                 isinvisOn = false;
             }
         }
     }
 
+    public void Upgrade(float level)
+    {
+        if (level < 2)     // 1
+            return;
+        else if (level < 3)     // 2
+            origDurationInvis = 2f;
+        else                    // 3 +
+            origDurationInvis = 3f;
+    }
+
     public void JunoJosJesJuatro(InputAction.CallbackContext context)
     {
-        if (!context.performed || !isJunoWhereIGoActive || !curseEnergy.CEReduction(800)) return;
+        if (!context.performed || player.ultimateSkill == 0 || !isJunoWhereIGoActive || !curseEnergy.CEReduction(800)) return;
 
         StartCoroutine(UltimateAction());
         /*
