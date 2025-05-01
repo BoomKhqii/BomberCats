@@ -44,12 +44,8 @@ public class DeusDecimusController : MonoBehaviour
 
     public void Upgrade(float level)
     {
-        if (level < 1)           // 0
+        if (level < 2)     // 1
             return;
-        else if (level < 2)     // 1
-        {
-            durationTime = 2.5f;
-        }
         else if (level < 3)     // 2
         {
             durationTime = 3f;

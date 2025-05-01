@@ -37,13 +37,8 @@ public class PunishLogic : MonoBehaviour
 
     public void Upgrade(float level)
     {
-        if(level < 1)           // 0
+        if (level < 2)     // 1
             return;
-        else if (level < 2)     // 1
-        {
-            speed = 5f;
-            duration = 5f;
-        }
         else if (level < 3)     // 2
         {
             speed = 5.5f;
