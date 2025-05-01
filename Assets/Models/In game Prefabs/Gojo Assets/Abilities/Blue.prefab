@@ -55,6 +55,9 @@ MonoBehaviour:
     m_Bits: 896
   ottoGojo: {fileID: 6292289971850779371, guid: 92dbb4edf2a797a4e925c3943502bb1d, type: 3}
   direction: {x: 0, y: 0, z: 0}
+  ignoreLayers:
+    serializedVersion: 2
+    m_Bits: 128
 --- !u!33 &4010943821340107265
 MeshFilter:
   m_ObjectHideFlags: 0

@@ -23,13 +23,16 @@ public class BlueLogic : MonoBehaviour
     private Vector3 targetPosition;
     private bool isMoving = true;
 
+    public LayerMask ignoreLayers;
+
+    private float level = 0;
+
 
     private void Start()
     {
         GeneralPlayerController skill = ottoGojo.GetComponent<GeneralPlayerController>(); // Accessing the skill upgrade
-        speed += skill.signatureSkill;
-        duration += skill.signatureSkill;
-        moveDistance += skill.signatureSkill;
+        level += skill.signatureSkill;
+        Upgrade(level);
 
         direction.Normalize(); // Always normalize to ensure consistent distance
         startPosition = transform.position;
@@ -37,16 +40,33 @@ public class BlueLogic : MonoBehaviour
         Destroy(gameObject, duration); // optional: auto-destroy after 3 seconds
     }
 
-    public void SkillUpdate(float increment) 
+    public void Upgrade(float level)
     {
-        if (increment == 0)
+        if (level < 2)     // 1
             return;
-
-        speed = speed + increment;
-        moveDistance = moveDistance + increment;
-        duration = duration + increment;
+        else if (level < 3)     // 2
+        {
+            pullStrength = 4f;
+            pullRadius = 3.5f;
+            speed = 3f;                  // Movement speed
+            duration = 5f;
+        }
+        else if (level < 4)     // 3
+        {
+            pullStrength = 4f;
+            pullRadius = 4f;
+            speed = 5f;                  // Movement speed
+            duration = 7f;
+        }
+        else                    // 4 +
+        {
+            pullStrength = 5f;
+            pullRadius = 5f;
+            speed = 10f;                  // Movement speed
+            duration = 15f;
+        }
     }
-    
+
     private void FixedUpdate()
     {
         Collider[] colliders = Physics.OverlapSphere(transform.position, pullRadius, affectedLayers);
@@ -97,6 +117,17 @@ public class BlueLogic : MonoBehaviour
             {
                 isMoving = false; // Stop moving once destination is reached
             }
+        }
+    }
+
+    private void OnCollisionEnter(Collision collision)
+    {
+        if (isMoving) // this is not the issue
+        {
+            if (((1 << collision.gameObject.layer) & ignoreLayers) != 0)
+                return;
+
+            isMoving = false;
         }
     }
 

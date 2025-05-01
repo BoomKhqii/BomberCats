@@ -17,36 +17,53 @@ public class RedLogic : MonoBehaviour
     public GameObject ottoGojo;
 
     public Vector3 direction;
-    private float speed = 5f; // 40f
+    private float speed = 10f; // 40f
     [SerializeField]
-    private float moveDistance = 5;
-    private float duration = 1f;
+    private float moveDistance = 6;
 
     private Vector3 startPosition;
     private Vector3 targetPosition;
     private bool isMoving = true;
     private bool didExplode = false; // this is not the issue
 
+    private float level = 0;
+
     private void Start()
     {
         GeneralPlayerController skill = ottoGojo.GetComponent<GeneralPlayerController>();
-        speed += skill.heavySkill;
-        duration += skill.heavySkill;
-        moveDistance += skill.heavySkill;
+        level += skill.heavySkill;
+        Upgrade(level);
 
         direction.Normalize();
         startPosition = transform.position;
         targetPosition = startPosition + direction * moveDistance;
     }
 
-    public void SkillUpdate(float increment)
+    public void Upgrade(float level)
     {
-        if (increment == 0)
+        if (level < 2)     // 1
             return;
-
-        speed = speed + increment;
-        moveDistance = moveDistance + increment;
-        duration = duration + increment;
+        else if (level < 3)     // 2
+        {
+            speed = 15f;                  // Movement speed
+            pushRadius = 4.5f;
+            pushStrength = 200;
+            moveDistance = 6;
+        }
+        else if (level < 4)     // 3
+        {
+            speed = 20f;                  // Movement speed
+            pushRadius = 5f;
+            pushStrength = 200;
+            moveDistance = 10;
+        }
+        else                    // 4 +
+        {
+            speed = 40f;                  // Movement speed
+            pushRadius = 6f;
+            pushStrength = 300;
+            moveDistance = 15;
+        }
     }
 
     private void OnCollisionEnter(Collision collision)
@@ -89,19 +106,6 @@ public class RedLogic : MonoBehaviour
                     cc.Move(direction * pushStrength * Time.fixedDeltaTime);
                 }
             }
-
-            /*
-            // Move character controllers
-            CharacterController cc = col.GetComponent<CharacterController>();
-            GeneralPlayerController enemy = cc.gameObject.GetComponent<GeneralPlayerController>();
-            if (cc != null && enemy != null)
-            {
-                Debug.Log(cc.gameObject.name);
-                enemy.PlayerStun(1.5f);
-                Vector3 direction = (col.transform.position - transform.position).normalized;
-                cc.Move(direction * pushStrength * Time.fixedDeltaTime);
-            }
-            */
 
             // Push rigidbodies
             Rigidbody rb = col.attachedRigidbody;

@@ -46,7 +46,7 @@ public class OttoGojoController : MonoBehaviour
 
     public void BlueSkill(InputAction.CallbackContext context)
     {
-        if (!context.performed || !isBlueActive || !curseEnergy.CEReduction(250)) return;
+        if (!context.performed || player.signatureSkill == 0 || !isBlueActive || !curseEnergy.CEReduction(250)) return;
 
         //Vector3 spawnPos = new Vector3(Mathf.RoundToInt(player.transform.position.x), 1.32f, Mathf.RoundToInt(player.transform.position.z));
         Vector3 spawnOffset = player.transform.forward.normalized;
@@ -59,7 +59,6 @@ public class OttoGojoController : MonoBehaviour
 
         blue.GetComponent<BlueLogic>().ottoGojo = this.gameObject;
         BlueLogic blueLogic = blue.GetComponent<BlueLogic>();
-        blueLogic.SkillUpdate(player.signatureSkill);
         blueLogic.SetDirection(player.transform.forward);
 
         isBlueActive = false;
@@ -67,7 +66,7 @@ public class OttoGojoController : MonoBehaviour
 
     public void RedSkill(InputAction.CallbackContext context)
     {
-        if (!context.performed || !isRedActive || !curseEnergy.CEReduction(500)) return;
+        if (!context.performed || player.heavySkill == 0 || !isRedActive || !curseEnergy.CEReduction(500)) return;
 
         Vector3 spawnOffset = player.transform.forward.normalized;
         Vector3 spawnPos = new Vector3(
@@ -79,7 +78,6 @@ public class OttoGojoController : MonoBehaviour
 
         red.GetComponent<RedLogic>().ottoGojo = this.gameObject;
         RedLogic redLogic = red.GetComponent<RedLogic>();
-        redLogic.SkillUpdate(player.signatureSkill);
         redLogic.SetDirection(player.transform.forward);
 
         isRedActive = false;
@@ -87,7 +85,7 @@ public class OttoGojoController : MonoBehaviour
     public void HollowPurpleSkill(InputAction.CallbackContext context)
     {
         //&& isPurpleActive && curseEnergy.CEReduction(1000)
-        if (context.started && isPurpleActive && curseEnergy.CEReduction(1000))
+        if (context.started && player.ultimateSkill != 0 && isPurpleActive && curseEnergy.CEReduction(1000))
         {
             holdStartTime = Time.time;
             IsHeldUpdate(context);
@@ -108,7 +106,7 @@ public class OttoGojoController : MonoBehaviour
             purpleOut = purpleLogic;
         }
 
-        if (context.canceled)
+        if (context.canceled && player.ultimateSkill != 0 && isPurpleActive)
         {
             heldDuration = Time.time - holdStartTime;
             Debug.Log($"Released Hollow Purple after {heldDuration:F2} seconds.");
@@ -127,7 +125,7 @@ public class OttoGojoController : MonoBehaviour
         {
             isHoldingHollowPurple = false;
             purpleOut.HeldUpdate(isHoldingHollowPurple);
-        }
+        } else return;
     }
 
     public float HowLongHeld()
