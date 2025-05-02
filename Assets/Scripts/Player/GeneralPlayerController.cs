@@ -18,7 +18,7 @@ public class GeneralPlayerController : MonoBehaviour
 
     // Skill Increment Values
     public int bombSkill = 0;
-    public float signatureSkill = 0;
+    public float signatureSkill = 1;
     public int heavySkill = 0;
     public int ultimateSkill = 0;
 

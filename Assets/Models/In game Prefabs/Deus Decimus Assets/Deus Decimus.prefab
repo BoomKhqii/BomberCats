@@ -54,6 +54,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   isOtto: 0
+  isInvulnerable: 0
 --- !u!114 &6163425865368545686
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -69,7 +70,7 @@ MonoBehaviour:
   playerSpeed: 4.5
   gravityValue: -9.81
   bombSkill: 0
-  signatureSkill: 0
+  signatureSkill: 1
   heavySkill: 0
   ultimateSkill: 0
 --- !u!114 &4054955255700427828
@@ -92,6 +93,7 @@ MonoBehaviour:
   skill: {fileID: 6163425865368545686}
   curseEnergy: {fileID: 0}
   ceName: CE Pool of Deus Decimus
+  bombCost: 100
 --- !u!114 &4477628201177302763
 MonoBehaviour:
   m_ObjectHideFlags: 0

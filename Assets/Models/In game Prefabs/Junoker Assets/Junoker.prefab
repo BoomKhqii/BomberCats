@@ -54,6 +54,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   isOtto: 0
+  isInvulnerable: 0
 --- !u!114 &5246650308643100351
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -69,7 +70,7 @@ MonoBehaviour:
   playerSpeed: 4.5
   gravityValue: -9.81
   bombSkill: 0
-  signatureSkill: 0
+  signatureSkill: 1
   heavySkill: 0
   ultimateSkill: 0
 --- !u!114 &1910442044445032403
@@ -92,6 +93,7 @@ MonoBehaviour:
   skill: {fileID: 5246650308643100351}
   curseEnergy: {fileID: 0}
   ceName: CE Pool of Junoker
+  bombCost: 100
 --- !u!114 &5961294334033170735
 MonoBehaviour:
   m_ObjectHideFlags: 0

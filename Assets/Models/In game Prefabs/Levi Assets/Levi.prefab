@@ -130,7 +130,7 @@ MonoBehaviour:
   playerSpeed: 4.5
   gravityValue: -9.81
   bombSkill: 0
-  signatureSkill: 0
+  signatureSkill: 1
   heavySkill: 0
   ultimateSkill: 0
 --- !u!114 &-2409929765409534219

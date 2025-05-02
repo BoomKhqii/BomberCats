@@ -56,7 +56,7 @@ MonoBehaviour:
   playerSpeed: 4.5
   gravityValue: -9.81
   bombSkill: 0
-  signatureSkill: 0
+  signatureSkill: 1
   heavySkill: 0
   ultimateSkill: 0
 --- !u!114 &3675573794243683774
@@ -97,6 +97,7 @@ MonoBehaviour:
   skill: {fileID: 4337300148893819856}
   curseEnergy: {fileID: 0}
   ceName: CE Pool of Otto Gojo
+  bombCost: 100
 --- !u!114 &6296327816773793935
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -232,6 +233,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   isOtto: 1
+  isInvulnerable: 0
 --- !u!33 &2526730226526449175
 MeshFilter:
   m_ObjectHideFlags: 0
