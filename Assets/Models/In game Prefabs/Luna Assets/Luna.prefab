@@ -11,13 +11,13 @@ GameObject:
   - component: {fileID: 7045366835492055936}
   - component: {fileID: 4337300148893819856}
   - component: {fileID: 914469196923672627}
-  - component: {fileID: 6296327816773793935}
   - component: {fileID: 4508661847497419009}
   - component: {fileID: 2526730226526449175}
   - component: {fileID: 4531707575294860974}
   - component: {fileID: 4444451113901536329}
   - component: {fileID: 2995811415428966894}
   - component: {fileID: 5561759386276307361}
+  - component: {fileID: 6296327816773793935}
   - component: {fileID: -7951526023657012885}
   m_Layer: 7
   m_Name: Luna
@@ -80,128 +80,6 @@ MonoBehaviour:
   curseEnergy: {fileID: 0}
   ceName: CE Pool of Otto Gojo
   bombCost: 100
---- !u!114 &6296327816773793935
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6292289971850779371}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 62899f850307741f2a39c98a8b639597, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_Actions: {fileID: -944628639613478452, guid: ca802d3c38ed7264084fce0c7e7419bd, type: 3}
-  m_NotificationBehavior: 2
-  m_UIInputModule: {fileID: 0}
-  m_DeviceLostEvent:
-    m_PersistentCalls:
-      m_Calls: []
-  m_DeviceRegainedEvent:
-    m_PersistentCalls:
-      m_Calls: []
-  m_ControlsChangedEvent:
-    m_PersistentCalls:
-      m_Calls: []
-  m_ActionEvents:
-  - m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 4337300148893819856}
-        m_TargetAssemblyTypeName: GeneralPlayerController, Assembly-CSharp
-        m_MethodName: OnMove
-        m_Mode: 0
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-    m_ActionId: e5790e91-3226-45b4-8208-fff6fd3bacbc
-    m_ActionName: Player/Movement[/Keyboard/w,/Keyboard/s,/Keyboard/a,/Keyboard/d]
-  - m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 914469196923672627}
-        m_TargetAssemblyTypeName: BasicAbility, Assembly-CSharp
-        m_MethodName: SpawnBomb
-        m_Mode: 0
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-    m_ActionId: 50b3ceb1-cdd8-4d27-b0bc-caa44342bd3d
-    m_ActionName: Player/Abilities[/Keyboard/q,/DualSenseGamepadHID/buttonEast]
-  - m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 0}
-        m_TargetAssemblyTypeName: OttoGojoController, Assembly-CSharp
-        m_MethodName: BlueSkill
-        m_Mode: 0
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-    m_ActionId: ec5e4a2c-f2d3-452e-9f02-7288002e39c9
-    m_ActionName: Player/New action
-  - m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 0}
-        m_TargetAssemblyTypeName: OttoGojoController, Assembly-CSharp
-        m_MethodName: RedSkill
-        m_Mode: 0
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-    m_ActionId: 4307bff3-dd7a-433d-b2a0-9782d304c577
-    m_ActionName: Player/New action
-  - m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 0}
-        m_TargetAssemblyTypeName: OttoGojoController, Assembly-CSharp
-        m_MethodName: HollowPurpleSkill
-        m_Mode: 0
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-    m_ActionId: bdd47efa-7d6f-4353-a546-6e45fccb07c2
-    m_ActionName: Player/New action
-  - m_PersistentCalls:
-      m_Calls: []
-    m_ActionId: 2f9bb477-b6a3-44fc-a8fd-7aa96505dabb
-    m_ActionName: Character Selection/Next[/Keyboard/d,/DualSenseGamepadHID/dpad/right]
-  - m_PersistentCalls:
-      m_Calls: []
-    m_ActionId: e64057ad-a9e6-44ea-ae11-00d9ca09106a
-    m_ActionName: Character Selection/Previous[/DualSenseGamepadHID/dpad/left,/Keyboard/a]
-  - m_PersistentCalls:
-      m_Calls: []
-    m_ActionId: 10a6d7a5-6d2c-4eff-b700-b3489fb00896
-    m_ActionName: Character Selection/Ready[/DualSenseGamepadHID/buttonEast,/Keyboard/space]
-  m_NeverAutoSwitchControlSchemes: 0
-  m_DefaultControlScheme: 
-  m_DefaultActionMap: Player
-  m_SplitScreenIndex: -1
-  m_Camera: {fileID: 0}
 --- !u!114 &4508661847497419009
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -314,7 +192,7 @@ Rigidbody:
   m_UseGravity: 0
   m_IsKinematic: 1
   m_Interpolate: 0
-  m_Constraints: 116
+  m_Constraints: 112
   m_CollisionDetection: 0
 --- !u!143 &5561759386276307361
 CharacterController:
@@ -342,6 +220,128 @@ CharacterController:
   m_SkinWidth: 0.08
   m_MinMoveDistance: 0
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &6296327816773793935
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6292289971850779371}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 62899f850307741f2a39c98a8b639597, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Actions: {fileID: -944628639613478452, guid: ca802d3c38ed7264084fce0c7e7419bd, type: 3}
+  m_NotificationBehavior: 2
+  m_UIInputModule: {fileID: 0}
+  m_DeviceLostEvent:
+    m_PersistentCalls:
+      m_Calls: []
+  m_DeviceRegainedEvent:
+    m_PersistentCalls:
+      m_Calls: []
+  m_ControlsChangedEvent:
+    m_PersistentCalls:
+      m_Calls: []
+  m_ActionEvents:
+  - m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 4337300148893819856}
+        m_TargetAssemblyTypeName: GeneralPlayerController, Assembly-CSharp
+        m_MethodName: OnMove
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+    m_ActionId: e5790e91-3226-45b4-8208-fff6fd3bacbc
+    m_ActionName: Player/Movement[/Keyboard/w,/Keyboard/s,/Keyboard/a,/Keyboard/d]
+  - m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 914469196923672627}
+        m_TargetAssemblyTypeName: BasicAbility, Assembly-CSharp
+        m_MethodName: SpawnBomb
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+    m_ActionId: 50b3ceb1-cdd8-4d27-b0bc-caa44342bd3d
+    m_ActionName: Player/Abilities[/Keyboard/q,/DualSenseGamepadHID/buttonEast]
+  - m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: -7951526023657012885}
+        m_TargetAssemblyTypeName: LunaController, Assembly-CSharp
+        m_MethodName: Trap
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+    m_ActionId: ec5e4a2c-f2d3-452e-9f02-7288002e39c9
+    m_ActionName: Player/New action
+  - m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: -7951526023657012885}
+        m_TargetAssemblyTypeName: LunaController, Assembly-CSharp
+        m_MethodName: Hook
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+    m_ActionId: 4307bff3-dd7a-433d-b2a0-9782d304c577
+    m_ActionName: Player/New action
+  - m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: -7951526023657012885}
+        m_TargetAssemblyTypeName: LunaController, Assembly-CSharp
+        m_MethodName: Splash
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+    m_ActionId: bdd47efa-7d6f-4353-a546-6e45fccb07c2
+    m_ActionName: Player/New action
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 2f9bb477-b6a3-44fc-a8fd-7aa96505dabb
+    m_ActionName: Character Selection/Next[/Keyboard/d,/DualSenseGamepadHID/dpad/right]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: e64057ad-a9e6-44ea-ae11-00d9ca09106a
+    m_ActionName: Character Selection/Previous[/DualSenseGamepadHID/dpad/left,/Keyboard/a]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 10a6d7a5-6d2c-4eff-b700-b3489fb00896
+    m_ActionName: Character Selection/Ready[/DualSenseGamepadHID/buttonEast,/Keyboard/space]
+  m_NeverAutoSwitchControlSchemes: 0
+  m_DefaultControlScheme: 
+  m_DefaultActionMap: Player
+  m_SplitScreenIndex: -1
+  m_Camera: {fileID: 0}
 --- !u!114 &-7951526023657012885
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -356,6 +356,4 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   curseEnergy: {fileID: 0}
   player: {fileID: 4337300148893819856}
-  isTrapActive: 1
-  isHookActive: 1
-  isSplashActive: 1
+  trap: {fileID: 7701170243930829755, guid: 95e5663089d30de469eb52530ba2a832, type: 3}
