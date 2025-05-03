@@ -19,6 +19,7 @@ public class LunaController : MonoBehaviour
 
     private bool isHookActive = true;
     private float cooldownHook = 1f;
+    public GameObject hookGameObject;
 
     private bool isSplashActive = true;
     private float cooldownSplash = 1f;
@@ -55,7 +56,18 @@ public class LunaController : MonoBehaviour
 
     public void Hook(InputAction.CallbackContext context)
     {
-        if (!context.performed || player.heavySkill == 0 || !isHookActive || !curseEnergy.CEReduction(150)) return;
+        if (!context.performed || player.heavySkill == 0 || !isHookActive || !curseEnergy.CEReduction(200)) return;
+
+        Vector3 spawnOffset = player.transform.forward.normalized;
+        Vector3 spawnPos = new Vector3(
+            Mathf.RoundToInt(transform.position.x + spawnOffset.x),
+            1.32f,
+            Mathf.RoundToInt(transform.position.z + spawnOffset.z)
+        );
+        GameObject hook = Instantiate(hookGameObject, spawnPos, Quaternion.identity);
+
+        HookLogic hookScript = hook.GetComponent<HookLogic>();
+        hookScript.SetDirection(player.transform.forward);
 
         isHookActive = false;
     }
