@@ -42,6 +42,8 @@ public class LunaController : MonoBehaviour
             Mathf.RoundToInt(transform.position.z)), Quaternion.identity);
         queueSpawning.Enqueue(trapSpawner);
 
+        trapSpawner.GetComponent<LunaTrapLogic>().lunaObject = this.gameObject;
+
         if (queueSpawning.Count > maxSpawned)
         {
             GameObject oldest = queueSpawning.Dequeue();
