@@ -357,3 +357,4 @@ MonoBehaviour:
   curseEnergy: {fileID: 0}
   player: {fileID: 4337300148893819856}
   trap: {fileID: 7701170243930829755, guid: 95e5663089d30de469eb52530ba2a832, type: 3}
+  hookGameObject: {fileID: 6732107825387883061, guid: 19729c33a198a424b9da93fecdd10b66, type: 3}
