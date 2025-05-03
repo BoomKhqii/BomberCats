@@ -44,12 +44,19 @@ public class GeneralPlayerController : MonoBehaviour
 
     void Update()
     {
-        Vector3 move = new Vector3(movementInput.x, 0, movementInput.y);
-        controller.Move(move * Time.deltaTime * playerSpeed);
-
-        if (move != Vector3.zero)
+        if (movementInput != Vector2.zero)
         {
-            gameObject.transform.forward = move;
+            // Determine the angle of the movement input
+            float angle = Mathf.Atan2(movementInput.x, movementInput.y) * Mathf.Rad2Deg;
+
+            // Round angle to nearest 90 degrees (0, 90, 180, 270)
+            float snappedAngle = Mathf.Round(angle / 90f) * 90f;
+
+            // Convert the snapped angle back into a direction vector
+            Vector3 moveDir = Quaternion.Euler(0, snappedAngle, 0) * Vector3.forward;
+
+            controller.Move(moveDir * Time.deltaTime * playerSpeed);
+            transform.forward = moveDir;
         }
 
         playerVelocity.y += gravityValue * Time.deltaTime;
