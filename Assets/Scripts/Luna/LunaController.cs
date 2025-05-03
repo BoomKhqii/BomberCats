@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using TreeEditor;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -10,24 +11,42 @@ public class LunaController : MonoBehaviour
     [SerializeField]
     private GeneralPlayerController player;
 
-    public bool isTrapActive = true;
+    private bool isTrapActive = true;
     private float cooldownTrap = 1f;
+    public GameObject trap;
+    private int maxSpawned = 3;
+    private Queue<GameObject> queueSpawning = new Queue<GameObject>();
 
-    public bool isHookActive = true;
+    private bool isHookActive = true;
     private float cooldownHook = 1f;
 
-    public bool isSplashActive = true;
+    private bool isSplashActive = true;
     private float cooldownSplash = 1f;
 
     void Start()
     {
         player = GetComponent<GeneralPlayerController>();
         curseEnergy = GameObject.Find("CE Pool of Luna").GetComponent<CurseEnergyLogic>();
+
+        // Passive
+        player.playerSpeed += 1f;
     }
 
     public void Trap(InputAction.CallbackContext context)
     {
         if (!context.performed || player.signatureSkill == 0 || !isTrapActive || !curseEnergy.CEReduction(150)) return;
+
+        GameObject trapSpawner = Instantiate(trap, new Vector3(
+            Mathf.RoundToInt(transform.position.x),
+            0.5195f,
+            Mathf.RoundToInt(transform.position.z)), Quaternion.identity);
+        queueSpawning.Enqueue(trapSpawner);
+
+        if (queueSpawning.Count > maxSpawned)
+        {
+            GameObject oldest = queueSpawning.Dequeue();
+            Destroy(oldest);
+        }
 
         isTrapActive = false;
     }
