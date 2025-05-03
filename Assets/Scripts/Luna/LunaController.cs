@@ -14,7 +14,7 @@ public class LunaController : MonoBehaviour
     private bool isTrapActive = true;
     private float cooldownTrap = 1f;
     public GameObject trap;
-    private int maxSpawned = 3;
+    private int maxSpawned = 2;
     private Queue<GameObject> queueSpawning = new Queue<GameObject>();
 
     private bool isHookActive = true;
