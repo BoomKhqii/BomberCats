@@ -4,15 +4,47 @@ using UnityEngine;
 
 public class SplashLogic : MonoBehaviour
 {
-    // Start is called before the first frame update
+    public GameObject bite;
+
     void Start()
     {
-        
+        Explode(3, transform.position.x, transform.position.z, 0.9160001f);
     }
 
-    // Update is called once per frame
-    void Update()
+    void Explode(float range, float x, float z, float y)
     {
-        
+        Vector3 explosionCenter = new Vector3(Mathf.Round(x), y, Mathf.Round(z));
+        Collider[] hits = Physics.OverlapSphere(explosionCenter, range);
+
+        HashSet<Vector3> explosionPositions = new HashSet<Vector3>();
+
+        foreach (Collider hit in hits)
+        {
+            Vector3 rawPos = hit.transform.position;
+
+            // Snap to grid
+            Vector3 firePos = new Vector3(
+                Mathf.Round(rawPos.x),
+                y,
+                Mathf.Round(rawPos.z)
+            );
+
+            if (!explosionPositions.Contains(firePos))
+            {
+                explosionPositions.Add(firePos);
+
+                // Use distance from center to apply delay
+                float distance = Vector3.Distance(firePos, explosionCenter);
+                float delay = distance * 1f; // Change multiplier to adjust wave speed
+
+                StartCoroutine(WaveSplash(firePos, delay));
+            }
+        }
+    }
+
+    IEnumerator WaveSplash(Vector3 firePos, float delay)
+    {
+        yield return new WaitForSeconds(delay);
+        Instantiate(bite, firePos, Quaternion.identity);
     }
 }
