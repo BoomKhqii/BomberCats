@@ -13,7 +13,7 @@ public class LunaController : MonoBehaviour
 
     private bool isTrapActive = true;
     private float cooldownTrap = 1f;
-    public GameObject trap;
+    public GameObject trapGameObject;
     private int maxSpawned = 2;
     private Queue<GameObject> queueSpawning = new Queue<GameObject>();
 
@@ -23,6 +23,7 @@ public class LunaController : MonoBehaviour
 
     private bool isSplashActive = true;
     private float cooldownSplash = 60f;
+    public GameObject splashGameObject;
 
     void Start()
     {
@@ -37,7 +38,7 @@ public class LunaController : MonoBehaviour
     {
         if (!context.performed || player.signatureSkill == 0 || !isTrapActive || !curseEnergy.CEReduction(150)) return;
 
-        GameObject trapSpawner = Instantiate(trap, new Vector3(
+        GameObject trapSpawner = Instantiate(trapGameObject, new Vector3(
             Mathf.RoundToInt(transform.position.x),
             0.5195f,
             Mathf.RoundToInt(transform.position.z)), Quaternion.identity);
@@ -75,6 +76,11 @@ public class LunaController : MonoBehaviour
     public void Splash(InputAction.CallbackContext context)
     {
         if (!context.performed || player.ultimateSkill == 0 || !isSplashActive || !curseEnergy.CEReduction(150)) return;
+
+        GameObject splashSpawner = Instantiate(splashGameObject, new Vector3(
+            Mathf.RoundToInt(transform.position.x),
+            0.5195f,
+            Mathf.RoundToInt(transform.position.z)), Quaternion.identity);
 
         isSplashActive = false;
     }
