@@ -17,6 +17,9 @@ public class HookLogic : MonoBehaviour
     private bool isMoving = true;
     private bool isReturning = false;
 
+    private bool isHooked = false;
+    private Transform hookedTarget;
+
     void Start()
     {
         direction.Normalize();
@@ -27,6 +30,33 @@ public class HookLogic : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if (!isMoving) return;
+
+        float currentSpeed = isReturning ? returnSpeed : forwardSpeed;
+        transform.position = Vector3.MoveTowards(transform.position, targetPosition, currentSpeed * Time.deltaTime);
+
+        // Move the hooked target along with the hook
+        if (isHooked && hookedTarget != null)
+        {
+            hookedTarget.position = transform.position;
+        }
+
+        if (Vector3.Distance(transform.position, targetPosition) < 0.01f)
+        {
+            if (!isReturning)
+            {
+                targetPosition = startPosition;
+                isReturning = true;
+            }
+            else
+            {
+                GeneralPlayerController enemy = hookedTarget.GetComponent<GeneralPlayerController>();
+                enemy.PlayerStun(0.5f);
+                isMoving = false;
+                Destroy(gameObject);
+            }
+        }
+        /*
         if (!isMoving) return;
 
         float currentSpeed = isReturning ? returnSpeed : forwardSpeed;
@@ -47,8 +77,22 @@ public class HookLogic : MonoBehaviour
                 Destroy(gameObject);
             }
         }
+        */
+    }
 
+    private void OnTriggerEnter(Collider other)
+    {
+        if (isHooked || isReturning) return;
 
+        if (((1 << other.gameObject.layer) & affectedLayer) != 0)
+        {
+            isHooked = true;
+            hookedTarget = other.transform;
+
+            // Start returning immediately
+            targetPosition = startPosition;
+            isReturning = true;
+        }
     }
 
     public void SetDirection(Vector3 dir)
