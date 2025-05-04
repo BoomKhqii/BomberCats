@@ -18,11 +18,11 @@ public class LunaController : MonoBehaviour
     private Queue<GameObject> queueSpawning = new Queue<GameObject>();
 
     private bool isHookActive = true;
-    private float cooldownHook = 1f;
+    private float cooldownHook = 10f;
     public GameObject hookGameObject;
 
     private bool isSplashActive = true;
-    private float cooldownSplash = 1f;
+    private float cooldownSplash = 60f;
 
     void Start()
     {
@@ -82,6 +82,8 @@ public class LunaController : MonoBehaviour
     void Update()
     {
         UpdateTrapCooldown();
+        UpdateHookCooldown();
+        UpdateSplashCooldown();
     }
 
     void UpdateTrapCooldown()
@@ -93,6 +95,32 @@ public class LunaController : MonoBehaviour
             {
                 cooldownTrap = 3;
                 isTrapActive = true;
+            }
+        }
+    }
+
+    void UpdateHookCooldown()
+    {
+        if (isHookActive == false)
+        {
+            cooldownHook -= Time.deltaTime;
+            if (cooldownTrap <= 0)
+            {
+                cooldownHook = 10f;
+                isHookActive = true;
+            }
+        }
+    }
+
+    void UpdateSplashCooldown()
+    {
+        if (isSplashActive == false)
+        {
+            cooldownSplash -= Time.deltaTime;
+            if (cooldownSplash <= 0)
+            {
+                cooldownSplash = 60f;
+                isSplashActive = true;
             }
         }
     }
