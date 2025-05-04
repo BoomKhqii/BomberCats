@@ -78,7 +78,7 @@ MonoBehaviour:
     m_Bits: 256
   skill: {fileID: 4337300148893819856}
   curseEnergy: {fileID: 0}
-  ceName: CE Pool of Otto Gojo
+  ceName: CE Pool of Luna
   bombCost: 100
 --- !u!114 &4508661847497419009
 MonoBehaviour:
@@ -92,7 +92,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e70f82a74e8825f4facaee6770cfde55, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  isOtto: 1
+  isOtto: 0
   isInvulnerable: 0
 --- !u!33 &2526730226526449175
 MeshFilter:

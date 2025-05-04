@@ -4,15 +4,41 @@ using UnityEngine;
 
 public class BiteLogic : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
+    public LayerMask afftectedLayers;
 
-    // Update is called once per frame
     void Update()
     {
-        
+        SplashAction();
+    }
+
+    void SplashAction()
+    {
+        Collider[] colliders = Physics.OverlapBox(transform.position, new Vector3(0.5f, 0.5f, 0.5f), Quaternion.identity, afftectedLayers);
+        //HashSet<GameObject> stunnedObjects = new HashSet<GameObject>(); // uses hash to avoid double calling
+
+        foreach (Collider col in colliders)
+        {
+            GameObject obj = col.gameObject;
+
+            //if (col.gameObject == lunaObject) continue;
+            /*
+            if (!stunnedObjects.Contains(obj))
+            {
+                stunnedObjects.Add(obj);
+                ObjectStatus enemy = obj.GetComponent<ObjectStatus>();
+
+                enemy.StatusUpdate(false); 
+            }
+            */
+            ObjectStatus enemy = obj.GetComponent<ObjectStatus>();
+            CrateLogic crate = obj.gameObject.GetComponent<CrateLogic>();
+
+            if (enemy != null) 
+                enemy.StatusUpdate(false);
+            else if(crate != null)
+                crate.CrateDrop();
+            else
+                Destroy(obj.gameObject);
+        }
     }
 }
