@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
+using UnityEngine.InputSystem;
 
 public class HookLogic : MonoBehaviour
 {
@@ -21,6 +22,7 @@ public class HookLogic : MonoBehaviour
     private Transform hookedTarget;
 
     public GameObject lunaObject;
+    public PlayerInput casterStun;
 
     void Start()
     {
