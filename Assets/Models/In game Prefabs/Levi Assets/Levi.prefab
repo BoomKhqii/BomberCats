@@ -133,6 +133,7 @@ MonoBehaviour:
   signatureSkill: 1
   heavySkill: 0
   ultimateSkill: 0
+  stun: {fileID: 21223312642145242}
 --- !u!114 &-2409929765409534219
 MonoBehaviour:
   m_ObjectHideFlags: 0

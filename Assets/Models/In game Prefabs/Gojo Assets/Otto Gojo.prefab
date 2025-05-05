@@ -59,6 +59,7 @@ MonoBehaviour:
   signatureSkill: 1
   heavySkill: 0
   ultimateSkill: 0
+  stun: {fileID: 6296327816773793935}
 --- !u!114 &3675573794243683774
 MonoBehaviour:
   m_ObjectHideFlags: 0
