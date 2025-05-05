@@ -14,7 +14,6 @@ public class GeneralPlayerController : MonoBehaviour
     public float playerSpeed = 4.5f;
     [SerializeField]
     private float gravityValue = -9.81f;
-    private float originSpeed;
 
     // Skill Increment Values
     public int bombSkill = 0;
@@ -22,19 +21,19 @@ public class GeneralPlayerController : MonoBehaviour
     public int heavySkill = 0;
     public int ultimateSkill = 0;
 
+    public PlayerInput stun;
     private void Start()
     {
         controller = gameObject.GetComponent<CharacterController>();
     }
 
-    public void PlayerStun(float stun) { StartCoroutine(StunAction(stun)); }
+    public void PlayerStun(float duration) { StartCoroutine(StunAction(duration)); }
 
-    IEnumerator StunAction(float stun)
+    IEnumerator StunAction(float duration)
     {
-        originSpeed = playerSpeed;
-        playerSpeed = 0;
-        yield return new WaitForSeconds(stun);
-        playerSpeed = originSpeed;
+        stun.enabled = false;
+        yield return new WaitForSeconds(duration);
+        stun.enabled = true;    
     }
 
     public void OnMove(InputAction.CallbackContext context)
