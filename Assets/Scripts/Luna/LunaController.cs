@@ -55,7 +55,7 @@ public class LunaController : MonoBehaviour
         isTrapActive = false;
     }
 
-    public void Hook(InputAction.CallbackContext context)
+    public void Hook(InputAction.CallbackContext context) // luna is not supposed to move
     {
         if (!context.performed || player.heavySkill == 0 || !isHookActive || !curseEnergy.CEReduction(200)) return;
 
@@ -67,8 +67,9 @@ public class LunaController : MonoBehaviour
         );
         GameObject hook = Instantiate(hookGameObject, spawnPos, Quaternion.identity);
 
-        HookLogic hookScript = hook.GetComponent<HookLogic>();
-        hookScript.SetDirection(player.transform.forward);
+        HookLogic hookLogic = hook.GetComponent<HookLogic>();
+        hookLogic.SetDirection(player.transform.forward);
+        hookLogic.lunaObject = this.gameObject;
 
         isHookActive = false;
     }

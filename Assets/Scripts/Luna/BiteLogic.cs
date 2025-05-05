@@ -5,6 +5,7 @@ using UnityEngine;
 public class BiteLogic : MonoBehaviour
 {
     public LayerMask afftectedLayers;
+    public GameObject lunaObject;
 
     void Update()
     {
@@ -20,7 +21,7 @@ public class BiteLogic : MonoBehaviour
         {
             GameObject obj = col.gameObject;
 
-            //if (col.gameObject == lunaObject) continue;
+            if (col.gameObject == lunaObject) continue;
             /*
             if (!stunnedObjects.Contains(obj))
             {

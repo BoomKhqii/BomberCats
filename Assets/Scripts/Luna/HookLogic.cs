@@ -20,6 +20,8 @@ public class HookLogic : MonoBehaviour
     private bool isHooked = false;
     private Transform hookedTarget;
 
+    public GameObject lunaObject;
+
     void Start()
     {
         direction.Normalize();
@@ -50,6 +52,8 @@ public class HookLogic : MonoBehaviour
             }
             else
             {
+                if (hookedTarget == null) return;
+
                 GeneralPlayerController enemy = hookedTarget.GetComponent<GeneralPlayerController>();
                 enemy.PlayerStun(0.5f);
                 isMoving = false;
@@ -82,7 +86,7 @@ public class HookLogic : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        if (isHooked || isReturning) return;
+        if (isHooked || isReturning || other.gameObject != lunaObject) return;
 
         if (((1 << other.gameObject.layer) & affectedLayer) != 0)
         {
