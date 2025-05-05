@@ -74,7 +74,7 @@ public class LunaController : MonoBehaviour
         isHookActive = false;
     }
 
-    public void Splash(InputAction.CallbackContext context)
+    public void Splash(InputAction.CallbackContext context) // not supposed to move
     {
         if (!context.performed || player.ultimateSkill == 0 || !isSplashActive || !curseEnergy.CEReduction(150)) return;
 
@@ -82,6 +82,8 @@ public class LunaController : MonoBehaviour
             Mathf.RoundToInt(transform.position.x),
             0.5195f,
             Mathf.RoundToInt(transform.position.z)), Quaternion.identity);
+
+        splashSpawner.GetComponent<SplashLogic>().lunaObject = this.gameObject;
 
         isSplashActive = false;
     }

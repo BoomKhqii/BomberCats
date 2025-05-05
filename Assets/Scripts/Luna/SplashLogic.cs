@@ -5,6 +5,7 @@ using UnityEngine;
 public class SplashLogic : MonoBehaviour
 {
     public GameObject bite;
+    public GameObject lunaObject;
 
     void Start()
     {
@@ -45,6 +46,7 @@ public class SplashLogic : MonoBehaviour
     IEnumerator WaveSplash(Vector3 firePos, float delay)
     {
         yield return new WaitForSeconds(delay);
-        Instantiate(bite, firePos, Quaternion.identity);
+        GameObject spawnedBite = Instantiate(bite, firePos, Quaternion.identity);
+        spawnedBite.GetComponent<BiteLogic>().lunaObject = this.lunaObject;
     }
 }

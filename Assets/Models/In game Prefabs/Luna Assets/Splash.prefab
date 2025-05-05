@@ -45,3 +45,4 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   bite: {fileID: 6610873208273105642, guid: a9db4b9e4c3dfaa4c938de9bd315e0a6, type: 3}
+  lunaObject: {fileID: 6292289971850779371, guid: 50dd86f300ddaa9439aac6f77021c0bb, type: 3}

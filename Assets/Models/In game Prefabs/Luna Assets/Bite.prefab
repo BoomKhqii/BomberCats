@@ -4798,3 +4798,4 @@ MonoBehaviour:
   afftectedLayers:
     serializedVersion: 2
     m_Bits: 904
+  lunaObject: {fileID: 6292289971850779371, guid: 50dd86f300ddaa9439aac6f77021c0bb, type: 3}
