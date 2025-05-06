@@ -84,10 +84,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9289614c6e6150c41871f2464bf522bd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  wallCheckDistance: 1
   bedrockLayer:
     serializedVersion: 2
-    m_Bits: 840
-  wallCheckDistance: 1
+    m_Bits: 520
+  bombThere:
+    serializedVersion: 2
+    m_Bits: 256
 --- !u!136 &8093318348915984612
 CapsuleCollider:
   m_ObjectHideFlags: 0
