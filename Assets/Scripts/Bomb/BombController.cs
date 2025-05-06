@@ -15,7 +15,6 @@ public class BombController : MonoBehaviour
 
 
     // ghost
-    [SerializeField]
     private bool isPlayerInside = true;
     private GameObject spawningPlayer;
     private Collider blockCollider;
@@ -44,16 +43,17 @@ public class BombController : MonoBehaviour
             Destroy(gameObject);
         }
     }
-
+    /*
     private void OnTriggerExit(Collider other)
     {
-        if (other.gameObject == spawningPlayer && isPlayerInside)
+        Debug.Log(other.gameObject.tag);
+        if (other.gameObject.CompareTag("Player"))
         {
             isPlayerInside = false;
             blockCollider.isTrigger = false;
         }
     }
-
+    */
     IEnumerator waiter()
     {
         yield return new WaitForSeconds(3f);
