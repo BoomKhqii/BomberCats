@@ -120,20 +120,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 96fb6679075037e448875f8eefbffc2a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  bombLocation: {fileID: 7251795457746459196}
-  range: 3
-  bomb: {fileID: 4167186925347011154}
-  body: {fileID: 2652659256035931600}
-  explosion: {fileID: 7100603031460907972, guid: 1f21ddc8a12f07549b4ae3b574bb1cf8, type: 3}
-  unbreakable:
-    serializedVersion: 2
-    m_Bits: 8
+  rangePlayer: 3
+  explosionSpawner: {fileID: 5870510503227307366, guid: 87e380c2561c51c42bfe18734041cbe0, type: 3}
   fire:
     serializedVersion: 2
     m_Bits: 64
-  player:
-    serializedVersion: 2
-    m_Bits: 128
 --- !u!82 &7104553565301185189
 AudioSource:
   m_ObjectHideFlags: 0
