@@ -15,6 +15,7 @@ public class BombController : MonoBehaviour
 
 
     // ghost
+    [SerializeField]
     private bool isPlayerInside = true;
     private GameObject spawningPlayer;
     private Collider blockCollider;

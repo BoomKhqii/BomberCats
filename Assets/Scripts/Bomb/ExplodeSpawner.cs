@@ -28,6 +28,7 @@ public class ExplodeSpawner : MonoBehaviour
     void Start()
     {
         StartCoroutine(ExplosionSequence(range, locationX, locationZ, bombLocationY));
+        Destroy(gameObject, 5f);
     }
 
     IEnumerator ExplosionSequence(float range, int x, int z, float y)
@@ -57,7 +58,7 @@ public class ExplodeSpawner : MonoBehaviour
                 }
             }
 
-            yield return new WaitForSeconds(0.1f); // delay *between* each wave
+            yield return new WaitForSeconds(0.05f); // delay *between* each wave
         }
     }
     bool raycastExplosion(Vector3 origin, Vector3 direction, int dirIndex)
