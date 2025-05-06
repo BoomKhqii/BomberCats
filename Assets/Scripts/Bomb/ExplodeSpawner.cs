@@ -5,55 +5,29 @@ using UnityEngine;
 public class ExplodeSpawner : MonoBehaviour
 {
     public Transform bombLocation;
-    private int bombLocationX;
-    private int bombLocationZ;
-    float bombLocationY = 0.9160001f;
+    public int locationX;
+    public int locationZ;
+    private float bombLocationY = 0.9160001f;
     public float range = 3;
 
-    public MeshRenderer bomb;
-    public SphereCollider body;
     public ParticleSystem explosion;
 
     public LayerMask unbreakable;
     public LayerMask fire;
     public LayerMask player;
-    public MeshRenderer visibility;
     private bool[] explosionDirection = { true, true, true, true }; // N, S, W, E
 
-
-    // ghost
-    private bool isPlayerInside = true;
-    private GameObject spawningPlayer;
-    private Collider blockCollider;
 
     //public float skill = 0;
 
     public void SetSpawningPlayer(GameObject player, float upgrade)
     {
-        spawningPlayer = player; // Debug.Log("Spawning player set to: " + spawningPlayer);
         range += upgrade;
     }
 
     void Start()
     {
-        blockCollider = GetComponent<Collider>();
-        //blockCollider.isTrigger = true;
-
-        bomb = GetComponent<MeshRenderer>();
-        body = GetComponent<SphereCollider>();
-        StartCoroutine(waiter());
-    }
-
-    IEnumerator waiter()
-    {
-        yield return new WaitForSeconds(3f);
-        yield return new WaitForSeconds(0.2f);
-        bombLocationX = Mathf.RoundToInt(bombLocation.position.x);
-        bombLocationZ = Mathf.RoundToInt(bombLocation.position.z);
-        //Explode(range, bombLocationX, bombLocationZ, bombLocationY);
-        StartCoroutine(ExplosionSequence(range, bombLocationX, bombLocationZ, bombLocationY));
-        visibility.enabled = false;
-        Destroy(gameObject, 2f);
+        StartCoroutine(ExplosionSequence(range, locationX, locationZ, bombLocationY));
     }
 
     IEnumerator ExplosionSequence(float range, int x, int z, float y)
@@ -83,7 +57,7 @@ public class ExplodeSpawner : MonoBehaviour
                 }
             }
 
-            yield return new WaitForSeconds(0.2f); // delay *between* each wave
+            yield return new WaitForSeconds(0.1f); // delay *between* each wave
         }
     }
     bool raycastExplosion(Vector3 origin, Vector3 direction, int dirIndex)
