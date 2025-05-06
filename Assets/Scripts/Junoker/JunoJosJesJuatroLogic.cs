@@ -12,7 +12,7 @@ public class JunoJosJesJuatroLogic : MonoBehaviour
     private Vector3 moveDirection;
     private float timer;
     public LayerMask bedrockLayer;
-    public float wallCheckDistance = 0.6f; // how far ahead to check for walls
+    public float wallCheckDistance = 2f; // how far ahead to check for walls
 
     // upgradable
     private float duration = 10f;
@@ -30,9 +30,10 @@ public class JunoJosJesJuatroLogic : MonoBehaviour
     void Update()
     {
         // Check if a breakable,unbreakble, bomb is ahead
-        if (Physics.Raycast(transform.position, moveDirection, wallCheckDistance, bedrockLayer))
+        if (Physics.Raycast(transform.position + moveDirection.normalized, moveDirection, wallCheckDistance, bedrockLayer))
         {
             ChooseStraightDirection();
+            //Debug.DrawRay(transform.position, moveDirection.normalized * wallCheckDistance, Color.red);
             //timer = changeDirectionTime; // comment so clone will spawn more bombs often
             return;
         }
@@ -52,8 +53,9 @@ public class JunoJosJesJuatroLogic : MonoBehaviour
 
     void ChooseStraightDirection()
     {
-        int direction = Random.Range(0, 4); // 0 = forward, 1 = backward, 2 = left, 3 = right
+        int direction = Random.Range(0, 3); // 0 = forward, 1 = backward, 2 = left, 3 = right
 
+        Debug.Log("cal");
         switch (direction)
         {
             case 0:

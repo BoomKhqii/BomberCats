@@ -166,7 +166,7 @@ public class JunokerController : MonoBehaviour
         yield return new WaitForSeconds(1.5f);
         invis.enabled = true;
 
-        for (int i = 0; i < 3; i++)
+        for (int i = 0; i < 1; i++)
         {
             bool hasUltCloneSpawn = false;
             while (!hasUltCloneSpawn)

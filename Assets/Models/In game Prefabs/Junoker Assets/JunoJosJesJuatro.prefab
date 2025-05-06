@@ -52,6 +52,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   isOtto: 0
+  isInvulnerable: 0
 --- !u!114 &896729591401562217
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -68,7 +69,7 @@ MonoBehaviour:
   playerLocation: {fileID: 5862562193905666967}
   playerOnBomb:
     serializedVersion: 2
-    m_Bits: 320
+    m_Bits: 256
   curseEnergy: {fileID: 0}
   ceName: CE Pool of Junoker
 --- !u!114 &-2381743164988798188
@@ -86,7 +87,7 @@ MonoBehaviour:
   bedrockLayer:
     serializedVersion: 2
     m_Bits: 840
-  wallCheckDistance: 0.6
+  wallCheckDistance: 1
 --- !u!136 &8093318348915984612
 CapsuleCollider:
   m_ObjectHideFlags: 0

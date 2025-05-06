@@ -54,7 +54,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   isOtto: 0
-  isInvulnerable: 0
+  isInvulnerable: 1
 --- !u!114 &5246650308643100351
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -72,7 +72,7 @@ MonoBehaviour:
   bombSkill: 0
   signatureSkill: 1
   heavySkill: 0
-  ultimateSkill: 0
+  ultimateSkill: 1
   stun: {fileID: 8909275290841350921}
 --- !u!114 &1910442044445032403
 MonoBehaviour:

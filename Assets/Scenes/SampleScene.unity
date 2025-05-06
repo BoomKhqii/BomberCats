@@ -13965,7 +13965,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 355722052}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 4dec4e1b599f6c1419abe26704f7768d, type: 3}
   m_Name: 
@@ -29353,7 +29353,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3465224479339227841, guid: 0b3b37785db92ac46add58933051afc9, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 8143805127191991199, guid: 0b3b37785db92ac46add58933051afc9, type: 3}
       propertyPath: m_Pivot.x
@@ -46672,7 +46672,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1257109721}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 621567455fd1c4ceb811cc8a00b6a1a5, type: 3}
   m_Name: 
@@ -46699,7 +46699,7 @@ MonoBehaviour:
       m_SingletonActionBindings: []
       m_Flags: 0
     m_Reference: {fileID: 0}
-  m_PlayerPrefab: {fileID: 6593356670125899504, guid: daeca847cf9069b45868d862b1f4a7ef, type: 3}
+  m_PlayerPrefab: {fileID: 4469120137158393124, guid: 2bcd4f505dc14564c8d8abf043840d4f, type: 3}
   m_SplitScreen: 0
   m_MaintainAspectRatioInSplitScreen: 0
   m_FixedNumberOfSplitScreens: -1
