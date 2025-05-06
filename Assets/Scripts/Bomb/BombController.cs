@@ -1,7 +1,10 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEditor.Experimental.GraphView;
 using UnityEngine;
+using UnityEngine.UIElements;
+using static UnityEngine.UI.Image;
 
 public class BombController : MonoBehaviour
 {
@@ -18,6 +21,7 @@ public class BombController : MonoBehaviour
     public LayerMask unbreakable;
     public LayerMask fire;
     public LayerMask player;
+    public MeshRenderer visibility;
     private bool[] explosionDirection = { true, true, true, true }; // N, S, W, E
 
 
@@ -49,7 +53,8 @@ public class BombController : MonoBehaviour
         if (Physics.CheckSphere(transform.position, 0.1f, fire))
         {
             StopCoroutine(waiter());
-            Explode(range, bombLocationX, bombLocationZ, bombLocationY);
+            //Explode(range, bombLocationX, bombLocationZ, bombLocationY);
+            StartCoroutine(ExplosionSequence(range, bombLocationX, bombLocationZ, bombLocationY));
             Destroy(gameObject);
         }
     }
@@ -69,11 +74,13 @@ public class BombController : MonoBehaviour
         yield return new WaitForSeconds(0.2f);
         bombLocationX = Mathf.RoundToInt(bombLocation.position.x);
         bombLocationZ = Mathf.RoundToInt(bombLocation.position.z);
-        Explode(range, bombLocationX, bombLocationZ, bombLocationY);
-        Destroy(gameObject);
+        //Explode(range, bombLocationX, bombLocationZ, bombLocationY);
+        StartCoroutine(ExplosionSequence(range, bombLocationX, bombLocationZ, bombLocationY));
+        visibility.enabled = false;
+        Destroy(gameObject, 2f);
     }
-    
-    void Explode(float range, int x, int z, float y)
+
+    IEnumerator ExplosionSequence(float range, int x, int z, float y)
     {
         Vector3[] directions = new Vector3[]
         {
@@ -99,9 +106,48 @@ public class BombController : MonoBehaviour
                     raycastExplosion(explosionOrigin, directions[j], j);
                 }
             }
+
+            yield return new WaitForSeconds(0.2f); // delay *between* each wave
         }
     }
 
+    /*
+    void Explode(float range, int x, int z, float y)
+    {
+        Vector3[] directions = new Vector3[]
+        {
+            Vector3.forward,  // North
+            Vector3.back,     // South
+            Vector3.left,     // West
+            Vector3.right     // East
+        };
+
+        for (int i = 0; i < range; i++)
+        {
+            for (int j = 0; j < directions.Length; j++)
+            {
+                if (explosionDirection[j]) // Check if direction is active
+                {
+                    Vector3 offset = directions[j] * i;
+                    Vector3 explosionOrigin = new Vector3(x, y, z) + offset;
+
+                    if (IsExplosionThere(explosionOrigin, new Vector3(0.5f, 0.5f, 0.5f), "Explosion") == false)
+                    {
+                        //Instantiate(explosion, explosionOrigin, Quaternion.identity);
+                        StartCoroutine(ExplosionDelay(explosionOrigin));
+                    }
+                    raycastExplosion(explosionOrigin, directions[j], j);
+                }
+            }
+        }
+    }
+
+    IEnumerator ExplosionDelay(Vector3 origin)
+    {
+        Instantiate(explosion, origin, Quaternion.identity);
+        yield return new WaitForSeconds(1f);
+    }
+    */
     bool raycastExplosion(Vector3 origin, Vector3 direction, int dirIndex)
     {
         RaycastHit hit;

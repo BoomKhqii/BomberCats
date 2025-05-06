@@ -135,6 +135,7 @@ MonoBehaviour:
   player:
     serializedVersion: 2
     m_Bits: 128
+  visibility: {fileID: 4167186925347011154}
 --- !u!82 &7104553565301185189
 AudioSource:
   m_ObjectHideFlags: 0
