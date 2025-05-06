@@ -32,7 +32,7 @@ public class JunoJosLogic : MonoBehaviour
         levelJunoJos += skill.signatureSkill;
         Upgrade(levelJunoJos);
 
-        Destroy(gameObject, duration);
+        //Destroy(gameObject, duration);
     }
 
     public void Upgrade(float level)

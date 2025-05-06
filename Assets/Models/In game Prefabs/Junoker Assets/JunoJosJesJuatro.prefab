@@ -84,7 +84,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9289614c6e6150c41871f2464bf522bd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  wallCheckDistance: 1
+  wallCheckDistance: 0.6
   bedrockLayer:
     serializedVersion: 2
     m_Bits: 520

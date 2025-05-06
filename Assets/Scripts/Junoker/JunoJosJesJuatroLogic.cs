@@ -13,7 +13,8 @@ public class JunoJosJesJuatroLogic : MonoBehaviour
     private Vector3 moveDirection;
     private float timer;
 
-    public float wallCheckDistance = 4f; // how far ahead to check for walls
+    [SerializeField]
+    private float wallCheckDistance = 0.6f; // how far ahead to check for walls
     public LayerMask bedrockLayer;
     public LayerMask bombThere;
 
@@ -64,9 +65,9 @@ public class JunoJosJesJuatroLogic : MonoBehaviour
         }
         */
         RaycastHit hit;
-        Vector3 rayOrigin = transform.position + moveDirection.normalized * 0.6f;
+        //Vector3 rayOrigin = transform.position + moveDirection.normalized * 0.6f;
 
-        if (Physics.Raycast(rayOrigin, moveDirection, out hit, wallCheckDistance, bedrockLayer))
+        if (Physics.Raycast(transform.position, moveDirection, out hit, wallCheckDistance, bedrockLayer))
         {
             Debug.DrawRay(transform.position, moveDirection * wallCheckDistance, Color.red);
             Debug.Log("Raycast hit: " + hit.collider.name + " | Layer: " + LayerMask.LayerToName(hit.collider.gameObject.layer));
