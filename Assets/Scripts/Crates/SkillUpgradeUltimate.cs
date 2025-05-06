@@ -14,6 +14,8 @@ public class SkillUpgradeUltimate : MonoBehaviour
         if (other.gameObject.CompareTag("Player"))
         {
             GeneralPlayerController player = other.GetComponent<GeneralPlayerController>();
+            if (player == null) return;
+
             player.ultimateSkill += 1;
             Destroy(this.gameObject);
         }
