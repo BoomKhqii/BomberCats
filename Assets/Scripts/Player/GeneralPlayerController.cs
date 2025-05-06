@@ -61,4 +61,12 @@ public class GeneralPlayerController : MonoBehaviour
         playerVelocity.y += gravityValue * Time.deltaTime;
         controller.Move(playerVelocity * Time.deltaTime);
     }
+
+    void OnTriggerEnter(Collider other)
+    {
+        if (other.TryGetComponent(out GhostableBlock ghostBlock))
+        {
+            ghostBlock.AddGhost(GetComponent<Collider>());
+        }
+    }
 }
