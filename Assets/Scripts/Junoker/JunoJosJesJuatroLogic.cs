@@ -9,7 +9,7 @@ public class JunoJosJesJuatroLogic : MonoBehaviour
 
     private float speed = 4.5f;
     private Vector3 playerVelocity;
-    private float changeDirectionTime = 2f;
+    private float changeDirectionTime = 1f;
     private Vector3 moveDirection;
     private float timer;
 
@@ -75,16 +75,20 @@ public class JunoJosJesJuatroLogic : MonoBehaviour
             ChooseStraightDirection();
             return;
         }
-        else
+        else Debug.Log("Raycast missed");
+
+        timer -= Time.deltaTime;
+        if (timer <= 0f)
         {
-            Debug.Log("Raycast missed");
+            ChooseStraightDirection();
+            timer = changeDirectionTime;
+            basicAbility.SpawnBomb(50);
         }
 
         // Movement
         if (moveDirection != Vector3.zero)
         {
             // Determine the angle of the movement input
-            //float angle = Mathf.Atan2(moveDirection.x, moveDirection.y) * Mathf.Rad2Deg;
             float angle = Mathf.Atan2(moveDirection.x, moveDirection.z) * Mathf.Rad2Deg;
 
             // Round angle to nearest 90 degrees (0, 90, 180, 270)
@@ -140,8 +144,17 @@ public class JunoJosJesJuatroLogic : MonoBehaviour
             Debug.LogWarning("All directions blocked! Reversing.");
         }
     }
-    Vector3 RoundToGrid(Vector3 pos)
+
+    public int randomiser()
     {
-        return new Vector3(Mathf.Round(pos.x), Mathf.Round(pos.y), Mathf.Round(pos.z));
+        return Random.Range(0, 3); // 0 north, 1 south, 2 west, 3 east
+    }
+
+    void OnTriggerEnter(Collider other)
+    {
+        if (other.TryGetComponent(out GhostableBlock ghostBlock))
+        {
+            ghostBlock.AddGhost(GetComponent<Collider>());
+        }
     }
 }
