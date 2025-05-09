@@ -15,8 +15,7 @@ public class JunoJosJesJuatroLogic : MonoBehaviour
 
     [SerializeField]
     private float wallCheckDistance = 0.6f; // how far ahead to check for walls
-    public LayerMask bedrockLayer;
-    public LayerMask bombThere;
+    public LayerMask everything;
 
     // upgradable
     private float duration = 10f;
@@ -33,58 +32,6 @@ public class JunoJosJesJuatroLogic : MonoBehaviour
 
     void Update()
     {
-        /*
-        // Check if a breakable,unbreakble
-        if (Physics.Raycast(transform.position, moveDirection, wallCheckDistance, bedrockLayer))
-        {
-
-            ChooseStraightDirection();
-            //timer = changeDirectionTime; // comment so clone will spawn more bombs often
-            return;
-        }
-
-        if (Physics.Raycast(transform.position, moveDirection, 6f, bombThere))
-        {
-            Debug.DrawRay(transform.position, moveDirection * wallCheckDistance, Color.red);
-
-            ChooseStraightDirection();
-            //timer = changeDirectionTime; // comment so clone will spawn more bombs often
-            return;
-        }
-
-        // Movement shi
-        transform.Translate(moveDirection * Time.deltaTime * speed);
-
-        // timer x < 0 : change direction
-        timer -= Time.deltaTime;
-        if (timer <= 0f)
-        {
-            ChooseStraightDirection();
-            timer = changeDirectionTime;
-            basicAbility.SpawnBomb(0);
-        }
-        */
-        RaycastHit hit;
-        //Vector3 rayOrigin = transform.position + moveDirection.normalized * 0.6f;
-
-        if (Physics.Raycast(transform.position, moveDirection, out hit, wallCheckDistance, bedrockLayer))
-        {
-            Debug.DrawRay(transform.position, moveDirection * wallCheckDistance, Color.red);
-            Debug.Log("Raycast hit: " + hit.collider.name + " | Layer: " + LayerMask.LayerToName(hit.collider.gameObject.layer));
-
-            ChooseStraightDirection();
-            return;
-        }
-        else Debug.Log("Raycast missed");
-
-        timer -= Time.deltaTime;
-        if (timer <= 0f)
-        {
-            ChooseStraightDirection();
-            timer = changeDirectionTime;
-            basicAbility.SpawnBomb(50);
-        }
-
         // Movement
         if (moveDirection != Vector3.zero)
         {
@@ -103,6 +50,42 @@ public class JunoJosJesJuatroLogic : MonoBehaviour
 
         playerVelocity.y += -9.81f * Time.deltaTime;
         controller.Move(playerVelocity * Time.deltaTime);
+    }
+
+    public void Action()
+    {
+        RaycastHit[] hits = Physics.RaycastAll(transform.position, Vector3.forward, 10f, everything);
+        int probabilityChance = randomiser(); // 0 - 100
+        bool untilAction = false;
+        bool breakable = false, bedrock = false, bomb = false, player = false;
+
+        foreach (RaycastHit hit in hits) // "Breakable"/Crates : "Bedrock"/bedrock : "bomb"/bomb : "Player"/player : boundaries has no tag
+        {
+            if (hit.collider.CompareTag("Breakable"))
+                breakable = true;
+            else if (hit.collider.CompareTag("Bedrock"))
+                bedrock = true;
+            else if (hit.collider.CompareTag("bomb"))
+                bomb = true;
+            else if (hit.collider.CompareTag("Player"))
+                player = true;
+        }
+
+        while (!untilAction)
+        {
+            if (player && probabilityChance < 50)
+            {
+                // try to kill the player
+            }
+            else if (breakable && probabilityChance < 80)
+            {
+                // helps juno break crates
+            }
+            else
+            {
+                // run around until it gets an assignment
+            }
+        }
     }
 
     void ChooseStraightDirection()
@@ -127,7 +110,7 @@ public class JunoJosJesJuatroLogic : MonoBehaviour
             Vector2 rayStart = origin + dir.normalized * 0.6f; // small offset in that direction
             Debug.DrawRay(rayStart, dir.normalized * 1f, Color.cyan, 1f);
 
-            if (!Physics.Raycast(rayStart, dir, 1f, bedrockLayer))
+            if (!Physics.Raycast(rayStart, dir, 1f, everything))
             {
                 validDirections.Add(dir);
             }
@@ -145,12 +128,12 @@ public class JunoJosJesJuatroLogic : MonoBehaviour
         }
     }
 
-    public int randomiser()
+    public int randomiser() // pure randomness
     {
-        return Random.Range(0, 3); // 0 north, 1 south, 2 west, 3 east
+        return Random.Range(0, 100);
     }
 
-    void OnTriggerEnter(Collider other)
+    void OnTriggerEnter(Collider other) // bomb ghost thing
     {
         if (other.TryGetComponent(out GhostableBlock ghostBlock))
         {

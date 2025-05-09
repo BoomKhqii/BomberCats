@@ -85,12 +85,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   wallCheckDistance: 0.6
-  bedrockLayer:
+  everything:
     serializedVersion: 2
-    m_Bits: 520
-  bombThere:
-    serializedVersion: 2
-    m_Bits: 256
+    m_Bits: 904
 --- !u!136 &8093318348915984612
 CapsuleCollider:
   m_ObjectHideFlags: 0
