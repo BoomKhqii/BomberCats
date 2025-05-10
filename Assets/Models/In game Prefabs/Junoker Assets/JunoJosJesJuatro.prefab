@@ -17,6 +17,7 @@ GameObject:
   - component: {fileID: 3677487720599449588}
   - component: {fileID: 4039579873140251417}
   - component: {fileID: 1105976537315092125}
+  - component: {fileID: -3147168269115526411}
   m_Layer: 7
   m_Name: JunoJosJesJuatro
   m_TagString: Player
@@ -88,6 +89,15 @@ MonoBehaviour:
   everything:
     serializedVersion: 2
     m_Bits: 904
+  clone: {fileID: 6593356670125899504}
+  obstacles:
+    serializedVersion: 2
+    m_Bits: 264
+  modes:
+    serializedVersion: 2
+    m_Bits: 640
+  targetPlayer: {fileID: 0}
+  targetCrate: {fileID: 0}
 --- !u!136 &8093318348915984612
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -214,3 +224,31 @@ CharacterController:
   m_SkinWidth: 0.08
   m_MinMoveDistance: 0.001
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &-3147168269115526411
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6593356670125899504}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 373b52eb9bf8c40f785bb6947a1aee66, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  version: 1
+  drawGizmos: 1
+  detailedGizmos: 1
+  startEndModifier:
+    addPoints: 0
+    exactStartPoint: 3
+    exactEndPoint: 3
+    useRaycasting: 0
+    mask:
+      serializedVersion: 2
+      m_Bits: 4294967295
+    useGraphRaycasting: 0
+  traversableTags: -1
+  tagPenalties: 0000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000
+  graphMask:
+    value: -1
