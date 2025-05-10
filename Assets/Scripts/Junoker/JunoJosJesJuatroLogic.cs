@@ -1,6 +1,8 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using static TreeEditor.TreeEditorHelper;
+using Pathfinding;
 
 public class JunoJosJesJuatroLogic : MonoBehaviour
 {
@@ -20,6 +22,16 @@ public class JunoJosJesJuatroLogic : MonoBehaviour
     // upgradable
     private float duration = 10f;
 
+    // modes
+    bool isNeutral = true, isPassive = false, isAggro = false;
+    public LayerMask obstacles;
+    public LayerMask modes;
+
+    // A*
+    private Seeker seeker;
+    private Path path;
+    public Transform target;
+
     void Start()
     {
         controller = GetComponent<CharacterController>();
@@ -27,11 +39,58 @@ public class JunoJosJesJuatroLogic : MonoBehaviour
         timer = changeDirectionTime;
         basicAbility = gameObject.GetComponent<CloneBasicAbility>();
 
+        Neutral(isNeutral);
+
+        // A*
+        seeker = GetComponent<Seeker>();
+
         //Destroy(gameObject, duration);
+    }
+
+    void Neutral(bool isActive)
+    {
+        if (!isActive) return;
+        
+        if (Physics.Raycast(transform.position, moveDirection, 0.6f, obstacles)) ChooseStraightDirection();
+
+        // RaycastHit[] hits = Physics.RaycastAll(transform.position, Vector3.forward, 15f, modes);
+        Collider[] hits = Physics.OverlapSphere(transform.position, 15f, modes);
+
+        foreach (Collider hit in hits) // "Breakable"/Crates : "Bedrock"/bedrock : "bomb"/bomb : "Player"/player : boundaries has no tag
+        {
+            if (hit.CompareTag("Player")) SwitchMode(0);
+            else if (hit.CompareTag("Breakable")) SwitchMode(1);
+        }
+    }
+
+    void Aggressive(bool isActive)
+    {
+
+    }
+    void Passive(bool isActive)
+    {
+
+    }
+
+    void SwitchMode(int modeType)
+    {
+        isNeutral = false;
+        switch (modeType)
+        {
+            case 0:
+                isAggro = true ; break;
+            case 1:
+                isPassive = true ; break;
+        }
     }
 
     void Update()
     {
+        // Modes
+        Neutral(isNeutral);
+        Aggressive(isAggro);
+        Passive(isPassive);
+
         // Movement
         if (moveDirection != Vector3.zero)
         {
@@ -50,42 +109,6 @@ public class JunoJosJesJuatroLogic : MonoBehaviour
 
         playerVelocity.y += -9.81f * Time.deltaTime;
         controller.Move(playerVelocity * Time.deltaTime);
-    }
-
-    public void Action()
-    {
-        RaycastHit[] hits = Physics.RaycastAll(transform.position, Vector3.forward, 10f, everything);
-        int probabilityChance = randomiser(); // 0 - 100
-        bool untilAction = false;
-        bool breakable = false, bedrock = false, bomb = false, player = false;
-
-        foreach (RaycastHit hit in hits) // "Breakable"/Crates : "Bedrock"/bedrock : "bomb"/bomb : "Player"/player : boundaries has no tag
-        {
-            if (hit.collider.CompareTag("Breakable"))
-                breakable = true;
-            else if (hit.collider.CompareTag("Bedrock"))
-                bedrock = true;
-            else if (hit.collider.CompareTag("bomb"))
-                bomb = true;
-            else if (hit.collider.CompareTag("Player"))
-                player = true;
-        }
-
-        while (!untilAction)
-        {
-            if (player && probabilityChance < 50)
-            {
-                // try to kill the player
-            }
-            else if (breakable && probabilityChance < 80)
-            {
-                // helps juno break crates
-            }
-            else
-            {
-                // run around until it gets an assignment
-            }
-        }
     }
 
     void ChooseStraightDirection()
