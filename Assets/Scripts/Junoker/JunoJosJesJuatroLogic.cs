@@ -10,7 +10,7 @@ public class JunoJosJesJuatroLogic : MonoBehaviour
     private CharacterController controller;
     private CloneBasicAbility basicAbility;
 
-    private float speed = 4.5f;
+    private float speed = 10f;
     private Vector3 playerVelocity;
     private float changeDirectionTime = 1f;
     private Vector3 moveDirection;
@@ -141,7 +141,15 @@ public class JunoJosJesJuatroLogic : MonoBehaviour
         // Now prioritize target selection
         if (targetPlayer != null)
         {
-            path = seeker.StartPath(transform.position, targetPlayer.position, OnPathComplete);
+            if (seeker != null && targetPlayer != null)
+            {
+                path = seeker.StartPath(transform.position, targetPlayer.position, OnPathComplete);
+            }
+            else
+            {
+                Debug.LogWarning("Seeker or targetPlayer is null in prioritize().");
+            }
+
             if (path == null)
             {
                 Debug.LogWarning("Path returned null!");
@@ -187,6 +195,7 @@ public class JunoJosJesJuatroLogic : MonoBehaviour
     {
         if (!isActive) return;
 
+        
         Debug.Log("ag");
     }
     void Passive(bool isActive)
@@ -198,7 +207,7 @@ public class JunoJosJesJuatroLogic : MonoBehaviour
 
     void SwitchMode(int modeType)
     {
-        //isNeutral = false;
+        isNeutral = false;
         switch (modeType)
         {
             case 0:
@@ -215,13 +224,50 @@ public class JunoJosJesJuatroLogic : MonoBehaviour
     void Update()
     {
 
-        if (path != null) // If no path exists, don't move
+        if (path != null)
         {
-            // Move toward the next waypoint
             if (currentWaypoint < path.vectorPath.Count)
             {
                 Vector3 direction = (path.vectorPath[currentWaypoint] - transform.position).normalized;
-                transform.position += direction * speed * Time.deltaTime;
+
+                if (direction != Vector3.zero)
+                {
+                    float angle = Mathf.Atan2(direction.x, direction.z) * Mathf.Rad2Deg;
+                    float snappedAngle = Mathf.Round(angle / 90f) * 90f;
+                    Vector3 moveDir = Quaternion.Euler(0, snappedAngle, 0) * Vector3.forward;
+
+                    controller.Move(moveDir * Time.deltaTime * speed);
+                    transform.forward = moveDir;
+                }
+
+                // Apply gravity
+                playerVelocity.y += -9.81f * Time.deltaTime;
+                controller.Move(playerVelocity * Time.deltaTime);
+
+                if (Vector3.Distance(transform.position, path.vectorPath[currentWaypoint]) < 0.5f)
+                {
+                    currentWaypoint++;
+                }
+            }
+            /*
+            // Move toward the next waypoint
+            if (currentWaypoint < path.vectorPath.Count)
+            {
+                Vector2 direction = (path.vectorPath[currentWaypoint] - transform.position).normalized;
+                //transform.position += direction * speed * Time.deltaTime;
+                //controller.Move(direction * speed * Time.deltaTime);
+                if (direction != Vector2.zero)
+                {
+                    float angle = Mathf.Atan2(direction.x, direction.y) * Mathf.Rad2Deg;
+                    float snappedAngle = Mathf.Round(angle / 90f) * 90f;
+                    Vector3 moveDir = Quaternion.Euler(0, snappedAngle, 0) * Vector3.forward;
+                    controller.Move(moveDir * Time.deltaTime * speed);
+                    transform.forward = moveDir;
+
+                }
+
+                playerVelocity.y += -9.81f * Time.deltaTime;
+                controller.Move(playerVelocity * Time.deltaTime);
 
                 // If close to the waypoint, move to the next one
                 if (Vector3.Distance(transform.position, path.vectorPath[currentWaypoint]) < 0.5f)
@@ -229,33 +275,35 @@ public class JunoJosJesJuatroLogic : MonoBehaviour
                     currentWaypoint++;
                 }
             }
+            */
         }
 
         // Modes
         Neutral(isNeutral);
         Aggressive(isAggro);
         Passive(isPassive);
-        /*
-        // Movement
-        if (moveDirection != Vector3.zero)
-        {
-            // Determine the angle of the movement input
-            float angle = Mathf.Atan2(moveDirection.x, moveDirection.z) * Mathf.Rad2Deg;
 
-            // Round angle to nearest 90 degrees (0, 90, 180, 270)
-            float snappedAngle = Mathf.Round(angle / 90f) * 90f;
+    /*
+    // Movement
+    if (moveDirection != Vector3.zero)
+    {
+        // Determine the angle of the movement input
+        float angle = Mathf.Atan2(moveDirection.x, moveDirection.z) * Mathf.Rad2Deg;
 
-            // Convert the snapped angle back into a direction vector
-            Vector3 moveDir = Quaternion.Euler(0, snappedAngle, 0) * Vector3.forward;
+        // Round angle to nearest 90 degrees (0, 90, 180, 270)
+        float snappedAngle = Mathf.Round(angle / 90f) * 90f;
 
-            controller.Move(moveDir * Time.deltaTime * speed);
-            transform.forward = moveDir;
-        }
+        // Convert the snapped angle back into a direction vector
+        Vector3 moveDir = Quaternion.Euler(0, snappedAngle, 0) * Vector3.forward;
 
-        playerVelocity.y += -9.81f * Time.deltaTime;
-        controller.Move(playerVelocity * Time.deltaTime);
-        */
+        controller.Move(moveDir * Time.deltaTime * speed);
+        transform.forward = moveDir;
     }
+
+    playerVelocity.y += -9.81f * Time.deltaTime;
+    controller.Move(playerVelocity * Time.deltaTime);
+    */
+}
 
     void ChooseStraightDirection()
     {
