@@ -31,6 +31,8 @@ public class JunoJosJesJuatroLogic : MonoBehaviour
     // passive
     float playerDistance = Mathf.Infinity; // looking for the closest player
     float crateDistance = Mathf.Infinity; // closest crate
+    // aggro
+    private Vector3 previousTargetPosition;
 
     // A*
     private Seeker seeker;
@@ -67,8 +69,8 @@ public class JunoJosJesJuatroLogic : MonoBehaviour
         Debug.Log("NI");
 
         //if (Physics.Raycast(transform.position, moveDirection, 0.6f, obstacles)) ChooseStraightDirection();
-
         // RaycastHit[] hits = Physics.RaycastAll(transform.position, Vector3.forward, 15f, modes);
+
         try {
             Collider[] hits = Physics.OverlapSphere(transform.position, 30f, modes);
             HashSet<GameObject> modeDup = new HashSet<GameObject>();
@@ -100,34 +102,6 @@ public class JunoJosJesJuatroLogic : MonoBehaviour
             }
 
             prioritize();
-            /*
-            // Now prioritize target selection
-            if (targetPlayer != null)
-            {
-                Path pathToPlayer = null; //seeker.StartPath(transform.position, targetPlayer.position, OnPathComplete);
-
-                if (pathToPlayer != null && !pathToPlayer.error)
-                {
-                    SwitchMode(0);  // Attack Mode
-                }
-                else if (targetCrate != null)
-                {
-                    Debug.Log("in 1");
-                    SwitchMode(1);  // Passive Mode (Go to crate)
-                }
-            }
-            else if (targetCrate != null)
-            {
-                Debug.Log(1);
-                SwitchMode(1);  // Passive Mode (Go to crate)
-            }
-            else
-            {
-                Debug.Log(2);
-                SwitchMode(2);  // Neutral Mode
-            } 
-            */
-
         }
         catch (Exception ex)
         {
@@ -144,6 +118,7 @@ public class JunoJosJesJuatroLogic : MonoBehaviour
             if (seeker != null && targetPlayer != null)
             {
                 path = seeker.StartPath(transform.position, targetPlayer.position, OnPathComplete);
+                previousTargetPosition = targetPlayer.position;
             }
             else
             {
@@ -179,22 +154,15 @@ public class JunoJosJesJuatroLogic : MonoBehaviour
         }
     }
 
-    void OnPathComplete(Path p)
-    {
-        if (p.error)
-        {
-            Debug.LogError($"Pathfinding error: {p.errorLog}");
-        }
-        else
-        {
-            Debug.Log($"Path successfully created! Waypoints: {p.vectorPath.Count}");
-            path = p;
-        }
-    }
     void Aggressive(bool isActive)
     {
         if (!isActive) return;
-
+        
+        if (Vector3.Distance(targetPlayer.position, previousTargetPosition) > 1f) // Threshold for movement
+        {
+            seeker.StartPath(transform.position, targetPlayer.position, OnPathComplete);
+            previousTargetPosition = targetPlayer.position;
+        }
         
         Debug.Log("ag");
     }
@@ -223,19 +191,29 @@ public class JunoJosJesJuatroLogic : MonoBehaviour
 
     void Update()
     {
-
         if (path != null)
         {
             if (currentWaypoint < path.vectorPath.Count)
             {
-                Vector3 direction = (path.vectorPath[currentWaypoint] - transform.position).normalized;
+                Debug.Log(path.vectorPath[currentWaypoint] + " " + currentWaypoint);
 
-                if (direction != Vector3.zero)
+                Vector3 nextWaypoint = path.vectorPath[currentWaypoint];
+                Vector2 nextWaypoint2D = new Vector2(nextWaypoint.x, nextWaypoint.z);
+                nextWaypoint.y = 1.38f; // Lock Y position to prevent vertical drift
+
+                Vector3 playerPosition = transform.position;
+                Vector2 playerPosition2D = new Vector2(playerPosition.x, playerPosition.z);
+
+                Vector2 direction2D = (nextWaypoint2D - playerPosition2D).normalized;
+                
+                //Vector3 direction = (nextWaypoint - playerPosition).normalized;
+                //Vector2 direction2D = new Vector2(direction.x, direction.z); // Convert to 2D
+                
+                if (direction2D != Vector2.zero)
                 {
-                    float angle = Mathf.Atan2(direction.x, direction.z) * Mathf.Rad2Deg;
+                    float angle = Mathf.Atan2(direction2D.x, direction2D.y) * Mathf.Rad2Deg;
                     float snappedAngle = Mathf.Round(angle / 90f) * 90f;
                     Vector3 moveDir = Quaternion.Euler(0, snappedAngle, 0) * Vector3.forward;
-
                     controller.Move(moveDir * Time.deltaTime * speed);
                     transform.forward = moveDir;
                 }
@@ -244,65 +222,17 @@ public class JunoJosJesJuatroLogic : MonoBehaviour
                 playerVelocity.y += -9.81f * Time.deltaTime;
                 controller.Move(playerVelocity * Time.deltaTime);
 
-                if (Vector3.Distance(transform.position, path.vectorPath[currentWaypoint]) < 0.5f)
+                if (Vector2.Distance(playerPosition2D, nextWaypoint2D) < .1f)
                 {
                     currentWaypoint++;
                 }
             }
-            /*
-            // Move toward the next waypoint
-            if (currentWaypoint < path.vectorPath.Count)
-            {
-                Vector2 direction = (path.vectorPath[currentWaypoint] - transform.position).normalized;
-                //transform.position += direction * speed * Time.deltaTime;
-                //controller.Move(direction * speed * Time.deltaTime);
-                if (direction != Vector2.zero)
-                {
-                    float angle = Mathf.Atan2(direction.x, direction.y) * Mathf.Rad2Deg;
-                    float snappedAngle = Mathf.Round(angle / 90f) * 90f;
-                    Vector3 moveDir = Quaternion.Euler(0, snappedAngle, 0) * Vector3.forward;
-                    controller.Move(moveDir * Time.deltaTime * speed);
-                    transform.forward = moveDir;
-
-                }
-
-                playerVelocity.y += -9.81f * Time.deltaTime;
-                controller.Move(playerVelocity * Time.deltaTime);
-
-                // If close to the waypoint, move to the next one
-                if (Vector3.Distance(transform.position, path.vectorPath[currentWaypoint]) < 0.5f)
-                {
-                    currentWaypoint++;
-                }
-            }
-            */
         }
 
         // Modes
         Neutral(isNeutral);
         Aggressive(isAggro);
         Passive(isPassive);
-
-    /*
-    // Movement
-    if (moveDirection != Vector3.zero)
-    {
-        // Determine the angle of the movement input
-        float angle = Mathf.Atan2(moveDirection.x, moveDirection.z) * Mathf.Rad2Deg;
-
-        // Round angle to nearest 90 degrees (0, 90, 180, 270)
-        float snappedAngle = Mathf.Round(angle / 90f) * 90f;
-
-        // Convert the snapped angle back into a direction vector
-        Vector3 moveDir = Quaternion.Euler(0, snappedAngle, 0) * Vector3.forward;
-
-        controller.Move(moveDir * Time.deltaTime * speed);
-        transform.forward = moveDir;
-    }
-
-    playerVelocity.y += -9.81f * Time.deltaTime;
-    controller.Move(playerVelocity * Time.deltaTime);
-    */
 }
 
     void ChooseStraightDirection()
@@ -342,6 +272,20 @@ public class JunoJosJesJuatroLogic : MonoBehaviour
             // If all are blocked, just reverse current direction (or stay still)
             moveDirection = -moveDirection;
             Debug.LogWarning("All directions blocked! Reversing.");
+        }
+    }
+
+    void OnPathComplete(Path p)
+    {
+        if (p.error)
+        {
+            Debug.LogError($"Pathfinding error: {p.errorLog}");
+        }
+        else
+        {
+            Debug.Log($"Path successfully created! Waypoints: {p.vectorPath.Count}");
+            path = p;
+            currentWaypoint = 0;
         }
     }
 
