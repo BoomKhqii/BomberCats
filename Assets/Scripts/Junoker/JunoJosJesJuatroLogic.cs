@@ -1,3 +1,4 @@
+
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -53,7 +54,7 @@ public class JunoJosJesJuatroLogic : MonoBehaviour
         timer = changeDirectionTime;
         basicAbility = gameObject.GetComponent<CloneBasicAbility>();
 
-        Neutral();
+        Neutral(isNeutral);
 
         // A*
         seeker = GetComponent<Seeker>();
@@ -64,9 +65,55 @@ public class JunoJosJesJuatroLogic : MonoBehaviour
 
         //Destroy(gameObject, duration);
     }
+    void Neutral(bool isActive)
+    {
+        if (!isActive) return;
 
+        Debug.Log("NI");
+
+        //if (Physics.Raycast(transform.position, moveDirection, 0.6f, obstacles)) ChooseStraightDirection();
+        // RaycastHit[] hits = Physics.RaycastAll(transform.position, Vector3.forward, 15f, modes);
+        if (Physics.Raycast(transform.position, moveDirection, 0.6f, obstacles)) ChooseStraightDirection();
+
+        try
+        {
+            Collider[] hits = Physics.OverlapSphere(transform.position, 30f, modes);
+            HashSet<GameObject> modeDup = new HashSet<GameObject>();
+            foreach (Collider hit in hits)
+            {
+                if (!modeDup.Contains(hit.gameObject))
+                    modeDup.Add(hit.gameObject);
+
+                if (hit.gameObject == clone) continue;
+
+                if (hit.CompareTag("Player"))
+                {
+                    float distance = Vector3.Distance(transform.position, hit.transform.position);
+                    if (distance < playerDistance)
+                    {
+                        playerDistance = distance;
+                        targetPlayer = hit.transform;
+                    }
+                }
+                else if (hit.CompareTag("Breakable"))
+                {
+                    float distance = Vector3.Distance(transform.position, hit.transform.position);
+                    if (distance < crateDistance)
+                    {
+                        crateDistance = distance;
+                        targetCrate = hit.transform;
+                    }
+                }
+            }
+
+            prioritize();
+        } catch (Exception ex) { Debug.LogError("Neutral() exception: " + ex.Message + "\n" + ex.StackTrace); }
+    }
+    /*
     void Neutral()
     {
+        //if (!isNeutral) return;
+
         try {
             Collider[] hits = Physics.OverlapSphere(transform.position, 30f, modes);
             HashSet<GameObject> modeDup = new HashSet<GameObject>();
@@ -101,7 +148,7 @@ public class JunoJosJesJuatroLogic : MonoBehaviour
         }
         catch (Exception ex) { Debug.LogError("Neutral() exception: " + ex.Message + "\n" + ex.StackTrace); }
     }
-
+    */
     void prioritize()
     {
         // need to shorten this
@@ -209,11 +256,31 @@ public class JunoJosJesJuatroLogic : MonoBehaviour
         }
         */
     }
+    void Aggressive(bool isActive)
+    {
+        if (!isActive) return;
 
+        if (Vector3.Distance(targetPlayer.position, previousTargetPosition) > 1f) // Threshold for movement
+        {
+            AstarPath.active.Scan();
+            seeker.StartPath(transform.position, targetPlayer.position, OnPathComplete);
+            previousTargetPosition = targetPlayer.position;
+        }
+
+        Debug.Log("ag");
+    }
+    void Passive(bool isActive)
+    {
+        if (!isActive) return;
+
+        Debug.Log("pas");
+    }
+    // no constant calling function
+    /*
     void Aggressive()
     {
-        while (isAggro)
-        {
+        //while (isAggro)
+        //{
 
             if (Vector3.Distance(targetPlayer.position, previousTargetPosition) > 1f) // Threshold for movement
             {
@@ -223,36 +290,38 @@ public class JunoJosJesJuatroLogic : MonoBehaviour
             }
             if (reachDestination)
             {
-                SwitchMode(2);
+                //SwitchMode(2);
+                isAggro = false;
             }
 
             Debug.Log("ag");
-        }
+        //}
     }
     void Passive()
     {
-        while (isPassive)
-        {
+        //while (isPassive)
+        //{
             if (reachDestination)
             {
                 basicAbility.SpawnBomb(0);
+                isPassive = false;
             }
 
             Debug.Log("pas");
-        }
+        //}
     }
-
+    */
     void SwitchMode(int modeType)
     {
         isAggro = false; isPassive = false; isNeutral = false;
         switch (modeType)
         {
             case 0:
-                isAggro = true; Aggressive();  break;
+                isAggro = true;  break;
             case 1:
-                isPassive = true; Passive();  break;
+                isPassive = true;  break;
             case 2:
-                isNeutral = true; Neutral(); break;
+                isNeutral = true; break;
         }
 
         Debug.Log("Agg: " + isAggro + " pass: " + isPassive + " neutr: " + isNeutral + " mode type: " + modeType);
@@ -266,6 +335,7 @@ public class JunoJosJesJuatroLogic : MonoBehaviour
             if (Physics.Raycast(transform.position, moveDirection, 0.6f, obstacles)) ChooseStraightDirection();
         }
         */
+        //Neutral();
 
         if (path != null && !reachDestination)
         {
@@ -305,7 +375,12 @@ public class JunoJosJesJuatroLogic : MonoBehaviour
                 }
             }
         }
-}
+
+        // Modes
+        Neutral(isNeutral);
+        Aggressive(isAggro);
+        Passive(isPassive);
+    }
 
     void ChooseStraightDirection()
     {

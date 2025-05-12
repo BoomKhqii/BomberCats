@@ -98,6 +98,7 @@ MonoBehaviour:
     m_Bits: 640
   targetPlayer: {fileID: 0}
   targetCrate: {fileID: 0}
+  nextWaypointDistance: 0.5
 --- !u!136 &8093318348915984612
 CapsuleCollider:
   m_ObjectHideFlags: 0
