@@ -37,6 +37,8 @@ public class JunoJosJesJuatroLogic : MonoBehaviour
     // A*
     private Seeker seeker;
     private Path path;
+    private Path playerPath;
+    private Path cratePath;
     public Transform targetPlayer = null;
     public Transform targetCrate = null;
     private bool reachDestination = false;
@@ -51,7 +53,7 @@ public class JunoJosJesJuatroLogic : MonoBehaviour
         timer = changeDirectionTime;
         basicAbility = gameObject.GetComponent<CloneBasicAbility>();
 
-        Neutral(isNeutral);
+        Neutral();
 
         // A*
         seeker = GetComponent<Seeker>();
@@ -63,12 +65,8 @@ public class JunoJosJesJuatroLogic : MonoBehaviour
         //Destroy(gameObject, duration);
     }
 
-    void Neutral(bool isActive)
+    void Neutral()
     {
-        if (!isActive) return;
-
-        if (Physics.Raycast(transform.position, moveDirection, 0.6f, obstacles)) ChooseStraightDirection();
-
         try {
             Collider[] hits = Physics.OverlapSphere(transform.position, 30f, modes);
             HashSet<GameObject> modeDup = new HashSet<GameObject>();
@@ -95,6 +93,7 @@ public class JunoJosJesJuatroLogic : MonoBehaviour
                     {
                         crateDistance = distance;
                         targetCrate = hit.transform;
+                        Debug.Log("Target crate: " + targetCrate.position);
                     }
                 }
             }
@@ -111,27 +110,55 @@ public class JunoJosJesJuatroLogic : MonoBehaviour
         reachDestination = false;
 
         // validity of target player
+        
         if (targetPlayer != null && seeker != null)
         {
-            path = seeker.StartPath(transform.position, targetPlayer.position, OnPathComplete);
+            playerPath = seeker.StartPath(transform.position, targetPlayer.position, OnPathComplete);
             previousTargetPosition = targetPlayer.position;
 
-            if (path == null)
+            if (playerPath == null)
             {
-                Debug.LogWarning("Path returned null!");
+                Debug.LogWarning("Player Path returned null!");
             }
         }
-
-        // Decide which mode to switch to
-        if (path != null && !path.error)
-        {
-            SwitchMode(0);  // Attack Mode
-        }
-        else if (targetCrate != null)
+        if (targetCrate != null && seeker != null)
         {
             NNInfo nearestWalkableTile = AstarPath.active.GetNearest(targetCrate.position, NNConstraint.Default);
             Vector3 correctedTarget = (Vector3)nearestWalkableTile.position;
+            cratePath = seeker.StartPath(transform.position, correctedTarget, OnPathComplete);
+
+            if (cratePath == null)
+            {
+                Debug.LogWarning("Crate Path returned null!");
+            }
+        }
+        // creating player path
+        //Path playerPath = seeker.StartPath(transform.position, targetPlayer.position, OnPathComplete);
+
+        /*
+        // creating crate path
+        NNInfo nearestWalkableTile = AstarPath.active.GetNearest(targetCrate.position, NNConstraint.Default);
+        Vector3 correctedTarget = (Vector3)nearestWalkableTile.position;
+        Path cratePath = seeker.StartPath(transform.position, targetCrate.position, OnPathComplete);
+        AstarPath.active.Scan();
+        */
+
+        // Decide which mode to switch to
+        //if (path != null && !path.error)
+        if (targetPlayer != null && seeker != null && playerPath != null)
+        {
+            //path = seeker.StartPath(transform.position, targetPlayer.position, OnPathComplete);
+            previousTargetPosition = targetPlayer.position;
+
+            SwitchMode(0);  // Attack Mode
+        }
+        else if (targetCrate != null && seeker != null && targetCrate != null)
+        {
+            /*
+            NNInfo nearestWalkableTile = AstarPath.active.GetNearest(targetCrate.position, NNConstraint.Default);
+            Vector3 correctedTarget = (Vector3)nearestWalkableTile.position;
             path = seeker.StartPath(transform.position, targetCrate.position, OnPathComplete);
+            */
 
             SwitchMode(1);  // Passive Mode (Go to crate)
         }
@@ -183,37 +210,49 @@ public class JunoJosJesJuatroLogic : MonoBehaviour
         */
     }
 
-    void Aggressive(bool isActive)
+    void Aggressive()
     {
-        if (!isActive) return;
-        
-        if (Vector3.Distance(targetPlayer.position, previousTargetPosition) > 1f) // Threshold for movement
+        while (isAggro)
         {
-            AstarPath.active.Scan();
-            seeker.StartPath(transform.position, targetPlayer.position, OnPathComplete);
-            previousTargetPosition = targetPlayer.position;
-        }
-        
-        Debug.Log("ag");
-    }
-    void Passive(bool isActive)
-    {
-        if (!isActive) return;
 
-        Debug.Log("pas");
+            if (Vector3.Distance(targetPlayer.position, previousTargetPosition) > 1f) // Threshold for movement
+            {
+                AstarPath.active.Scan();
+                seeker.StartPath(transform.position, targetPlayer.position, OnPathComplete);
+                previousTargetPosition = targetPlayer.position;
+            }
+            if (reachDestination)
+            {
+                SwitchMode(2);
+            }
+
+            Debug.Log("ag");
+        }
+    }
+    void Passive()
+    {
+        while (isPassive)
+        {
+            if (reachDestination)
+            {
+                basicAbility.SpawnBomb(0);
+            }
+
+            Debug.Log("pas");
+        }
     }
 
     void SwitchMode(int modeType)
     {
-        isNeutral = false;
+        isAggro = false; isPassive = false; isNeutral = false;
         switch (modeType)
         {
             case 0:
-                isAggro = true ; break;
+                isAggro = true; Aggressive();  break;
             case 1:
-                isPassive = true ; break;
+                isPassive = true; Passive();  break;
             case 2:
-                isNeutral = true; break;
+                isNeutral = true; Neutral(); break;
         }
 
         Debug.Log("Agg: " + isAggro + " pass: " + isPassive + " neutr: " + isNeutral + " mode type: " + modeType);
@@ -221,6 +260,12 @@ public class JunoJosJesJuatroLogic : MonoBehaviour
 
     void Update()
     {
+        /*
+        if (isNeutral)
+        {
+            if (Physics.Raycast(transform.position, moveDirection, 0.6f, obstacles)) ChooseStraightDirection();
+        }
+        */
 
         if (path != null && !reachDestination)
         {
@@ -251,19 +296,15 @@ public class JunoJosJesJuatroLogic : MonoBehaviour
                     (
                         playerPosition2D, 
                         new Vector2(path.vectorPath[path.vectorPath.Count - 1].x, path.vectorPath[path.vectorPath.Count - 1].z
-                    )) < 1f)
+                    )) < 0.5f)
                 {
                     Debug.Log("Destination Reached!");
                     reachDestination = true;
                     path = null;
+                    //SwitchMode(2);
                 }
             }
         }
-
-        // Modes
-        Neutral(isNeutral);
-        Aggressive(isAggro);
-        Passive(isPassive);
 }
 
     void ChooseStraightDirection()
