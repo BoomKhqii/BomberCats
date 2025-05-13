@@ -8,6 +8,7 @@ public class MapManager : MonoBehaviour
 
     public int gridMin = -7;
     public int gridMax = 7;
+    public LayerMask ob;
 
     void Start()
     {
@@ -21,7 +22,8 @@ public class MapManager : MonoBehaviour
                 if (x == gridMin || x == gridMax || z == gridMin || z == gridMax || (x % 1 == 0 && z % 1 == 0))
                 {
                     Vector3 position = new Vector3(x, 0.9f, z); // Adjust Y if needed
-                    Instantiate(cratePrefab, position, Quaternion.identity);
+                    if (!Physics.CheckSphere(position, 0.1f, ob))
+                        Instantiate(cratePrefab, position, Quaternion.identity);
                 }
             }
         }
