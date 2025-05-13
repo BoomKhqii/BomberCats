@@ -57,6 +57,8 @@ MonoBehaviour:
   - {fileID: 9006444934482848468}
   - {fileID: 390908461810346385}
   - {fileID: 7581323893193130156}
+  name: []
+  description: []
   selectedCharacter: 0
   lobby: {fileID: 1385660440083788850}
 --- !u!114 &1385660440083788850

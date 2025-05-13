@@ -2,12 +2,15 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.UI;
 
 public class SelectionManager : MonoBehaviour
 {
     public GameObject[] characters;
-    public int selectedCharacter = 0;
+    public Text[] name;
+    public Text[] description;
 
+    public int selectedCharacter = 0;
     public PlayerJoinLobby lobby;
 
     // NExt and previous
@@ -33,5 +36,10 @@ public class SelectionManager : MonoBehaviour
         }
         characters[selectedCharacter].SetActive(true);
         lobby.SetSelectedCharacter(selectedCharacter);
+    }
+
+    public void Selection(int index, bool active)
+    {
+        characters[index].SetActive(active);
     }
 }
