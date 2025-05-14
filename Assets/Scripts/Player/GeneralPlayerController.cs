@@ -62,11 +62,13 @@ public class GeneralPlayerController : MonoBehaviour
         controller.Move(playerVelocity * Time.deltaTime);
     }
 
+    /*
     void OnTriggerEnter(Collider other)
     {
         if (other.TryGetComponent(out GhostableBlock ghostBlock))
         {
-            ghostBlock.AddGhost(GetComponent<Collider>());
+            ghostBlock.AddGhost(gameObject.GetComponent<Collider>());
         }
     }
+    */
 }
