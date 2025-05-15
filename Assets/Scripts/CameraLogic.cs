@@ -1,10 +1,11 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.InputSystem;
 
 public class CameraLogic : MonoBehaviour
 {
-    // Start is called before the first frame update
+    public GameObject playerInputManager;
     void Start()
     {
         StartCoroutine(StartCamera());
@@ -12,7 +13,10 @@ public class CameraLogic : MonoBehaviour
 
     IEnumerator StartCamera()
     {
-        yield return new WaitForSeconds(10f);
+        Time.timeScale = 10f;
+        yield return new WaitForSeconds(30f);
+        Time.timeScale = 1f;
+        playerInputManager.SetActive(true);
         Camera.main.transform.rotation = Quaternion.Euler(0, 0, 0);
     }
 }
