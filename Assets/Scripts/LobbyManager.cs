@@ -81,7 +81,6 @@ public class LobbyManager : MonoBehaviour
 
             // Find all surviving players
             PlayerJoinLobby[] savedPlayers = FindObjectsOfType<PlayerJoinLobby>();
-            Debug.Log("Players found after scene load: " + playerData.Length);
 
             for (int i = 0; i < players.Count; i+=1)
             {
@@ -90,26 +89,18 @@ public class LobbyManager : MonoBehaviour
 
                 int chosenCharacter = playerData[i].characterID;
                 var controller = input.GetComponent<PlayerController>();
+
                 if (controller != null)
-                {
-                    Debug.Log("Assigning character to player " + i);
                     controller.SetCharacter(LobbyManager.instance.GetCharacterPrefab(chosenCharacter));
-                }
 
                 // OPTIONAL: move players to in-game spawn points
                 if (i < inGameSpawnPoints.Length)
-                {
                     input.transform.position = inGameSpawnPoints[i].transform.position;
-                }
             }
         }
     }
 
-    public GameObject GetCharacterPrefab(int id)
-    {
-        return characterPrefabs[id];
-    }
-
+    public GameObject GetCharacterPrefab(int id) { return characterPrefabs[id]; }
 }
 
 [System.Serializable]
