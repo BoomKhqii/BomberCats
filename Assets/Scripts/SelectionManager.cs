@@ -6,9 +6,7 @@ using UnityEngine.UI;
 
 public class SelectionManager : MonoBehaviour
 {
-    public GameObject[] characters;
-    public Text[] name;
-    public Text[] description;
+    public GameObject[] characters, name, description;
 
     public int selectedCharacter = 0;
     public PlayerJoinLobby lobby;
@@ -18,9 +16,14 @@ public class SelectionManager : MonoBehaviour
     {
         if(!context.performed) return;
 
-        characters[selectedCharacter].SetActive(false);
+        //characters[selectedCharacter].SetActive(false);
+        Selection(selectedCharacter, false);
+
         selectedCharacter = (selectedCharacter + 1) % characters.Length;
-        characters[selectedCharacter].SetActive(true);
+
+        //characters[selectedCharacter].SetActive(true);
+        Selection(selectedCharacter, true);
+
         lobby.SetSelectedCharacter(selectedCharacter);
     }
 
@@ -28,18 +31,24 @@ public class SelectionManager : MonoBehaviour
     {
         if (!context.performed) return;
 
-        characters[selectedCharacter].SetActive(false);
+        //characters[selectedCharacter].SetActive(false);
+        Selection(selectedCharacter, false);
+
         selectedCharacter--;
         if (selectedCharacter < 0)
         {
             selectedCharacter += characters.Length;
         }
-        characters[selectedCharacter].SetActive(true);
+
+        //characters[selectedCharacter].SetActive(true);
+        Selection(selectedCharacter, true);
+
         lobby.SetSelectedCharacter(selectedCharacter);
     }
 
     public void Selection(int index, bool active)
     {
         characters[index].SetActive(active);
+        name[index].SetActive(active);
     }
 }
