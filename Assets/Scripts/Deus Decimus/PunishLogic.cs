@@ -56,6 +56,9 @@ public class PunishLogic : MonoBehaviour
         }
     }
 
+
+
+    /*
     void Update()
     {
         if (target == null)
@@ -182,4 +185,5 @@ public class PunishLogic : MonoBehaviour
         Gizmos.color = Color.blue;
         Gizmos.DrawWireSphere(transform.position, pullRadius);
     }
+    */
 }

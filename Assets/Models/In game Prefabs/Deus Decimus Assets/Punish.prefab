@@ -10,6 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 6170265651946784815}
   - component: {fileID: 6007699559090437817}
+  - component: {fileID: -9146248374407398455}
   - component: {fileID: 3676863828750068176}
   - component: {fileID: 4369578266720071555}
   - component: {fileID: 4477875390979180099}
@@ -47,14 +48,41 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c989f3c2598291846b2fca57b53da83a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  player: {fileID: 7960962020047947728, guid: 8ba10e065c876f44885d60aacc778d05, type: 3}
+  deusDecimus: {fileID: 7960962020047947728, guid: 8ba10e065c876f44885d60aacc778d05, type: 3}
   playerLayer:
     serializedVersion: 2
     m_Bits: 384
   obstacleLayer:
     serializedVersion: 2
     m_Bits: 520
-  deusDecimus: {fileID: 7960962020047947728, guid: 8ba10e065c876f44885d60aacc778d05, type: 3}
+--- !u!114 &-9146248374407398455
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9165346943456416584}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 373b52eb9bf8c40f785bb6947a1aee66, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  version: 1
+  drawGizmos: 1
+  detailedGizmos: 1
+  startEndModifier:
+    addPoints: 0
+    exactStartPoint: 3
+    exactEndPoint: 3
+    useRaycasting: 0
+    mask:
+      serializedVersion: 2
+      m_Bits: 4294967295
+    useGraphRaycasting: 0
+  traversableTags: -1
+  tagPenalties: 0000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000
+  graphMask:
+    value: -1
 --- !u!33 &3676863828750068176
 MeshFilter:
   m_ObjectHideFlags: 0
