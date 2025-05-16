@@ -1,17 +1,22 @@
+using Pathfinding;
 using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Net.NetworkInformation;
 using UnityEngine;
+using UnityEngine.InputSystem.XR;
 
 public class PunishLogic : MonoBehaviour
 {
-    private float playerTargetRadius = 20f;
+    //private float playerTargetRadius = 20f;
     private float pullRadius = 4.5f; // not used
-    private float killRadius = 0.1f;
+    //private float killRadius = 0.1f;
     private float speed = 4.5f;
+    private Vector3 playerVelocity;
     private float duration = 3f;
     private float originSpeed;
+
+    private CharacterController controller;
 
     public GameObject deusDecimus;
     public LayerMask playerLayer;
@@ -25,12 +30,42 @@ public class PunishLogic : MonoBehaviour
     private float levelPunish = 0;
     //public GameObject deusDecimus;
 
+    // A-Star AI
+    private Seeker seeker;
+    private Path path;
+    private Path playerPath;
+    public Transform targetPlayer = null;
+    private bool reachDestination = false;
+
+    private int currentWaypoint = 0;
+    public float nextWaypointDistance = 0.5f;
+
+    private Vector3 previousTargetPosition;
+
+    // Find Target
+    public LayerMask findingPlayers;
+    float playerDistance = Mathf.Infinity;
+
+    public bool hasTarget = false;
+
     private void Start()
     {
+        controller = GetComponent<CharacterController>();
+
+        seeker = GetComponent<Seeker>();
+        if (seeker == null)
+        {
+            Debug.LogError("Seeker component is missing!");
+        } else Debug.Log("Seeker component found!");
+
+        FindTarget();
+
         GeneralPlayerController skill = deusDecimus.GetComponent<GeneralPlayerController>(); // Accessing the skill upgrade
         levelPunish += skill.signatureSkill;
 
         Upgrade(levelPunish);
+
+        //TargetChangedPosition(FindTarget());
 
         Destroy(gameObject, duration);
     }
@@ -56,7 +91,134 @@ public class PunishLogic : MonoBehaviour
         }
     }
 
+    void Update()
+    {
+        if (path != null && !reachDestination)
+        {
+            if (currentWaypoint < path.vectorPath.Count)
+            {
+                Vector2 nextWaypoint2D = new Vector2(path.vectorPath[currentWaypoint].x, path.vectorPath[currentWaypoint].z);
+                Vector2 playerPosition2D = new Vector2(transform.position.x, transform.position.z);
+                Vector2 direction2D = (nextWaypoint2D - playerPosition2D).normalized;
 
+                if (direction2D != Vector2.zero)
+                {
+                    float angle = Mathf.Atan2(direction2D.x, direction2D.y) * Mathf.Rad2Deg;
+                    float snappedAngle = Mathf.Round(angle / 90f) * 90f;
+                    Vector3 moveDir = Quaternion.Euler(0, snappedAngle, 0) * Vector3.forward;
+                    controller.Move(moveDir * Time.deltaTime * speed);
+                    transform.forward = moveDir;
+                }
+
+                // Apply gravity
+                playerVelocity.y += -9.81f * Time.deltaTime;
+                controller.Move(playerVelocity * Time.deltaTime);
+
+                if (Vector2.Distance(playerPosition2D, nextWaypoint2D) < .1f)
+                    currentWaypoint++;
+
+                // just a parameter to stop the pathing
+                if (Vector2.Distance
+                    (
+                        playerPosition2D,
+                        new Vector2(path.vectorPath[path.vectorPath.Count - 1].x, path.vectorPath[path.vectorPath.Count - 1].z
+                    )) < 0.5f)
+                {
+                    Debug.Log("Destination Reached!");
+                    reachDestination = true;
+                    path = null;
+                    //SwitchMode(2);
+                }
+            }
+        }
+
+    }
+
+    public bool FindTarget()
+    {
+        Debug.Log("Finding Target...");
+
+        Collider[] hits = Physics.OverlapSphere(transform.position, 30f, findingPlayers);
+        HashSet<GameObject> modeDup = new HashSet<GameObject>();
+        foreach (Collider hit in hits)
+        {
+            Debug.Log(hit.gameObject.name);
+
+            if (!modeDup.Contains(hit.gameObject))
+                modeDup.Add(hit.gameObject);
+
+            if (hit.gameObject == deusDecimus) continue;
+
+            Transform temp = hit.transform;
+
+            /*
+            Debug.Log("Targetplayer: " + temp != null);
+            Debug.Log("seeker: " + seeker != null);
+            */
+
+            if (seeker != null)
+            {
+                /*
+                Debug.Log("Entered targetPlayer != null && seeker != null");
+                playerPath = seeker.StartPath(transform.position, temp.position, OnPathComplete);
+                Debug.Log("created path");
+                */
+
+                //if (playerPath == null)
+                if(seeker.StartPath(transform.position, temp.position, OnPathComplete) == null)
+                    Debug.LogWarning("Player Path returned null!");
+                else
+                {
+                    float distance = Vector3.Distance(transform.position, temp.position);
+                    if (distance < playerDistance)
+                    {
+                        playerDistance = distance;
+                        hasTarget = true;
+                        gameObject.GetComponent<MeshRenderer>().enabled = true;
+                        targetPlayer = hit.transform;
+                    }
+                }
+            }
+            else
+            {
+                Debug.Log("failed to enter ");
+                /*
+                Debug.Log("Targetplayer: " + targetPlayer != null);
+                Debug.Log("seeker: " + seeker != null);
+                */
+            }
+        }
+
+        //Debug.Log(hasTarget + " " + modeDup.Count + " " + targetPlayer.name);
+
+        if(!hasTarget) { return false; }
+        return hasTarget;
+    }
+
+    private void TargetChangedPosition()
+    {
+        if(!hasTarget) return; // No target found, exit early
+
+        if (Vector3.Distance(targetPlayer.position, previousTargetPosition) > 1f) // Threshold for movement
+        {
+            AstarPath.active.Scan();
+            seeker.StartPath(transform.position, targetPlayer.position, OnPathComplete);
+            previousTargetPosition = targetPlayer.position;
+        }
+    }
+
+    void OnPathComplete(Path p)
+    {
+        if (p.error)
+        {
+            Debug.LogError($"Pathfinding error: {p.errorLog}");
+        }
+        else
+        {
+            path = p;
+            currentWaypoint = 0;
+        }
+    }
 
     /*
     void Update()

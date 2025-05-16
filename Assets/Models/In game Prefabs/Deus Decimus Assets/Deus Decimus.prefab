@@ -71,7 +71,7 @@ MonoBehaviour:
   gravityValue: -9.81
   bombSkill: 0
   signatureSkill: 1
-  heavySkill: 0
+  heavySkill: 1
   ultimateSkill: 0
   stun: {fileID: 1728759792657530400}
 --- !u!114 &4054955255700427828

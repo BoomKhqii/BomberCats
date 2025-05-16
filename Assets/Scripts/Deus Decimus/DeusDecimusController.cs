@@ -82,8 +82,6 @@ public class DeusDecimusController : MonoBehaviour
 
     public void Punish(InputAction.CallbackContext context)
     {
-        if (!context.performed || player.heavySkill == 0 || !isPunishActive || !curseEnergy.CEReduction(500)) return;
-
         Vector3 spawnOffset = player.transform.forward.normalized;
         Vector3 spawnPos = new Vector3(
             Mathf.RoundToInt(player.transform.position.x + spawnOffset.x),
@@ -93,6 +91,10 @@ public class DeusDecimusController : MonoBehaviour
 
         GameObject punish = Instantiate(punishObject, spawnPos, Quaternion.identity);
         punish.GetComponent<PunishLogic>().deusDecimus = this.gameObject;
+
+        if (!context.performed || player.heavySkill == 0 || !isPunishActive || !punish.GetComponent<PunishLogic>().hasTarget || !curseEnergy.CEReduction(500)) { /*Destroy(punish);*/ return;  }
+
+        // code
 
         isPunishActive = false;
     }

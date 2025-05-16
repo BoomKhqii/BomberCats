@@ -14,6 +14,7 @@ GameObject:
   - component: {fileID: 3676863828750068176}
   - component: {fileID: 4369578266720071555}
   - component: {fileID: 4477875390979180099}
+  - component: {fileID: -7750211186937365131}
   m_Layer: 0
   m_Name: Punish
   m_TagString: Untagged
@@ -55,6 +56,12 @@ MonoBehaviour:
   obstacleLayer:
     serializedVersion: 2
     m_Bits: 520
+  targetPlayer: {fileID: 0}
+  nextWaypointDistance: 0.5
+  findingPlayers:
+    serializedVersion: 2
+    m_Bits: 128
+  hasTarget: 0
 --- !u!114 &-9146248374407398455
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -98,7 +105,7 @@ MeshRenderer:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 9165346943456416584}
-  m_Enabled: 1
+  m_Enabled: 0
   m_CastShadows: 1
   m_ReceiveShadows: 1
   m_DynamicOccludee: 1
@@ -153,4 +160,30 @@ SphereCollider:
   m_Enabled: 0
   serializedVersion: 3
   m_Radius: 0.5
+  m_Center: {x: 0, y: 0, z: 0}
+--- !u!143 &-7750211186937365131
+CharacterController:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9165346943456416584}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Height: 1
+  m_Radius: 0.5
+  m_SlopeLimit: 45
+  m_StepOffset: 0
+  m_SkinWidth: 0.08
+  m_MinMoveDistance: 0.001
   m_Center: {x: 0, y: 0, z: 0}
