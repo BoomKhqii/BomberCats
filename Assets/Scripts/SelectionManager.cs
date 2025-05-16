@@ -6,7 +6,7 @@ using UnityEngine.UI;
 
 public class SelectionManager : MonoBehaviour
 {
-    public GameObject[] characters, name, description;
+    public GameObject[] characters, name, card;
 
     public int selectedCharacter = 0;
     public PlayerJoinLobby lobby;
