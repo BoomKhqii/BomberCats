@@ -117,18 +117,20 @@ public class PunishLogic : MonoBehaviour
                 if (Vector2.Distance(playerPosition2D, nextWaypoint2D) < .1f)
                     currentWaypoint++;
 
+                /*
                 // just a parameter to stop the pathing
                 if (Vector2.Distance
                     (
                         playerPosition2D,
                         new Vector2(path.vectorPath[path.vectorPath.Count - 1].x, path.vectorPath[path.vectorPath.Count - 1].z
-                    )) < 0.5f)
+                    )) < 0.01f)
                 {
                     Debug.Log("Destination Reached!");
                     reachDestination = true;
                     path = null;
-                    //SwitchMode(2);
+
                 }
+                */
             }
         }
 
@@ -137,6 +139,7 @@ public class PunishLogic : MonoBehaviour
     public bool FindTarget()
     {
         Debug.Log("Finding Target...");
+
 
         Collider[] hits = Physics.OverlapSphere(transform.position, 30f, findingPlayers);
         HashSet<GameObject> modeDup = new HashSet<GameObject>();
@@ -204,6 +207,30 @@ public class PunishLogic : MonoBehaviour
             AstarPath.active.Scan();
             seeker.StartPath(transform.position, targetPlayer.position, OnPathComplete);
             previousTargetPosition = targetPlayer.position;
+        }
+    }
+
+    private void FixedUpdate()
+    {
+        Collider[] colliders = Physics.OverlapSphere(transform.position, 0.1f, playerLayer);
+
+        foreach (Collider col in colliders)
+        {
+            if (col.gameObject == deusDecimus) continue; // Wont pull the caster
+
+            GeneralPlayerController enemy = col.gameObject.GetComponent<GeneralPlayerController>();
+            if (enemy != null)
+            {
+                enemy.PlayerStun(2f);
+                Destroy(gameObject);
+            }
+
+            BombController bb = col.GetComponent<BombController>();
+            if (bb != null)
+            {
+                Destroy(bb.gameObject);
+                Destroy(gameObject);
+            }
         }
     }
 
