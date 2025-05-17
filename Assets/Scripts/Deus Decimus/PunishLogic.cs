@@ -95,6 +95,15 @@ public class PunishLogic : MonoBehaviour
     {
         if (path != null && !reachDestination)
         {
+            //TargetChangedPosition(hasTarget);
+
+            if (Vector3.Distance(targetPlayer.position, previousTargetPosition) > 1f) // Threshold for movement
+            {
+                AstarPath.active.Scan();
+                seeker.StartPath(transform.position, targetPlayer.position, OnPathComplete);
+                previousTargetPosition = targetPlayer.position;
+            }
+
             if (currentWaypoint < path.vectorPath.Count)
             {
                 Vector2 nextWaypoint2D = new Vector2(path.vectorPath[currentWaypoint].x, path.vectorPath[currentWaypoint].z);
@@ -138,9 +147,6 @@ public class PunishLogic : MonoBehaviour
 
     public bool FindTarget()
     {
-        Debug.Log("Finding Target...");
-
-
         Collider[] hits = Physics.OverlapSphere(transform.position, 30f, findingPlayers);
         HashSet<GameObject> modeDup = new HashSet<GameObject>();
         foreach (Collider hit in hits)
@@ -183,24 +189,15 @@ public class PunishLogic : MonoBehaviour
                 }
             }
             else
-            {
                 Debug.Log("failed to enter ");
-                /*
-                Debug.Log("Targetplayer: " + targetPlayer != null);
-                Debug.Log("seeker: " + seeker != null);
-                */
-            }
         }
-
-        //Debug.Log(hasTarget + " " + modeDup.Count + " " + targetPlayer.name);
-
         if(!hasTarget) { return false; }
         return hasTarget;
     }
 
-    private void TargetChangedPosition()
+    private void TargetChangedPosition(bool valid)
     {
-        if(!hasTarget) return; // No target found, exit early
+        if(!valid) return; // No target found, exit early
 
         if (Vector3.Distance(targetPlayer.position, previousTargetPosition) > 1f) // Threshold for movement
         {
