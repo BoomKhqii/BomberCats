@@ -65,8 +65,6 @@ public class PunishLogic : MonoBehaviour
 
         Upgrade(levelPunish);
 
-        //TargetChangedPosition(FindTarget());
-
         Destroy(gameObject, duration);
     }
 
@@ -95,14 +93,7 @@ public class PunishLogic : MonoBehaviour
     {
         if (path != null && !reachDestination)
         {
-            //TargetChangedPosition(hasTarget);
-
-            if (Vector3.Distance(targetPlayer.position, previousTargetPosition) > 1f) // Threshold for movement
-            {
-                AstarPath.active.Scan();
-                seeker.StartPath(transform.position, targetPlayer.position, OnPathComplete);
-                previousTargetPosition = targetPlayer.position;
-            }
+            TargetChangedPosition(hasTarget);
 
             if (currentWaypoint < path.vectorPath.Count)
             {
@@ -125,21 +116,6 @@ public class PunishLogic : MonoBehaviour
 
                 if (Vector2.Distance(playerPosition2D, nextWaypoint2D) < .1f)
                     currentWaypoint++;
-
-                /*
-                // just a parameter to stop the pathing
-                if (Vector2.Distance
-                    (
-                        playerPosition2D,
-                        new Vector2(path.vectorPath[path.vectorPath.Count - 1].x, path.vectorPath[path.vectorPath.Count - 1].z
-                    )) < 0.01f)
-                {
-                    Debug.Log("Destination Reached!");
-                    reachDestination = true;
-                    path = null;
-
-                }
-                */
             }
         }
 
