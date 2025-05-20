@@ -11,7 +11,7 @@ public class UISignatureLogic : MonoBehaviour
         spriteRenderer = GetComponent<SpriteRenderer>();
     }
 
-    IEnumerator FadeIn(float duration)
+    public IEnumerator FadeIn(float duration)
     {
         float elapsedTime = 0f;
         Color startColor = spriteRenderer.color;

@@ -73,6 +73,7 @@ public class JunokerController : MonoBehaviour
 
         junojos.GetComponent<JunoJosLogic>().junoker = gameObject;
 
+        StartCoroutine(UISignature.FadeIn(cooldownJunoJos));
         isJunoJosActive = false;
     }
 
