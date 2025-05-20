@@ -8,6 +8,13 @@ using static UnityEditor.PlayerSettings;
 
 public class JunokerController : MonoBehaviour
 {
+    public GameObject UISignatureGameObject;
+    private UISignatureLogic UISignature;
+    public GameObject UIHeavyGameObject;
+    private UISignatureLogic UIHeavy;
+    public GameObject UIUltimateGameObject;
+    private UISignatureLogic UIUltimate;
+
     [SerializeField]
     private CurseEnergyLogic curseEnergy;
     [SerializeField]
@@ -49,6 +56,10 @@ public class JunokerController : MonoBehaviour
 
         curseEnergy = GameObject.Find("CE Pool of Junoker").GetComponent<CurseEnergyLogic>();
         controller = GetComponent<CharacterController>();
+
+        UISignature = UISignatureGameObject.GetComponent<UISignatureLogic>();
+        //UIHeavy = UIHeavyGameObject.GetComponent<UIHeavyLogic>();
+        //UIUltimate = UIUltimateGameObject.GetComponent<UIUltimateLogic>();
     }
 
     public void JunoJos(InputAction.CallbackContext context)

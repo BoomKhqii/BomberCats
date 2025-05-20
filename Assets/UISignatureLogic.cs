@@ -4,9 +4,6 @@ using UnityEngine;
 
 public class UISignatureLogic : MonoBehaviour
 {
-    public float cooldown;
-    public int level;
-
     private SpriteRenderer spriteRenderer;
 
     void Start()
