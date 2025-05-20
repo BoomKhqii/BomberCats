@@ -20,10 +20,6 @@ public class UISignatureLogic : MonoBehaviour
         Color startColor = spriteRenderer.color;
         Color targetColor = new Color(startColor.r, startColor.g, startColor.b, 1f); // Full opacity
 
-        Debug.Log($"Start Color: {startColor}");
-        Debug.Log($"Target Color: {targetColor}");
-
-
         while (elapsedTime < duration)
         {
             elapsedTime += Time.deltaTime;
@@ -33,4 +29,6 @@ public class UISignatureLogic : MonoBehaviour
 
         spriteRenderer.color = targetColor;
     }
+
+    public void Faded() { spriteRenderer.color = new Color(1f, 1f, 1f, 0.078f); }
 }
