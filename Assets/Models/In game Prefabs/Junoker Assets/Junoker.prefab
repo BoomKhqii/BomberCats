@@ -107,7 +107,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a7d49049659bf9348b4a3fdc3d8ba4b6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  curseEnergy: {fileID: 0}
+  UIGameObject: {fileID: 8285492184618250660, guid: 9a2129507abe41b43b3103d570a88690, type: 3}
+  UISignatureGameObject: {fileID: 0}
+  UIHeavyGameObject: {fileID: 0}
+  UIUltimateGameObject: {fileID: 0}
   player: {fileID: 5246650308643100351}
   cloneLocation: {fileID: 5862562193905666967}
   invis: {fileID: 3677487720599449588}
