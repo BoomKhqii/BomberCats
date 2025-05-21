@@ -18,7 +18,7 @@ public class BasicAbility : GeneralPlayerController
 
     public float bombCost = 100;
 
-    private void Start()
+    internal void Start()
     {
         //curseEnergy = GameObject.Find(ceName).GetComponent<CurseEnergyLogic>();
         skill = GetComponent<GeneralPlayerController>();

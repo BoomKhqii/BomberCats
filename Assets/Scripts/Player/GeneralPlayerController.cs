@@ -6,15 +6,15 @@ using UnityEngine.InputSystem;
 
 public class GeneralPlayerController : MonoBehaviour
 {
-    private CharacterController controller;
+    internal CharacterController controller;
 
     // Player Movement
-    private Vector3 playerVelocity;
-    private Vector2 movementInput = Vector2.zero;
+    internal Vector3 playerVelocity;
+    internal Vector2 movementInput = Vector2.zero;
     //[SerializeField]
     public float playerSpeed = 4.5f;
     [SerializeField]
-    private float gravityValue = -9.81f;
+    internal float gravityValue = -9.81f;
 
     // Skill Increment Values
     public int bombSkill = 0;
@@ -26,6 +26,7 @@ public class GeneralPlayerController : MonoBehaviour
 
     // UI of players - changing it to here for more dynamic
     public string playerNameController;
+    //private Types playerName;
     private Dictionary<string, MonoBehaviour> playerScript;
     public GameObject UIGameObject;
     private CurseEnergyLogic curseEnergy;
@@ -36,9 +37,14 @@ public class GeneralPlayerController : MonoBehaviour
     public GameObject UIUltimateGameObject;
     private UISignatureLogic UIUltimate;
 
-    private void Start()
+    internal void Start()
     {
-        controller = gameObject.GetComponent<CharacterController>();
+        controller = GetComponent<CharacterController>();
+        if (controller == null)
+        {
+            Debug.LogError("CharacterController is missing on this GameObject!");
+        }
+        Debug.Log($"controller assigned: {controller}");
 
         playerScript = new Dictionary<string, MonoBehaviour>
         {
@@ -48,10 +54,11 @@ public class GeneralPlayerController : MonoBehaviour
 
         Instantiate(UIGameObject); // Position is Static currently
         curseEnergy = UIGameObject.GetComponent<CurseEnergyLogic>();
-        //gameObject.GetComponent<BasicAbility>().curseEnergy = this.curseEnergy;
+
+        gameObject.GetComponent<BasicAbility>().curseEnergy = this.curseEnergy;
         foreach(KeyValuePair<string, MonoBehaviour> entry in playerScript)
         {
-            if (entry.Value is GeneralPlayerController playerScript) // Ensure it matches the base class
+            if (entry.Key == playerNameController && entry.Value is GeneralPlayerController playerScript) // Ensure it matches the base class
             {
                 playerScript.curseEnergy = this.curseEnergy; // Assign value
             }
@@ -67,12 +74,12 @@ public class GeneralPlayerController : MonoBehaviour
         stun.enabled = true;    
     }
 
-    public void OnMove(InputAction.CallbackContext context)
+    internal void OnMove(InputAction.CallbackContext context)
     {
         movementInput = context.ReadValue<Vector2>();
     }
 
-    void Update()
+    internal void Update()
     {
         if (movementInput != Vector2.zero)
         {
@@ -90,16 +97,9 @@ public class GeneralPlayerController : MonoBehaviour
         }
 
         playerVelocity.y += gravityValue * Time.deltaTime;
-        controller.Move(playerVelocity * Time.deltaTime);
+        if (controller != null)
+            controller.Move(playerVelocity * Time.deltaTime);
+        else if (controller == null)
+            Debug.LogError("CharacterController is missing on this GameObject!");
     }
-
-    /*
-    void OnTriggerEnter(Collider other)
-    {
-        if (other.TryGetComponent(out GhostableBlock ghostBlock))
-        {
-            ghostBlock.AddGhost(gameObject.GetComponent<Collider>());
-        }
-    }
-    */
 }
