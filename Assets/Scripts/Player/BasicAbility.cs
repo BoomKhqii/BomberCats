@@ -20,7 +20,7 @@ public class BasicAbility : MonoBehaviour
 
     private void Start()
     {
-        curseEnergy = GameObject.Find(ceName).GetComponent<CurseEnergyLogic>();
+        //curseEnergy = GameObject.Find(ceName).GetComponent<CurseEnergyLogic>();
         skill = GetComponent<GeneralPlayerController>();
     }
 
