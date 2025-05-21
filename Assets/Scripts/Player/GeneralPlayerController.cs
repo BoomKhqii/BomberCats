@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -22,9 +23,39 @@ public class GeneralPlayerController : MonoBehaviour
     public int ultimateSkill = 0;
 
     public PlayerInput stun;
+
+    // UI of players - changing it to here for more dynamic
+    public string playerNameController;
+    private Dictionary<string, MonoBehaviour> playerScript;
+    public GameObject UIGameObject;
+    private CurseEnergyLogic curseEnergy;
+    public GameObject UISignatureGameObject;
+    private UISignatureLogic UISignature;
+    public GameObject UIHeavyGameObject;
+    private UISignatureLogic UIHeavy;
+    public GameObject UIUltimateGameObject;
+    private UISignatureLogic UIUltimate;
+
     private void Start()
     {
         controller = gameObject.GetComponent<CharacterController>();
+
+        playerScript = new Dictionary<string, MonoBehaviour>
+        {
+            { "Junoker", gameObject.GetComponent<JunokerController>() },
+            { "Bomb", gameObject.GetComponent<BasicAbility>() }
+        };
+
+        Instantiate(UIGameObject); // Position is Static currently
+        curseEnergy = UIGameObject.GetComponent<CurseEnergyLogic>();
+        //gameObject.GetComponent<BasicAbility>().curseEnergy = this.curseEnergy;
+        foreach(KeyValuePair<string, MonoBehaviour> entry in playerScript)
+        {
+            if (entry.Value is GeneralPlayerController playerScript) // Ensure it matches the base class
+            {
+                playerScript.curseEnergy = this.curseEnergy; // Assign value
+            }
+        }
     }
 
     public void PlayerStun(float duration) { StartCoroutine(StunAction(duration)); }

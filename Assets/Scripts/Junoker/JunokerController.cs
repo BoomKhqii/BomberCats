@@ -61,7 +61,6 @@ public class JunokerController : MonoBehaviour
         //UISignature = UISignatureGameObject.GetComponent<UISignatureLogic>();
         //UIHeavy = UIHeavyGameObject.GetComponent<UIHeavyLogic>();
         //UIUltimate = UIUltimateGameObject.GetComponent<UIUltimateLogic>();
-        Instantiate(UIGameObject); // Position is Static currently
     }
 
     public void JunoJos(InputAction.CallbackContext context)
