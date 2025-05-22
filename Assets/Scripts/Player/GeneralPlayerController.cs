@@ -6,15 +6,15 @@ using UnityEngine.InputSystem;
 
 public class GeneralPlayerController : MonoBehaviour
 {
-    internal CharacterController controller;
+    private CharacterController controller;
 
     // Player Movement
-    internal Vector3 playerVelocity;
-    internal Vector2 movementInput = Vector2.zero;
+    private Vector3 playerVelocity;
+    private Vector2 movementInput = Vector2.zero;
     //[SerializeField]
     public float playerSpeed = 4.5f;
     [SerializeField]
-    internal float gravityValue = -9.81f;
+    private float gravityValue = -9.81f;
 
     // Skill Increment Values
     public int bombSkill = 0;
@@ -37,14 +37,9 @@ public class GeneralPlayerController : MonoBehaviour
     public GameObject UIUltimateGameObject;
     private UISignatureLogic UIUltimate;
 
-    internal void Start()
+    private void Start()
     {
         controller = GetComponent<CharacterController>();
-        if (controller == null)
-        {
-            Debug.LogError("CharacterController is missing on this GameObject!");
-        }
-        Debug.Log($"controller assigned: {controller}");
 
         playerScript = new Dictionary<string, MonoBehaviour>
         {
@@ -74,12 +69,12 @@ public class GeneralPlayerController : MonoBehaviour
         stun.enabled = true;    
     }
 
-    internal void OnMove(InputAction.CallbackContext context)
+    void OnMove(InputAction.CallbackContext context)
     {
         movementInput = context.ReadValue<Vector2>();
     }
 
-    internal void Update()
+    private void Update()
     {
         if (movementInput != Vector2.zero)
         {
@@ -97,9 +92,6 @@ public class GeneralPlayerController : MonoBehaviour
         }
 
         playerVelocity.y += gravityValue * Time.deltaTime;
-        if (controller != null)
-            controller.Move(playerVelocity * Time.deltaTime);
-        else if (controller == null)
-            Debug.LogError("CharacterController is missing on this GameObject!");
+        controller.Move(playerVelocity * Time.deltaTime);
     }
 }
