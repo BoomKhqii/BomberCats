@@ -29,10 +29,14 @@ public class BasicAbility : GeneralPlayerController
     */
     public void SpawnBomb(InputAction.CallbackContext context)
     {
-        if (!isCoroutineRunning && !Physics.CheckSphere(playerLocation.position, 0.6f, playerOnBomb) && 
-            context.performed && 
-            UIGameObject.GetComponent<CurseEnergyLogic>().CEReduction(bombCost))/*curseEnergy.CEReduction(bombCost)*/
+        Debug.Log("pressed");
+
+        if (!isCoroutineRunning && 
+            !Physics.CheckSphere(playerLocation.position, 0.6f, playerOnBomb) && 
+            context.performed) /*&&
+            base.curseEnergy.CEReduction(bombCost))/*curseEnergy.CEReduction(bombCost)*/ // UIGameObject.GetComponent<CurseEnergyLogic>().CEReduction(bombCost)
         {
+            Debug.Log("Bomb Spawned");
             StartCoroutine(waiter());
         }
     }
@@ -49,7 +53,7 @@ public class BasicAbility : GeneralPlayerController
             bomb.transform.rotation);
 
         BombController bombController = bombInstance.GetComponent<BombController>();
-        bombController.SetSpawningPlayer(this.gameObject, bombSkill);
+        bombController.SetSpawningPlayer(this.gameObject, base.bombSkill);
 
         yield return new WaitForSeconds(0.2f);
         isCoroutineRunning = false;

@@ -28,14 +28,21 @@ public class GeneralPlayerController : MonoBehaviour
     public string playerNameController;
     //private Types playerName;
     private Dictionary<string, MonoBehaviour> playerScript;
-    public GameObject UIGameObject;
-    private CurseEnergyLogic curseEnergy;
-    public GameObject UISignatureGameObject;
-    private UISignatureLogic UISignature;
-    public GameObject UIHeavyGameObject;
-    private UISignatureLogic UIHeavy;
-    public GameObject UIUltimateGameObject;
-    private UISignatureLogic UIUltimate;
+    [SerializeField]
+    private GameObject UIGameObject;
+    public CurseEnergyLogic curseEnergy;
+
+    [SerializeField]
+    private GameObject UISignatureGameObject;
+    public UISignatureLogic UISignature;
+
+    [SerializeField]
+    private GameObject UIHeavyGameObject;
+    public UISignatureLogic UIHeavy;
+
+    [SerializeField]
+    private GameObject UIUltimateGameObject;
+    public UISignatureLogic UIUltimate;
 
     private void Start()
     {
@@ -50,7 +57,8 @@ public class GeneralPlayerController : MonoBehaviour
         Instantiate(UIGameObject); // Position is Static currently
         curseEnergy = UIGameObject.GetComponent<CurseEnergyLogic>();
 
-        gameObject.GetComponent<BasicAbility>().curseEnergy = this.curseEnergy;
+        //gameObject.GetComponent<BasicAbility>().curseEnergy = this.curseEnergy;
+        /*
         foreach(KeyValuePair<string, MonoBehaviour> entry in playerScript)
         {
             if (entry.Key == playerNameController && entry.Value is GeneralPlayerController playerScript) // Ensure it matches the base class
@@ -58,6 +66,7 @@ public class GeneralPlayerController : MonoBehaviour
                 playerScript.curseEnergy = this.curseEnergy; // Assign value
             }
         }
+        */
     }
 
     public void PlayerStun(float duration) { StartCoroutine(StunAction(duration)); }
