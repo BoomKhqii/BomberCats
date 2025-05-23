@@ -6,7 +6,8 @@ using UnityEngine.InputSystem;
 
 public class LeviController : MonoBehaviour
 {
-    private CurseEnergyLogic curseEnergy;
+    private CurseEnergyLogic curseEnergy; // comment this
+    [SerializeField]
     private GeneralPlayerController player;
 
     //passive
@@ -44,7 +45,7 @@ public class LeviController : MonoBehaviour
     {
         bombAbility = GetComponent<BasicAbility>();
         player = GetComponent<GeneralPlayerController>();
-        curseEnergy = GameObject.Find("CE Pool of Levi").GetComponent<CurseEnergyLogic>();
+        curseEnergy = GameObject.Find("CE Pool of Levi").GetComponent<CurseEnergyLogic>(); //comment this
     }
 
     public float ProbabilityChance()
