@@ -24,23 +24,15 @@ public class GeneralPlayerController : MonoBehaviour
 
     // UI of players - changing it to here for more dynamic
     public string playerNameController;
-    //private Types playerName;
-    private Dictionary<string, MonoBehaviour> playerScript;
+
     [SerializeField]
     protected GameObject UIGameObject;
     public CurseEnergyLogic curseEnergy;
 
-    [SerializeField]
-    protected GameObject UISignatureGameObject;
+    private bool hasHeavy = false, hasUltimate = false;
     public UISignatureLogic UISignature;
-
-    [SerializeField]
-    protected GameObject UIHeavyGameObject;
-    public UISignatureLogic UIHeavy;
-
-    [SerializeField]
-    protected GameObject UIUltimateGameObject;
-    public UISignatureLogic UIUltimate;
+    public UIHeavyLogic UIHeavy;
+    public UIUltimateLogic UIUltimate;
 
     void Start()
     {
@@ -50,25 +42,8 @@ public class GeneralPlayerController : MonoBehaviour
         curseEnergy = UIGameObject.GetComponent<CurseEnergyLogic>();
 
         UISignature = UIGameObject.GetComponentInChildren<UISignatureLogic>();
-
-        /*
-        playerScript = new Dictionary<string, MonoBehaviour>
-        {
-            { "Junoker", gameObject.GetComponent<JunokerController>() },
-            { "Bomb", gameObject.GetComponent<BasicAbility>() }
-        };*/
-
-        //gameObject.GetComponent<BasicAbility>().curseEnergy = this.curseEnergy;
-        /*
-        foreach(KeyValuePair<string, MonoBehaviour> entry in playerScript)
-        {
-            if (entry.Key == playerNameController && entry.Value is GeneralPlayerController playerScript) // Ensure it matches the base class
-            {
-                playerScript.curseEnergy = this.curseEnergy; // Assign value
-            }
-        }
-        */
-        //Debug.Log("Started");
+        UIHeavy = UIGameObject.GetComponentInChildren<UIHeavyLogic>();
+        UIUltimate = UIGameObject.GetComponentInChildren<UIUltimateLogic>();
     }
 
     public void PlayerStun(float duration) { StartCoroutine(StunAction(duration)); }
@@ -85,8 +60,10 @@ public class GeneralPlayerController : MonoBehaviour
         movementInput = context.ReadValue<Vector2>();
     }
 
-    private void Update()
+    void Update()
     {
+        UIActivateVisual();
+
         if (movementInput != Vector2.zero)
         {
             // Determine the angle of the movement input
@@ -104,5 +81,19 @@ public class GeneralPlayerController : MonoBehaviour
 
         playerVelocity.y += gravityValue * Time.deltaTime;
         controller.Move(playerVelocity * Time.deltaTime);
+    }
+
+    void UIActivateVisual()
+    {
+        if(!hasHeavy && heavySkill == 1)
+        {
+            hasHeavy = true;
+            UIHeavy.Active();
+        }
+        if(!hasUltimate && ultimateSkill == 1)
+        {
+            hasUltimate = true;
+            UIUltimate.Active();
+        }
     }
 }

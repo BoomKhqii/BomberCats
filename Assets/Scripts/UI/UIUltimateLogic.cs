@@ -20,8 +20,9 @@ public class UIUltimateLogic : MonoBehaviour
             spriteRenderer.color = Color.Lerp(startColor, targetColor, elapsedTime / duration);
             yield return null;
         }
-        spriteRenderer.color = targetColor;
+        Active();
     }
 
     public void Faded() { spriteRenderer.color = new Color(1f, 1f, 1f, 0.078f); }
+    public void Active() { spriteRenderer.color = new Color(1f, 1f, 1f, 1f); }
 }
