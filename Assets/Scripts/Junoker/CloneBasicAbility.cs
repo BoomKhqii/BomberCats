@@ -5,6 +5,8 @@ using UnityEngine.InputSystem;
 
 public class CloneBasicAbility : MonoBehaviour
 {
+    public GeneralPlayerController player;
+
     // Bomb values
     public GameObject bomb;
     public Transform playerLocation;
@@ -12,17 +14,18 @@ public class CloneBasicAbility : MonoBehaviour
     public LayerMask playerOnBomb;
     private BombController bombController;
 
-    public CurseEnergyLogic curseEnergy;
+    //public CurseEnergyLogic curseEnergy;
     public string ceName;
 
     private void Start()
     {
-        curseEnergy = GameObject.Find(ceName).GetComponent<CurseEnergyLogic>();
+        player = gameObject.GetComponent<GeneralPlayerController>();
+        //curseEnergy = GameObject.Find(ceName).GetComponent<CurseEnergyLogic>();
     }
 
     public void SpawnBomb(float ceCost)
     {
-        if (!isCoroutineRunning && !Physics.CheckSphere(playerLocation.position, 0.6f, playerOnBomb) && curseEnergy.CEReduction(ceCost))
+        if (!isCoroutineRunning && !Physics.CheckSphere(playerLocation.position, 0.6f, playerOnBomb) &&  player.curseEnergy.CEReduction(ceCost))
         {
             StartCoroutine(waiter());
         }

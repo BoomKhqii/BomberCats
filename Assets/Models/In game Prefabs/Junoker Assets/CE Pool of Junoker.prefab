@@ -88,6 +88,10 @@ PrefabInstance:
       value: UISignature
       objectReference: {fileID: 0}
     - target: {fileID: 5861288456574016390, guid: d41c5234f9ea36744bb08246435c3875, type: 3}
+      propertyPath: m_Color.a
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5861288456574016390, guid: d41c5234f9ea36744bb08246435c3875, type: 3}
       propertyPath: m_SortingLayer
       value: 0
       objectReference: {fileID: 0}
