@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class UISignatureLogic : MonoBehaviour
 {
+    [SerializeField]
     private SpriteRenderer spriteRenderer;
 
     void Start()
@@ -13,6 +14,9 @@ public class UISignatureLogic : MonoBehaviour
 
     public IEnumerator FadeIn(float duration)
     {
+        Debug.Log("FadeIn called");
+        Faded(); 
+
         float elapsedTime = 0f;
         Color startColor = spriteRenderer.color;
         Color targetColor = new Color(startColor.r, startColor.g, startColor.b, 1f); // Full opacity

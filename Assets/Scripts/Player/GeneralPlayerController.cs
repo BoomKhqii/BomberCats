@@ -46,14 +46,17 @@ public class GeneralPlayerController : MonoBehaviour
     {
         controller = GetComponent<CharacterController>();
 
+        UIGameObject = Instantiate(UIGameObject); // Position is Static currently
+        curseEnergy = UIGameObject.GetComponent<CurseEnergyLogic>();
+
+        UISignature = UIGameObject.GetComponentInChildren<UISignatureLogic>();
+
+        /*
         playerScript = new Dictionary<string, MonoBehaviour>
         {
             { "Junoker", gameObject.GetComponent<JunokerController>() },
             { "Bomb", gameObject.GetComponent<BasicAbility>() }
-        };
-
-        UIGameObject = Instantiate(UIGameObject); // Position is Static currently
-        curseEnergy = UIGameObject.GetComponent<CurseEnergyLogic>();
+        };*/
 
         //gameObject.GetComponent<BasicAbility>().curseEnergy = this.curseEnergy;
         /*
