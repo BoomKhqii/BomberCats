@@ -68,12 +68,17 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   playerSpeed: 4.5
-  gravityValue: -9.81
   bombSkill: 0
   signatureSkill: 1
-  heavySkill: 1
+  heavySkill: 0
   ultimateSkill: 0
   stun: {fileID: 1728759792657530400}
+  playerNameController: 
+  UIGameObject: {fileID: 8285492184618250660, guid: aa7bece8ff5dc88439a46347b2dc865d, type: 3}
+  curseEnergy: {fileID: 0}
+  UISignature: {fileID: 0}
+  UIHeavy: {fileID: 0}
+  UIUltimate: {fileID: 0}
 --- !u!114 &4054955255700427828
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -86,13 +91,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0df9ade1b679f8c4393da1b1b61c5c60, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  player: {fileID: 0}
   bomb: {fileID: 4466744194402806859, guid: 032a325b7474f514f951df2e3cdcf88a, type: 3}
   playerLocation: {fileID: 6493411146629470822}
   playerOnBomb:
     serializedVersion: 2
     m_Bits: 256
-  skill: {fileID: 6163425865368545686}
-  curseEnergy: {fileID: 0}
   ceName: CE Pool of Deus Decimus
   bombCost: 100
 --- !u!114 &4477628201177302763
@@ -107,7 +111,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 96e21788c4fd65d44a58467585bff2b3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  curseEnergy: {fileID: 0}
   player: {fileID: 0}
   punishObject: {fileID: 9165346943456416584, guid: 7cdeace8230a0654fbb67746cabc4403, type: 3}
   blackHole: {fileID: 466116933658575796, guid: 9ff5b6b6f46f7f847908bae9610fa00f, type: 3}

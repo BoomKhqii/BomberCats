@@ -8,9 +8,6 @@ using UnityEngine.InputSystem.XR;
 
 public class DeusDecimusController : MonoBehaviour
 {
-
-    [SerializeField]
-    private CurseEnergyLogic curseEnergy;
     [SerializeField]
     private GeneralPlayerController player;
 
@@ -36,8 +33,6 @@ public class DeusDecimusController : MonoBehaviour
     void Start()
     {
         player = GetComponent<GeneralPlayerController>();
-        curseEnergy = GameObject.Find("CE Pool of Deus Decimus").GetComponent<CurseEnergyLogic>();
-
         // Signature
         controller = GetComponent<CharacterController>();
     }
@@ -63,10 +58,11 @@ public class DeusDecimusController : MonoBehaviour
 
     public void DeusAlmighty(InputAction.CallbackContext context)
     {
-        if (!context.performed || player.signatureSkill == 0 || !isDeusAlmightyActive || !curseEnergy.CEReduction(200)) return;
+        if (!context.performed || player.signatureSkill == 0 || !isDeusAlmightyActive || !player.curseEnergy.CEReduction(200)) return;
         origin = transform.position;
         StartCoroutine(DeusAlmightyAction());
 
+        StartCoroutine(player.UISignature.FadeIn(cooldownDeusAlmight));
         isDeusAlmightyActive = false;
     }
     IEnumerator DeusAlmightyAction()
@@ -92,17 +88,19 @@ public class DeusDecimusController : MonoBehaviour
         GameObject punish = Instantiate(punishObject, spawnPos, Quaternion.identity);
         punish.GetComponent<PunishLogic>().deusDecimus = this.gameObject;
 
-        if (!context.performed || player.heavySkill == 0 || !isPunishActive || !punish.GetComponent<PunishLogic>().hasTarget || !curseEnergy.CEReduction(500)) { /*Destroy(punish);*/ return;  }
+        if (!context.performed || player.heavySkill == 0 || !isPunishActive || !punish.GetComponent<PunishLogic>().hasTarget || !player.curseEnergy.CEReduction(500)) { /*Destroy(punish);*/ return;  }
 
         // code
-
+        StartCoroutine(player.UIHeavy.FadeIn(cooldownPunish));
         isPunishActive = false;
     }
 
     public void EndsOfTheUniverse(InputAction.CallbackContext context)
     {
-        if (!context.performed || player.ultimateSkill == 0 || !isEndsOfTheUniverseActive || !curseEnergy.CEReduction(2000)) return;
+        if (!context.performed || player.ultimateSkill == 0 || !isEndsOfTheUniverseActive || !player.curseEnergy.CEReduction(2000)) return;
         Instantiate(blackHole);
+
+        StartCoroutine(player.UIUltimate.FadeIn(cooldownEndsOfTheUniverse));
         isEndsOfTheUniverseActive = false;
     }
 
