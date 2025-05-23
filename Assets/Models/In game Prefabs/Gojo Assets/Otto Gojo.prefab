@@ -54,12 +54,17 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   playerSpeed: 4.5
-  gravityValue: -9.81
   bombSkill: 0
   signatureSkill: 1
   heavySkill: 0
   ultimateSkill: 0
   stun: {fileID: 6296327816773793935}
+  playerNameController: 
+  UIGameObject: {fileID: 8285492184618250660, guid: 2351897da54e66042be35e26bcd0c6ed, type: 3}
+  curseEnergy: {fileID: 0}
+  UISignature: {fileID: 0}
+  UIHeavy: {fileID: 0}
+  UIUltimate: {fileID: 0}
 --- !u!114 &3675573794243683774
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -72,12 +77,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1f5bc79628dd9444485d5b013118f218, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  curseEnergy: {fileID: 0}
+  player: {fileID: 4337300148893819856}
   objectBlue: {fileID: 77405813780867249, guid: a0ee7bc4223d8a84db17050b8e5d4e58, type: 3}
   objectRed: {fileID: 7434269727049699186, guid: 4107b54564e8e38429afcefa2bbd2dae, type: 3}
   objectHollowPurple: {fileID: 9034953911681390408, guid: 320d5e53ea0cc0d459b766d775c90f1c, type: 3}
   isHoldingHollowPurple: 0
-  player: {fileID: 4337300148893819856}
 --- !u!114 &914469196923672627
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -90,13 +94,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0df9ade1b679f8c4393da1b1b61c5c60, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  player: {fileID: 0}
   bomb: {fileID: 4466744194402806859, guid: 032a325b7474f514f951df2e3cdcf88a, type: 3}
   playerLocation: {fileID: 7045366835492055936}
   playerOnBomb:
     serializedVersion: 2
     m_Bits: 256
-  skill: {fileID: 4337300148893819856}
-  curseEnergy: {fileID: 0}
   ceName: CE Pool of Otto Gojo
   bombCost: 100
 --- !u!114 &6296327816773793935

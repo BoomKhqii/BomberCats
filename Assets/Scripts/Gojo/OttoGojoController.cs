@@ -6,7 +6,7 @@ using UnityEngine.InputSystem;
 
 public class OttoGojoController : MonoBehaviour
 {
-    public CurseEnergyLogic curseEnergy;
+    public GeneralPlayerController player;
 
     // Blue      
     [SerializeField]
@@ -31,11 +31,8 @@ public class OttoGojoController : MonoBehaviour
     private float holdStartTime = 0f;
     private float heldDuration = 0f;
 
-    public GeneralPlayerController player;
-
     void Start()
     {
-        curseEnergy = GameObject.Find("CE Pool of Otto Gojo").GetComponent<CurseEnergyLogic>();
         player = GetComponent<GeneralPlayerController>();
     }
 
@@ -46,7 +43,7 @@ public class OttoGojoController : MonoBehaviour
 
     public void BlueSkill(InputAction.CallbackContext context)
     {
-        if (!context.performed || player.signatureSkill == 0 || !isBlueActive || !curseEnergy.CEReduction(250)) return;
+        if (!context.performed || player.signatureSkill == 0 || !isBlueActive || !player.curseEnergy.CEReduction(250)) return;
 
         //Vector3 spawnPos = new Vector3(Mathf.RoundToInt(player.transform.position.x), 1.32f, Mathf.RoundToInt(player.transform.position.z));
         Vector3 spawnOffset = player.transform.forward.normalized;
@@ -60,13 +57,14 @@ public class OttoGojoController : MonoBehaviour
         blue.GetComponent<BlueLogic>().ottoGojo = this.gameObject;
         BlueLogic blueLogic = blue.GetComponent<BlueLogic>();
         blueLogic.SetDirection(player.transform.forward);
+        StartCoroutine(player.UISignature.FadeIn(cooldownBlue));
 
         isBlueActive = false;
     }
 
     public void RedSkill(InputAction.CallbackContext context)
     {
-        if (!context.performed || player.heavySkill == 0 || !isRedActive || !curseEnergy.CEReduction(500)) return;
+        if (!context.performed || player.heavySkill == 0 || !isRedActive || !player.curseEnergy.CEReduction(500)) return;
 
         Vector3 spawnOffset = player.transform.forward.normalized;
         Vector3 spawnPos = new Vector3(
@@ -79,13 +77,14 @@ public class OttoGojoController : MonoBehaviour
         red.GetComponent<RedLogic>().ottoGojo = this.gameObject;
         RedLogic redLogic = red.GetComponent<RedLogic>();
         redLogic.SetDirection(player.transform.forward);
+        StartCoroutine(player.UIHeavy.FadeIn(cooldownRed));
 
         isRedActive = false;
     }
     public void HollowPurpleSkill(InputAction.CallbackContext context)
     {
         //&& isPurpleActive && curseEnergy.CEReduction(1000)
-        if (context.started && player.ultimateSkill != 0 && isPurpleActive && curseEnergy.CEReduction(1000))
+        if (context.started && player.ultimateSkill != 0 && isPurpleActive && player.curseEnergy.CEReduction(1000))
         {
             holdStartTime = Time.time;
             IsHeldUpdate(context);
@@ -125,6 +124,7 @@ public class OttoGojoController : MonoBehaviour
         {
             isHoldingHollowPurple = false;
             purpleOut.HeldUpdate(isHoldingHollowPurple);
+            StartCoroutine(player.UIUltimate.FadeIn(cooldownPurple));
         } else return;
     }
 
