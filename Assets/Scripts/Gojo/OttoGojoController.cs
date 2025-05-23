@@ -57,8 +57,9 @@ public class OttoGojoController : MonoBehaviour
         blue.GetComponent<BlueLogic>().ottoGojo = this.gameObject;
         BlueLogic blueLogic = blue.GetComponent<BlueLogic>();
         blueLogic.SetDirection(player.transform.forward);
-        StartCoroutine(player.UISignature.FadeIn(cooldownBlue));
 
+        // cooldown
+        StartCoroutine(player.UISignature.FadeIn(cooldownBlue));
         isBlueActive = false;
     }
 
@@ -77,8 +78,9 @@ public class OttoGojoController : MonoBehaviour
         red.GetComponent<RedLogic>().ottoGojo = this.gameObject;
         RedLogic redLogic = red.GetComponent<RedLogic>();
         redLogic.SetDirection(player.transform.forward);
+        
+        // cooldown
         StartCoroutine(player.UIHeavy.FadeIn(cooldownRed));
-
         isRedActive = false;
     }
     public void HollowPurpleSkill(InputAction.CallbackContext context)
@@ -110,6 +112,9 @@ public class OttoGojoController : MonoBehaviour
             heldDuration = Time.time - holdStartTime;
             Debug.Log($"Released Hollow Purple after {heldDuration:F2} seconds.");
             IsHeldUpdate(context);
+
+            // cooldown
+            StartCoroutine(player.UIUltimate.FadeIn(cooldownPurple));
             isPurpleActive = false;
         }
 }
@@ -124,7 +129,6 @@ public class OttoGojoController : MonoBehaviour
         {
             isHoldingHollowPurple = false;
             purpleOut.HeldUpdate(isHoldingHollowPurple);
-            StartCoroutine(player.UIUltimate.FadeIn(cooldownPurple));
         } else return;
     }
 

@@ -58,8 +58,8 @@ public class JunokerController : MonoBehaviour
 
         junojos.GetComponent<JunoJosLogic>().junoker = gameObject;
 
+        // cooldown
         StartCoroutine(player.UISignature.FadeIn(cooldownJunoJos));
-
         isJunoJosActive = false;
     }
 
@@ -93,9 +93,9 @@ public class JunokerController : MonoBehaviour
             controller.enabled = false;
             transform.position = dashTarget;
             controller.enabled = true;
-            
-            StartCoroutine(player.UIHeavy.FadeIn(cooldownJunoWhereIGo)); // Fade in the UI
 
+            // cooldown
+            StartCoroutine(player.UIHeavy.FadeIn(cooldownJunoWhereIGo)); // Fade in the UI
             isJunoWhereIGoActive = false;
         } else { return; }
     }
@@ -130,7 +130,6 @@ public class JunokerController : MonoBehaviour
         if (!context.performed || player.ultimateSkill == 0 || !isJunoWhereIGoActive || !player.curseEnergy.CEReduction(800)) return;
 
         StartCoroutine(player.UIUltimate.FadeIn(cooldownJunoJosJesJuatro)); // Fade in the UI
-        StartCoroutine(UltimateAction());
         /*
         Vector3 center = transform.position;
 
@@ -157,6 +156,9 @@ public class JunokerController : MonoBehaviour
             }
         }
         */
+
+        // cooldown
+        StartCoroutine(UltimateAction());
         isJunoJosJesJuatroActive = false;
     }
 
