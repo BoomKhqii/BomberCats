@@ -11,9 +11,7 @@ public class GeneralPlayerController : MonoBehaviour
     // Player Movement
     private Vector3 playerVelocity;
     private Vector2 movementInput = Vector2.zero;
-    //[SerializeField]
     public float playerSpeed = 4.5f;
-    [SerializeField]
     private float gravityValue = -9.81f;
 
     // Skill Increment Values
@@ -29,22 +27,22 @@ public class GeneralPlayerController : MonoBehaviour
     //private Types playerName;
     private Dictionary<string, MonoBehaviour> playerScript;
     [SerializeField]
-    private GameObject UIGameObject;
+    protected GameObject UIGameObject;
     public CurseEnergyLogic curseEnergy;
 
     [SerializeField]
-    private GameObject UISignatureGameObject;
+    protected GameObject UISignatureGameObject;
     public UISignatureLogic UISignature;
 
     [SerializeField]
-    private GameObject UIHeavyGameObject;
+    protected GameObject UIHeavyGameObject;
     public UISignatureLogic UIHeavy;
 
     [SerializeField]
-    private GameObject UIUltimateGameObject;
+    protected GameObject UIUltimateGameObject;
     public UISignatureLogic UIUltimate;
 
-    private void Start()
+    void Start()
     {
         controller = GetComponent<CharacterController>();
 
@@ -54,7 +52,7 @@ public class GeneralPlayerController : MonoBehaviour
             { "Bomb", gameObject.GetComponent<BasicAbility>() }
         };
 
-        Instantiate(UIGameObject); // Position is Static currently
+        UIGameObject = Instantiate(UIGameObject); // Position is Static currently
         curseEnergy = UIGameObject.GetComponent<CurseEnergyLogic>();
 
         //gameObject.GetComponent<BasicAbility>().curseEnergy = this.curseEnergy;
@@ -67,6 +65,7 @@ public class GeneralPlayerController : MonoBehaviour
             }
         }
         */
+        //Debug.Log("Started");
     }
 
     public void PlayerStun(float duration) { StartCoroutine(StunAction(duration)); }

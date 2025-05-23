@@ -3,8 +3,10 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
-public class BasicAbility : GeneralPlayerController
+public class BasicAbility : MonoBehaviour
 {
+    public GeneralPlayerController player;
+
     // Bomb values
     public GameObject bomb;
     public Transform playerLocation;
@@ -20,21 +22,21 @@ public class BasicAbility : GeneralPlayerController
 
     public float bombCost = 100;
 
-    /*
-    private void Start()
+    
+    void Start()
     {
-        //curseEnergy = GameObject.Find(ceName).GetComponent<CurseEnergyLogic>();
-        skill = GetComponent<GeneralPlayerController>();
+        player = gameObject.GetComponent<GeneralPlayerController>();
     }
-    */
+    
+    
     public void SpawnBomb(InputAction.CallbackContext context)
     {
         Debug.Log("pressed");
 
         if (!isCoroutineRunning && 
             !Physics.CheckSphere(playerLocation.position, 0.6f, playerOnBomb) && 
-            context.performed) /*&&
-            base.curseEnergy.CEReduction(bombCost))/*curseEnergy.CEReduction(bombCost)*/ // UIGameObject.GetComponent<CurseEnergyLogic>().CEReduction(bombCost)
+            context.performed &&
+            player.curseEnergy.CEReduction(bombCost))/*curseEnergy.CEReduction(bombCost)*/ // UIGameObject.GetComponent<CurseEnergyLogic>().CEReduction(bombCost)
         {
             Debug.Log("Bomb Spawned");
             StartCoroutine(waiter());
@@ -53,7 +55,7 @@ public class BasicAbility : GeneralPlayerController
             bomb.transform.rotation);
 
         BombController bombController = bombInstance.GetComponent<BombController>();
-        bombController.SetSpawningPlayer(this.gameObject, base.bombSkill);
+        bombController.SetSpawningPlayer(this.gameObject, player.bombSkill);
 
         yield return new WaitForSeconds(0.2f);
         isCoroutineRunning = false;

@@ -8,15 +8,6 @@ using static UnityEditor.PlayerSettings;
 
 public class JunokerController : MonoBehaviour
 {
-    public GameObject UIGameObject;
-    private CurseEnergyLogic curseEnergy;
-    public GameObject UISignatureGameObject;
-    private UISignatureLogic UISignature;
-    public GameObject UIHeavyGameObject;
-    private UISignatureLogic UIHeavy;
-    public GameObject UIUltimateGameObject;
-    private UISignatureLogic UIUltimate;
-
     [SerializeField]
     private GeneralPlayerController player;
     [SerializeField]
@@ -53,19 +44,12 @@ public class JunokerController : MonoBehaviour
     void Start()
     {
         player = GetComponent<GeneralPlayerController>();
-
-        //curseEnergy = GameObject.Find("CE Pool of Junoker").GetComponent<CurseEnergyLogic>();
-        curseEnergy = UIGameObject.GetComponent<CurseEnergyLogic>();
         controller = GetComponent<CharacterController>();
-
-        //UISignature = UISignatureGameObject.GetComponent<UISignatureLogic>();
-        //UIHeavy = UIHeavyGameObject.GetComponent<UIHeavyLogic>();
-        //UIUltimate = UIUltimateGameObject.GetComponent<UIUltimateLogic>();
     }
 
     public void JunoJos(InputAction.CallbackContext context)
     {
-        if (!context.performed || player.signatureSkill == 0 || !isJunoJosActive || !curseEnergy.CEReduction(150)) return;
+        if (!context.performed || player.signatureSkill == 0 || !isJunoJosActive || !player.curseEnergy.CEReduction(150)) return;
 
         GameObject junojos = Instantiate(junosJoCloneObject, new Vector3(
             Mathf.RoundToInt(cloneLocation.position.x),
@@ -74,7 +58,7 @@ public class JunokerController : MonoBehaviour
 
         junojos.GetComponent<JunoJosLogic>().junoker = gameObject;
 
-        StartCoroutine(UISignature.FadeIn(cooldownJunoJos));
+        //StartCoroutine(UISignature.FadeIn(cooldownJunoJos));
         isJunoJosActive = false;
     }
 
@@ -83,7 +67,7 @@ public class JunokerController : MonoBehaviour
         levelJunoWhereIGo = player.heavySkill;
         Upgrade(levelJunoWhereIGo);
 
-        if (!context.performed || player.heavySkill == 0 || !isJunoWhereIGoActive || !curseEnergy.CEReduction(200)) return;
+        if (!context.performed || player.heavySkill == 0 || !isJunoWhereIGoActive || !player.curseEnergy.CEReduction(200)) return;
 
         Vector3 dashTarget = new Vector3(
             Mathf.RoundToInt(cloneLocation.position.x),
@@ -140,7 +124,7 @@ public class JunokerController : MonoBehaviour
 
     public void JunoJosJesJuatro(InputAction.CallbackContext context)
     {
-        if (!context.performed || player.ultimateSkill == 0 || !isJunoWhereIGoActive || !curseEnergy.CEReduction(800)) return;
+        if (!context.performed || player.ultimateSkill == 0 || !isJunoWhereIGoActive || !player.curseEnergy.CEReduction(800)) return;
 
         StartCoroutine(UltimateAction());
         /*
