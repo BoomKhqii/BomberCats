@@ -7,8 +7,6 @@ using UnityEngine.InputSystem;
 public class LunaController : MonoBehaviour
 {
     [SerializeField]
-    private CurseEnergyLogic curseEnergy;
-    [SerializeField]
     private GeneralPlayerController player;
 
     private bool isTrapActive = true;
@@ -28,7 +26,6 @@ public class LunaController : MonoBehaviour
     void Start()
     {
         player = GetComponent<GeneralPlayerController>();
-        curseEnergy = GameObject.Find("CE Pool of Luna").GetComponent<CurseEnergyLogic>();
 
         // Passive
         player.playerSpeed += 1f;
@@ -36,7 +33,7 @@ public class LunaController : MonoBehaviour
 
     public void Trap(InputAction.CallbackContext context)
     {
-        if (!context.performed || player.signatureSkill == 0 || !isTrapActive || !curseEnergy.CEReduction(150)) return;
+        if (!context.performed || player.signatureSkill == 0 || !isTrapActive || !player.curseEnergy.CEReduction(150)) return;
 
         GameObject trapSpawner = Instantiate(trapGameObject, new Vector3(
             Mathf.RoundToInt(transform.position.x),
@@ -52,12 +49,13 @@ public class LunaController : MonoBehaviour
             Destroy(oldest);
         }
 
+        StartCoroutine(player.UISignature.FadeIn(cooldownTrap));
         isTrapActive = false;
     }
 
     public void Hook(InputAction.CallbackContext context) // luna is not supposed to move
     {
-        if (!context.performed || player.heavySkill == 0 || !isHookActive || !curseEnergy.CEReduction(200)) return;
+        if (!context.performed || player.heavySkill == 0 || !isHookActive || !player.curseEnergy.CEReduction(200)) return;
 
         Vector3 spawnOffset = player.transform.forward.normalized;
         Vector3 spawnPos = new Vector3(
@@ -71,12 +69,13 @@ public class LunaController : MonoBehaviour
         hookLogic.SetDirection(player.transform.forward);
         hookLogic.lunaObject = this.gameObject;
 
+        StartCoroutine(player.UIHeavy.FadeIn(cooldownHook));
         isHookActive = false;
     }
 
     public void Splash(InputAction.CallbackContext context) // not supposed to move
     {
-        if (!context.performed || player.ultimateSkill == 0 || !isSplashActive || !curseEnergy.CEReduction(150)) return;
+        if (!context.performed || player.ultimateSkill == 0 || !isSplashActive || !player.curseEnergy.CEReduction(150)) return;
 
         GameObject splashSpawner = Instantiate(splashGameObject, new Vector3(
             Mathf.RoundToInt(transform.position.x),
@@ -85,6 +84,7 @@ public class LunaController : MonoBehaviour
 
         splashSpawner.GetComponent<SplashLogic>().lunaObject = this.gameObject;
 
+        StartCoroutine(player.UIUltimate.FadeIn(cooldownSplash));
         isSplashActive = false;
     }
 
@@ -113,7 +113,7 @@ public class LunaController : MonoBehaviour
         if (isHookActive == false)
         {
             cooldownHook -= Time.deltaTime;
-            if (cooldownTrap <= 0)
+            if (cooldownHook <= 0)
             {
                 cooldownHook = 10f;
                 isHookActive = true;

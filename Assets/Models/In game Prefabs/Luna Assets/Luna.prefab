@@ -54,12 +54,17 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   playerSpeed: 4.5
-  gravityValue: -9.81
   bombSkill: 0
   signatureSkill: 1
   heavySkill: 0
   ultimateSkill: 0
   stun: {fileID: 6296327816773793935}
+  playerNameController: 
+  UIGameObject: {fileID: 8285492184618250660, guid: cec272f44289b8b4ba2df5347cc75149, type: 3}
+  curseEnergy: {fileID: 0}
+  UISignature: {fileID: 0}
+  UIHeavy: {fileID: 0}
+  UIUltimate: {fileID: 0}
 --- !u!114 &914469196923672627
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -72,13 +77,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0df9ade1b679f8c4393da1b1b61c5c60, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  player: {fileID: 0}
   bomb: {fileID: 4466744194402806859, guid: 032a325b7474f514f951df2e3cdcf88a, type: 3}
   playerLocation: {fileID: 7045366835492055936}
   playerOnBomb:
     serializedVersion: 2
     m_Bits: 256
-  skill: {fileID: 4337300148893819856}
-  curseEnergy: {fileID: 0}
   ceName: CE Pool of Luna
   bombCost: 100
 --- !u!114 &4508661847497419009
@@ -355,7 +359,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b518c8482f3830744bff7d76d22898b4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  curseEnergy: {fileID: 0}
   player: {fileID: 4337300148893819856}
   trapGameObject: {fileID: 7701170243930829755, guid: 95e5663089d30de469eb52530ba2a832, type: 3}
   hookGameObject: {fileID: 6732107825387883061, guid: 19729c33a198a424b9da93fecdd10b66, type: 3}
