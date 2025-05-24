@@ -6,7 +6,6 @@ using UnityEngine.InputSystem;
 
 public class LeviController : MonoBehaviour
 {
-    private CurseEnergyLogic curseEnergy; // comment this
     [SerializeField]
     private GeneralPlayerController player;
 
@@ -45,7 +44,7 @@ public class LeviController : MonoBehaviour
     {
         bombAbility = GetComponent<BasicAbility>();
         player = GetComponent<GeneralPlayerController>();
-        curseEnergy = GameObject.Find("CE Pool of Levi").GetComponent<CurseEnergyLogic>(); //comment this
+        //curseEnergy = GameObject.Find("CE Pool of Levi").GetComponent<CurseEnergyLogic>(); //comment this
     }
 
     public float ProbabilityChance()
@@ -53,9 +52,9 @@ public class LeviController : MonoBehaviour
         return UnityEngine.Random.value;
     }
 
-    public void EffectsEffects(InputAction.CallbackContext context)
+    public void EffectsEffects(InputAction.CallbackContext context) // this guy has no cooldown i think
     {
-        if (!context.performed || !isEffectsEffectsActive || !curseEnergy.CEReduction(150)) return;
+        if (!context.performed || player.signatureSkill == 0 || !isEffectsEffectsActive || !player.curseEnergy.CEReduction(150)) return;
 
         if(isAwakened)
         {
@@ -67,21 +66,31 @@ public class LeviController : MonoBehaviour
         if (effectsEffectsValue < 0.3333f)
         {
             Debug.Log("1");
-            if (curseEnergy.CEReduction(150))
+            if (player.curseEnergy.CEReduction(150))
                 oneEffect = true;
             else
             {
-                curseEnergy.currentPool = 0;
+                player.curseEnergy.currentPool = 0;
             }
+
+            StartCoroutine(player.UISignature.FadeIn(3f));
+            cooldownEffectsEffects = 3f; // reset cooldown to 3 seconds
+            isEffectsEffectsActive = false; // reset cooldown
         }
         else if (effectsEffectsValue < 0.6666f)
         {
             Debug.Log("2");
+            StartCoroutine(player.UISignature.FadeIn(cooldownEffectsEffects));
+            isEffectsEffectsActive = false; // reset cooldown
+
             StartCoroutine(twoEffectsTimer());
         }
         else
         {
             Debug.Log("3");
+            StartCoroutine(player.UISignature.FadeIn(cooldownEffectsEffects));
+            isEffectsEffectsActive = false; // reset cooldown
+
             StartCoroutine(threeEffectsTimer());
         }
     }
@@ -128,9 +137,9 @@ public class LeviController : MonoBehaviour
     */
     public void Leviscaped(InputAction.CallbackContext context)
     {
-        if (!context.performed || !isLeviscapedActive) return;
+        if (!context.performed || player.heavySkill == 0 || !isLeviscapedActive) return;
 
-        if (!tpCoroutine && curseEnergy.CEReduction(250))
+        if (!tpCoroutine && player.curseEnergy.CEReduction(250))
         {
             StartCoroutine(LeviscapedActions());
             return; // click twice
@@ -150,6 +159,8 @@ public class LeviController : MonoBehaviour
         yield return new WaitForSeconds(10f);
 
         tpCoroutine = false;
+
+        StartCoroutine(player.UIHeavy.FadeIn(cooldownLeviscaped));
         isLeviscapedActive = false;
     }
 
@@ -188,6 +199,8 @@ public class LeviController : MonoBehaviour
         {
             StopCoroutine(LeviscapedActions());
             tpCoroutine = false;
+
+            StartCoroutine(player.UIHeavy.FadeIn(cooldownLeviscaped));
             isLeviscapedActive = false;
         }
     }
@@ -217,7 +230,7 @@ public class LeviController : MonoBehaviour
 
     public void LeviChangeItUp(InputAction.CallbackContext context)
     {
-        if (!context.performed || !isLeviChangeItUpActive || !curseEnergy.CEReduction(2500)) return;
+        if (!context.performed || player.ultimateSkill == 0 || !isLeviChangeItUpActive || !player.curseEnergy.CEReduction(2500)) return;
 
         int destroyedCount = 0;
         for (int i = 0; i < corner.Length; i++)
@@ -274,42 +287,11 @@ public class LeviController : MonoBehaviour
             initialCorner = chosenIndex;
 
         leviChangeItUpAmountCasted++;
+
+        player.UIUltimate.FadeIn(cooldownEffectsEffects);
+        isLeviChangeItUpActive = false; // reset cooldown
     }
 
-    /*
-    public void LeviChangeItUp(InputAction.CallbackContext context)
-    {
-        if (!context.performed || !isLeviChangeItUpActive || !curseEnergy.CEReduction(2500)) return;
-
-        /*
-         *      3 & 2 = 1 - 3 = 1 & 4
-         *      1 & 4 = 2 - 4 = 2 & 3
-         *
-
-        float rand = ProbabilityChance();
-        if (rand < 0.25f && !corner[0])           // 1: top right
-        {
-            corner[0] = true;             // -3.5     3.5
-            Instantiate(bigBomb, new Vector3(-3.5f, 20, 3.5f), bigBomb.transform.rotation);
-        }
-        else if (rand < 0.50f && !corner[1])      // 2: bottom right
-        {
-            corner[1] = true;             // -3.5     -3.5
-            Instantiate(bigBomb, new Vector3(-3.5f, 20, -3.5f), Quaternion.identity);
-        }
-        else if (rand < 0.65f && !corner[2])      // 3: top left
-        {
-            corner[2] = true;             // 3.5     3.5
-            Instantiate(bigBomb, new Vector3(3.5f, 20, 3.5f), Quaternion.identity);
-        }
-        else if (!corner[3])                      // 4: bottom left
-        {
-            corner[3] = true;             // 3.5     -3.5
-            Instantiate(bigBomb, new Vector3(3.5f, 20, -3.5f), Quaternion.identity);
-        }
-        leviChangeItUpAmountCasted++;
-    }
-    */
     void Update()
     {
         if(!isPassiveCountDown && !isAwakened)
@@ -344,16 +326,10 @@ public class LeviController : MonoBehaviour
         if (isEffectsEffectsActive == false)
         {
             cooldownEffectsEffects -= Time.deltaTime;
-            if (cooldownEffectsEffects <= 0 & !oneEffect)
+            if (cooldownEffectsEffects <= 0)
             {
                 cooldownEffectsEffects = 15;
                 isEffectsEffectsActive = true;
-            }
-            else
-            {
-                cooldownEffectsEffects = 3;
-                isEffectsEffectsActive = true;
-                oneEffect = false;
             }
         }
     }

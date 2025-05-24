@@ -128,12 +128,17 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   playerSpeed: 4.5
-  gravityValue: -9.81
   bombSkill: 0
   signatureSkill: 1
   heavySkill: 0
   ultimateSkill: 0
   stun: {fileID: 21223312642145242}
+  playerNameController: 
+  UIGameObject: {fileID: 8285492184618250660, guid: 96b4541f86e80b240bc32a6a732d652d, type: 3}
+  curseEnergy: {fileID: 0}
+  UISignature: {fileID: 0}
+  UIHeavy: {fileID: 0}
+  UIUltimate: {fileID: 0}
 --- !u!114 &-2409929765409534219
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -160,13 +165,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0df9ade1b679f8c4393da1b1b61c5c60, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  player: {fileID: 0}
   bomb: {fileID: 4466744194402806859, guid: 032a325b7474f514f951df2e3cdcf88a, type: 3}
   playerLocation: {fileID: 3452020887017226114}
   playerOnBomb:
     serializedVersion: 2
     m_Bits: 256
-  skill: {fileID: 9215971583486235875}
-  curseEnergy: {fileID: 0}
   ceName: CE Pool of Levi
   bombCost: 100
 --- !u!114 &21223312642145242
@@ -303,6 +307,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 15ca21e2d10a6064da90720b3e1eb001, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  player: {fileID: 9215971583486235875}
   effect2Bomb: {fileID: 4466744194402806859, guid: 5335e6fb708c70e4db76821e777961af, type: 3}
   blocked:
     serializedVersion: 2
