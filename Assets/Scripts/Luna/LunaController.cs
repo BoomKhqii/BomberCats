@@ -23,11 +23,12 @@ public class LunaController : MonoBehaviour
     private float cooldownSplash = 60f;
     public GameObject splashGameObject;
 
-    void Start()
-    {
-        player = GetComponent<GeneralPlayerController>();
+    void Start() { StartCoroutine(DelayedStart()); }
 
-        // Passive
+    IEnumerator DelayedStart()
+    {
+        yield return new WaitForSeconds(1f); // Waits for 3 seconds
+        player = GetComponent<GeneralPlayerController>();
         player.playerSpeed += 1f;
     }
 
