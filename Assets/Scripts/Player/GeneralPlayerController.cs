@@ -25,8 +25,7 @@ public class GeneralPlayerController : MonoBehaviour
     // UI of players - changing it to here for more dynamic
     public string playerNameController;
 
-    [SerializeField]
-    protected GameObject UIGameObject;
+    public GameObject UIGameObject;
     public CurseEnergyLogic curseEnergy;
 
     private bool hasHeavy = false, hasUltimate = false;
@@ -34,16 +33,15 @@ public class GeneralPlayerController : MonoBehaviour
     public UIHeavyLogic UIHeavy;
     public UIUltimateLogic UIUltimate;
 
-    void Start()
+    public void UIComponents(Transform location)
     {
-        controller = GetComponent<CharacterController>();
-
-        UIGameObject = Instantiate(UIGameObject); // Position is Static currently
+        UIGameObject = Instantiate(UIGameObject, location.position, Quaternion.Euler(80, 0, 0)); // Position is Static currently
         curseEnergy = UIGameObject.GetComponent<CurseEnergyLogic>();
-
         UISignature = UIGameObject.GetComponentInChildren<UISignatureLogic>();
         UIHeavy = UIGameObject.GetComponentInChildren<UIHeavyLogic>();
         UIUltimate = UIGameObject.GetComponentInChildren<UIUltimateLogic>();
+
+        controller = GetComponent<CharacterController>();
     }
 
     public void PlayerStun(float duration) { StartCoroutine(StunAction(duration)); }
