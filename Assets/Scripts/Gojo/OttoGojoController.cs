@@ -31,8 +31,11 @@ public class OttoGojoController : MonoBehaviour
     private float holdStartTime = 0f;
     private float heldDuration = 0f;
 
-    void Start()
+    void Start() { StartCoroutine(DelayedStart()); }
+
+    IEnumerator DelayedStart()
     {
+        yield return new WaitForSeconds(3f); // Waits for 3 seconds
         player = GetComponent<GeneralPlayerController>();
     }
 

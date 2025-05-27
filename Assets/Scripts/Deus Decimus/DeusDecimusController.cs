@@ -30,10 +30,12 @@ public class DeusDecimusController : MonoBehaviour
     private bool isPunishActive = true;
     public GameObject blackHole;
 
-    void Start()
+    void Start() { StartCoroutine(DelayedStart()); }
+
+    IEnumerator DelayedStart()
     {
+        yield return new WaitForSeconds(3f); // Waits for 3 seconds
         player = GetComponent<GeneralPlayerController>();
-        // Signature
         controller = GetComponent<CharacterController>();
     }
 

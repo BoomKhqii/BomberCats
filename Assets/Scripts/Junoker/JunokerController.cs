@@ -8,8 +8,7 @@ using static UnityEditor.PlayerSettings;
 
 public class JunokerController : MonoBehaviour
 {
-    [SerializeField]
-    private GeneralPlayerController player;
+    public GeneralPlayerController player;
     [SerializeField]
     private Transform cloneLocation;
     public MeshRenderer invis;
@@ -41,8 +40,11 @@ public class JunokerController : MonoBehaviour
     private GameObject JunoJosJesJuatroClonesObject;
     float minXZ = -7f, maxXZ = 7f;
 
-    void Start()
+    void Start() { StartCoroutine(DelayedStart()); }
+
+    IEnumerator DelayedStart()
     {
+        yield return new WaitForSeconds(3f); // Waits for 3 seconds
         player = GetComponent<GeneralPlayerController>();
         controller = GetComponent<CharacterController>();
     }

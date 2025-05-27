@@ -27,7 +27,7 @@ public class LunaController : MonoBehaviour
 
     IEnumerator DelayedStart()
     {
-        yield return new WaitForSeconds(1f); // Waits for 3 seconds
+        yield return new WaitForSeconds(3f); // Waits for 3 seconds
         player = GetComponent<GeneralPlayerController>();
         player.playerSpeed += 1f;
     }

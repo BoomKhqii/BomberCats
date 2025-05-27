@@ -40,11 +40,13 @@ public class LeviController : MonoBehaviour
     public GameObject bigBomb;
     private int? initialCorner = null;
 
-    void Start()
+    void Start() { StartCoroutine(DelayedStart()); }
+
+    IEnumerator DelayedStart()
     {
-        bombAbility = GetComponent<BasicAbility>();
+        yield return new WaitForSeconds(3f); // Waits for 3 seconds
         player = GetComponent<GeneralPlayerController>();
-        //curseEnergy = GameObject.Find("CE Pool of Levi").GetComponent<CurseEnergyLogic>(); //comment this
+        bombAbility = GetComponent<BasicAbility>();
     }
 
     public float ProbabilityChance()
