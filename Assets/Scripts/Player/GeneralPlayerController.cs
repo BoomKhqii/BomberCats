@@ -36,8 +36,6 @@ public class GeneralPlayerController : MonoBehaviour
     {
         if (!valid) return;
 
-        Debug.Log("called");
-
         UIGameObject = Instantiate(UIGameObject, location.position, Quaternion.Euler(80, 0, 0)); // Position is Static currently
         curseEnergy = UIGameObject.GetComponent<CurseEnergyLogic>();
         UISignature = UIGameObject.GetComponentInChildren<UISignatureLogic>();
