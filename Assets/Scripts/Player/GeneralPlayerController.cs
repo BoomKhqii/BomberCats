@@ -22,9 +22,6 @@ public class GeneralPlayerController : MonoBehaviour
 
     public PlayerInput stun;
 
-    // UI of players - changing it to here for more dynamic
-    public string playerNameController;
-
     public GameObject UIGameObject;
     public CurseEnergyLogic curseEnergy;
 
@@ -33,15 +30,19 @@ public class GeneralPlayerController : MonoBehaviour
     public UIHeavyLogic UIHeavy;
     public UIUltimateLogic UIUltimate;
 
-    public void UIComponents(Transform location)
+    private void Start(){ controller = GetComponent<CharacterController>(); }
+
+    public void UIComponents(Transform location, bool valid)
     {
+        if (!valid) return;
+
+        Debug.Log("called");
+
         UIGameObject = Instantiate(UIGameObject, location.position, Quaternion.Euler(80, 0, 0)); // Position is Static currently
         curseEnergy = UIGameObject.GetComponent<CurseEnergyLogic>();
         UISignature = UIGameObject.GetComponentInChildren<UISignatureLogic>();
         UIHeavy = UIGameObject.GetComponentInChildren<UIHeavyLogic>();
         UIUltimate = UIGameObject.GetComponentInChildren<UIUltimateLogic>();
-
-        controller = GetComponent<CharacterController>();
     }
 
     public void PlayerStun(float duration) { StartCoroutine(StunAction(duration)); }
