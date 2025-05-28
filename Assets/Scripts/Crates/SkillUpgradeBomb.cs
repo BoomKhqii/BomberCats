@@ -16,7 +16,8 @@ public class SkillUpgradeBomb : MonoBehaviour
             GeneralPlayerController player = other.GetComponent<GeneralPlayerController>();
             if (player == null) return;
 
-            player.bombSkill += 1;
+            //player.bombSkill += 1;
+            player.MaxLevelingSystem(0); // new system to avoid leveling issues
             Destroy(this.gameObject);
         }
         else

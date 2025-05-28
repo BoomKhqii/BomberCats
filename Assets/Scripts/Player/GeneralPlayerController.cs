@@ -32,6 +32,29 @@ public class GeneralPlayerController : MonoBehaviour
 
     private void Start(){ controller = GetComponent<CharacterController>(); }
 
+    public void MaxLevelingSystem(int type)
+    {
+        switch(type)
+        {
+            case 0: // Bomb Skill
+                if (bombSkill <= 2) bombSkill = 2;
+                else bombSkill++;
+                break;
+            case 1: // Signature Skill
+                if (signatureSkill <= 3) signatureSkill = 2;
+                else signatureSkill++;
+                break;
+            case 2: // Heavy Skill
+                if (heavySkill <= 5) heavySkill = 2;
+                else heavySkill++;
+                break;
+            case 3: // Ultimate Skill
+                if (ultimateSkill <= 2) ultimateSkill = 2;
+                else ultimateSkill++;
+                break;
+        }
+    }
+
     public void UIComponents(Transform location, bool valid)
     {
         if (!valid) return;
