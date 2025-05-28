@@ -13,10 +13,30 @@ public class EndsOfTheUniverseLogic : MonoBehaviour
     public GameObject deusDecimus;
     public float levelEndsOfTheUniverse = 0;
 
+    private int level;
+
     // Start is called before the first frame update
     void Start()
     {
+        level = gameObject.GetComponent<GeneralPlayerController>().ultimateSkill;
+        Upgrade(level);
+
         StartCoroutine(BlackHoleDeath());
+    }
+
+    public void Upgrade(float lvl)
+    {
+        if (lvl < 2)     // 1
+            return;
+        else if (lvl < 3)     // 2
+        {
+            pullRadius = 6.5f;
+        }
+        else                    // 3
+        {
+            pullRadius = 6.5f;
+            pullStrength = 15f;
+        }
     }
 
     IEnumerator BlackHoleDeath()

@@ -47,11 +47,7 @@ public class DeusDecimusController : MonoBehaviour
         {
             durationTime = 3f;
         }
-        else if (level < 4)     // 3
-        {
-            durationTime = 3.5f;
-        }
-        else                    // 4 +
+        else                    // 3
         {
             durationTime = 4f;
         }
