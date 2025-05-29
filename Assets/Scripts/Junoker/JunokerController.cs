@@ -30,8 +30,6 @@ public class JunokerController : MonoBehaviour
     private float durationInvis; //1, 2, 3 
     private bool isinvisOn = false;
 
-    private float levelJunoWhereIGo = 0;
-
     // Juno Jos Jes Juatro
     private float cooldownJunoJosJesJuatro = 30;
     private bool isJunoJosJesJuatroActive = true;
@@ -67,8 +65,8 @@ public class JunokerController : MonoBehaviour
 
     public void JunoWhereIGo(InputAction.CallbackContext context)
     {
-        levelJunoWhereIGo = player.heavySkill;
-        Upgrade(levelJunoWhereIGo);
+        //levelJunoWhereIGo = player.heavySkill;
+        Upgrade(player.heavySkill);
 
         if (!context.performed || player.heavySkill == 0 || !isJunoWhereIGoActive || !player.curseEnergy.CEReduction(200)) return;
 
@@ -119,11 +117,15 @@ public class JunokerController : MonoBehaviour
 
     public void Upgrade(float level)
     {
-        if (level < 2)     // 1
+        if (level < 2)                          // 1
             return;
-        else if (level < 3)     // 2
-            origDurationInvis = 2f;
-        else                    // 3 +
+        else if (level < 3)                     // 2
+            origDurationInvis = 1.2f;
+        else if (level < 4)                    // 3
+            origDurationInvis = 1.5f;
+        else if (level < 5)                     // 4
+            origDurationInvis = 1.8f;
+        else                                    // 5
             origDurationInvis = 3f;
     }
 
