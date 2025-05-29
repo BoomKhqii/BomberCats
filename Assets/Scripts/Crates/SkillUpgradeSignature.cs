@@ -16,7 +16,8 @@ public class SkillUpgradeSignature : MonoBehaviour
             GeneralPlayerController player = other.GetComponent<GeneralPlayerController>();
             if (player == null) return;
 
-            player.signatureSkill += 1;
+            //player.signatureSkill += 1;
+            player.MaxLevelingSystem(1); // new system to avoid leveling issues
             Destroy(this.gameObject);
         }
         else

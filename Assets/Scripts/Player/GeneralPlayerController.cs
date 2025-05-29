@@ -34,22 +34,23 @@ public class GeneralPlayerController : MonoBehaviour
 
     public void MaxLevelingSystem(int type)
     {
+        Debug.Log("MaxLevelingSystem called with type: " + type);
         switch(type)
         {
             case 0: // Bomb Skill
-                if (bombSkill <= 2) bombSkill = 2;
+                if (bombSkill >= 2) bombSkill = 2;
                 else bombSkill++;
                 break;
             case 1: // Signature Skill
-                if (signatureSkill <= 3) signatureSkill = 2;
+                if (signatureSkill >= 3) signatureSkill = 2;
                 else signatureSkill++;
                 break;
             case 2: // Heavy Skill
-                if (heavySkill <= 5) heavySkill = 2;
+                if (heavySkill >= 5) heavySkill = 2;
                 else heavySkill++;
                 break;
             case 3: // Ultimate Skill
-                if (ultimateSkill <= 2) ultimateSkill = 2;
+                if (ultimateSkill >= 2) ultimateSkill = 2;
                 else ultimateSkill++;
                 break;
         }

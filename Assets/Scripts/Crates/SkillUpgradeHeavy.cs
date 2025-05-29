@@ -16,7 +16,8 @@ public class SkillUpgradeHeavy : MonoBehaviour
             GeneralPlayerController player = other.GetComponent<GeneralPlayerController>();
             if (player == null) return;
 
-            player.heavySkill += 1;
+            //player.heavySkill += 1;
+            player.MaxLevelingSystem(2); // new system to avoid leveling issues
             Destroy(this.gameObject);
         }
         else

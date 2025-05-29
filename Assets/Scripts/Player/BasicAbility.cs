@@ -24,10 +24,7 @@ public class BasicAbility : MonoBehaviour
     public float bombCost = 100;
 
     
-    void Start()
-    {
-        player = gameObject.GetComponent<GeneralPlayerController>();
-    }
+    void Start() { player = gameObject.GetComponent<GeneralPlayerController>(); }
     
     
     public void SpawnBomb(InputAction.CallbackContext context)

@@ -16,7 +16,8 @@ public class SkillUpgradeUltimate : MonoBehaviour
             GeneralPlayerController player = other.GetComponent<GeneralPlayerController>();
             if (player == null) return;
 
-            player.ultimateSkill += 1;
+            //player.ultimateSkill += 1;
+            player.MaxLevelingSystem(3); // new system to avoid leveling issues
             Destroy(this.gameObject);
         }
         else
