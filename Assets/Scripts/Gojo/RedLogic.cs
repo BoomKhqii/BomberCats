@@ -57,7 +57,14 @@ public class RedLogic : MonoBehaviour
             pushStrength = 200;
             moveDistance = 10;
         }
-        else                    // 4 +
+        else if (level < 5)     // 4
+        {
+            speed = 25f;                  // Movement speed
+            pushRadius = 5f;
+            pushStrength = 250;
+            moveDistance = 12;
+        }
+        else                    // 5
         {
             speed = 40f;                  // Movement speed
             pushRadius = 6f;
