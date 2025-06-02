@@ -32,9 +32,18 @@ public class LunaController : MonoBehaviour
         player.playerSpeed += 1f;
     }
 
+    public void Upgrade(float level)
+    {
+        if (level < 2)     // 1
+            return;
+        else
+            maxSpawned = 3;
+    }
+
     public void Trap(InputAction.CallbackContext context)
     {
         if (!context.performed || player.signatureSkill == 0 || !isTrapActive || !player.curseEnergy.CEReduction(150)) return;
+        Upgrade(player.signatureSkill);
 
         GameObject trapSpawner = Instantiate(trapGameObject, new Vector3(
             Mathf.RoundToInt(transform.position.x),
@@ -43,6 +52,7 @@ public class LunaController : MonoBehaviour
         queueSpawning.Enqueue(trapSpawner);
 
         trapSpawner.GetComponent<LunaTrapLogic>().lunaObject = this.gameObject;
+        trapSpawner.GetComponent<LunaTrapLogic>().Upgrade(player.signatureSkill);
 
         if (queueSpawning.Count > maxSpawned)
         {

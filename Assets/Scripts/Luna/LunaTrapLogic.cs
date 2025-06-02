@@ -10,6 +10,8 @@ public class LunaTrapLogic : MonoBehaviour
     private Color originalColor;
     private float timer = 0f;
 
+    private float stun = 1.5f;
+
     public MeshRenderer invis;
     public GameObject lunaObject;
     public LayerMask affectedLayers;
@@ -22,7 +24,20 @@ public class LunaTrapLogic : MonoBehaviour
         originalColor = mat.color;
     }
 
-    
+    public void Upgrade(float level)
+    {
+        if (level < 3)     // 2
+            return;
+        else if (level < 4)     // 3
+        {
+            stun = 2f;
+        }
+        else                    // 4 +
+        {
+            stun = 2.5f;
+        }
+    }
+
     void Update()
     {
         timer += Time.deltaTime;
@@ -51,7 +66,7 @@ public class LunaTrapLogic : MonoBehaviour
 
                 if (enemy != null)
                 {
-                    enemy.PlayerStun(2f);
+                    enemy.PlayerStun(stun);
                     Destroy(gameObject);
                 }
             }
