@@ -86,6 +86,28 @@ public class HookLogic : MonoBehaviour
         */
     }
 
+    public void Upgrade(float level)
+    {
+        if (level < 2)     // 1
+            return;
+        else if (level < 3)     // 2
+        {
+            
+        }
+        else if (level < 4)     // 3
+        {
+            
+        }
+        else if (level < 5)     // 4
+        {
+
+        }
+        else                    // 5
+        {
+            
+        }
+    }
+
     private void OnTriggerEnter(Collider other)
     {
         if (isHooked || isReturning || other.gameObject != lunaObject) return;

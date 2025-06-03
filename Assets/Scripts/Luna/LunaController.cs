@@ -79,6 +79,7 @@ public class LunaController : MonoBehaviour
         HookLogic hookLogic = hook.GetComponent<HookLogic>();
         hookLogic.SetDirection(player.transform.forward);
         hookLogic.lunaObject = this.gameObject;
+        hookLogic.Upgrade(player.heavySkill);
 
         StartCoroutine(player.UIHeavy.FadeIn(cooldownHook));
         isHookActive = false;
@@ -94,6 +95,7 @@ public class LunaController : MonoBehaviour
             Mathf.RoundToInt(transform.position.z)), Quaternion.identity);
 
         splashSpawner.GetComponent<SplashLogic>().lunaObject = this.gameObject;
+        splashSpawner.GetComponent<SplashLogic>().Upgrade(player.ultimateSkill);
 
         StartCoroutine(player.UIUltimate.FadeIn(cooldownSplash));
         isSplashActive = false;

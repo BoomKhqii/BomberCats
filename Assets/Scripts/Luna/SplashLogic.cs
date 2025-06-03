@@ -12,6 +12,20 @@ public class SplashLogic : MonoBehaviour
         Explode(3, transform.position.x, transform.position.z, 0.9160001f);
     }
 
+    public void Upgrade(float level)
+    {
+        if (level < 2)     // 1
+            return;
+        else if (level < 3)     // 2
+        {
+
+        }
+        else                    // 3
+        {
+            
+        }
+    }
+
     void Explode(float range, float x, float z, float y)
     {
         Vector3 explosionCenter = new Vector3(Mathf.Round(x), y, Mathf.Round(z));
