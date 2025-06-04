@@ -92,20 +92,28 @@ public class HookLogic : MonoBehaviour
             return;
         else if (level < 3)     // 2
         {
-            
+            forwardSpeed = 12f;
+            returnSpeed = 25f;
+            moveDistance = 6f;
         }
         else if (level < 4)     // 3
         {
-            
+            forwardSpeed = 15f;
+            returnSpeed = 25f;
+            moveDistance = 8f;
         }
         else if (level < 5)     // 4
         {
-
+            forwardSpeed = 16f;
+            returnSpeed = 40f;
+            moveDistance = 10f;
         }
         else                    // 5
         {
-            
-        }
+            forwardSpeed = 20f;
+            returnSpeed = 40f;
+            moveDistance = 12f;
+}
     }
 
     private void OnTriggerEnter(Collider other)
