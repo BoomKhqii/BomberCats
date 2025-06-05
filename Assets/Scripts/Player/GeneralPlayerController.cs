@@ -16,7 +16,7 @@ public class GeneralPlayerController : MonoBehaviour
 
     // Skill Increment Values
     public int bombSkill = 0;
-    public float signatureSkill = 1;
+    public int signatureSkill = 1;
     public int heavySkill = 0;
     public int ultimateSkill = 0;
 
@@ -34,7 +34,6 @@ public class GeneralPlayerController : MonoBehaviour
 
     public void MaxLevelingSystem(int type)
     {
-        Debug.Log("MaxLevelingSystem called with type: " + type);
         switch(type)
         {
             case 0: // Bomb Skill
@@ -52,6 +51,26 @@ public class GeneralPlayerController : MonoBehaviour
             case 3: // Ultimate Skill
                 if (ultimateSkill >= 2) ultimateSkill = 2;
                 else ultimateSkill++;
+                break;
+        }
+        UIColorVisualSystem(type);
+    }
+
+    private void UIColorVisualSystem(int l)
+    {
+        switch (l)
+        {
+            case 0: // Bomb Skill
+                // Set color for bomb skill UI
+                break;
+            case 1: // Signature Skill
+                UISignature.UIColoursStandardLevelingSystem(signatureSkill);
+                break;
+            case 2: // Heavy Skill
+                UIHeavy.UIColoursStandardLevelingSystem(heavySkill);
+                break;
+            case 3: // Ultimate Skill
+                UIUltimate.UIColoursStandardLevelingSystem(heavySkill);
                 break;
         }
     }

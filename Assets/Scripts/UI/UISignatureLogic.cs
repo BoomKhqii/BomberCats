@@ -30,22 +30,19 @@ public class UISignatureLogic : MonoBehaviour
 
     public void UIColoursStandardLevelingSystem(int lvl)
     {
-        Debug.Log("UIColoursStandardLevelingSystem: " + lvl);
-
         Color tempColour;
-
         switch(lvl)
         {
             case 1: 
-                if(ColorUtility.TryParseHtmlString(lvl1Col, out tempColour));
+                if(ColorUtility.TryParseHtmlString(lvl1Col, out tempColour))
                     spriteRenderer.color = tempColour;
                 break;
             case 2:
-                if (ColorUtility.TryParseHtmlString(lvl2Col, out tempColour)) ;
+                if (ColorUtility.TryParseHtmlString(lvl2Col, out tempColour))
                 spriteRenderer.color = tempColour;
                 break;
             case 3:
-                if (ColorUtility.TryParseHtmlString(lvl3Col, out tempColour)) ;
+                if (ColorUtility.TryParseHtmlString(lvl3Col, out tempColour))
                 spriteRenderer.color = tempColour;
                 break;
         }
