@@ -17,20 +17,6 @@ public class BiteLogic : MonoBehaviour
         SplashAction();
     }
 
-    public void Upgrade(float level)
-    {
-        if (level < 2)     // 1
-            return;
-        else if (level < 3)     // 2
-        {
-
-        }
-        else                    // 3
-        {
-
-        }
-    }
-
     void SplashAction()
     {
         Collider[] colliders = Physics.OverlapBox(transform.position, new Vector3(0.5f, 0.5f, 0.5f), Quaternion.identity, afftectedLayers);

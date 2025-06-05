@@ -7,6 +7,9 @@ public class SplashLogic : MonoBehaviour
     public GameObject bite;
     public GameObject lunaObject;
 
+    private float radius = 2f;
+    private
+
     void Start()
     {
         Explode(3, transform.position.x, transform.position.z, 0.9160001f);
@@ -18,11 +21,11 @@ public class SplashLogic : MonoBehaviour
             return;
         else if (level < 3)     // 2
         {
-
+            radius = 2.5f;
         }
         else                    // 3
         {
-            
+            radius = 3f;
         }
     }
 
