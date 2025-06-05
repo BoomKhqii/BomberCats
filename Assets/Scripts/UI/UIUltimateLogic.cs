@@ -5,7 +5,7 @@ using UnityEngine;
 public class UIUltimateLogic : MonoBehaviour
 {
     private SpriteRenderer spriteRenderer;
-    private string lvl1Col = "#C6ECFF", lvl2Col = "#6BCDFF", lvl3Col = "#82004A";
+    private string lvl1Col = "#C6ECFF", lvl2Col = "#602776", lvl3Col = "#7F0006";
 
     void Start() { spriteRenderer = GetComponent<SpriteRenderer>(); }
 
@@ -25,7 +25,7 @@ public class UIUltimateLogic : MonoBehaviour
     }
 
     public void Faded() { spriteRenderer.color = new Color(1f, 1f, 1f, 0.078f); }
-    public void Active() { spriteRenderer.color = new Color(1f, 1f, 1f, 1f); }
+    public void Active() { spriteRenderer.color = new Color(0.7764705882352941f, 0.9254901960784314f, 1f, 1f); }
 
     public void UIColoursStandardLevelingSystem(int lvl)
     {
