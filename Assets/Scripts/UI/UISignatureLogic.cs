@@ -6,6 +6,8 @@ public class UISignatureLogic : MonoBehaviour
 {
     private SpriteRenderer spriteRenderer;
 
+    private string lvl1Col = "#C6ECFF", lvl2Col = "#6BCDFF", lvl3Col = "#82004A"; 
+
     void Start() { spriteRenderer = GetComponent<SpriteRenderer>(); }
 
     public IEnumerator FadeIn(float duration)
@@ -25,4 +27,27 @@ public class UISignatureLogic : MonoBehaviour
 
     public void Faded() { spriteRenderer.color = new Color(1f, 1f, 1f, 0.078f); }
     public void Active() { spriteRenderer.color = new Color(1f, 1f, 1f, 1f); }
+
+    public void UIColoursStandardLevelingSystem(int lvl)
+    {
+        Debug.Log("UIColoursStandardLevelingSystem: " + lvl);
+
+        Color tempColour;
+
+        switch(lvl)
+        {
+            case 1: 
+                if(ColorUtility.TryParseHtmlString(lvl1Col, out tempColour));
+                    spriteRenderer.color = tempColour;
+                break;
+            case 2:
+                if (ColorUtility.TryParseHtmlString(lvl2Col, out tempColour)) ;
+                spriteRenderer.color = tempColour;
+                break;
+            case 3:
+                if (ColorUtility.TryParseHtmlString(lvl3Col, out tempColour)) ;
+                spriteRenderer.color = tempColour;
+                break;
+        }
+    }
 }
