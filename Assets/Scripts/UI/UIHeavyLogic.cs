@@ -25,4 +25,9 @@ public class UIHeavyLogic : MonoBehaviour
 
     public void Faded() { spriteRenderer.color = new Color(1f, 1f, 1f, 0.078f); }
     public void Active() { spriteRenderer.color = new Color(1f, 1f, 1f, 1f); }
+
+    public void UIColoursStandardLevelingSystem()
+    {
+
+    }
 }
