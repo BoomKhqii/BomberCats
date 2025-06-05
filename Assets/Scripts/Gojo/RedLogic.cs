@@ -26,13 +26,10 @@ public class RedLogic : MonoBehaviour
     private bool isMoving = true;
     private bool didExplode = false; // this is not the issue
 
-    private float level = 0;
-
     private void Start()
     {
         GeneralPlayerController skill = ottoGojo.GetComponent<GeneralPlayerController>();
-        level += skill.heavySkill;
-        Upgrade(level);
+        Upgrade(skill.heavySkill);
 
         direction.Normalize();
         startPosition = transform.position;
