@@ -8,11 +8,13 @@ public class SplashLogic : MonoBehaviour
     public GameObject lunaObject;
 
     private float radius = 2f;
-    private
 
     void Start()
     {
-        Explode(3, transform.position.x, transform.position.z, 0.9160001f);
+        GeneralPlayerController skill = lunaObject.GetComponent<GeneralPlayerController>();
+        Upgrade(skill.ultimateSkill);
+
+        Explode(radius, transform.position.x, transform.position.z, 0.9160001f);
     }
 
     public void Upgrade(float level)
@@ -52,8 +54,8 @@ public class SplashLogic : MonoBehaviour
                 explosionPositions.Add(firePos);
 
                 // Use distance from center to apply delay
-                float distance = Vector3.Distance(firePos, explosionCenter);
-                float delay = distance * 1f; // Change multiplier to adjust wave speed
+                float delay = Vector3.Distance(firePos, explosionCenter);
+                //float delay = distance * 1f; // Change multiplier to adjust wave speed
 
                 StartCoroutine(WaveSplash(firePos, delay));
             }

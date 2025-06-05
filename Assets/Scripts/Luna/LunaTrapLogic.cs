@@ -19,6 +19,9 @@ public class LunaTrapLogic : MonoBehaviour
 
     void Start()
     {
+        GeneralPlayerController skill = lunaObject.GetComponent<GeneralPlayerController>();
+        Upgrade(skill.signatureSkill);
+
         Renderer renderer = GetComponent<Renderer>();
         mat = renderer.material; // Use .material to get an instance
         originalColor = mat.color;

@@ -26,6 +26,9 @@ public class HookLogic : MonoBehaviour
 
     void Start()
     {
+        GeneralPlayerController skill = lunaObject.GetComponent<GeneralPlayerController>();
+        Upgrade(skill.heavySkill);
+
         direction.Normalize();
         startPosition = transform.position;
         targetPosition = startPosition + direction * moveDistance;
