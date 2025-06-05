@@ -41,11 +41,11 @@ public class GeneralPlayerController : MonoBehaviour
                 else bombSkill++;
                 break;
             case 1: // Signature Skill
-                if (signatureSkill >= 3) signatureSkill = 2;
+                if (signatureSkill >= 3) signatureSkill = 3;
                 else signatureSkill++;
                 break;
             case 2: // Heavy Skill
-                if (heavySkill >= 5) heavySkill = 2;
+                if (heavySkill >= 5) heavySkill = 5;
                 else heavySkill++;
                 break;
             case 3: // Ultimate Skill
