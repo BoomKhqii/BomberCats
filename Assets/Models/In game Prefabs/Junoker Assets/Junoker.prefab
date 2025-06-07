@@ -75,6 +75,7 @@ MonoBehaviour:
   stun: {fileID: 8909275290841350921}
   UIGameObject: {fileID: 8285492184618250660, guid: 9a2129507abe41b43b3103d570a88690, type: 3}
   curseEnergy: {fileID: 0}
+  UIBomb: {fileID: 0}
   UISignature: {fileID: 0}
   UIHeavy: {fileID: 0}
   UIUltimate: {fileID: 0}

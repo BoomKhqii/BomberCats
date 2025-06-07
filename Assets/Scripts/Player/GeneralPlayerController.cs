@@ -26,6 +26,7 @@ public class GeneralPlayerController : MonoBehaviour
     public CurseEnergyLogic curseEnergy;
 
     private bool hasHeavy = false, hasUltimate = false;
+    public UIBombLogic UIBomb;
     public UISignatureLogic UISignature;
     public UIHeavyLogic UIHeavy;
     public UIUltimateLogic UIUltimate;
@@ -41,7 +42,7 @@ public class GeneralPlayerController : MonoBehaviour
                 else bombSkill++;
                 break;
             case 1: // Signature Skill
-                if (signatureSkill >= 3) signatureSkill = 3;
+                if (signatureSkill >= 4) signatureSkill = 4;
                 else signatureSkill++;
                 break;
             case 2: // Heavy Skill
@@ -49,7 +50,7 @@ public class GeneralPlayerController : MonoBehaviour
                 else heavySkill++;
                 break;
             case 3: // Ultimate Skill
-                if (ultimateSkill >= 2) ultimateSkill = 2;
+                if (ultimateSkill >= 3) ultimateSkill = 3;
                 else ultimateSkill++;
                 break;
         }
@@ -70,7 +71,7 @@ public class GeneralPlayerController : MonoBehaviour
                 UIHeavy.UIColoursStandardLevelingSystem(heavySkill);
                 break;
             case 3: // Ultimate Skill
-                UIUltimate.UIColoursStandardLevelingSystem(heavySkill);
+                UIUltimate.UIColoursStandardLevelingSystem(ultimateSkill);
                 break;
         }
     }

@@ -2,11 +2,11 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class UISignatureLogic : MonoBehaviour
+public class UIBombLogic : MonoBehaviour
 {
     private SpriteRenderer spriteRenderer;
 
-    private string lvl1Col = "#C6ECFF", lvl2Col = "#6BCDFF", lvl3Col = "#82004A", lvl4Col = "#7F0006"; 
+    private string lvl1Col = "#C6ECFF", lvl2Col = "#82004A", lvl3Col = "#7F0006";
 
     void Start() { spriteRenderer = GetComponent<SpriteRenderer>(); }
 
@@ -31,22 +31,18 @@ public class UISignatureLogic : MonoBehaviour
     public void UIColoursStandardLevelingSystem(int lvl)
     {
         Color tempColour;
-        switch(lvl)
+        switch (lvl)
         {
-            case 1: 
-                if(ColorUtility.TryParseHtmlString(lvl1Col, out tempColour))
+            case 1:
+                if (ColorUtility.TryParseHtmlString(lvl1Col, out tempColour))
                     spriteRenderer.color = tempColour;
                 break;
             case 2:
                 if (ColorUtility.TryParseHtmlString(lvl2Col, out tempColour))
-                spriteRenderer.color = tempColour;
+                    spriteRenderer.color = tempColour;
                 break;
             case 3:
                 if (ColorUtility.TryParseHtmlString(lvl3Col, out tempColour))
-                spriteRenderer.color = tempColour;
-                break;
-            case 4:
-                if (ColorUtility.TryParseHtmlString(lvl4Col, out tempColour))
                     spriteRenderer.color = tempColour;
                 break;
         }
