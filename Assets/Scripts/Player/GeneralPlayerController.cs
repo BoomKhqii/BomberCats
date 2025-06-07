@@ -62,7 +62,7 @@ public class GeneralPlayerController : MonoBehaviour
         switch (l)
         {
             case 0: // Bomb Skill
-                // Set color for bomb skill UI
+                UIBomb.UIColoursStandardLevelingSystem(bombSkill);
                 break;
             case 1: // Signature Skill
                 UISignature.UIColoursStandardLevelingSystem(signatureSkill);
@@ -82,6 +82,7 @@ public class GeneralPlayerController : MonoBehaviour
 
         UIGameObject = Instantiate(UIGameObject, location.position, Quaternion.Euler(80, 0, 0)); // Position is Static currently
         curseEnergy = UIGameObject.GetComponent<CurseEnergyLogic>();
+        UIBomb = UIGameObject.GetComponentInChildren<UIBombLogic>();
         UISignature = UIGameObject.GetComponentInChildren<UISignatureLogic>();
         UIHeavy = UIGameObject.GetComponentInChildren<UIHeavyLogic>();
         UIUltimate = UIGameObject.GetComponentInChildren<UIUltimateLogic>();
