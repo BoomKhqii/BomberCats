@@ -269,7 +269,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: Character Name
+  m_Text: Levi
 --- !u!1001 &3812124683880241736
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -582,7 +582,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 1383662151699852679, guid: 861ab028d1e229a4d959e67852647218, type: 3}
       propertyPath: m_Name
-      value: CE Pool of 2
+      value: CE Pool of 3
       objectReference: {fileID: 0}
     - target: {fileID: 4958234152344488345, guid: 861ab028d1e229a4d959e67852647218, type: 3}
       propertyPath: m_Color.b
