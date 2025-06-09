@@ -8,6 +8,7 @@ public class LeviController : MonoBehaviour
 {
     [SerializeField]
     private GeneralPlayerController player;
+    private UIAnnouncerLogic uiAnnouncerLogic;
 
     //passive
     private bool isPassiveCountDown = false;
@@ -47,6 +48,7 @@ public class LeviController : MonoBehaviour
         yield return new WaitForSeconds(3f); // Waits for 3 seconds
         player = GetComponent<GeneralPlayerController>();
         bombAbility = GetComponent<BasicAbility>();
+        uiAnnouncerLogic = player.UIGameObject.GetComponent<UIAnnouncerLogic>();
     }
 
     public float ProbabilityChance()
@@ -306,11 +308,11 @@ public class LeviController : MonoBehaviour
 
     private void Unlevictable()
     {
-        if (ProbabilityChance() < 0.10f)
+        if (ProbabilityChance() < 0.1f)
         {
             isAwakened = true;
-            Debug.Log("awaken");
-        } else Debug.Log("failed");
+            uiAnnouncerLogic.Announce("Levi has awakened!"); // Announce Levi's awakening
+        } else uiAnnouncerLogic.Announce("Roll failed! Another 10 seconds for retry to awaken"); // Announce Levi's passive failed
     }
 
     IEnumerator PassiveCountDown()

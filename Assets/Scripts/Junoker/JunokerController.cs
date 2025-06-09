@@ -12,6 +12,7 @@ public class JunokerController : MonoBehaviour
     [SerializeField]
     private Transform cloneLocation;
     public MeshRenderer invis;
+    public UIAnnouncerLogic announcerLogic;
 
     // Juno Jo's
     private float cooldownJunoJos = 3;
