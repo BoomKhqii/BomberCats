@@ -13,9 +13,9 @@ GameObject:
   - component: {fileID: 7398420971730027444}
   - component: {fileID: 7028008582160862188}
   - component: {fileID: -4098419455942477393}
-  m_Layer: 6
+  m_Layer: 0
   m_Name: ExplosionEffect2
-  m_TagString: Explosion
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -4817,6 +4817,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 25c07d721825ecc41a2ba6b1667e10e5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  playerLayer:
+  bombLocation: {fileID: 0}
+  locationX: 0
+  locationZ: 0
+  range: 3
+  explosion: {fileID: 7100603031460907972, guid: c3a7db598c79a954092be193a082e9c7, type: 3}
+  unbreakable:
+    serializedVersion: 2
+    m_Bits: 8
+  fire:
+    serializedVersion: 2
+    m_Bits: 64
+  player:
     serializedVersion: 2
     m_Bits: 128

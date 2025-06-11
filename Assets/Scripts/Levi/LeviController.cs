@@ -70,6 +70,7 @@ public class LeviController : MonoBehaviour
         if (effectsEffectsValue < 0.3333f)
         {
             Debug.Log("1");
+            uiAnnouncerLogic.Announce("Effect 1!");
             if (player.curseEnergy.CEReduction(150))
                 oneEffect = true;
             else
@@ -81,9 +82,10 @@ public class LeviController : MonoBehaviour
             cooldownEffectsEffects = 3f; // reset cooldown to 3 seconds
             isEffectsEffectsActive = false; // reset cooldown
         }
-        else if (effectsEffectsValue < 0.6666f)
+        else if (true)//(effectsEffectsValue < 0.6666f)
         {
             Debug.Log("2");
+            uiAnnouncerLogic.Announce("Effect 2!");
             StartCoroutine(player.UISignature.FadeIn(cooldownEffectsEffects));
             isEffectsEffectsActive = false; // reset cooldown
 
@@ -92,6 +94,7 @@ public class LeviController : MonoBehaviour
         else
         {
             Debug.Log("3");
+            uiAnnouncerLogic.Announce("Effect 3!");
             StartCoroutine(player.UISignature.FadeIn(cooldownEffectsEffects));
             isEffectsEffectsActive = false; // reset cooldown
 
