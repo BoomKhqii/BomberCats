@@ -32,6 +32,8 @@ public class LeviController : MonoBehaviour
     float minXZ = -7f, maxXZ = 7f;
     public LayerMask blocked;
     private CharacterController tp;
+    private int max = 1; // max amount of teleportations allowed
+    private float tpWindow = 3f; // time window to click again
 
     // Ultimate - Levi change it up!
     private float cooldownLeviChangeItUp = 60;
@@ -60,7 +62,7 @@ public class LeviController : MonoBehaviour
     {
         if (!context.performed || player.signatureSkill == 0 || !isEffectsEffectsActive || !player.curseEnergy.CEReduction(150)) return;
 
-        if (true) //(isAwakened)
+        if (isAwakened)
         {
             StartCoroutine(NOMORECHANCE());
             return;
@@ -150,10 +152,37 @@ public class LeviController : MonoBehaviour
     // click again for ANOTHER random tp, however for the second second click the timer will automatically end
     // timer ends after 5 seconds
     */
+
+    public void UpgradeLeviscaped(float level)
+    {
+        if (level < 2)     // 1
+            return;
+        else if (level < 3)     // 2
+        {
+            tpWindow = 5f; // time window to click again
+        }
+        else if (level < 4)     // 3
+        {
+            tpWindow = 5f;
+            max = 2; // max amount of teleportations allowed
+        }
+        else if (level < 5)     // 4
+        {
+            tpWindow = 10f;
+            max = 2;
+        }
+        else                    // 5
+        {
+            tpWindow = 10f;
+            max = 3; // max amount of teleportations allowed
+        }
+    }
+
     public void Leviscaped(InputAction.CallbackContext context)
     {
         if (!context.performed || player.heavySkill == 0 || !isLeviscapedActive) return;
 
+        UpgradeLeviscaped(player.heavySkill);
         if (!tpCoroutine && player.curseEnergy.CEReduction(250))
         {
             StartCoroutine(LeviscapedActions());
@@ -162,7 +191,7 @@ public class LeviController : MonoBehaviour
 
         if (tpCoroutine)
         {
-            if (leviscapedAmountCasted < 2)
+            if (leviscapedAmountCasted < max)
                 tpAction();
         }
     }
@@ -171,7 +200,7 @@ public class LeviController : MonoBehaviour
     {
         tpCoroutine = true;
 
-        yield return new WaitForSeconds(10f);
+        yield return new WaitForSeconds(tpWindow);
 
         tpCoroutine = false;
 
@@ -285,8 +314,11 @@ public class LeviController : MonoBehaviour
             // Destroy both
             corner[first] = true;
             corner[second] = true;
-            Instantiate(bigBomb, cornerPositions[first], Quaternion.identity);
-            Instantiate(bigBomb, cornerPositions[second], Quaternion.identity);
+            GameObject ult1 = Instantiate(bigBomb, cornerPositions[first], Quaternion.identity);
+            ult1.GetComponent<BigBombController>().Upgrade(player.ultimateSkill);
+
+            GameObject ult2 = Instantiate(bigBomb, cornerPositions[second], Quaternion.identity);
+            ult2.GetComponent<BigBombController>().Upgrade(player.ultimateSkill);
 
             initialCorner = first;
             leviChangeItUpAmountCasted++;
@@ -296,7 +328,9 @@ public class LeviController : MonoBehaviour
         // Normal behavior: destroy 1 corner
         int chosenIndex = availableCorners[Random.Range(0, availableCorners.Count)];
         corner[chosenIndex] = true;
-        Instantiate(bigBomb, cornerPositions[chosenIndex], Quaternion.identity);
+
+        GameObject ult = Instantiate(bigBomb, cornerPositions[chosenIndex], Quaternion.identity);
+        ult.GetComponent<BigBombController>().Upgrade(player.ultimateSkill);
 
         if (!initialCorner.HasValue)
             initialCorner = chosenIndex;
@@ -331,7 +365,7 @@ public class LeviController : MonoBehaviour
         Debug.Log("Countdown");
         isPassiveCountDown = true;
         yield return new WaitForSeconds(10f);
-        //Unlevictable();
+        Unlevictable();
         isPassiveCountDown = false;
     }
 
