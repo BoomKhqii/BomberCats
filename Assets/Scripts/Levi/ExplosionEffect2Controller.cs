@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
+using static TMPro.SpriteAssetUtilities.TexturePacker_JsonArray;
 
 public class ExplosionEffect2Controller : MonoBehaviour
 {
@@ -39,6 +40,7 @@ public class ExplosionEffect2Controller : MonoBehaviour
         StartCoroutine(ExplosionSequence(range, locationX, locationZ, bombLocationY));
         yield return new WaitForSeconds(1f); // Wait for the explosion sequence to finish
         Debug.Log("Effect2Effects started2");
+        Reset();
         StartCoroutine(ExplosionSequence(range, locationX, locationZ, bombLocationY));
     }
     IEnumerator ExplosionSequence(float range, int x, int z, float y)
@@ -117,5 +119,13 @@ public class ExplosionEffect2Controller : MonoBehaviour
                 return true;
         }
         return false;
+    }
+
+    private void Reset()
+    {
+        for (int dirIndex = 0; dirIndex < explosionDirection.Length; dirIndex++)
+        {
+            explosionDirection[dirIndex] = true; // Reset all directions to true
+        }
     }
 }

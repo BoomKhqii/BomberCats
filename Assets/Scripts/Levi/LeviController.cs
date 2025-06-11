@@ -60,7 +60,7 @@ public class LeviController : MonoBehaviour
     {
         if (!context.performed || player.signatureSkill == 0 || !isEffectsEffectsActive || !player.curseEnergy.CEReduction(150)) return;
 
-        if(isAwakened)
+        if (true) //(isAwakened)
         {
             StartCoroutine(NOMORECHANCE());
             return;
@@ -82,12 +82,11 @@ public class LeviController : MonoBehaviour
             cooldownEffectsEffects = 3f; // reset cooldown to 3 seconds
             isEffectsEffectsActive = false; // reset cooldown
         }
-        else if (true)//(effectsEffectsValue < 0.6666f)
+        else if (effectsEffectsValue < 0.6666f)
         {
             Debug.Log("2");
             uiAnnouncerLogic.Announce("Effect 2!");
-            StartCoroutine(player.UISignature.FadeIn(cooldownEffectsEffects));
-            isEffectsEffectsActive = false; // reset cooldown
+            player.UISignature.Faded();
 
             StartCoroutine(twoEffectsTimer());
         }
@@ -95,8 +94,7 @@ public class LeviController : MonoBehaviour
         {
             Debug.Log("3");
             uiAnnouncerLogic.Announce("Effect 3!");
-            StartCoroutine(player.UISignature.FadeIn(cooldownEffectsEffects));
-            isEffectsEffectsActive = false; // reset cooldown
+            player.UISignature.Faded();
 
             StartCoroutine(threeEffectsTimer());
         }
@@ -112,8 +110,12 @@ public class LeviController : MonoBehaviour
         this.bomb = bombAbility.bomb;
         bombAbility.bomb = effect2Bomb;
 
-        yield return new WaitForSeconds(5f);
+        int temp_range = player.bombSkill;
+        player.bombSkill = 20;
 
+        yield return new WaitForSeconds(15f);
+
+        player.bombSkill = temp_range; // reset bomb skill
         //effect 3
         bombAbility.bombCost = 100;
         //effect 2
@@ -126,6 +128,9 @@ public class LeviController : MonoBehaviour
         bombAbility.bomb = effect2Bomb;
         yield return new WaitForSeconds(10f);
         bombAbility.bomb = this.bomb;
+
+        StartCoroutine(player.UISignature.FadeIn(cooldownEffectsEffects));
+        isEffectsEffectsActive = false; // reset cooldown
     }
 
     IEnumerator threeEffectsTimer()
@@ -134,6 +139,9 @@ public class LeviController : MonoBehaviour
         bombAbility.bombCost = 0;
         yield return new WaitForSeconds(15f);
         bombAbility.bombCost = 100;
+
+        StartCoroutine(player.UISignature.FadeIn(cooldownEffectsEffects));
+        isEffectsEffectsActive = false; // reset cooldown
     }
 
     /*
@@ -323,7 +331,7 @@ public class LeviController : MonoBehaviour
         Debug.Log("Countdown");
         isPassiveCountDown = true;
         yield return new WaitForSeconds(10f);
-        Unlevictable();
+        //Unlevictable();
         isPassiveCountDown = false;
     }
 
