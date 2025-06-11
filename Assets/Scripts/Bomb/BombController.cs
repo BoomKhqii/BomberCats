@@ -67,10 +67,16 @@ public class BombController : MonoBehaviour
         GameObject spawner = Instantiate(explosionSpawner, transform.position, Quaternion.identity);
 
         int bombLocationX = Mathf.RoundToInt(transform.position.x);
-        spawner.GetComponent<ExplodeSpawner>().locationX = bombLocationX;
         int bombLocationZ = Mathf.RoundToInt(transform.position.z);
-        spawner.GetComponent<ExplodeSpawner>().locationZ = bombLocationZ;
-
-        spawner.GetComponent<ExplodeSpawner>().range = rangePlayer;
+        if (spawner.GetComponent<ExplodeSpawner>())
+        {
+            spawner.GetComponent<ExplodeSpawner>().locationX = bombLocationX;
+            spawner.GetComponent<ExplodeSpawner>().locationZ = bombLocationZ;
+            spawner.GetComponent<ExplodeSpawner>().range = rangePlayer;
+        } else {
+            spawner.GetComponent<ExplosionEffect2Controller>().locationX = bombLocationX;
+            spawner.GetComponent<ExplosionEffect2Controller>().locationZ = bombLocationZ;
+            spawner.GetComponent<ExplosionEffect2Controller>().range = rangePlayer;
+        }
     }
 }

@@ -7,12 +7,17 @@ using UnityEngine.InputSystem.HID;
 public class FireController : MonoBehaviour
 {
     private Transform fire;
+    private ParticleSystem parts;
     public LayerMask playerLayer;
 
     void Start()
     {
         fire = GetComponent<Transform>();
-        StartCoroutine(waiter());
+        parts = GetComponent<ParticleSystem>();
+
+        DidKill();
+        Destroy(gameObject, parts.duration + parts.startLifetime);
+        //StartCoroutine(waiter());
     }
 
     void DidKill()
