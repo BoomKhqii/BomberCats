@@ -59,9 +59,9 @@ MonoBehaviour:
   heavySkill: 0
   ultimateSkill: 0
   stun: {fileID: 6296327816773793935}
-  playerNameController: 
-  UIGameObject: {fileID: 8285492184618250660, guid: cec272f44289b8b4ba2df5347cc75149, type: 3}
+  UIGameObject: {fileID: 8285492184618250660, guid: 864308fc504ffff4288e83148bb74dcb, type: 3}
   curseEnergy: {fileID: 0}
+  UIBomb: {fileID: 0}
   UISignature: {fileID: 0}
   UIHeavy: {fileID: 0}
   UIUltimate: {fileID: 0}
