@@ -18,7 +18,7 @@ public class EndsOfTheUniverseLogic : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        level = gameObject.GetComponent<GeneralPlayerController>().ultimateSkill;
+        level = deusDecimus.GetComponent<GeneralPlayerController>().ultimateSkill;
         Upgrade(level);
 
         StartCoroutine(BlackHoleDeath());
