@@ -73,7 +73,7 @@ MonoBehaviour:
   heavySkill: 0
   ultimateSkill: 0
   stun: {fileID: 8909275290841350921}
-  UIGameObject: {fileID: 8285492184618250660, guid: 9a2129507abe41b43b3103d570a88690, type: 3}
+  UIGameObject: {fileID: 8285492184618250660, guid: 2953376377bbca044982b1f0b3d0237e, type: 3}
   curseEnergy: {fileID: 0}
   UIBomb: {fileID: 0}
   UISignature: {fileID: 0}
@@ -114,6 +114,7 @@ MonoBehaviour:
   player: {fileID: 5246650308643100351}
   cloneLocation: {fileID: 5862562193905666967}
   invis: {fileID: 3677487720599449588}
+  announcerLogic: {fileID: 0}
   junosJoCloneObject: {fileID: 6593356670125899504, guid: ce37109b6a67a5042b97def6b58063e6, type: 3}
   blocked:
     serializedVersion: 2
